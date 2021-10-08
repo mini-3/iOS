@@ -31,7 +31,6 @@ class SessionService {
                 let completed = KeyChainService.shared.save(data: response.data.token, key: "token")
                 if completed {
                     UserDefaultsService.shared.save(data: Date(), key: "token_date")
-                    
                 }
                 handler(completed)
             case .failure(_):
