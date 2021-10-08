@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {
            window?.rootViewController = LoginViewController()
-       }
+        }
         window?.rootViewController = MainTabBarViewController()
     }
 
