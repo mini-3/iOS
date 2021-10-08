@@ -1,0 +1,718 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7657C52710C853007F9BFA /* KeychainAccess */; };
+		4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */; };
+		4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5634E2710BE4400411EA6 /* AppDelegate.swift */; };
+		4EC563512710BE4400411EA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563502710BE4400411EA6 /* SceneDelegate.swift */; };
+		4EC563532710BE4400411EA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563522710BE4400411EA6 /* ViewController.swift */; };
+		4EC563582710BE4600411EA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EC563572710BE4600411EA6 /* Assets.xcassets */; };
+		4EC5635B2710BE4600411EA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC563592710BE4600411EA6 /* LaunchScreen.storyboard */; };
+		4EC563662710BE4700411EA6 /* Fidelity_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563652710BE4700411EA6 /* Fidelity_iosTests.swift */; };
+		4EC563702710BE4700411EA6 /* Fidelity_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5636F2710BE4700411EA6 /* Fidelity_iosUITests.swift */; };
+		4EC563722710BE4700411EA6 /* Fidelity_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563712710BE4700411EA6 /* Fidelity_iosUITestsLaunchTests.swift */; };
+		4EC563822710BFC400411EA6 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563812710BFC400411EA6 /* Promotion.swift */; };
+		4EC563842710C10100411EA6 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563832710C10100411EA6 /* Types.swift */; };
+		4EC563862710C26F00411EA6 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563852710C26F00411EA6 /* Store.swift */; };
+		4EC563882710C31E00411EA6 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563872710C31E00411EA6 /* Ticket.swift */; };
+		4EC5638A2710C35D00411EA6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563892710C35D00411EA6 /* User.swift */; };
+		4EC5638C2710C47A00411EA6 /* EmailUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5638B2710C47A00411EA6 /* EmailUser.swift */; };
+		4EC5638F2710C67E00411EA6 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5638E2710C67E00411EA6 /* SessionService.swift */; };
+		4EC563912710C6DB00411EA6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563902710C6DB00411EA6 /* KeyChainService.swift */; };
+		4EC563932710C6EB00411EA6 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563922710C6EB00411EA6 /* WebService.swift */; };
+		4EC563952710C73800411EA6 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563942710C73700411EA6 /* SessionResponse.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4EC563622710BE4700411EA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EC563432710BE4400411EA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4EC5634A2710BE4400411EA6;
+			remoteInfo = "Fidelity-ios";
+		};
+		4EC5636C2710BE4700411EA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EC563432710BE4400411EA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4EC5634A2710BE4400411EA6;
+			remoteInfo = "Fidelity-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidelity-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EC5634E2710BE4400411EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4EC563502710BE4400411EA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		4EC563522710BE4400411EA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4EC563572710BE4600411EA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4EC5635A2710BE4600411EA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4EC5635C2710BE4600411EA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4EC563612710BE4700411EA6 /* Fidelity-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fidelity-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EC563652710BE4700411EA6 /* Fidelity_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fidelity_iosTests.swift; sourceTree = "<group>"; };
+		4EC5636B2710BE4700411EA6 /* Fidelity-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fidelity-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EC5636F2710BE4700411EA6 /* Fidelity_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fidelity_iosUITests.swift; sourceTree = "<group>"; };
+		4EC563712710BE4700411EA6 /* Fidelity_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fidelity_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4EC563812710BFC400411EA6 /* Promotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promotion.swift; sourceTree = "<group>"; };
+		4EC563832710C10100411EA6 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		4EC563852710C26F00411EA6 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		4EC563872710C31E00411EA6 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		4EC563892710C35D00411EA6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4EC5638B2710C47A00411EA6 /* EmailUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailUser.swift; sourceTree = "<group>"; };
+		4EC5638E2710C67E00411EA6 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		4EC563902710C6DB00411EA6 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
+		4EC563922710C6EB00411EA6 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		4EC563942710C73700411EA6 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4EC563482710BE4400411EA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EC5635E2710BE4700411EA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EC563682710BE4700411EA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4EC563422710BE4400411EA6 = {
+			isa = PBXGroup;
+			children = (
+				4EC5634D2710BE4400411EA6 /* Fidelity-ios */,
+				4EC563642710BE4700411EA6 /* Fidelity-iosTests */,
+				4EC5636E2710BE4700411EA6 /* Fidelity-iosUITests */,
+				4EC5634C2710BE4400411EA6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4EC5634C2710BE4400411EA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */,
+				4EC563612710BE4700411EA6 /* Fidelity-iosTests.xctest */,
+				4EC5636B2710BE4700411EA6 /* Fidelity-iosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4EC5634D2710BE4400411EA6 /* Fidelity-ios */ = {
+			isa = PBXGroup;
+			children = (
+				4EC5638D2710C65900411EA6 /* Services */,
+				4EC563802710BEBE00411EA6 /* Resources */,
+				4EC5637F2710BEA200411EA6 /* Views */,
+				4EC5637E2710BE8F00411EA6 /* Models */,
+				4EC5635C2710BE4600411EA6 /* Info.plist */,
+			);
+			path = "Fidelity-ios";
+			sourceTree = "<group>";
+		};
+		4EC563642710BE4700411EA6 /* Fidelity-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				4EC563652710BE4700411EA6 /* Fidelity_iosTests.swift */,
+			);
+			path = "Fidelity-iosTests";
+			sourceTree = "<group>";
+		};
+		4EC5636E2710BE4700411EA6 /* Fidelity-iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4EC5636F2710BE4700411EA6 /* Fidelity_iosUITests.swift */,
+				4EC563712710BE4700411EA6 /* Fidelity_iosUITestsLaunchTests.swift */,
+			);
+			path = "Fidelity-iosUITests";
+			sourceTree = "<group>";
+		};
+		4EC5637E2710BE8F00411EA6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4EC563812710BFC400411EA6 /* Promotion.swift */,
+				4EC563852710C26F00411EA6 /* Store.swift */,
+				4EC563872710C31E00411EA6 /* Ticket.swift */,
+				4EC563892710C35D00411EA6 /* User.swift */,
+				4EC5638B2710C47A00411EA6 /* EmailUser.swift */,
+				4EC563942710C73700411EA6 /* SessionResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4EC5637F2710BEA200411EA6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4EC563522710BE4400411EA6 /* ViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4EC563802710BEBE00411EA6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4EC5634E2710BE4400411EA6 /* AppDelegate.swift */,
+				4EC563502710BE4400411EA6 /* SceneDelegate.swift */,
+				4EC563592710BE4600411EA6 /* LaunchScreen.storyboard */,
+				4EC563572710BE4600411EA6 /* Assets.xcassets */,
+				4EC563832710C10100411EA6 /* Types.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4EC5638D2710C65900411EA6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4EC5638E2710C67E00411EA6 /* SessionService.swift */,
+				4EC563902710C6DB00411EA6 /* KeyChainService.swift */,
+				4EC563922710C6EB00411EA6 /* WebService.swift */,
+				4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4EC5634A2710BE4400411EA6 /* Fidelity-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EC563752710BE4700411EA6 /* Build configuration list for PBXNativeTarget "Fidelity-ios" */;
+			buildPhases = (
+				4EC563472710BE4400411EA6 /* Sources */,
+				4EC563482710BE4400411EA6 /* Frameworks */,
+				4EC563492710BE4400411EA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fidelity-ios";
+			packageProductDependencies = (
+				4E7657C52710C853007F9BFA /* KeychainAccess */,
+			);
+			productName = "Fidelity-ios";
+			productReference = 4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4EC563602710BE4700411EA6 /* Fidelity-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EC563782710BE4700411EA6 /* Build configuration list for PBXNativeTarget "Fidelity-iosTests" */;
+			buildPhases = (
+				4EC5635D2710BE4700411EA6 /* Sources */,
+				4EC5635E2710BE4700411EA6 /* Frameworks */,
+				4EC5635F2710BE4700411EA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4EC563632710BE4700411EA6 /* PBXTargetDependency */,
+			);
+			name = "Fidelity-iosTests";
+			productName = "Fidelity-iosTests";
+			productReference = 4EC563612710BE4700411EA6 /* Fidelity-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4EC5636A2710BE4700411EA6 /* Fidelity-iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EC5637B2710BE4700411EA6 /* Build configuration list for PBXNativeTarget "Fidelity-iosUITests" */;
+			buildPhases = (
+				4EC563672710BE4700411EA6 /* Sources */,
+				4EC563682710BE4700411EA6 /* Frameworks */,
+				4EC563692710BE4700411EA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4EC5636D2710BE4700411EA6 /* PBXTargetDependency */,
+			);
+			name = "Fidelity-iosUITests";
+			productName = "Fidelity-iosUITests";
+			productReference = 4EC5636B2710BE4700411EA6 /* Fidelity-iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4EC563432710BE4400411EA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					4EC5634A2710BE4400411EA6 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					4EC563602710BE4700411EA6 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 4EC5634A2710BE4400411EA6;
+					};
+					4EC5636A2710BE4700411EA6 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 4EC5634A2710BE4400411EA6;
+					};
+				};
+			};
+			buildConfigurationList = 4EC563462710BE4400411EA6 /* Build configuration list for PBXProject "Fidelity-ios" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4EC563422710BE4400411EA6;
+			packageReferences = (
+				4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
+			productRefGroup = 4EC5634C2710BE4400411EA6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4EC5634A2710BE4400411EA6 /* Fidelity-ios */,
+				4EC563602710BE4700411EA6 /* Fidelity-iosTests */,
+				4EC5636A2710BE4700411EA6 /* Fidelity-iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4EC563492710BE4400411EA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EC5635B2710BE4600411EA6 /* LaunchScreen.storyboard in Resources */,
+				4EC563582710BE4600411EA6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EC5635F2710BE4700411EA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EC563692710BE4700411EA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4EC563472710BE4400411EA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EC563532710BE4400411EA6 /* ViewController.swift in Sources */,
+				4EC563912710C6DB00411EA6 /* KeyChainService.swift in Sources */,
+				4EC563822710BFC400411EA6 /* Promotion.swift in Sources */,
+				4EC563952710C73800411EA6 /* SessionResponse.swift in Sources */,
+				4EC5638C2710C47A00411EA6 /* EmailUser.swift in Sources */,
+				4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */,
+				4EC563862710C26F00411EA6 /* Store.swift in Sources */,
+				4EC563932710C6EB00411EA6 /* WebService.swift in Sources */,
+				4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */,
+				4EC5638A2710C35D00411EA6 /* User.swift in Sources */,
+				4EC5638F2710C67E00411EA6 /* SessionService.swift in Sources */,
+				4EC563842710C10100411EA6 /* Types.swift in Sources */,
+				4EC563882710C31E00411EA6 /* Ticket.swift in Sources */,
+				4EC563512710BE4400411EA6 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EC5635D2710BE4700411EA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EC563662710BE4700411EA6 /* Fidelity_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4EC563672710BE4700411EA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EC563722710BE4700411EA6 /* Fidelity_iosUITestsLaunchTests.swift in Sources */,
+				4EC563702710BE4700411EA6 /* Fidelity_iosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4EC563632710BE4700411EA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4EC5634A2710BE4400411EA6 /* Fidelity-ios */;
+			targetProxy = 4EC563622710BE4700411EA6 /* PBXContainerItemProxy */;
+		};
+		4EC5636D2710BE4700411EA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4EC5634A2710BE4400411EA6 /* Fidelity-ios */;
+			targetProxy = 4EC5636C2710BE4700411EA6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4EC563592710BE4600411EA6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4EC5635A2710BE4600411EA6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4EC563732710BE4700411EA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4EC563742710BE4700411EA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4EC563762710BE4700411EA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 478594C4R9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.avalanche.app.Fidelity-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4EC563772710BE4700411EA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 478594C4R9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.avalanche.app.Fidelity-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4EC563792710BE4700411EA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 478594C4R9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.avalanche.app.Fidelity-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fidelity-ios.app/Fidelity-ios";
+			};
+			name = Debug;
+		};
+		4EC5637A2710BE4700411EA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 478594C4R9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.avalanche.app.Fidelity-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fidelity-ios.app/Fidelity-ios";
+			};
+			name = Release;
+		};
+		4EC5637C2710BE4700411EA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 478594C4R9;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.avalanche.app.Fidelity-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Fidelity-ios";
+			};
+			name = Debug;
+		};
+		4EC5637D2710BE4700411EA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 478594C4R9;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.avalanche.app.Fidelity-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Fidelity-ios";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4EC563462710BE4400411EA6 /* Build configuration list for PBXProject "Fidelity-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EC563732710BE4700411EA6 /* Debug */,
+				4EC563742710BE4700411EA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4EC563752710BE4700411EA6 /* Build configuration list for PBXNativeTarget "Fidelity-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EC563762710BE4700411EA6 /* Debug */,
+				4EC563772710BE4700411EA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4EC563782710BE4700411EA6 /* Build configuration list for PBXNativeTarget "Fidelity-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EC563792710BE4700411EA6 /* Debug */,
+				4EC5637A2710BE4700411EA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4EC5637B2710BE4700411EA6 /* Build configuration list for PBXNativeTarget "Fidelity-iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EC5637C2710BE4700411EA6 /* Debug */,
+				4EC5637D2710BE4700411EA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E7657C52710C853007F9BFA /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4EC563432710BE4400411EA6 /* Project object */;
+}
