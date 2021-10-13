@@ -11,13 +11,13 @@ import UIKit
 protocol UserPresenterDelegate: AnyObject {
     func fetched(users: [UserViewModel])
     func created(user: UserViewModel)
-    func fetchedTicket(ticketAmount: Int)
+    func fetchedTicketAmount(ticketAmount: Int)
 }
 
 extension UserPresenterDelegate {
     func fetched(users: [UserViewModel]) {}
     func created(user: UserViewModel) {}
-    func fetchedTicket(ticketAmount: Int) {}
+    func fetchedTicketAmount(ticketAmount: Int) {}
 }
 
 class UserPresenter {
@@ -35,7 +35,7 @@ class UserPresenter {
             }
             switch result {
             case .success(let ticketAmount):
-                self.view?.fetchedTicket(ticketAmount: ticketAmount)
+                self.view?.fetchedTicketAmount(ticketAmount: ticketAmount)
                 self.view?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 self.view?.dismiss(animated: true, completion: nil)
