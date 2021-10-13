@@ -11,15 +11,28 @@ import UIKit
 
 class UserPromotionsViewController: UIViewController {
     
-    private let topView: UIView = {
+    private lazy var topView: UIView = {
+        let topView = UIView()
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        topView.backgroundColor = .black
+        
+        return topView
+    }()
+    
+//    private lazy var topViewImage: UIImageView
+//    private lazy var topViewUserName: UILabel
+//    private lazy var topViewUserPointsDescription: UILabel
+//
+    override func viewDidLoad() {
+        configureSubViews()
+        configureConstraints()
+    }
+ 
+    func configureSubViews() {
         
     }
-    private let topViewImage: UIImageView
-    private let topViewUserName: UILabel
-    private let topViewUserPointsDescription: UILabel
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func configureConstraints() {
+        
     }
-    
 }
