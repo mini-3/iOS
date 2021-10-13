@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 protocol PromotionPresenterDelegate: AnyObject {
-    func fetched(promotions: [Promotion])
-    func created(promotion: Promotion)
+    func fetched(promotions: [PromotionViewModel])
+    func created(promotion: PromotionViewModel)
 }
 
 extension PromotionPresenterDelegate {
@@ -64,7 +64,7 @@ class PromotionPresenter {
             }
             switch result {
             case .success(let promotion):
-                self.view?.created(promotion: promotion)
+                self.view?.created(promotion: PromotionViewModel(with: promotion))
                 self.view?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 print(error)
@@ -82,7 +82,8 @@ class PromotionPresenter {
             }
             switch result {
             case .success(let promotions):
-                self.view?.fetched(promotions: promotions)
+                let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
+                self.view?.fetched(promotions: viewModels)
                 self.view?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 self.view?.dismiss(animated: true, completion: nil)

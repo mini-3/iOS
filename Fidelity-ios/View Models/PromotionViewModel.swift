@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+class PromotionViewModel {
+    
+    init(with model: Promotion) {
+        
+    }
+}
