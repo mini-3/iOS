@@ -38,10 +38,12 @@ class PromotionPresenter {
         
         if winAmount < 1 {
             view?.presentAlert(message: "O total para retirar o prêmio deve ser maior que zero")
+            return
         }
         
         if end < start {
             view?.presentAlert(message: "A data do fim da promoção não pode ser antes do início ")
+            return
         }
         
         let body: [String: AnyHashable] = [
