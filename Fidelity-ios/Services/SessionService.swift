@@ -17,9 +17,9 @@ class SessionService {
         self.token = token
     }
     
-    public func logIn(username: String, password: String, handler: @escaping (Bool) -> Void) {
+    public func logIn(cpf: String, password: String, handler: @escaping (Bool) -> Void) {
         let body: [String: AnyHashable] = [
-            "name": username,
+            "cpf": cpf,
             "password": password
         ]
         
