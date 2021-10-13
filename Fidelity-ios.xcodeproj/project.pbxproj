@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1984C927176C59004C34B8 /* UserPromotiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984C827176C59004C34B8 /* UserPromotiosViewController.swift */; };
 		4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7657C52710C853007F9BFA /* KeychainAccess */; };
 		4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */; };
 		4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5634E2710BE4400411EA6 /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E1984C827176C59004C34B8 /* UserPromotiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotiosViewController.swift; sourceTree = "<group>"; };
 		4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidelity-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC5634E2710BE4400411EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E1984C627176C11004C34B8 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				4E1984C727176C2E004C34B8 /* UserPromotions */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		4E1984C727176C2E004C34B8 /* UserPromotions */ = {
+			isa = PBXGroup;
+			children = (
+				4E1984C827176C59004C34B8 /* UserPromotiosViewController.swift */,
+			);
+			path = UserPromotions;
+			sourceTree = "<group>";
+		};
 		4EC563422710BE4400411EA6 = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +199,7 @@
 		4EC5637F2710BEA200411EA6 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				4E1984C627176C11004C34B8 /* User */,
 				6DC4A02F2710DCD300C4AD69 /* Main */,
 				6DC4A02E2710DCCB00C4AD69 /* Login */,
 			);
@@ -393,6 +412,7 @@
 			files = (
 				4EC563912710C6DB00411EA6 /* KeyChainService.swift in Sources */,
 				4EC563822710BFC400411EA6 /* Promotion.swift in Sources */,
+				4E1984C927176C59004C34B8 /* UserPromotiosViewController.swift in Sources */,
 				6D18D62F271748AC007D3FAD /* PromotionPresenter.swift in Sources */,
 				4EC563952710C73800411EA6 /* SessionResponse.swift in Sources */,
 				6D71F85D2717414900D16173 /* StorePresenter.swift in Sources */,
