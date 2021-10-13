@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1984CB27177014004C34B8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CA27177014004C34B8 /* UserViewModel.swift */; };
+		4E1984CD2717701F004C34B8 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CC2717701F004C34B8 /* UserPresenter.swift */; };
 		4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7657C52710C853007F9BFA /* KeychainAccess */; };
 		4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */; };
 		4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5634E2710BE4400411EA6 /* AppDelegate.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E1984CA27177014004C34B8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		4E1984CC2717701F004C34B8 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
 		4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidelity-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC5634E2710BE4400411EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 			children = (
 				6D71F85C2717414900D16173 /* StorePresenter.swift */,
 				6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */,
+				4E1984CC2717701F004C34B8 /* UserPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 			children = (
 				6D71F85F2717416000D16173 /* StoreViewModel.swift */,
 				6D18D62C27174894007D3FAD /* PromotionViewModel.swift */,
+				4E1984CA27177014004C34B8 /* UserViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */,
 				4EC5638C2710C47A00411EA6 /* EmailUser.swift in Sources */,
 				4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */,
+				4E1984CB27177014004C34B8 /* UserViewModel.swift in Sources */,
 				4EC563862710C26F00411EA6 /* Store.swift in Sources */,
 				6D18D62D27174894007D3FAD /* PromotionViewModel.swift in Sources */,
 				4EC563932710C6EB00411EA6 /* WebService.swift in Sources */,
@@ -411,6 +418,7 @@
 				4EC563842710C10100411EA6 /* Types.swift in Sources */,
 				6DC4A0362710DF1400C4AD69 /* DateExtensions.swift in Sources */,
 				6D18D63127175357007D3FAD /* ControllerExtensions.swift in Sources */,
+				4E1984CD2717701F004C34B8 /* UserPresenter.swift in Sources */,
 				4EC563882710C31E00411EA6 /* Ticket.swift in Sources */,
 				4EC563512710BE4400411EA6 /* SceneDelegate.swift in Sources */,
 			);
