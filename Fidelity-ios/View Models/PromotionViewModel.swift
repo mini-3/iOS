@@ -8,8 +8,9 @@
 import Foundation
 
 class PromotionViewModel {
+    var promotion: Promotion?
     
     init(with model: Promotion) {
-        
+        self.promotion = model
     }
 }
