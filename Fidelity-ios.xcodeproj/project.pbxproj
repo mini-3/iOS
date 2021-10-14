@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4E1984C927176C59004C34B8 /* UserPromotiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984C827176C59004C34B8 /* UserPromotiosViewController.swift */; };
+		4E1984CF2718A916004C34B8 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CE2718A916004C34B8 /* CategoriesCollectionViewCell.swift */; };
+		4E1984D12718A936004C34B8 /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984D02718A936004C34B8 /* StoresTableViewCell.swift */; };
+		4E1984D32718B16F004C34B8 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984D22718B16F004C34B8 /* ImageExtensions.swift */; };
 		4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7657C52710C853007F9BFA /* KeychainAccess */; };
 		4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */; };
 		4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5634E2710BE4400411EA6 /* AppDelegate.swift */; };
@@ -57,6 +60,9 @@
 
 /* Begin PBXFileReference section */
 		4E1984C827176C59004C34B8 /* UserPromotiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotiosViewController.swift; sourceTree = "<group>"; };
+		4E1984CE2718A916004C34B8 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		4E1984D02718A936004C34B8 /* StoresTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
+		4E1984D22718B16F004C34B8 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidelity-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC5634E2710BE4400411EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				4E1984C827176C59004C34B8 /* UserPromotiosViewController.swift */,
+				4E1984CE2718A916004C34B8 /* CategoriesCollectionViewCell.swift */,
+				4E1984D02718A936004C34B8 /* StoresTableViewCell.swift */,
 			);
 			path = UserPromotions;
 			sourceTree = "<group>";
@@ -270,6 +278,7 @@
 				6DC4A0352710DF1400C4AD69 /* DateExtensions.swift */,
 				6D18D63027175357007D3FAD /* ControllerExtensions.swift */,
 				6D18D63227175631007D3FAD /* StringExtensions.swift */,
+				4E1984D22718B16F004C34B8 /* ImageExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -417,7 +426,9 @@
 				4EC563952710C73800411EA6 /* SessionResponse.swift in Sources */,
 				6D71F85D2717414900D16173 /* StorePresenter.swift in Sources */,
 				6DC4A0332710DE7800C4AD69 /* LoginViewController.swift in Sources */,
+				4E1984D12718A936004C34B8 /* StoresTableViewCell.swift in Sources */,
 				6D18D63327175631007D3FAD /* StringExtensions.swift in Sources */,
+				4E1984D32718B16F004C34B8 /* ImageExtensions.swift in Sources */,
 				6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */,
 				4EC5638C2710C47A00411EA6 /* EmailUser.swift in Sources */,
 				4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */,
@@ -428,6 +439,7 @@
 				4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */,
 				4EC5638A2710C35D00411EA6 /* User.swift in Sources */,
 				4EC5638F2710C67E00411EA6 /* SessionService.swift in Sources */,
+				4E1984CF2718A916004C34B8 /* CategoriesCollectionViewCell.swift in Sources */,
 				4EC563842710C10100411EA6 /* Types.swift in Sources */,
 				6DC4A0362710DF1400C4AD69 /* DateExtensions.swift in Sources */,
 				6D18D63127175357007D3FAD /* ControllerExtensions.swift in Sources */,
