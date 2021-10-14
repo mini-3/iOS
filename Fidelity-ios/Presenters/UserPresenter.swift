@@ -9,15 +9,11 @@ import Foundation
 import UIKit
 
 protocol UserPresenterDelegate: AnyObject {
-    func fetched(users: [UserViewModel])
-    func created(user: UserViewModel)
-    func fetchedTicketAmount(ticketAmount: Int)
+    func fetched(response: [UserPromotionTicketsResponse])
 }
 
 extension UserPresenterDelegate {
-    func fetched(users: [UserViewModel]) {}
-    func created(user: UserViewModel) {}
-    func fetchedTicketAmount(ticketAmount: Int) {}
+    func fetched(response: [UserPromotionTicketsResponse]) {}
 }
 
 class UserPresenter {
@@ -26,19 +22,25 @@ class UserPresenter {
     
     init() {}
     
-    func fetchUserTicketofPromotion(emailUserId: Int, promotionId: Int) {
-        view?.presentLoadingScreen()
-        WebService.get(path: "", type: Int.self) {[weak self] result in
+    func fetchUserTicketofPromotion() {
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen()
+        }
+        WebService.get(path: "/email_users/promotions", type: [UserPromotionTicketsResponse].self) {[weak self] result in
             guard let self = self else {
                 self?.view?.dismiss(animated: true, completion: nil)
                 return
             }
             switch result {
-            case .success(let ticketAmount):
-                self.view?.fetchedTicketAmount(ticketAmount: ticketAmount)
-                self.view?.dismiss(animated: true, completion: nil)
+            case .success(let userPromotionTickets):
+                self.view?.fetched(response: userPromotionTickets)
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
             case .failure(let error):
-                self.view?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
                 print(error)
             }
         }

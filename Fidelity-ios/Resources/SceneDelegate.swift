@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
-        window.rootViewController = MainTabBarViewController()
+        window.rootViewController = UserPromotionsViewController()
         window.makeKeyAndVisible()
         
         self.window = window
@@ -54,7 +54,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        print(SessionService.shared.token)
         let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
         guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date"),
               let cpf = KeyChainService.shared.retrieveToken(key: "cpf"),

@@ -25,7 +25,6 @@ class SessionService {
         
         WebService.post(path: "/user_sessions", body: body, type: SessionResponse.self) { [weak self] response in
             guard let self = self else { return }
-            print(response)
             switch response {
             case .success(let response):
                 self.token = response.data.token
