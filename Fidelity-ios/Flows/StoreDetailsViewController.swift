@@ -30,7 +30,7 @@ class StoreDetailsViewController: UIViewController {
         return label
     }()
     
-    private var verticalAdressTelephoneStackView: UIStackView = {
+    private var verticalStoreInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -54,6 +54,7 @@ class StoreDetailsViewController: UIViewController {
         label.font = UIFont(name: "SFProText-Regular", size: 13)
         label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
         label.numberOfLines = 1
+        label.text = "Endereço:"
         
         return label
     }()
@@ -83,6 +84,7 @@ class StoreDetailsViewController: UIViewController {
         label.font = UIFont(name: "SFProText-Regular", size: 13)
         label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
         label.numberOfLines = 1
+        label.text = "Telefone:"
         
         return label
     }()
@@ -101,6 +103,7 @@ class StoreDetailsViewController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "StoreCell")
+        view.layer.cornerRadius = 20
         
         return view
     }()
@@ -126,6 +129,10 @@ class StoreDetailsViewController: UIViewController {
     private lazy var requirementsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "SFProText-Regular", size: 13)
+        label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
+        label.numberOfLines = 1
+        label.text = "Requisitos:"
         
         return label
     }()
@@ -133,6 +140,10 @@ class StoreDetailsViewController: UIViewController {
     private lazy var requirementsStoreLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "SFProText-SemiBold", size: 13)
+        label.textColor = .label
+        label.numberOfLines = 0
         
         return label
     }()
@@ -149,6 +160,10 @@ class StoreDetailsViewController: UIViewController {
     private lazy var rewardLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "SFProText-Regular", size: 13)
+        label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
+        label.numberOfLines = 1
+        label.text = "Recompensa:"
         
         return label
     }()
@@ -156,6 +171,10 @@ class StoreDetailsViewController: UIViewController {
     private lazy var rewardStoreLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "SFProText-SemiBold", size: 13)
+        label.textColor = .label
+        label.numberOfLines = 0
         
         return label
     }()
@@ -163,6 +182,9 @@ class StoreDetailsViewController: UIViewController {
     private lazy var storeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
         
         return imageView
     }()
@@ -181,15 +203,15 @@ class StoreDetailsViewController: UIViewController {
     func configureSubViews() {
         view.addSubview(storeLabel)
         view.addSubview(detailsStoreLabel)
-        view.addSubview(verticalAdressTelephoneStackView)
+        view.addSubview(verticalStoreInfoStackView)
         view.addSubview(promotionView)
         promotionView.addSubview(verticalPromotionStackView)
         view.addSubview(storeImageView)
     }
     
     func configureStacks() {
-        verticalAdressTelephoneStackView.addArrangedSubview(verticalAdressStackView)
-        verticalAdressTelephoneStackView.addArrangedSubview(verticalTelephoneStackView)
+        verticalStoreInfoStackView.addArrangedSubview(verticalAdressStackView)
+        verticalStoreInfoStackView.addArrangedSubview(verticalTelephoneStackView)
         verticalAdressStackView.addArrangedSubview(addressLabel)
         verticalAdressStackView.addArrangedSubview(addressStoreLabel)
         verticalTelephoneStackView.addArrangedSubview(telephoneLabel)
@@ -203,6 +225,44 @@ class StoreDetailsViewController: UIViewController {
     }
     
     func configureConstraints() {
+        let storeLabelConstraints = [
         
+        ]
+        
+        let storeDetailsLabelConstraints = [
+            
+        ]
+        
+        let storeInfoStackViewConstraints = [
+        
+        ]
+        
+        let addressStackViewConstraints = [
+            
+        ]
+        
+        let telephoneStackViewConstraints = [
+            
+        ]
+        
+        let promotionViewConstraints = [
+            
+        ]
+        
+        let promotionStackViewConstraints = [
+            
+        ]
+        
+        let requirementsStackViewConstraints = [
+            
+        ]
+        
+        let rewarsStackViewConstraints = [
+            
+        ]
+        
+        let storeImageViewConstraints = [
+            
+        ]
     }
 }
