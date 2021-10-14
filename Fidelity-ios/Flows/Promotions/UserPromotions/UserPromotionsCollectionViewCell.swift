@@ -10,13 +10,17 @@ import UIKit
 class UserPromotionsCollectionViewCell: UICollectionViewCell {
     static let identifier = String(describing: self)
     
-    private let view: UIView = {
+    private var view: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         view.layer.cornerRadius = view.bounds.height/2
         view.backgroundColor = UIColor.white
         view.alpha = 0.5
         return view
     }()
+    
+    override func prepareForReuse() {
+        view = UIView()
+    }
     
     func configure(hasWon: Bool) {
         if hasWon {
