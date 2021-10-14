@@ -24,7 +24,7 @@ class StoreDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Regular", size: 13)
-        label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
+        label.textColor = .gray
         label.numberOfLines = 0
         
         return label
@@ -52,7 +52,7 @@ class StoreDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Regular", size: 13)
-        label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
+        label.textColor = .gray
         label.numberOfLines = 1
         label.text = "Endereço:"
         
@@ -82,7 +82,7 @@ class StoreDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Regular", size: 13)
-        label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
+        label.textColor = .gray
         label.numberOfLines = 1
         label.text = "Telefone:"
         
@@ -130,7 +130,7 @@ class StoreDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Regular", size: 13)
-        label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
+        label.textColor = .gray
         label.numberOfLines = 1
         label.text = "Requisitos:"
         
@@ -161,7 +161,7 @@ class StoreDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "SFProText-Regular", size: 13)
-        label.textColor = UIColor(red: 196, green: 196, blue: 196, alpha: 1)
+        label.textColor = .gray
         label.numberOfLines = 1
         label.text = "Recompensa:"
         
@@ -190,10 +190,12 @@ class StoreDetailsViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        configureView()
-        configureSubViews()
-        configureStacks()
-        configureConstraints()
+        super.viewDidLoad()
+        
+        self.configureView()
+        self.configureSubViews()
+        self.configureStacks()
+        self.configureConstraints()
     }
     
     func configureView() {
