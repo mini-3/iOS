@@ -37,6 +37,7 @@
 		6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0302710DD3A00C4AD69 /* MainTabBarViewController.swift */; };
 		6DC4A0332710DE7800C4AD69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0322710DE7800C4AD69 /* LoginViewController.swift */; };
 		6DC4A0362710DF1400C4AD69 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0352710DF1400C4AD69 /* DateExtensions.swift */; };
+		DE2B415C27188A65007AE381 /* QRcodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B415B27188A65007AE381 /* QRcodeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		6DC4A0302710DD3A00C4AD69 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		6DC4A0322710DE7800C4AD69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6DC4A0352710DF1400C4AD69 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		DE2B415B27188A65007AE381 /* QRcodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				4EC563902710C6DB00411EA6 /* KeyChainService.swift */,
 				4EC563922710C6EB00411EA6 /* WebService.swift */,
 				4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */,
+				DE2B415B27188A65007AE381 /* QRcodeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */,
 				4EC5638C2710C47A00411EA6 /* EmailUser.swift in Sources */,
 				4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */,
+				DE2B415C27188A65007AE381 /* QRcodeService.swift in Sources */,
 				4E1984CB27177014004C34B8 /* UserViewModel.swift in Sources */,
 				4EC563862710C26F00411EA6 /* Store.swift in Sources */,
 				6D18D62D27174894007D3FAD /* PromotionViewModel.swift in Sources */,
