@@ -39,7 +39,7 @@ class StoreDetailsViewController: UIViewController {
         return stackView
     }()
     
-    private var verticalAdressStackView: UIStackView = {
+    private var verticalAddressStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -210,10 +210,10 @@ class StoreDetailsViewController: UIViewController {
     }
     
     func configureStacks() {
-        verticalStoreInfoStackView.addArrangedSubview(verticalAdressStackView)
+        verticalStoreInfoStackView.addArrangedSubview(verticalAddressStackView)
         verticalStoreInfoStackView.addArrangedSubview(verticalTelephoneStackView)
-        verticalAdressStackView.addArrangedSubview(addressLabel)
-        verticalAdressStackView.addArrangedSubview(addressStoreLabel)
+        verticalAddressStackView.addArrangedSubview(addressLabel)
+        verticalAddressStackView.addArrangedSubview(addressStoreLabel)
         verticalTelephoneStackView.addArrangedSubview(telephoneLabel)
         verticalTelephoneStackView.addArrangedSubview(telephoneStoreLabel)
         verticalPromotionStackView.addArrangedSubview(verticalRequirementsStackView)
@@ -226,43 +226,68 @@ class StoreDetailsViewController: UIViewController {
     
     func configureConstraints() {
         let storeLabelConstraints = [
-        
+            storeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            storeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            storeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 4)
         ]
         
         let storeDetailsLabelConstraints = [
-            
+            detailsStoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            detailsStoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            detailsStoreLabel.topAnchor.constraint(equalTo: storeLabel.bottomAnchor, constant: 8)
         ]
         
         let storeInfoStackViewConstraints = [
-        
+            verticalStoreInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            verticalStoreInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            verticalStoreInfoStackView.topAnchor.constraint(equalTo: detailsStoreLabel.bottomAnchor, constant: 8)
         ]
         
         let addressStackViewConstraints = [
-            
+            verticalAddressStackView.leadingAnchor.constraint(equalTo: verticalStoreInfoStackView.leadingAnchor, constant: 6),
+            verticalAddressStackView.trailingAnchor.constraint(equalTo: verticalStoreInfoStackView.trailingAnchor, constant: -6)
         ]
         
         let telephoneStackViewConstraints = [
-            
+            verticalTelephoneStackView.leadingAnchor.constraint(equalTo: verticalStoreInfoStackView.leadingAnchor, constant: 6),
+            verticalTelephoneStackView.trailingAnchor.constraint(equalTo: verticalStoreInfoStackView.trailingAnchor, constant: -6)
         ]
         
         let promotionViewConstraints = [
-            
+            promotionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            promotionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ]
         
         let promotionStackViewConstraints = [
-            
+            verticalPromotionStackView.leadingAnchor.constraint(equalTo: promotionView.leadingAnchor, constant: 0),
+            verticalRequirementsStackView.trailingAnchor.constraint(equalTo: promotionView.trailingAnchor, constant: 0)
         ]
         
         let requirementsStackViewConstraints = [
-            
+            verticalRequirementsStackView.leadingAnchor.constraint(equalTo: verticalPromotionStackView.leadingAnchor, constant: 6),
+            verticalRequirementsStackView.trailingAnchor.constraint(equalTo: verticalPromotionStackView.trailingAnchor, constant: -6)
         ]
         
         let rewarsStackViewConstraints = [
-            
+            verticalRewardStackView.leadingAnchor.constraint(equalTo: verticalPromotionStackView.leadingAnchor, constant: 6),
+            verticalRewardStackView.trailingAnchor.constraint(equalTo: verticalPromotionStackView.trailingAnchor, constant: -6)
         ]
         
         let storeImageViewConstraints = [
-            
+            storeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            storeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            storeImageView.topAnchor.constraint(equalTo: promotionView.bottomAnchor, constant: 20)
         ]
+        
+        NSLayoutConstraint.activate(storeLabelConstraints)
+        NSLayoutConstraint.activate(storeDetailsLabelConstraints)
+        NSLayoutConstraint.activate(storeInfoStackViewConstraints)
+        NSLayoutConstraint.activate(addressStackViewConstraints)
+        NSLayoutConstraint.activate(telephoneStackViewConstraints)
+        NSLayoutConstraint.activate(promotionViewConstraints)
+        NSLayoutConstraint.activate(promotionStackViewConstraints)
+        NSLayoutConstraint.activate(requirementsStackViewConstraints)
+        NSLayoutConstraint.activate(rewarsStackViewConstraints)
+        NSLayoutConstraint.activate(storeImageViewConstraints)
     }
 }
