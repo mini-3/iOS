@@ -62,6 +62,7 @@ class UserPromotionsTableViewCell: UITableViewCell {
         collection.backgroundColor = .clear
         if let layout = collection.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
+            layout.estimatedItemSize = CGSize(width: 30, height: 30)
         }
         collection.register(UserPromotionsCollectionViewCell.self, forCellWithReuseIdentifier: UserPromotionsCollectionViewCell.identifier)
         return collection
@@ -166,6 +167,7 @@ extension UserPromotionsTableViewCell: UICollectionViewDataSource, UICollectionV
             self.currentAmount -= 1
             hasWon = true
         }
+        print(hasWon)
         cell.configure(hasWon: hasWon)
         return cell
     }
@@ -177,8 +179,5 @@ extension UserPromotionsTableViewCell: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
-    }
+
 }

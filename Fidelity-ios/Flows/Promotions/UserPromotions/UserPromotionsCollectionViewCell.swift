@@ -17,11 +17,7 @@ class UserPromotionsCollectionViewCell: UICollectionViewCell {
         view.alpha = 0.5
         return view
     }()
-    
-    override func prepareForReuse() {
-        view = UIView()
-    }
-    
+
     func configure(hasWon: Bool) {
         if hasWon {
             view.alpha = 0.8
