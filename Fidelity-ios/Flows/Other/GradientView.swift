@@ -15,8 +15,8 @@ class GradientView: UIView {
 
     init() {
         let color = UIColor.random
-        self.gradientStartColor = color.darker() ?? color
-        self.gradientEndColor = color.lighter() ?? color
+        self.gradientStartColor = color.darker(by: 20) ?? color
+        self.gradientEndColor = color.lighter(by: 20) ?? color
         super.init(frame: .zero)
     }
 

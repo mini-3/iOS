@@ -69,7 +69,7 @@ extension UserPromotionsViewController: UITableViewDataSource {
         }
         let userPromotionTicket = userPromotionTickets[indexPath.row]
         guard let model = userPromotionTicket.promotion else { return UITableViewCell() }
-        cell.configure(storeName: "Loja do fulano", ticketCount: "\(userPromotionTicket.ticketAmount) de \(model.win_ticket_amount)", awardPrize: model.award)
+        cell.configure(storeName: "Loja do fulano", ticketCount: "\(userPromotionTicket.ticketAmount) de \(model.win_ticket_amount)", awardPrize: model.award, awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount)
         return cell
     }
 }

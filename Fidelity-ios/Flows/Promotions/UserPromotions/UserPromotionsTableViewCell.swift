@@ -59,9 +59,16 @@ class UserPromotionsTableViewCell: UITableViewCell {
     private let collectionView: UICollectionView = {
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = .black
+        collection.backgroundColor = .clear
+        if let layout = collection.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
+        collection.register(UserPromotionsCollectionViewCell.self, forCellWithReuseIdentifier: UserPromotionsCollectionViewCell.identifier)
         return collection
     }()
+    
+    var awardAmount: Int = 0
+    var currentAmount: Int = 0
     
     //MARK: - Lifecycle
     override func awakeFromNib() {
@@ -116,7 +123,7 @@ class UserPromotionsTableViewCell: UITableViewCell {
             awardPrizeLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
             awardPrizeLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16),
             awardPrizeLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
-            awardPrizeLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 16)
+            awardPrizeLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0)
         ]
         
         let collectionViewContraints = [
@@ -132,12 +139,46 @@ class UserPromotionsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(collectionViewContraints)
     }
     
-    func configure(storeName: String, ticketCount: String, awardPrize: String) {
+    func configure(storeName: String, ticketCount: String, awardPrize: String, awardAmount: Int, currentAmount: Int) {
         self.addSubviews()
         self.addConstraints()
+        self.collectionView.dataSource = self
         storeNameLabel.text = storeName
         ticketCountLabel.text = ticketCount
         awardPrizeLabel.text = awardPrize
+        self.awardAmount = awardAmount
+        self.currentAmount = currentAmount
     }
 
+}
+
+extension UserPromotionsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return awardAmount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserPromotionsCollectionViewCell.identifier, for: indexPath) as? UserPromotionsCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        var hasWon = false
+        if self.currentAmount > 0 {
+            self.currentAmount -= 1
+            hasWon = true
+        }
+        cell.configure(hasWon: hasWon)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 50, height: 50)
+    }
 }
