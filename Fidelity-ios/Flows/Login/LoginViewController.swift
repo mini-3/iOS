@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
         let textField = TextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Email"
-        textField.layer.borderWidth = 2
+        textField.layer.borderWidth = 1.5
         textField.layer.borderColor = UIColor.label.cgColor
         textField.layer.cornerRadius = 16
         return textField
@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         let textField = TextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Senha"
-        textField.layer.borderWidth = 2
+        textField.layer.borderWidth = 1.5
         textField.isSecureTextEntry = true
         textField.layer.borderColor = UIColor.label.cgColor
         textField.layer.cornerRadius = 16
