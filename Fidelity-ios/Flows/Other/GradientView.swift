@@ -25,7 +25,12 @@ class GradientView: UIView {
     override public func draw(_ rect: CGRect) {
         gradient.frame = self.bounds
         let color = UIColor.random
-        gradient.colors = [color.darker(by: 20)?.cgColor ?? color, color.cgColor, color.darker(by: 20)?.cgColor ?? color.cgColor]
+        gradient.colors = [
+            color.darker(by: 20)?.cgColor ?? color.cgColor,
+            color.darker(by: 10)?.cgColor ?? color.cgColor,
+            color.cgColor,
+            color.darker(by: 20)?.cgColor ?? color.cgColor
+        ]
         gradient.startPoint = CGPoint(x: 0.2, y: 0.5)
         gradient.endPoint = CGPoint(x: 1, y: 0.5)
         if gradient.superlayer == nil {
