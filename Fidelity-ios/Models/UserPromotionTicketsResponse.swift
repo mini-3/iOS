@@ -10,9 +10,11 @@ import Foundation
 struct UserPromotionTicketsResponse: Codable {
     let promotion: Promotion?
     let ticketAmount: Int
+    let storeName: String?
 
     enum CodingKeys: String, CodingKey {
         case promotion
         case ticketAmount = "ticket_amount"
+        case storeName = "store_name"
     }
 }
