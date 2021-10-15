@@ -15,7 +15,7 @@ enum WebServiceError: Error {
 
 struct WebService {
     
-    // MARK:- Get
+    // MARK: - Get
     static func get<T:Codable>(path: String, type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
         guard let url = URL(string: "http://ec2-35-86-81-187.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
         
@@ -35,7 +35,7 @@ struct WebService {
         .resume()
     }
     
-    // MARK:- Post
+    // MARK: - Post
     static func post<T:Codable>(path: String, body: [String: AnyHashable], type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
         guard let url = URL(string: "http://ec2-35-86-81-187.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
         
@@ -60,7 +60,7 @@ struct WebService {
         .resume()
     }
     
-    // MARK:- Put
+    // MARK: - Put
     static func put<T:Codable>(path: String, body: [String: AnyHashable], type: T.Type, handler: @escaping (Result<Int, WebServiceError>) -> Void) {
         guard let url = URL(string: "http://ec2-35-86-81-187.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
         
@@ -83,7 +83,7 @@ struct WebService {
         .resume()
     }
     
-    // MARK:- Delete
+    // MARK: - Delete
     static func delete<T:Codable>(path: String, type: T.Type, handler: @escaping (Result<Int, WebServiceError>) -> Void) {
         guard let url = URL(string: "http://ec2-35-86-81-187.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
         
