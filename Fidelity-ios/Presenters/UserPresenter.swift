@@ -63,13 +63,21 @@ class UserPresenter {
             return
         }
         
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen()
+        }
+        
         SessionService.shared.logIn(cpf: cpf, password: password) {[weak self] isRegistered in
             guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.view?.dismiss(animated: true, completion: nil)
+            }
             if isRegistered {
                 self.view?.loggedIn()
             } else {
                 self.view?.failedLogIn(error: .userNotRegistered)
             }
+            
         }
     }
 }

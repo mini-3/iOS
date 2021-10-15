@@ -18,8 +18,8 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    private let emailTextField: UITextField = {
-        let textField = UITextField()
+    private let emailTextField: TextField = {
+        let textField = TextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Email"
         textField.layer.borderWidth = 2
@@ -28,8 +28,8 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
+    private let passwordTextField: TextField = {
+        let textField = TextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Senha"
         textField.layer.borderWidth = 2
@@ -76,6 +76,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         title = "Login"
         view.backgroundColor = UIColor(named: "Background")
+        self.presenter.view = self
         self.addSubviews()
         self.addConstraints()
         self.loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
@@ -114,7 +115,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func didTapLogin() {
-        
+        presenter.logIn(cpf: emailTextField.text, password: passwordTextField.text)
     }
 }
 
@@ -122,14 +123,20 @@ extension LoginViewController: UserPresenterDelegate {
     func failedLogIn(error: UserPresenterError) {
         switch error {
         case .missingFields:
-            self.presentAlert(message: "Você precisa preencher todos os campos")
+            DispatchQueue.main.async {
+                self.presentAlert(message: "Você precisa preencher todos os campos")
+            }
         case .userNotRegistered:
-            self.presentAlert(message: "Usuário não cadastrado")
+            DispatchQueue.main.async {
+                self.presentAlert(message: "Usuário não cadastrado")
+            }
         }
     }
     
     func loggedIn() {
-        let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
-        window?.rootViewController = MainTabBarViewController()
+        DispatchQueue.main.async {
+            let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+            window?.rootViewController = MainTabBarViewController()
+        }
     }
 }
