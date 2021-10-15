@@ -10,13 +10,8 @@ import UIKit
 class GradientView: UIView {
 
     private let gradient : CAGradientLayer = CAGradientLayer()
-    private let gradientStartColor: UIColor
-    private let gradientEndColor: UIColor
 
     init() {
-        let color = UIColor.random
-        self.gradientStartColor = color.darker(by: 20) ?? color
-        self.gradientEndColor = color.lighter(by: 20) ?? color
         super.init(frame: .zero)
     }
 
@@ -29,7 +24,8 @@ class GradientView: UIView {
 
     override public func draw(_ rect: CGRect) {
         gradient.frame = self.bounds
-        gradient.colors = [gradientEndColor.cgColor, gradientStartColor.cgColor]
+        let color = UIColor.random
+        gradient.colors = [color.darker(by: 20)?.cgColor ?? color, color.cgColor, color.darker(by: 20)?.cgColor ?? color.cgColor]
         gradient.startPoint = CGPoint(x: 0.2, y: 0.5)
         gradient.endPoint = CGPoint(x: 1, y: 0.5)
         if gradient.superlayer == nil {
