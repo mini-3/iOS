@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
+        let window = UIWindow(windowScene: windowScene) 
         guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date"),
               let cpf = KeyChainService.shared.retrieveToken(key: "cpf"),
               let password = KeyChainService.shared.retrieveToken(key: "password")

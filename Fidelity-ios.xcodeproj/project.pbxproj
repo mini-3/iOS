@@ -39,7 +39,6 @@
 		6D8EE3412718BAED005165AA /* UserPromotionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE3402718BAED005165AA /* UserPromotionsTableViewCell.swift */; };
 		6D8EE3432718C697005165AA /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE3422718C697005165AA /* ColorExtensions.swift */; };
 		6D8EE3452718E1F4005165AA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE3442718E1F4005165AA /* GradientView.swift */; };
-		6D8EE3482718E557005165AA /* SemiCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE3472718E557005165AA /* SemiCircleView.swift */; };
 		6DAE7D712718EE7500B04B6B /* UserPromotionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAE7D702718EE7500B04B6B /* UserPromotionsCollectionViewCell.swift */; };
 		6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0302710DD3A00C4AD69 /* MainTabBarViewController.swift */; };
 		6DC4A0332710DE7800C4AD69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0322710DE7800C4AD69 /* LoginViewController.swift */; };
@@ -99,7 +98,6 @@
 		6D8EE3402718BAED005165AA /* UserPromotionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotionsTableViewCell.swift; sourceTree = "<group>"; };
 		6D8EE3422718C697005165AA /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		6D8EE3442718E1F4005165AA /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		6D8EE3472718E557005165AA /* SemiCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemiCircleView.swift; sourceTree = "<group>"; };
 		6DAE7D702718EE7500B04B6B /* UserPromotionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6DC4A0302710DD3A00C4AD69 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		6DC4A0322710DE7800C4AD69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 		6DAE7D6F2718EE5600B04B6B /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				6D8EE3472718E557005165AA /* SemiCircleView.swift */,
 				6D8EE3442718E1F4005165AA /* GradientView.swift */,
 			);
 			path = Other;
@@ -472,7 +469,6 @@
 				6D8EE3452718E1F4005165AA /* GradientView.swift in Sources */,
 				6D8EE3412718BAED005165AA /* UserPromotionsTableViewCell.swift in Sources */,
 				6D8EE3432718C697005165AA /* ColorExtensions.swift in Sources */,
-				6D8EE3482718E557005165AA /* SemiCircleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
