@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
-        window.rootViewController = UserPromotionsViewController()
+        window.rootViewController = MainTabBarViewController()
         window.makeKeyAndVisible()
         
         self.window = window

@@ -23,6 +23,8 @@ class UserPromotionsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Your name"
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         self.addSubviews()
         self.addConstraints()
@@ -70,6 +72,7 @@ extension UserPromotionsViewController: UITableViewDataSource {
         let userPromotionTicket = userPromotionTickets[indexPath.row]
         guard let model = userPromotionTicket.promotion else { return UITableViewCell() }
         cell.configure(storeName: "Loja do fulano", ticketCount: "\(userPromotionTicket.ticketAmount) de \(model.win_ticket_amount)", awardPrize: model.award, awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount)
+        cell.selectionStyle = .none
         return cell
     }
 }

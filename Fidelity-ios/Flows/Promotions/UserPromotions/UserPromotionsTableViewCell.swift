@@ -13,7 +13,7 @@ class UserPromotionsTableViewCell: UITableViewCell {
     //MARK: - Subviews
     private let mainView: GradientView = {
         let view = GradientView()
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 12
         view.backgroundColor = UIColor.random
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +62,7 @@ class UserPromotionsTableViewCell: UITableViewCell {
         collection.backgroundColor = .clear
         if let layout = collection.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
-            layout.estimatedItemSize = CGSize(width: 30, height: 30)
+            layout.estimatedItemSize = CGSize(width: 32, height: 32)
         }
         collection.register(UserPromotionsCollectionViewCell.self, forCellWithReuseIdentifier: UserPromotionsCollectionViewCell.identifier)
         return collection
@@ -76,8 +76,9 @@ class UserPromotionsTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    override func prepareForReuse() {
+        awardAmount = 0
+        collectionView.reloadData()
     }
     
     //MARK: - Functionalities
@@ -143,12 +144,12 @@ class UserPromotionsTableViewCell: UITableViewCell {
     func configure(storeName: String, ticketCount: String, awardPrize: String, awardAmount: Int, currentAmount: Int) {
         self.addSubviews()
         self.addConstraints()
-        self.collectionView.dataSource = self
         storeNameLabel.text = storeName
         ticketCountLabel.text = ticketCount
         awardPrizeLabel.text = awardPrize
         self.awardAmount = awardAmount
         self.currentAmount = currentAmount
+        self.collectionView.dataSource = self
     }
 
 }
@@ -163,21 +164,10 @@ extension UserPromotionsTableViewCell: UICollectionViewDataSource, UICollectionV
             return UICollectionViewCell()
         }
         var hasWon = false
-        if self.currentAmount > 0 {
-            self.currentAmount -= 1
+        if indexPath.row < self.currentAmount {
             hasWon = true
         }
-        print(hasWon)
         cell.configure(hasWon: hasWon)
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-
 }
