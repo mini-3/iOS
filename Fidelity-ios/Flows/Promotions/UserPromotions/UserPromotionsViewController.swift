@@ -23,9 +23,7 @@ class UserPromotionsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Your name"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .systemBackground
+        self.configureUI()
         self.addSubviews()
         self.addConstraints()
         self.userPromotionsTableView.dataSource = self
@@ -35,6 +33,11 @@ class UserPromotionsViewController: UIViewController {
     }
     
     //MARK: - Functionalities
+    private func configureUI() {
+        title = "Your name"
+        self.userPromotionsTableView.backgroundColor = UIColor(named: "Background")
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
     private func addSubviews() {
         view.addSubview(userPromotionsTableView)
     }

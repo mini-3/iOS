@@ -11,14 +11,16 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let userPromotionsVC = UserPromotionsViewController()
+        let storesVC = StoreDetailsViewController()
         
-        let userPromotions = UserPromotionsViewController()
+        let nav1 = UINavigationController(rootViewController: userPromotionsVC)
+        let nav2 = UINavigationController(rootViewController: storesVC)
         
-        let nav1 = UINavigationController(rootViewController: userPromotions)
+        nav1.tabBarItem = UITabBarItem(title: "Promotions", image: UIImage(systemName: "ticket.fill"), tag: 1)
+        nav2.tabBarItem = UITabBarItem(title: "Stores", image: UIImage(systemName: "creditcard.fill"), tag: 2)
         
-        nav1.tabBarItem = UITabBarItem(title: "Promotions", image: UIImage(systemName: "ticket"), tag: 1)
-        
-        self.setViewControllers([nav1], animated: true)
+        self.setViewControllers([nav1, nav2], animated: false)
     }
 
 }

@@ -72,10 +72,6 @@ class UserPromotionsTableViewCell: UITableViewCell {
     var currentAmount: Int = 0
     
     //MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     override func prepareForReuse() {
         awardAmount = 0
         collectionView.reloadData()
@@ -150,6 +146,7 @@ class UserPromotionsTableViewCell: UITableViewCell {
         self.awardAmount = awardAmount
         self.currentAmount = currentAmount
         self.collectionView.dataSource = self
+        contentView.backgroundColor = UIColor(named: "Background")
     }
 
 }
