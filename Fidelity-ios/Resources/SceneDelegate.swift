@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
+        SessionService.shared.logIn(username: "04223086090", password: "pedroadmin", handler: { _ in })
         guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date") else {
             window.rootViewController = LoginViewController()
             window.makeKeyAndVisible()
@@ -23,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {
            window.rootViewController = LoginViewController()
         }
-        window.rootViewController = MainTabBarViewController()
+        window.rootViewController = UserStoresViewController()
         window.makeKeyAndVisible()
         self.window = window
     }

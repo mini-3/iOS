@@ -9,16 +9,14 @@ import Foundation
 import UIKit
 
 class CategoriesCollectionViewCell: UICollectionViewCell {
-    private lazy var categoryCollectionViewCell: UICollectionViewCell = {
-        let categoryCollectionViewCell = UICollectionViewCell()
-        categoryCollectionViewCell.translatesAutoresizingMaskIntoConstraints = false
-        
-        return categoryCollectionViewCell
-    }()
+   
+    static let identifier: String = String(describing: self)
     
     private lazy var categoryCollectionStackView: UIStackView = {
         let categoryCollectionStackView = UIStackView()
         categoryCollectionStackView.translatesAutoresizingMaskIntoConstraints = false
+        categoryCollectionStackView.axis = .vertical
+        categoryCollectionStackView.spacing = 8
         
         return categoryCollectionStackView
     }()
@@ -26,6 +24,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     private lazy var categoryImageView: UIImageView = {
         let categoryImageView = UIImageView()
         categoryImageView.translatesAutoresizingMaskIntoConstraints = false
+        categoryImageView.circleImage()
         
         return categoryImageView
     }()
@@ -36,4 +35,32 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         
         return categoryName
     }()
+    
+    func configure() {
+        configureSubviews()
+        configureConstraints()
+        
+    }
+    
+    func configureSubviews() {
+        contentView.layer.cornerRadius = 16
+        contentView.addSubview(categoryCollectionStackView)
+        categoryCollectionStackView.addArrangedSubview(categoryImageView)
+        categoryCollectionStackView.addArrangedSubview(categoryName)
+    }
+    
+    func configureConstraints() {
+//        let storeImageConstraints = [
+//            storeImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+//            storeImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16),
+//            storeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
+//            
+//        ]
+//        
+//        let horizontalContraints = [
+//            horizontalStackView.trailingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: 16)
+//        ]
+        
+        
+    }
 }

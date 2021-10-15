@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+class StoreViewModel {
+    var store: Store?
+    
+    init(with model: Store) {
+        self.store = model
+    }
+}
+

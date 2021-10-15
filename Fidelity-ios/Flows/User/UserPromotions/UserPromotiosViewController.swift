@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 import Combine
 
-class UserPromotionsViewController: UIViewController {
+class UserStoresViewController: UIViewController {
     
+    private let storePresenter: StorePresenter = StorePresenter()
     //private let categories:
-    //private let stores: [Store]
+    private var stores: [StoreViewModel] = []
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -25,6 +26,8 @@ class UserPromotionsViewController: UIViewController {
     private lazy var categoriesCollectionView: UICollectionView = {
         let categoriesCollectionView = UICollectionView()
         categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        categoriesCollectionView.isScrollEnabled = true
+        
         
         return categoriesCollectionView
     }()
@@ -37,20 +40,21 @@ class UserPromotionsViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
+        storePresenter.view = self
         configureSubViews()
         configureConstraints()
     }
     
     private func configureUI() {
-        title = "Events"
+        title = "Stores"
         storesTableView.register(StoresTableViewCell.self, forCellReuseIdentifier: StoresTableViewCell.identifier)
-        //storesTableView.delegate = self
-        //storesTableView.dataSource = self
+//        storesTableView.delegate = self
+//        storesTableView.dataSource = self
         storesTableView.separatorStyle = .none
         let refreshable = UIRefreshControl()
         
         storesTableView.refreshControl = refreshable
-        //storesTableView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        storesTableView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
     func configureSubViews() {
@@ -63,26 +67,37 @@ class UserPromotionsViewController: UIViewController {
         
     }
     
-//    private func fetchEvents(withLoadingScreen: Bool = true) {
-//        presenter.fetchEvents(withLoadingScreen: withLoadingScreen)
-//    }
+    private func fetchStores(withLoadingScreen: Bool = true) {
+        storePresenter.fetchStores()
+    }
     
-//    extension UserPromotionsViewController: UITableViewDelegate, UITableViewDataSource {
-//        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//            return events.count
-//        }
-//
-//        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//            guard let cell = eventsTableView.dequeueReusableCell(withIdentifier: EventTableViewCell.identifier) as? EventTableViewCell else { return UITableViewCell() }
-//            let viewModel = self.events[indexPath.row]
-//            cell.configure(image: viewModel.image, title: viewModel.title, date: viewModel.date, participants: viewModel.participants)
-//            return cell
-//        }
-//
-//        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//            let viewModel = events[indexPath.row]
-//            coordinator?.eventOccurred(with: .goToEventDetails(viewModel: viewModel))
-//        }
-//
+    @objc func handleRefresh() {
+        storePresenter.fetchStores()
+    }
+    
+}
+
+//extension UserPromotionsViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return stores.count
 //    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = StoresTableViewCell.dequeueReusableCell(withIdentifier: StoresTableViewCell.identifier) as? StoresTableViewCell else { return UITableViewCell() }
+//        let viewModel = self.stores[indexPath.row]
+//        cell.configure(image: viewModel.image, title: viewModel.title, date: viewModel.date, participants: viewModel.participants)
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let viewModel = stores[indexPath.row]
+//    }
+//
+//}
+
+extension UserStoresViewController: StorePresenterDelegate {
+    func fetched(stores: [StoreViewModel]) {
+        self.stores = stores
+        self.storesTableView.reloadData()
+    }
 }

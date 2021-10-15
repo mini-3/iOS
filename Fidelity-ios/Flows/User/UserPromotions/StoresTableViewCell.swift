@@ -81,11 +81,18 @@ class StoresTableViewCell: UITableViewCell {
         return storeOpen
     }()
     
-    func configure(image: URL?, title: String, date: String, participants: String) {
-            configureSubviews()
-            configureConstraints()
-            
-        }
+    func configure(storeImage: String, storeName: String, storePromotionDescription: String, storeDistance: String, storeOpen: String) {
+        configureSubviews()
+        configureConstraints()
+        
+        self.storeImageView.image = UIImage(systemName: "heart")
+        self.storeName.text = storeName
+        self.storePromotionDescription.text = storePromotionDescription
+        self.storeDistance.text = storeDistance
+        
+        
+        
+    }
     
     func configureSubviews() {
         contentView.layer.cornerRadius = 16
@@ -114,11 +121,14 @@ class StoresTableViewCell: UITableViewCell {
             horizontalStackView.trailingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: 16)
         ]
         
-//        let storeNameDescriptionStackViewConstraints = [
-//            storeNameDescriptionStackView.spacing = 8,
-//
-//        ]
         
+        //        let storeNameDescriptionStackViewConstraints = [
+        //            storeNameDescriptionStackView.spacing = 8,
+        //        ]
+        
+        NSLayoutConstraint.activate(storeImageConstraints)
+        NSLayoutConstraint.activate(horizontalContraints)
+        //        NSLayoutConstraint.activate(storeNameDescriptionStackViewConstraints)
     }
     
 }
