@@ -90,8 +90,6 @@ class StoresTableViewCell: UITableViewCell {
         self.storePromotionDescription.text = storePromotionDescription
         self.storeDistance.text = storeDistance
         
-        
-        
     }
     
     func configureSubviews() {
@@ -112,23 +110,34 @@ class StoresTableViewCell: UITableViewCell {
     func configureConstraints() {
         let storeImageConstraints = [
             storeImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            storeImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 16),
+            storeImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             storeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
             
         ]
         
         let horizontalContraints = [
-            horizontalStackView.trailingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: 16)
+            horizontalStackView.trailingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: -16)
         ]
         
         
-        //        let storeNameDescriptionStackViewConstraints = [
-        //            storeNameDescriptionStackView.spacing = 8,
-        //        ]
+        let storeNameDescriptionStackViewConstraints = [
+            storeNameDescriptionStackView.trailingAnchor.constraint(equalTo: horizontalStackView.trailingAnchor),
+            storeNameDescriptionStackView.leadingAnchor.constraint(equalTo: storeDetailsStackView.trailingAnchor),
+            storeNameDescriptionStackView.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
+            storeNameDescriptionStackView.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor)
+            
+        ]
+        
+        let storeDetailsStackViewConstraints = [
+            storeDetailsStackView.leadingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor),
+            storeDetailsStackView.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor),
+            storeDetailsStackView.topAnchor.constraint(equalTo: horizontalStackView.topAnchor)
+        ]
         
         NSLayoutConstraint.activate(storeImageConstraints)
         NSLayoutConstraint.activate(horizontalContraints)
-        //        NSLayoutConstraint.activate(storeNameDescriptionStackViewConstraints)
+        NSLayoutConstraint.activate(storeNameDescriptionStackViewConstraints)
+        NSLayoutConstraint.activate(storeDetailsStackViewConstraints)
     }
     
 }

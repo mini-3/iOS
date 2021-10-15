@@ -12,7 +12,7 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let userPromotionsVC = UserPromotionsViewController()
-        let storesVC = StoreDetailsViewController()
+        let storesVC = UserStoresViewController()
         
         let nav1 = UINavigationController(rootViewController: userPromotionsVC)
         let nav2 = UINavigationController(rootViewController: storesVC)
