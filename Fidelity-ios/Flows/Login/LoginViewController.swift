@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UserPresenterDelegate {
     
     // MARK: - Subviews
     private let stackView: UIStackView = {
@@ -18,10 +18,10 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    private let emailTextField: TextField = {
+    private let cpfTextField: TextField = {
         let textField = TextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Email"
+        textField.placeholder = "CPF"
         textField.layer.borderWidth = 1.5
         textField.layer.borderColor = UIColor.label.cgColor
         textField.layer.cornerRadius = 16
@@ -53,6 +53,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Ainda não tem uma conta? Cadastre-se"
+        label.numberOfLines = 2
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.textColor = .label
@@ -85,7 +86,7 @@ class LoginViewController: UIViewController {
     // MARK: - Functionalities
     private func addSubviews() {
         view.addSubview(stackView)
-        stackView.addArrangedSubview(emailTextField)
+        stackView.addArrangedSubview(cpfTextField)
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(forgotPasswordLabel)
         stackView.addArrangedSubview(createAccountLabel)
@@ -105,7 +106,7 @@ class LoginViewController: UIViewController {
         ]
         
         let textFieldsConstraints = [
-            emailTextField.heightAnchor.constraint(equalToConstant: 40),
+            cpfTextField.heightAnchor.constraint(equalToConstant: 40),
             passwordTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
@@ -115,28 +116,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func didTapLogin() {
-        presenter.logIn(cpf: emailTextField.text, password: passwordTextField.text)
-    }
-}
-
-extension LoginViewController: UserPresenterDelegate {
-    func failedLogIn(error: UserPresenterError) {
-        switch error {
-        case .missingFields:
-            DispatchQueue.main.async {
-                self.presentAlert(message: "Você precisa preencher todos os campos")
-            }
-        case .userNotRegistered:
-            DispatchQueue.main.async {
-                self.presentAlert(message: "Usuário não cadastrado")
-            }
-        }
-    }
-    
-    func loggedIn() {
-        DispatchQueue.main.async {
-            let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
-            window?.rootViewController = MainTabBarViewController()
-        }
+        self.loginButton.pulsate()
+        presenter.logIn(cpf: cpfTextField.text, password: passwordTextField.text)
     }
 }

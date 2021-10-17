@@ -8,21 +8,12 @@
 import Foundation
 import UIKit
 
-enum UserPresenterError: Error {
-    case missingFields
-    case userNotRegistered
-}
-
 protocol UserPresenterDelegate: AnyObject {
     func fetched(response: [UserPromotionTicketsResponse])
-    func failedLogIn(error: UserPresenterError)
-    func loggedIn()
 }
 
 extension UserPresenterDelegate {
     func fetched(response: [UserPromotionTicketsResponse]) {}
-    func failedLogIn(error: UserPresenterError) {}
-    func loggedIn() {}
 }
 
 class UserPresenter {
@@ -57,9 +48,12 @@ class UserPresenter {
     
     func logIn(cpf: String?, password: String?) {
         guard let cpf = cpf,
-              let password = password
+              let password = password,
+              !cpf.isEmpty && !password.isEmpty
         else {
-            self.view?.failedLogIn(error: .missingFields)
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "Você precisa preencher todos os campos")
+            }
             return
         }
         
@@ -68,14 +62,26 @@ class UserPresenter {
         }
         
         SessionService.shared.logIn(cpf: cpf, password: password) {[weak self] isRegistered in
-            guard let self = self else { return }
+            guard let self = self else {
+                print("oi")
+                DispatchQueue.main.async {
+                    self?.view?.dismiss(animated: true, completion: nil)
+                }
+                return
+            }
+            print(isRegistered)
             DispatchQueue.main.async {
                 self.view?.dismiss(animated: true, completion: nil)
             }
             if isRegistered {
-                self.view?.loggedIn()
+                DispatchQueue.main.async {
+                    let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+                    window?.rootViewController = MainTabBarViewController()
+                }
             } else {
-                self.view?.failedLogIn(error: .userNotRegistered)
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "Usuário não cadastrado")
+                }
             }
             
         }
