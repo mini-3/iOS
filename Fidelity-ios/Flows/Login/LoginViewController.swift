@@ -49,6 +49,7 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
         label.text = "Ainda não tem uma conta? Cadastre-se"
         label.numberOfLines = 2
         label.textAlignment = .center
+        label.isUserInteractionEnabled = true
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.textColor = .label
         return label
@@ -65,7 +66,7 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
     }()
     
     private let presenter = UserPresenter()
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,9 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
         self.cpfTextField.delegate = self
         self.passwordTextField.delegate = self
         self.loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapRegister))
+        createAccountLabel.isUserInteractionEnabled = true
+        createAccountLabel.addGestureRecognizer(tap)
     }
     
     // MARK: - Functionalities
@@ -115,6 +119,11 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
     @objc private func didTapLogin() {
         self.loginButton.pulsate()
         presenter.logIn(cpf: cpfTextField.text, password: passwordTextField.text)
+    }
+    
+    @objc private func didTapRegister() {
+        let registerViewController = RegisterViewController()
+        navigationController?.pushViewController(registerViewController, animated: true)
     }
 }
 
