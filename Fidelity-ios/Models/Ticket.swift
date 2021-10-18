@@ -11,7 +11,7 @@ struct Ticket: Codable {
     let id: Int
     let isUsed: Bool
     let user: User?
-    let user_id: String
+    let user_id: Int?
     let promotion: Promotion?
-    let promotion_id: String
+    let promotion_id: Int?
 }

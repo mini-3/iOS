@@ -17,22 +17,22 @@ class SessionService {
         self.token = token
     }
     
-    public func logIn(username: String, password: String, handler: @escaping (Bool) -> Void) {
+    public func logIn(cpf: String, password: String, handler: @escaping (Bool) -> Void) {
         let body: [String: AnyHashable] = [
-            "name": username,
+            "cpf": cpf,
             "password": password
         ]
         
-        WebService.post(path: "/sessions", body: body, type: SessionResponse.self) { [weak self] response in
+        WebService.post(path: "/user_sessions", body: body, type: SessionResponse.self) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let response):
                 self.token = response.data.token
-                let completed = KeyChainService.shared.save(data: response.data.token, key: "token")
-                if completed {
-                    UserDefaultsService.shared.save(data: Date(), key: "token_date")
-                }
-                handler(completed)
+                let tokenSaved = KeyChainService.shared.save(data: response.data.token, key: "token")
+                let cpfSaved = KeyChainService.shared.save(data: cpf, key: "cpf")
+                let passwordSaved = KeyChainService.shared.save(data: password, key: "password")
+                UserDefaultsService.shared.save(data: Date(), key: "token_date")
+                handler(tokenSaved && cpfSaved && passwordSaved)
             case .failure(_):
                 handler(false)
             }
