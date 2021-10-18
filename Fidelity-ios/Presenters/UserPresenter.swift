@@ -63,13 +63,11 @@ class UserPresenter {
         
         SessionService.shared.logIn(cpf: cpf, password: password) {[weak self] isRegistered in
             guard let self = self else {
-                print("oi")
                 DispatchQueue.main.async {
                     self?.view?.dismiss(animated: true, completion: nil)
                 }
                 return
             }
-            print(isRegistered)
             DispatchQueue.main.async {
                 self.view?.dismiss(animated: true, completion: nil)
             }

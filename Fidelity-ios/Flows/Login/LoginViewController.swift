@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
         let textField = TextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "CPF"
+        textField.keyboardType = .numberPad
         textField.layer.borderWidth = 1.5
         textField.layer.borderColor = UIColor.label.cgColor
         textField.layer.cornerRadius = 16
@@ -77,9 +78,12 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
         super.viewDidLoad()
         title = "Login"
         view.backgroundColor = UIColor(named: "Background")
+        view.bindToKeyboard()
         self.presenter.view = self
         self.addSubviews()
         self.addConstraints()
+        self.cpfTextField.delegate = self
+        self.passwordTextField.delegate = self
         self.loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
     }
     
@@ -118,5 +122,25 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
     @objc private func didTapLogin() {
         self.loginButton.pulsate()
         presenter.logIn(cpf: cpfTextField.text, password: passwordTextField.text)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == cpfTextField {
+            cpfTextField.layer.borderColor = UIColor.systemBlue.cgColor
+        } else if textField == passwordTextField {
+            passwordTextField.layer.borderColor = UIColor.systemBlue.cgColor
+        }
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField == cpfTextField {
+            cpfTextField.layer.borderColor = UIColor.label.cgColor
+        } else if textField == passwordTextField {
+            passwordTextField.layer.borderColor = UIColor.label.cgColor
+        }
+        return true
     }
 }
