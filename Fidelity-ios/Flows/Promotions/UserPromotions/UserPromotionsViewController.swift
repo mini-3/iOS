@@ -101,7 +101,13 @@ class UserPromotionsViewController: UIViewController {
 extension UserPromotionsViewController: UserPresenterDelegate {
     func fetched(response: [UserPromotionTicketsResponse]) {
         self.userPromotionTickets = response
-        self.userPromotionTicketsFiltered = response
+        self.userPromotionTicketsFiltered = response.filter {
+            guard let promotion = $0.promotion else { return false }
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            guard let date = formatter.date(from: promotion.end) else { return false }
+            return date >= Date()
+        }
         DispatchQueue.main.async {
             self.userPromotionsTableView.reloadData()
         }
@@ -110,7 +116,7 @@ extension UserPromotionsViewController: UserPresenterDelegate {
 
 extension UserPromotionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.userPromotionTicketsFiltered.count
+        return self.userPromotionTicketsFiltered.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,6 +130,4 @@ extension UserPromotionsViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    
-
 }
