@@ -47,6 +47,8 @@
 		6DDF017B271CD11E00222A36 /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDF017A271CD11E00222A36 /* ButtonExtensions.swift */; };
 		DE2B415E2718A402007AE381 /* StoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B415D2718A402007AE381 /* StoreDetailsViewController.swift */; };
 		DE2B41602719E8F3007AE381 /* QRcodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B415F2719E8F3007AE381 /* QRcodeService.swift */; };
+		DE2B4162271A09EF007AE381 /* QRcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */; };
+		DE2B4165271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		6DDF017A271CD11E00222A36 /* ButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtensions.swift; sourceTree = "<group>"; };
 		DE2B415D2718A402007AE381 /* StoreDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailsViewController.swift; sourceTree = "<group>"; };
 		DE2B415F2719E8F3007AE381 /* QRcodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeService.swift; sourceTree = "<group>"; };
+		DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeReaderViewController.swift; sourceTree = "<group>"; };
+		DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerOverlayPreviewLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +267,7 @@
 		6D8EE33A27189D12005165AA /* Promotions */ = {
 			isa = PBXGroup;
 			children = (
+				DE2B4163271A0CDF007AE381 /* Scanner */,
 				6D8EE33F2718BAD6005165AA /* UserPromotions */,
 			);
 			path = Promotions;
@@ -329,6 +334,15 @@
 				6DDF017A271CD11E00222A36 /* ButtonExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DE2B4163271A0CDF007AE381 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */,
+				DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */,
+			);
+			path = Scanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -467,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE2B4165271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift in Sources */,
 				4EC563912710C6DB00411EA6 /* KeyChainService.swift in Sources */,
 				6DDF017B271CD11E00222A36 /* ButtonExtensions.swift in Sources */,
 				4EC563822710BFC400411EA6 /* Promotion.swift in Sources */,
@@ -501,6 +516,7 @@
 				6D8EE3452718E1F4005165AA /* GradientView.swift in Sources */,
 				6D8EE3412718BAED005165AA /* UserPromotionsTableViewCell.swift in Sources */,
 				6D8EE3432718C697005165AA /* ColorExtensions.swift in Sources */,
+				DE2B4162271A09EF007AE381 /* QRcodeReaderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,7 +687,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 478594C4R9;
+				DEVELOPMENT_TEAM = 5MVGTUBM8B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Fidelidade;
@@ -701,7 +717,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 478594C4R9;
+				DEVELOPMENT_TEAM = 5MVGTUBM8B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Fidelidade;
