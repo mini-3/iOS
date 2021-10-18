@@ -23,4 +23,19 @@ class TextField: UITextField {
         return bounds.inset(by: padding)
     }
     
+    override func becomeFirstResponder() -> Bool {
+        if super.becomeFirstResponder() {
+            self.layer.borderColor = UIColor.systemBlue.cgColor
+            return true
+        }
+        return false
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        if super.resignFirstResponder() {
+            self.layer.borderColor = UIColor.label.cgColor
+            return true
+        }
+        return false
+    }
 }

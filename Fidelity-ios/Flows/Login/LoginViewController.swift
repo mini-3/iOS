@@ -126,20 +126,9 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
 }
 
 extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == cpfTextField {
-            cpfTextField.layer.borderColor = UIColor.systemBlue.cgColor
-        } else if textField == passwordTextField {
-            passwordTextField.layer.borderColor = UIColor.systemBlue.cgColor
-        }
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField == cpfTextField {
-            cpfTextField.layer.borderColor = UIColor.label.cgColor
-        } else if textField == passwordTextField {
-            passwordTextField.layer.borderColor = UIColor.label.cgColor
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == passwordTextField {
+            didTapLogin()
         }
         return true
     }
