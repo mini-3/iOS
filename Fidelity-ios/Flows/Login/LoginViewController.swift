@@ -19,24 +19,17 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
     }()
     
     private let cpfTextField: TextField = {
-        let textField = TextField()
+        let textField = TextField(placeholder: "CPF")
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "CPF"
         textField.keyboardType = .numberPad
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = UIColor.label.cgColor
-        textField.layer.cornerRadius = 16
+        
         return textField
     }()
     
     private let passwordTextField: TextField = {
-        let textField = TextField()
+        let textField = TextField(placeholder: "Senha")
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Senha"
-        textField.layer.borderWidth = 1.5
         textField.isSecureTextEntry = true
-        textField.layer.borderColor = UIColor.label.cgColor
-        textField.layer.cornerRadius = 16
         return textField
     }()
     
