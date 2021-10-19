@@ -8,13 +8,14 @@
 import AVFoundation
 import UIKit
 
-class QRcodeReaderViewController: UIViewController {
+class QRcodeReaderViewController: UIViewController, TicketPreseterDelegate {
     private var captureSession: AVCaptureSession!
     private var previewLayer = UIView()
+    private let presenter = TicketPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        presenter.view = self
         view.backgroundColor = UIColor(named: "Background")
         configureSubViews()
         scanner()
@@ -104,6 +105,6 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func found(code: String) {
-        print(code)
+        presenter.create(code: code)
     }
 }
