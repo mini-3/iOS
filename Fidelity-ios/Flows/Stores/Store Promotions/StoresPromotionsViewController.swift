@@ -99,7 +99,7 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
         guard let cell = storesTableView.dequeueReusableCell(withIdentifier: StoresPromotionsTableViewCell.identifier) as? StoresPromotionsTableViewCell else { return UITableViewCell() }
         let viewModel = self.promotions[indexPath.row]
         
-        cell.configure(storeImage: "", storeName: viewModel.promotion?.store?.name ?? "Loja", storePromotionDescription: viewModel.promotion?.award ?? "5 mil reais")
+        cell.configure(storeImage: "", storeName: viewModel.promotion?.store?.name ?? "Loja", storePromotionDescription: viewModel.awardPhraseBuild())
         
         return cell
     }
@@ -122,7 +122,10 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TO DO
         // ir para a tela de detalhes com a promo
-        //let viewModel = promotions[indexPath.row]
+        let viewModel = promotions[indexPath.row]
+        let storeDetailsVC = StoreDetailsViewController()
+        storeDetailsVC.promotion = viewModel
+        self.navigationController?.pushViewController(storeDetailsVC, animated: true)
     }
     
 }

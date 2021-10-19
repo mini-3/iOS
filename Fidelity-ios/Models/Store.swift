@@ -15,4 +15,6 @@ struct Store: Codable {
     let email: String
     let password: String?
     let promotions: [Promotion]?
+    let description: String?
+    let isAppearing: Bool
 }
