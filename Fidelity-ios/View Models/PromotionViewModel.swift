@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PromotionViewModel {
     var promotion: Promotion?
@@ -13,6 +14,11 @@ class PromotionViewModel {
     let endDate: Date
     let award: String
     let storeName: String
+    let storeDescription: String
+    let storeAddress: String
+    let ticketsNeeded: String
+    //let storePhone: String
+    //let image: UIImage
     
     init(with model: Promotion) {
         self.promotion = model
@@ -24,10 +30,11 @@ class PromotionViewModel {
         dateFormatter.dateFormat = "dd/MM/YYYY"
         self.endDate = date ?? Date()
         self.endDateString = "Até: \(dateFormatter.string(from: date ?? Date()))"
-        
         self.award = "Vale \(model.award)"
-        
         self.storeName = model.store?.name ?? "Nome não encontrado"
+        self.storeDescription = model.store?.description ?? "Este local não possui descrição"
+        self.storeAddress = model.store?.address ?? "Este local não possui endereço disponível"
+        self.ticketsNeeded = "\(model.win_ticket_amount) \(model.ticket_type)(s)"
     }
     
     func awardPhraseBuild() -> String {

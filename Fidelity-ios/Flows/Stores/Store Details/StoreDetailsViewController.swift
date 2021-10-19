@@ -208,12 +208,15 @@ class StoreDetailsViewController: UIViewController {
     
     func configureView() {
         view.backgroundColor = UIColor(named: "Background")
-        storeLabel.text = "Brizza Pizzaria"
-        detailsStoreLabel.text = "Descrição breve do estabelecimento. Podemos dar ideias no app da empresa de coisas legais"
-        addressStoreLabel.text = "24 de Outubro, Moinhos de vento. Porto Alegre"
+        
+        guard let promotion = promotion else { return }
+        
+        storeLabel.text = promotion.storeName
+        detailsStoreLabel.text = promotion.storeDescription
+        addressStoreLabel.text = promotion.storeAddress
         telephoneStoreLabel.text = "(51)99999-9999"
-        requirementsStoreLabel.text = "Comprar 10 pizzas"
-        rewardStoreLabel.text = "Uma pizza grátis"
+        requirementsStoreLabel.text = promotion.ticketsNeeded
+        rewardStoreLabel.text = promotion.award
         storeImageView.image = UIImage(named: "photo")
     }
     
