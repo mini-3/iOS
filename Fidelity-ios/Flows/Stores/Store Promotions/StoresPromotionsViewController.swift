@@ -122,7 +122,10 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TO DO
         // ir para a tela de detalhes com a promo
-        //let viewModel = promotions[indexPath.row]
+        let viewModel = promotions[indexPath.row]
+        let storeDetailsVC = StoreDetailsViewController()
+        storeDetailsVC.promotion = viewModel
+        self.navigationController?.pushViewController(storeDetailsVC, animated: true)
     }
     
 }

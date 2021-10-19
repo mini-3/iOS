@@ -10,6 +10,8 @@ import UIKit
 
 class StoreDetailsViewController: UIViewController {
     
+    var promotion: PromotionViewModel?
+    
     private lazy var storeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
