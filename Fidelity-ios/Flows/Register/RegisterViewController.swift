@@ -25,6 +25,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(stackView)
         stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(cpfTextField)
+        stackView.addArrangedSubview(birthdayDatePicker)
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(confirmPasswordField)
         stackView.addArrangedSubview(signInLabel)
@@ -107,6 +108,11 @@ class RegisterViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.textColor = .label
         return label
+    }()
+    
+    private let birthdayDatePicker: UIView = {
+        let datePicker = DatePicker(label: "Birthday")
+        return datePicker
     }()
     
     private let continueButton: UIButton = {
