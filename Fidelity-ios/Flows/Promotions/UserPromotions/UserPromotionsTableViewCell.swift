@@ -56,6 +56,17 @@ class UserPromotionsTableViewCell: UITableViewCell {
         return label
     }()
     
+<<<<<<< HEAD
+=======
+    private let dateEndLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .white
+        return label
+    }()
+    
+>>>>>>> 94b3bea20e934891d1672dbc41f0708029738bbf
     private let collectionView: UICollectionView = {
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +96,10 @@ class UserPromotionsTableViewCell: UITableViewCell {
         mainView.addSubview(ticketCountLabel)
         mainView.addSubview(awardPrizeLabel)
         mainView.addSubview(collectionView)
+<<<<<<< HEAD
+=======
+        mainView.addSubview(dateEndLabel)
+>>>>>>> 94b3bea20e934891d1672dbc41f0708029738bbf
     }
     
     private func addConstraints() {
@@ -120,10 +135,23 @@ class UserPromotionsTableViewCell: UITableViewCell {
         let awardPrizeConstraints = [
             awardPrizeLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
             awardPrizeLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16),
+<<<<<<< HEAD
             awardPrizeLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
             awardPrizeLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0)
         ]
         
+=======
+            awardPrizeLabel.trailingAnchor.constraint(equalTo: dateEndLabel.leadingAnchor, constant: -16),
+            awardPrizeLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0)
+        ]
+        
+        let dateLabelConstraints = [
+            dateEndLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16),
+            dateEndLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
+            dateEndLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0)
+        ]
+        
+>>>>>>> 94b3bea20e934891d1672dbc41f0708029738bbf
         let collectionViewContraints = [
             collectionView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16)
@@ -135,14 +163,25 @@ class UserPromotionsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(ticketCountConstraints)
         NSLayoutConstraint.activate(awardPrizeConstraints)
         NSLayoutConstraint.activate(collectionViewContraints)
+<<<<<<< HEAD
     }
     
     func configure(storeName: String, ticketCount: String, awardPrize: String, awardAmount: Int, currentAmount: Int) {
+=======
+        NSLayoutConstraint.activate(dateLabelConstraints)
+    }
+    
+    func configure(storeName: String, ticketCount: String, awardPrize: String, awardAmount: Int, currentAmount: Int, dateEnd: String) {
+>>>>>>> 94b3bea20e934891d1672dbc41f0708029738bbf
         self.addSubviews()
         self.addConstraints()
         storeNameLabel.text = storeName
         ticketCountLabel.text = ticketCount
         awardPrizeLabel.text = awardPrize
+<<<<<<< HEAD
+=======
+        dateEndLabel.text = dateEnd
+>>>>>>> 94b3bea20e934891d1672dbc41f0708029738bbf
         self.awardAmount = awardAmount
         self.currentAmount = currentAmount
         self.collectionView.dataSource = self
