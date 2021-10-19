@@ -15,25 +15,41 @@ class RegisterViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         view.bindToKeyboard()
         addSubviews()
-        
+        addConstraint()
     }
     
     private func addSubviews(){
         view.addSubview(stackView)
-//        stackView.addArrangedSubview(emailTextField)
-//        stackView.addArrangedSubview(cpfTextField)
-//        stackView.addArrangedSubview(passwordTextField)
-//        stackView.addArrangedSubview(confirmPasswordField)
+        stackView.addArrangedSubview(emailTextField)
+        stackView.addArrangedSubview(cpfTextField)
+        stackView.addArrangedSubview(passwordTextField)
+        stackView.addArrangedSubview(confirmPasswordField)
+        stackView.addArrangedSubview(signInLabel)
+        stackView.addArrangedSubview(continueButton)
     }
     
     private func addConstraint() {
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            // stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64)
         ]
+        
+        let textFieldConstraints = [
+            emailTextField.heightAnchor.constraint(equalToConstant: 40),
+            cpfTextField.heightAnchor.constraint(equalToConstant: 40),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 40),
+            confirmPasswordField.heightAnchor.constraint(equalToConstant: 40),
+            signInLabel.heightAnchor.constraint(equalToConstant: 40)
+        ]
+        
+        let buttonConstraints = [
+            continueButton.heightAnchor.constraint(equalToConstant: 40)
+        ]
+        
         NSLayoutConstraint.activate(stackViewConstraints)
+        NSLayoutConstraint.activate(textFieldConstraints)
+        NSLayoutConstraint.activate(buttonConstraints)
     }
     
     
@@ -72,6 +88,28 @@ class RegisterViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isSecureTextEntry = true
         return textField
+    }()
+    
+    private let signInLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Tem uma conta? Entre!"
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.isUserInteractionEnabled = true
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        label.textColor = .label
+        return label
+    }()
+    
+    private let continueButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Continue", for: .normal)
+        button.layer.cornerRadius = 16
+        button.backgroundColor = .label
+        button.setTitleColor(.systemBackground, for: .normal)
+        return button
     }()
     
 }
