@@ -10,7 +10,7 @@ import UIKit
 
 class QRcodeReaderViewController: UIViewController, TicketPreseterDelegate {
     private var captureSession: AVCaptureSession!
-    private var previewLayer = UIView()
+    private var previewLayer: AVCaptureVideoPreviewLayer!
     private let presenter = TicketPresenter()
     
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class QRcodeReaderViewController: UIViewController, TicketPreseterDelegate {
     }
     
     func configureSubViews() {
-        view.addSubview(previewLayer)
+        //view.addSubview(previewLayer)
     }
 }
 
@@ -74,12 +74,16 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
             return
         }
         
-        let scannerOverlayPreviewLayer = ScannerOverlayPreviewLayer(session: captureSession)
-        scannerOverlayPreviewLayer.frame = view.layer.bounds
-        scannerOverlayPreviewLayer.maskSize = CGSize(width: 200, height: 200)
-        scannerOverlayPreviewLayer.backgroundColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
-        metadataOutput.rectOfInterest = scannerOverlayPreviewLayer.rectOfInterest
-        previewLayer.layer.addSublayer(scannerOverlayPreviewLayer)
+//        let scannerOverlayPreviewLayer = ScannerOverlayPreviewLayer(session: captureSession)
+//        scannerOverlayPreviewLayer.frame = view.layer.bounds
+//        scannerOverlayPreviewLayer.maskSize = CGSize(width: 200, height: 200)
+//        scannerOverlayPreviewLayer.backgroundColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+//        metadataOutput.rectOfInterest = scannerOverlayPreviewLayer.rectOfInterest
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.frame = view.layer.bounds
+        previewLayer.videoGravity = . resizeAspectFill
+        view.layer.addSublayer(previewLayer)
+        //previewLayer.layer.addSublayer(scannerOverlayPreviewLayer)
         
         captureSession.startRunning()
     }
@@ -105,6 +109,7 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func found(code: String) {
+        print("achou")
         presenter.create(code: code)
     }
 }

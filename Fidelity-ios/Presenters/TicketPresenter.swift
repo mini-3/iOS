@@ -33,8 +33,10 @@ class TicketPresenter {
             guard let self = self else { return }
             switch result {
             case .success(_):
+                SyncService.shared.syncTickets()
                 DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Ticket processado com sucesso", title: "Parabéns!")
+                    self.view?.tabBarController?.selectedIndex = 0
+                    //self.view?.presentAlert(message: "Ticket processado com sucesso", title: "Parabéns!")
                 }
             case .failure(_):
                 DispatchQueue.main.async {

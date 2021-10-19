@@ -54,6 +54,7 @@
 		DE2B41602719E8F3007AE381 /* QRcodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B415F2719E8F3007AE381 /* QRcodeService.swift */; };
 		DE2B4162271A09EF007AE381 /* QRcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */; };
 		DE2B4165271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */; };
+		DE2B4167271F451A007AE381 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4166271F451A007AE381 /* SyncService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		DE2B415F2719E8F3007AE381 /* QRcodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeService.swift; sourceTree = "<group>"; };
 		DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeReaderViewController.swift; sourceTree = "<group>"; };
 		DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerOverlayPreviewLayer.swift; sourceTree = "<group>"; };
+		DE2B4166271F451A007AE381 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +262,7 @@
 				4EC563922710C6EB00411EA6 /* WebService.swift */,
 				4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */,
 				DE2B415F2719E8F3007AE381 /* QRcodeService.swift */,
+				DE2B4166271F451A007AE381 /* SyncService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				4E448283271F3D9E0006A68E /* StoresPromotionsTableViewCell.swift in Sources */,
 				6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */,
 				6D36740D271F40410032ABEC /* TicketPresenter.swift in Sources */,
+				DE2B4167271F451A007AE381 /* SyncService.swift in Sources */,
 				DE2B41602719E8F3007AE381 /* QRcodeService.swift in Sources */,
 				4EC5638C2710C47A00411EA6 /* EmailUser.swift in Sources */,
 				4E448282271F3D9E0006A68E /* StoresPromotionsViewController.swift in Sources */,
@@ -715,7 +719,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3XP27NL574;
+				DEVELOPMENT_TEAM = 5MVGTUBM8B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Fidelidade;
@@ -745,7 +749,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3XP27NL574;
+				DEVELOPMENT_TEAM = 5MVGTUBM8B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Fidelidade;
