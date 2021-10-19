@@ -165,7 +165,6 @@
 		4EC563422710BE4400411EA6 = {
 			isa = PBXGroup;
 			children = (
-				6D36740C271F40410032ABEC /* TicketPresenter.swift */,
 				4EC5634D2710BE4400411EA6 /* Fidelity-ios */,
 				4EC563642710BE4700411EA6 /* Fidelity-iosTests */,
 				4EC5636E2710BE4700411EA6 /* Fidelity-iosUITests */,
@@ -268,6 +267,7 @@
 		6D71F85B2717412700D16173 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				6D36740C271F40410032ABEC /* TicketPresenter.swift */,
 				6D71F85C2717414900D16173 /* StorePresenter.swift */,
 				6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */,
 				4E1984CC2717701F004C34B8 /* UserPresenter.swift */,
