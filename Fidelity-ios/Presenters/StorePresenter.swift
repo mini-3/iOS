@@ -37,9 +37,10 @@ class StorePresenter {
                 DispatchQueue.main.sync {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-                print(viewModels)
             case .failure(let error):
-                self.view?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.sync {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
                 print(error)
             }
         }

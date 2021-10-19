@@ -11,9 +11,9 @@ import Combine
 
 class UserStoresViewController: UIViewController {
     
-    private let storePresenter: StorePresenter = StorePresenter()
+    private let promotionPresenter: PromotionPresenter = PromotionPresenter()
     //private let categories:
-    private var stores: [StoreViewModel] = []
+    private var promotions: [PromotionViewModel] = []
     
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
@@ -35,25 +35,25 @@ class UserStoresViewController: UIViewController {
     private lazy var storesTableView: UITableView = {
         let storesTableView = UITableView()
         storesTableView.translatesAutoresizingMaskIntoConstraints = false
-        
         return storesTableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.storePresenter.view = self
-        view.backgroundColor = UIColor(named: "background")
+        self.promotionPresenter.view = self
         configureUI()
         configureSubViews()
         configureConstraints()
-        self.storePresenter.fetchStores()
-        searchController.searchBar.placeholder = "test"
-        navigationItem.titleView = searchController.searchBar
+        self.promotionPresenter.fetchPromotions()
+        searchController.searchBar.placeholder = "Buscar"
+        navigationItem.searchController = searchController
         
     }
     
     private func configureUI() {
         title = "Fidelidades"
+        self.view.backgroundColor = UIColor(named: "Background")
+        self.storesTableView.backgroundColor = UIColor(named: "Background")
         storesTableView.register(StoresTableViewCell.self, forCellReuseIdentifier: StoresTableViewCell.identifier)
         storesTableView.delegate = self
         storesTableView.dataSource = self
@@ -66,54 +66,63 @@ class UserStoresViewController: UIViewController {
     }
     
     func configureSubViews() {
-        view.addSubview(searchController.searchBar)
-        //view.addSubview(categoriesCollectionView)
         view.addSubview(storesTableView)
+        
     }
     
     func configureConstraints() {
-        let searchBarContrainsts = [
-            searchController.searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            searchController.searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            searchController.searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
-        ]
         
         let storesTableViewConstraints = [
-            storesTableView.topAnchor.constraint(equalTo: searchController.searchBar.topAnchor),
-            storesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            storesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            storesTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            storesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            storesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             storesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             
             
         ]
         
-        NSLayoutConstraint.activate(searchBarContrainsts)
         NSLayoutConstraint.activate(storesTableViewConstraints)
     }
     
     @objc func handleRefresh() {
-        storePresenter.fetchStores()
+        promotionPresenter.fetchPromotions()
     }
     
 }
 
 extension UserStoresViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(stores.count)
-        return stores.count
+        return promotions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = storesTableView.dequeueReusableCell(withIdentifier: StoresTableViewCell.identifier) as? StoresTableViewCell else { return UITableViewCell() }
-        let viewModel = self.stores[indexPath.row]
+        let viewModel = self.promotions[indexPath.row]
         
-        cell.configure(storeImage: "", storeName: viewModel.store!.name, storePromotionDescription: "aaa", storeDistance: "2km", storeOpen: "Open")
+        cell.configure(storeImage: "", storeName: viewModel.promotion?.store?.name ?? "Loja", storePromotionDescription: viewModel.promotion?.award ?? "5 mil reais")
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        
+        let label = UILabel()
+        label.frame = CGRect.init(x: 20, y: 5, width: headerView.frame.width - 40, height: headerView.frame.height - 20)
+        label.text = "Lojas"
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .white
+        
+        headerView.addSubview(label)
+        
+        return headerView
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = stores[indexPath.row]
+        //TO DO
+        // ir para a tela de detalhes com a promo
+        //let viewModel = promotions[indexPath.row]
     }
     
 }
@@ -137,9 +146,9 @@ extension UserStoresViewController: UITableViewDelegate, UITableViewDataSource {
 //
 //}
 
-extension UserStoresViewController: StorePresenterDelegate {
-    func fetched(stores: [StoreViewModel]) {
-        self.stores = stores
+extension UserStoresViewController: PromotionPresenterDelegate {
+    func fetched(promotions: [PromotionViewModel]) {
+        self.promotions = promotions
         DispatchQueue.main.async {
             self.storesTableView.reloadData()
         }

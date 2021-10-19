@@ -17,7 +17,7 @@ struct WebService {
     
     // MARK: - Get
     static func get<T:Codable>(path: String, type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
-        guard let url = URL(string: "http://ec2-35-86-81-187.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
+        guard let url = URL(string: "http://ec2-35-86-122-173.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
         
         var request = URLRequest(url: url)
         
@@ -28,16 +28,23 @@ struct WebService {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data  else { handler(.failure(.noDataError)); return }
             
-            guard let data = try? JSONDecoder().decode(T.self, from: data) else { handler(.failure(.parsingJsonError)); return }
+            //guard let data = try? JSONDecoder().decode(T.self, from: data) else { handler(.failure(.parsingJsonError)); return }
 
-            handler(.success(data))
+            do {
+                let data = try JSONDecoder().decode(T.self, from: data)
+                handler(.success(data))
+            } catch {
+                print(error)
+                handler(.failure(.parsingJsonError))
+            }
+            
         }
         .resume()
     }
     
     // MARK: - Post
     static func post<T:Codable>(path: String, body: [String: AnyHashable], type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
-        guard let url = URL(string: "http://ec2-35-86-81-187.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
+        guard let url = URL(string: "http://ec2-35-86-122-173.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
         
         guard let body = try? JSONSerialization.data(withJSONObject: body, options: []) else { handler(.failure(.parsingJsonError)); return }
         
@@ -62,7 +69,7 @@ struct WebService {
     
     // MARK: - Put
     static func put<T:Codable>(path: String, body: [String: AnyHashable], type: T.Type, handler: @escaping (Result<Int, WebServiceError>) -> Void) {
-        guard let url = URL(string: "http://ec2-35-86-81-187.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
+        guard let url = URL(string: "http://ec2-35-86-122-173.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
         
         guard let body = try? JSONSerialization.data(withJSONObject: body, options: []) else { handler(.failure(.parsingJsonError)); return }
         
@@ -85,7 +92,7 @@ struct WebService {
     
     // MARK: - Delete
     static func delete<T:Codable>(path: String, type: T.Type, handler: @escaping (Result<Int, WebServiceError>) -> Void) {
-        guard let url = URL(string: "http://ec2-35-86-81-187.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
+        guard let url = URL(string: "http://ec2-35-86-122-173.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
         
         var request = URLRequest(url: url)
         

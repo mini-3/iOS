@@ -12,6 +12,17 @@ class StoresTableViewCell: UITableViewCell {
     
     static let identifier: String = String(describing: self)
     
+    
+    private lazy var mainView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 16
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "StoreCell")
+
+        return view
+    }()
+    
     private lazy var storeImageView: UIImageView = {
         let storeImageView = UIImageView()
         storeImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +43,7 @@ class StoresTableViewCell: UITableViewCell {
         let storeNameDescriptionStackView = UIStackView()
         storeNameDescriptionStackView.translatesAutoresizingMaskIntoConstraints = false
         storeNameDescriptionStackView.axis = .vertical
-        storeNameDescriptionStackView.spacing = 8
+        storeNameDescriptionStackView.spacing = 4
         
         return storeNameDescriptionStackView
     }()
@@ -40,6 +51,7 @@ class StoresTableViewCell: UITableViewCell {
     private lazy var storeName: UILabel = {
         let storeName = UILabel()
         storeName.translatesAutoresizingMaskIntoConstraints = false
+        storeName.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(rawValue: 0.5))
         
         return storeName
     }()
@@ -47,6 +59,8 @@ class StoresTableViewCell: UITableViewCell {
     private lazy var storePromotionDescription: UILabel = {
         let storePromotionDescription = UILabel()
         storePromotionDescription.translatesAutoresizingMaskIntoConstraints = false
+        storePromotionDescription.numberOfLines = 0
+        storePromotionDescription.font = UIFont.systemFont(ofSize: 12)
         
         return storePromotionDescription
     }()
@@ -81,63 +95,85 @@ class StoresTableViewCell: UITableViewCell {
         return storeOpen
     }()
     
-    func configure(storeImage: String, storeName: String, storePromotionDescription: String, storeDistance: String, storeOpen: String) {
+//    func configure(storeImage: String, storeName: String, storePromotionDescription: String, storeDistance: String, storeOpen: String) {
+//        configureSubviews()
+//        configureConstraints()
+//
+//        self.storeImageView.image = UIImage(systemName: "heart")
+//        self.storeName.text = storeName
+//        self.storePromotionDescription.text = storePromotionDescription
+//        self.storeDistance.text = storeDistance
+//
+//    }
+    
+    func configure(storeImage: String, storeName: String, storePromotionDescription: String) {
         configureSubviews()
         configureConstraints()
-        
-        self.storeImageView.image = UIImage(systemName: "heart")
+        self.storeImageView.image = UIImage(systemName: "person.fill")
         self.storeName.text = storeName
         self.storePromotionDescription.text = storePromotionDescription
-        self.storeDistance.text = storeDistance
+        self.contentView.backgroundColor = UIColor(named: "Background")
         
     }
     
     func configureSubviews() {
-        contentView.layer.cornerRadius = 16
-        contentView.addSubview(storeImageView)
-        contentView.addSubview(horizontalStackView)
-        contentView.addSubview(storeNameDescriptionStackView)
-        contentView.addSubview(storeDetailsStackView)
-        horizontalStackView.addArrangedSubview(storeNameDescriptionStackView)
-        horizontalStackView.addArrangedSubview(storeDetailsStackView)
+        contentView.addSubview(mainView)
+        mainView.addSubview(storeImageView)
+        //contentView.addSubview(horizontalStackView)
+        mainView.addSubview(storeNameDescriptionStackView)
+        //contentView.addSubview(storeDetailsStackView)
+        //horizontalStackView.addArrangedSubview(storeNameDescriptionStackView)
+        //horizontalStackView.addArrangedSubview(storeDetailsStackView)
         storeNameDescriptionStackView.addArrangedSubview(storeName)
         storeNameDescriptionStackView.addArrangedSubview(storePromotionDescription)
-        storeDetailsStackView.addArrangedSubview(favoriteImageView)
-        storeDetailsStackView.addArrangedSubview(storeDistance)
-        storeDetailsStackView.addArrangedSubview(storeOpen)
+        //        storeDetailsStackView.addArrangedSubview(favoriteImageView)
+        //        storeDetailsStackView.addArrangedSubview(storeDistance)
+        //        storeDetailsStackView.addArrangedSubview(storeOpen)
     }
     
     func configureConstraints() {
-        let storeImageConstraints = [
-            storeImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            storeImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            storeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
+        
+        let spacing = [
+            mainView.heightAnchor.constraint(equalToConstant: 80),
+            mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
+            mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -7)
             
         ]
         
-        let horizontalContraints = [
-            horizontalStackView.trailingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: -16)
+        let storeImageConstraints = [
+            storeImageView.widthAnchor.constraint(equalToConstant: 60),
+            storeImageView.heightAnchor.constraint(equalToConstant: 60),
+            storeImageView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16),
+            storeImageView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16),
+            storeImageView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16)
+            
         ]
+        
+//        let horizontalContraints = [
+//            horizontalStackView.trailingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: -16)
+//        ]
         
         
         let storeNameDescriptionStackViewConstraints = [
-            storeNameDescriptionStackView.trailingAnchor.constraint(equalTo: horizontalStackView.trailingAnchor),
-            storeNameDescriptionStackView.leadingAnchor.constraint(equalTo: storeDetailsStackView.trailingAnchor),
-            storeNameDescriptionStackView.topAnchor.constraint(equalTo: horizontalStackView.topAnchor),
-            storeNameDescriptionStackView.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor)
+            storeNameDescriptionStackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
+            storeNameDescriptionStackView.leadingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: 16),
+            storeNameDescriptionStackView.centerYAnchor.constraint(equalTo: mainView.centerYAnchor)
             
         ]
         
-        let storeDetailsStackViewConstraints = [
-            storeDetailsStackView.leadingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor),
-            storeDetailsStackView.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor),
-            storeDetailsStackView.topAnchor.constraint(equalTo: horizontalStackView.topAnchor)
-        ]
+        //        let storeDetailsStackViewConstraints = [
+        //            storeDetailsStackView.leadingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor),
+        //            storeDetailsStackView.bottomAnchor.constraint(equalTo: horizontalStackView.bottomAnchor),
+        //            storeDetailsStackView.topAnchor.constraint(equalTo: horizontalStackView.topAnchor)
+        //        ]
         
+        NSLayoutConstraint.activate(spacing)
         NSLayoutConstraint.activate(storeImageConstraints)
-        NSLayoutConstraint.activate(horizontalContraints)
+        //NSLayoutConstraint.activate(horizontalContraints)
         NSLayoutConstraint.activate(storeNameDescriptionStackViewConstraints)
-        NSLayoutConstraint.activate(storeDetailsStackViewConstraints)
+        //NSLayoutConstraint.activate(storeDetailsStackViewConstraints)
     }
     
 }
