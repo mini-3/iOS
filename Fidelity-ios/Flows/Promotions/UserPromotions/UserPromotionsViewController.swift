@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class UserPromotionsViewController: UIViewController {
     
@@ -27,6 +28,7 @@ class UserPromotionsViewController: UIViewController {
     private var userPromotionTickets: [UserPromotionTicketsResponse] = []
     private var userPromotionTicketsFiltered: [UserPromotionTicketsResponse] = []
     private let presenter = UserPresenter()
+    private var cancellables: [AnyCancellable] = []
 
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -35,7 +37,14 @@ class UserPromotionsViewController: UIViewController {
         self.addSubviews()
         self.configureTableView()
         self.addConstraints()
+        self.configureObservers()
         segmentedControl.addTarget(self, action: #selector(didChangedSegmented(_:)), for: .valueChanged)
+    }
+    
+    deinit{
+        cancellables.forEach{
+            $0.cancel()
+        }
     }
     
     //MARK: - Functionalities
@@ -44,6 +53,13 @@ class UserPromotionsViewController: UIViewController {
         self.userPromotionsTableView.dataSource = self
         self.userPromotionsTableView.separatorStyle = .none
         self.userPromotionsTableView.backgroundColor = UIColor(named: "Background")
+    }
+    
+    private func configureObservers() {
+        SyncService.shared.$ticketSync.sink { _ in
+            self.presenter.fetchUserTicketofPromotion()
+        }
+        .store(in: &cancellables)
     }
     
     private func configureUI() {

@@ -37,6 +37,7 @@
 		6D18D62F271748AC007D3FAD /* PromotionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */; };
 		6D18D63127175357007D3FAD /* ControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D63027175357007D3FAD /* ControllerExtensions.swift */; };
 		6D18D63327175631007D3FAD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D63227175631007D3FAD /* StringExtensions.swift */; };
+		6D36740D271F40410032ABEC /* TicketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36740C271F40410032ABEC /* TicketPresenter.swift */; };
 		6D71F85D2717414900D16173 /* StorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D71F85C2717414900D16173 /* StorePresenter.swift */; };
 		6D8EE33C27189DAB005165AA /* UserPromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE33B27189DAB005165AA /* UserPromotionsViewController.swift */; };
 		6D8EE33E2718A370005165AA /* UserPromotionTicketsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE33D2718A370005165AA /* UserPromotionTicketsResponse.swift */; };
@@ -53,6 +54,7 @@
 		DE2B41602719E8F3007AE381 /* QRcodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B415F2719E8F3007AE381 /* QRcodeService.swift */; };
 		DE2B4162271A09EF007AE381 /* QRcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */; };
 		DE2B4165271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */; };
+		DE2B4167271F451A007AE381 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4166271F451A007AE381 /* SyncService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,7 @@
 		6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionPresenter.swift; sourceTree = "<group>"; };
 		6D18D63027175357007D3FAD /* ControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtensions.swift; sourceTree = "<group>"; };
 		6D18D63227175631007D3FAD /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		6D36740C271F40410032ABEC /* TicketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketPresenter.swift; sourceTree = "<group>"; };
 		6D71F85C2717414900D16173 /* StorePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePresenter.swift; sourceTree = "<group>"; };
 		6D8EE33B27189DAB005165AA /* UserPromotionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotionsViewController.swift; sourceTree = "<group>"; };
 		6D8EE33D2718A370005165AA /* UserPromotionTicketsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotionTicketsResponse.swift; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		DE2B415F2719E8F3007AE381 /* QRcodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeService.swift; sourceTree = "<group>"; };
 		DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeReaderViewController.swift; sourceTree = "<group>"; };
 		DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerOverlayPreviewLayer.swift; sourceTree = "<group>"; };
+		DE2B4166271F451A007AE381 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +262,7 @@
 				4EC563922710C6EB00411EA6 /* WebService.swift */,
 				4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */,
 				DE2B415F2719E8F3007AE381 /* QRcodeService.swift */,
+				DE2B4166271F451A007AE381 /* SyncService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 		6D71F85B2717412700D16173 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				6D36740C271F40410032ABEC /* TicketPresenter.swift */,
 				6D71F85C2717414900D16173 /* StorePresenter.swift */,
 				6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */,
 				4E1984CC2717701F004C34B8 /* UserPresenter.swift */,
@@ -514,6 +520,8 @@
 				6D18D63327175631007D3FAD /* StringExtensions.swift in Sources */,
 				4E448283271F3D9E0006A68E /* StoresPromotionsTableViewCell.swift in Sources */,
 				6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */,
+				6D36740D271F40410032ABEC /* TicketPresenter.swift in Sources */,
+				DE2B4167271F451A007AE381 /* SyncService.swift in Sources */,
 				DE2B41602719E8F3007AE381 /* QRcodeService.swift in Sources */,
 				4EC5638C2710C47A00411EA6 /* EmailUser.swift in Sources */,
 				4E448282271F3D9E0006A68E /* StoresPromotionsViewController.swift in Sources */,
