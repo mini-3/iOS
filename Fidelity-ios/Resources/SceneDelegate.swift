@@ -13,12 +13,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene) 
+        let window = UIWindow(windowScene: windowScene)
         guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date"),
               let cpf = KeyChainService.shared.retrieveToken(key: "cpf"),
               let password = KeyChainService.shared.retrieveToken(key: "password")
         else {
-            window.rootViewController = LoginViewController()
+            window.rootViewController = MainTabBarViewController()
             window.makeKeyAndVisible()
             self.window = window
             return
@@ -26,7 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {
             SessionService.shared.logIn(cpf: cpf, password: password) { isRegistered in
                 if !isRegistered {
-                    window.rootViewController = LoginViewController()
+                    DispatchQueue.main.async {
+                        window.rootViewController = MainTabBarViewController()
+                    }
+                    
                 }
             }
         }

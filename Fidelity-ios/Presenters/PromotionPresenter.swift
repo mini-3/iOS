@@ -77,7 +77,7 @@ class PromotionPresenter {
     
     func fetchPromotions() {
         view?.presentLoadingScreen()
-        WebService.get(path: "", type: [Promotion].self) {[weak self] result in
+        WebService.get(path: "/promotions", type: [Promotion].self) {[weak self] result in
             guard let self = self else {
                 self?.view?.dismiss(animated: true, completion: nil)
                 return
@@ -86,9 +86,13 @@ class PromotionPresenter {
             case .success(let promotions):
                 let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
                 self.view?.fetched(promotions: viewModels)
-                self.view?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
             case .failure(let error):
-                self.view?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
                 print(error)
             }
         }
