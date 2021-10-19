@@ -29,4 +29,16 @@ class PromotionViewModel {
         
         self.storeName = model.store?.name ?? "Nome não encontrado"
     }
+    
+    func awardPhraseBuild() -> String {
+        
+        guard let ticketAmount = promotion?.win_ticket_amount else { return "0" }
+        guard let ticketType = promotion?.ticket_type else { return "Ticket"}
+        guard let award = promotion?.award else { return "Prêmio"}
+        
+        let answer = "Compre \(ticketAmount) \(ticketType)(s) e ganhe \(award)"
+        
+        return answer
+    }
+    
 }
