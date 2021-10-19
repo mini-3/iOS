@@ -38,6 +38,11 @@ class QRcodeReaderViewController: UIViewController, TicketPreseterDelegate {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scanner()
+    }
+    
     func configureViewConstraints() {
         view.addSubview(scannerView)
 
@@ -49,11 +54,6 @@ class QRcodeReaderViewController: UIViewController, TicketPreseterDelegate {
             scannerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
             scannerView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
         ])
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scanner()
     }
 }
 
