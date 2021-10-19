@@ -41,6 +41,7 @@ class TicketPresenter {
             case .failure(_):
                 DispatchQueue.main.async {
                     self.view?.presentAlert(message: "Ocorreu algum erro ao processar o ticket")
+                    self.view?.viewDidLoad()
                 }
             }
         }
