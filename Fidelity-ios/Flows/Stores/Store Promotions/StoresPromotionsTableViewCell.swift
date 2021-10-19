@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class StoresTableViewCell: UITableViewCell {
+class StoresPromotionsTableViewCell: UITableViewCell {
     
     static let identifier: String = String(describing: self)
     

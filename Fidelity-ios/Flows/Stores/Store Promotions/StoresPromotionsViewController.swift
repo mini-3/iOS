@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-class UserStoresViewController: UIViewController {
+class StoresPromotionsViewController: UIViewController {
     
     private let promotionPresenter: PromotionPresenter = PromotionPresenter()
     //private let categories:
@@ -54,7 +54,7 @@ class UserStoresViewController: UIViewController {
         title = "Fidelidades"
         self.view.backgroundColor = UIColor(named: "Background")
         self.storesTableView.backgroundColor = UIColor(named: "Background")
-        storesTableView.register(StoresTableViewCell.self, forCellReuseIdentifier: StoresTableViewCell.identifier)
+        storesTableView.register(StoresPromotionsTableViewCell.self, forCellReuseIdentifier: StoresPromotionsTableViewCell.identifier)
         storesTableView.delegate = self
         storesTableView.dataSource = self
         storesTableView.separatorStyle = .none
@@ -90,13 +90,13 @@ class UserStoresViewController: UIViewController {
     
 }
 
-extension UserStoresViewController: UITableViewDelegate, UITableViewDataSource {
+extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return promotions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = storesTableView.dequeueReusableCell(withIdentifier: StoresTableViewCell.identifier) as? StoresTableViewCell else { return UITableViewCell() }
+        guard let cell = storesTableView.dequeueReusableCell(withIdentifier: StoresPromotionsTableViewCell.identifier) as? StoresPromotionsTableViewCell else { return UITableViewCell() }
         let viewModel = self.promotions[indexPath.row]
         
         cell.configure(storeImage: "", storeName: viewModel.promotion?.store?.name ?? "Loja", storePromotionDescription: viewModel.promotion?.award ?? "5 mil reais")
@@ -146,7 +146,7 @@ extension UserStoresViewController: UITableViewDelegate, UITableViewDataSource {
 //
 //}
 
-extension UserStoresViewController: PromotionPresenterDelegate {
+extension StoresPromotionsViewController: PromotionPresenterDelegate {
     func fetched(promotions: [PromotionViewModel]) {
         self.promotions = promotions
         DispatchQueue.main.async {
