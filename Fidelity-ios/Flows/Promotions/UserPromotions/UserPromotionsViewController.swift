@@ -47,7 +47,7 @@ class UserPromotionsViewController: UIViewController {
     }
     
     private func configureUI() {
-        title = "Your name"
+        title = "Promoções"
         navigationController?.navigationBar.prefersLargeTitles = true
         self.presenter.view = self
         self.presenter.fetchUserTicketofPromotion()
@@ -60,7 +60,7 @@ class UserPromotionsViewController: UIViewController {
     private func addConstraints() {
         let segmentedConstraints = [
             segmentedControl.centerXAnchor.constraint(equalTo: segmentedControl.superview!.centerXAnchor),
-            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32)
+            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32),
         ]
         
         let tableViewConstraints = [
@@ -126,7 +126,7 @@ extension UserPromotionsViewController: UITableViewDataSource {
         let userPromotionTicket = userPromotionTicketsFiltered[indexPath.row]
         guard let model = userPromotionTicket.promotion else { return UITableViewCell() }
         let viewModel = PromotionViewModel(with: model)
-        cell.configure(storeName: model.store?.name ?? "Nome não encontrado", ticketCount: "\(userPromotionTicket.ticketAmount)/\(model.win_ticket_amount)", awardPrize: "Vale \(model.award)", awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount, dateEnd: viewModel.endDateString)
+        cell.configure(storeName: viewModel.storeName, ticketCount: "\(userPromotionTicket.ticketAmount)/\(model.win_ticket_amount)", awardPrize: viewModel.award, awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount, dateEnd: viewModel.endDateString)
         cell.selectionStyle = .none
         return cell
     }
