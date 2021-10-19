@@ -16,6 +16,9 @@ class RegisterViewController: UIViewController {
         view.bindToKeyboard()
         addSubviews()
         addConstraint()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapSignIn))
+        signInLabel.isUserInteractionEnabled = true
+        signInLabel.addGestureRecognizer(tap)
     }
     
     private func addSubviews(){
@@ -52,6 +55,10 @@ class RegisterViewController: UIViewController {
         NSLayoutConstraint.activate(buttonConstraints)
     }
     
+    
+    @objc private func didTapSignIn() {
+        navigationController?.popToRootViewController(animated: true)
+    }
     
     //MARK: - Views
     
