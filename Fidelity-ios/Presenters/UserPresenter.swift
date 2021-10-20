@@ -138,7 +138,9 @@ class UserPresenter {
         
         WebService.post(path: "/users", body: body, type: [UserSignUpRequest].self) {[weak self] result in
             guard let self = self else {
-                self?.view?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self?.view?.dismiss(animated: true, completion: nil)
+                }
                 return
             }
             switch result {
