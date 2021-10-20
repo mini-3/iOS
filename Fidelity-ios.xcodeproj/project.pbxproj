@@ -10,6 +10,7 @@
 		348CED31271E00370098E199 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348CED30271E00370098E199 /* RegisterViewController.swift */; };
 		34F1731D271F4F84007ABCC8 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1731C271F4F84007ABCC8 /* DatePicker.swift */; };
 		34F17321271F8B41007ABCC8 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */; };
+		34F17323271F99CE007ABCC8 /* ValidatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F17322271F99CE007ABCC8 /* ValidatorService.swift */; };
 		4E1984CB27177014004C34B8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CA27177014004C34B8 /* UserViewModel.swift */; };
 		4E1984CD2717701F004C34B8 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CC2717701F004C34B8 /* UserPresenter.swift */; };
 		4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7657C52710C853007F9BFA /* KeychainAccess */; };
@@ -75,6 +76,7 @@
 		348CED30271E00370098E199 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		34F1731C271F4F84007ABCC8 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
+		34F17322271F99CE007ABCC8 /* ValidatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorService.swift; sourceTree = "<group>"; };
 		4E1984CA27177014004C34B8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		4E1984CC2717701F004C34B8 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
 		4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				4EC563922710C6EB00411EA6 /* WebService.swift */,
 				4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */,
 				DE2B415F2719E8F3007AE381 /* QRcodeService.swift */,
+				34F17322271F99CE007ABCC8 /* ValidatorService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				6DDF017B271CD11E00222A36 /* ButtonExtensions.swift in Sources */,
 				4EC563822710BFC400411EA6 /* Promotion.swift in Sources */,
 				6D8EE33C27189DAB005165AA /* UserPromotionsViewController.swift in Sources */,
+				34F17323271F99CE007ABCC8 /* ValidatorService.swift in Sources */,
 				DE2B415E2718A402007AE381 /* StoreDetailsViewController.swift in Sources */,
 				6D18D62F271748AC007D3FAD /* PromotionPresenter.swift in Sources */,
 				4EC563952710C73800411EA6 /* SessionResponse.swift in Sources */,
