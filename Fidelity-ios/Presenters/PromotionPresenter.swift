@@ -11,11 +11,13 @@ import UIKit
 protocol PromotionPresenterDelegate: AnyObject {
     func fetched(promotions: [PromotionViewModel])
     func created(promotion: PromotionViewModel)
+    func fetchedOne(promotion: PromotionViewModel)
 }
 
 extension PromotionPresenterDelegate {
-    func fetched(promotions: [Promotion]) {}
-    func created(promotion: Promotion) {}
+    func fetched(promotions: [PromotionViewModel]) {}
+    func created(promotion: PromotionViewModel) {}
+    func fetchedOne(promotion: PromotionViewModel) {}
 }
 
 class PromotionPresenter {
@@ -75,7 +77,7 @@ class PromotionPresenter {
     
     func fetchPromotions() {
         view?.presentLoadingScreen()
-        WebService.get(path: "", type: [Promotion].self) {[weak self] result in
+        WebService.get(path: "/promotions", type: [Promotion].self) {[weak self] result in
             guard let self = self else {
                 self?.view?.dismiss(animated: true, completion: nil)
                 return
@@ -84,6 +86,29 @@ class PromotionPresenter {
             case .success(let promotions):
                 let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
                 self.view?.fetched(promotions: viewModels)
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
+                print(error)
+            }
+        }
+    }
+    
+    func fetchPromotion(id: Int) {
+        view?.presentLoadingScreen()
+        WebService.get(path: "", type: Promotion.self) {[weak self] result in
+            guard let self = self else {
+                self?.view?.dismiss(animated: true, completion: nil)
+                return
+            }
+            switch result {
+            case .success(let promotion):
+                let viewModel = PromotionViewModel(with: promotion)
+                self.view?.fetchedOne(promotion: viewModel)
                 self.view?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 self.view?.dismiss(animated: true, completion: nil)

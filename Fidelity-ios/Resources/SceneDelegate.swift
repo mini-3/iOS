@@ -14,17 +14,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date") else {
-            window.rootViewController = LoginViewController()
+        guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date"),
+              let cpf = KeyChainService.shared.retrieveToken(key: "cpf"),
+              let password = KeyChainService.shared.retrieveToken(key: "password")
+        else {
+            window.rootViewController = MainTabBarViewController()
             window.makeKeyAndVisible()
             self.window = window
             return
         }
         if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {
-           window.rootViewController = LoginViewController()
+            SessionService.shared.logIn(cpf: cpf, password: password) { isRegistered in
+                if !isRegistered {
+                    DispatchQueue.main.async {
+                        window.rootViewController = MainTabBarViewController()
+                    }
+                    
+                }
+            }
         }
         window.rootViewController = MainTabBarViewController()
         window.makeKeyAndVisible()
+        
         self.window = window
     }
 
@@ -47,14 +58,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
-        guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date") else {
-            window?.rootViewController = LoginViewController()
+        guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date"),
+              let cpf = KeyChainService.shared.retrieveToken(key: "cpf"),
+              let password = KeyChainService.shared.retrieveToken(key: "password")
+        else {
+            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
             return
         }
         if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {
-           window?.rootViewController = LoginViewController()
+            SessionService.shared.logIn(cpf: cpf, password: password) { isRegistered in
+                if !isRegistered {
+                    window?.rootViewController = LoginViewController()
+                }
+            }
         }
-        window?.rootViewController = MainTabBarViewController()
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
