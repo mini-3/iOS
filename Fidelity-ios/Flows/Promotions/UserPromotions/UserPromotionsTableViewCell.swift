@@ -177,8 +177,8 @@ class UserPromotionsTableViewCell: UITableViewCell {
     }
     
     @objc private func didTapMainView() {
-        guard let code = self.code else { return }
-        self.delegate?.didTapCell(code: code)
+        guard let _ = self.code else { return }
+//        self.delegate?.didTapCell(code: code)
     }
 
 }
