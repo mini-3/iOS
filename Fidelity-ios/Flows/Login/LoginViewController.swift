@@ -72,7 +72,6 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
         super.viewDidLoad()
         title = "Login"
         view.backgroundColor = UIColor(named: "Background")
-        view.bindToKeyboard()
         self.presenter.view = self
         self.addSubviews()
         self.addConstraints()

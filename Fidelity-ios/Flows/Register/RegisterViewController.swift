@@ -15,7 +15,6 @@ class RegisterViewController: UIViewController, UserPresenterDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
-        view.bindToKeyboard()
         self.presenter.view = self
         addSubviews()
         addConstraint()

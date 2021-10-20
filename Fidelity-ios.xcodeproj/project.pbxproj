@@ -37,6 +37,7 @@
 		6D18D62F271748AC007D3FAD /* PromotionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */; };
 		6D18D63127175357007D3FAD /* ControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D63027175357007D3FAD /* ControllerExtensions.swift */; };
 		6D18D63327175631007D3FAD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D63227175631007D3FAD /* StringExtensions.swift */; };
+		6D56F74527208ADD00306459 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */; };
 		6D71F85D2717414900D16173 /* StorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D71F85C2717414900D16173 /* StorePresenter.swift */; };
 		6D71F8602717416000D16173 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D71F85F2717416000D16173 /* StoreViewModel.swift */; };
 		6D8EE33C27189DAB005165AA /* UserPromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE33B27189DAB005165AA /* UserPromotionsViewController.swift */; };
@@ -132,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */,
+				6D56F74527208ADD00306459 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +404,7 @@
 			name = "Fidelity-ios";
 			packageProductDependencies = (
 				4E7657C52710C853007F9BFA /* KeychainAccess */,
+				6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */,
 			);
 			productName = "Fidelity-ios";
 			productReference = 4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */;
@@ -477,6 +480,7 @@
 			mainGroup = 4EC563422710BE4400411EA6;
 			packageReferences = (
 				4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				6D56F74327208ADD00306459 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 4EC5634C2710BE4400411EA6 /* Products */;
 			projectDirPath = "";
@@ -930,6 +934,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		6D56F74327208ADD00306459 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -937,6 +949,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D56F74327208ADD00306459 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
