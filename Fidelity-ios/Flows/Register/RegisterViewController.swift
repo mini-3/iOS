@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController, UserPresenterDelegate {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
         view.bindToKeyboard()
+        self.presenter.view = self
         addSubviews()
         addConstraint()
         continueButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
