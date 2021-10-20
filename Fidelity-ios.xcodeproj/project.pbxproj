@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		348CED31271E00370098E199 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348CED30271E00370098E199 /* RegisterViewController.swift */; };
 		34F1731D271F4F84007ABCC8 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1731C271F4F84007ABCC8 /* DatePicker.swift */; };
+		34F17321271F8B41007ABCC8 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */; };
 		4E1984CB27177014004C34B8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CA27177014004C34B8 /* UserViewModel.swift */; };
 		4E1984CD2717701F004C34B8 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CC2717701F004C34B8 /* UserPresenter.swift */; };
 		4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7657C52710C853007F9BFA /* KeychainAccess */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		348CED30271E00370098E199 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		34F1731C271F4F84007ABCC8 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
+		34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
 		4E1984CA27177014004C34B8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		4E1984CC2717701F004C34B8 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
 		4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
@@ -154,6 +156,22 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		34F1731E271F8B10007ABCC8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				34F1731F271F8B20007ABCC8 /* Extensions */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		34F1731F271F8B20007ABCC8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4EC563422710BE4400411EA6 = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +209,7 @@
 		4EC563642710BE4700411EA6 /* Fidelity-iosTests */ = {
 			isa = PBXGroup;
 			children = (
+				34F1731E271F8B10007ABCC8 /* Resources */,
 				4EC563652710BE4700411EA6 /* Fidelity_iosTests.swift */,
 			);
 			path = "Fidelity-iosTests";
@@ -541,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC563662710BE4700411EA6 /* Fidelity_iosTests.swift in Sources */,
+				34F17321271F8B41007ABCC8 /* DateExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
