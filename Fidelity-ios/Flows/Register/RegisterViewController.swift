@@ -10,6 +10,71 @@ import UIKit
 
 class RegisterViewController: UIViewController, UserPresenterDelegate {
     
+    //MARK: - Subviews
+    
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
+    }()
+    
+    private let emailTextField: TextField = {
+        let textField = TextField(placeholder: "Email")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let cpfTextField: TextField = {
+        let textField = TextField(placeholder: "CPF")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.keyboardType = .numberPad
+        return textField
+    }()
+    
+    
+    private let passwordTextField: TextField = {
+        let textField = TextField(placeholder: "Senha")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
+    private let confirmPasswordField: TextField = {
+        let textField = TextField(placeholder: "Confirmar Senha")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
+    private let signInLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Tem uma conta? Entre!"
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.isUserInteractionEnabled = true
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        label.textColor = .label
+        return label
+    }()
+    
+    private let birthdayDatePicker: DatePicker = {
+        let datePicker = DatePicker(label: "Birthday")
+        return datePicker
+    }()
+    
+    private let continueButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Continue", for: .normal)
+        button.layer.cornerRadius = 16
+        button.backgroundColor = .label
+        button.setTitleColor(.systemBackground, for: .normal)
+        return button
+    }()
+    
     private let presenter = UserPresenter()
     
     override func viewDidLoad() {
@@ -73,69 +138,5 @@ class RegisterViewController: UIViewController, UserPresenterDelegate {
         
         presenter.signUp(email: email, cpf: cpf, password: password, confirmPassword: confirmPassword, birthday: birthday)
     }
-    
-    //MARK: - Views
-    
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        return stackView
-    }()
-    
-    private let emailTextField: TextField = {
-        let textField = TextField(placeholder: "Email")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    
-    private let cpfTextField: TextField = {
-        let textField = TextField(placeholder: "CPF")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    
-    
-    private let passwordTextField: TextField = {
-        let textField = TextField(placeholder: "Senha")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isSecureTextEntry = true
-        return textField
-    }()
-    
-    private let confirmPasswordField: TextField = {
-        let textField = TextField(placeholder: "Confirmar Senha")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.isSecureTextEntry = true
-        return textField
-    }()
-    
-    private let signInLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Tem uma conta? Entre!"
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        label.isUserInteractionEnabled = true
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.textColor = .label
-        return label
-    }()
-    
-    private let birthdayDatePicker: DatePicker = {
-        let datePicker = DatePicker(label: "Birthday")
-        return datePicker
-    }()
-    
-    private let continueButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Continue", for: .normal)
-        button.layer.cornerRadius = 16
-        button.backgroundColor = .label
-        button.setTitleColor(.systemBackground, for: .normal)
-        return button
-    }()
     
 }
