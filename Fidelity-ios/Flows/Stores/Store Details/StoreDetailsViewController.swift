@@ -10,6 +10,8 @@ import UIKit
 
 class StoreDetailsViewController: UIViewController {
     
+    var promotion: PromotionViewModel?
+    
     private lazy var storeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -189,8 +191,9 @@ class StoreDetailsViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
+        imageView.tintColor = UIColor(named: "secondaryLabel")
+        imageView.image = UIImage(systemName: "photo")
         
         return imageView
     }()
@@ -206,13 +209,18 @@ class StoreDetailsViewController: UIViewController {
     
     func configureView() {
         view.backgroundColor = UIColor(named: "Background")
-        storeLabel.text = "Brizza Pizzaria"
-        detailsStoreLabel.text = "Descrição breve do estabelecimento. Podemos dar ideias no app da empresa de coisas legais"
-        addressStoreLabel.text = "24 de Outubro, Moinhos de vento. Porto Alegre"
-        telephoneStoreLabel.text = "(51)99999-9999"
-        requirementsStoreLabel.text = "Comprar 10 pizzas"
-        rewardStoreLabel.text = "Uma pizza grátis"
-        storeImageView.image = UIImage(named: "photo")
+        title = "Detalhes"
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
+        guard let promotion = promotion else { return }
+        
+        storeLabel.text = promotion.storeName
+        detailsStoreLabel.text = promotion.storeDescription
+        addressStoreLabel.text = promotion.storeAddress
+        //telephoneStoreLabel.text = promotion.storePhone
+        requirementsStoreLabel.text = promotion.ticketsNeeded
+        rewardStoreLabel.text = promotion.award
+        storeImageView.image = UIImage(systemName: "photo")
     }
     
     func configureSubViews() {
@@ -243,13 +251,13 @@ class StoreDetailsViewController: UIViewController {
         let storeLabelConstraints = [
             storeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             storeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            storeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 64)
+            storeLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 16)
         ]
         
         let storeDetailsLabelConstraints = [
             detailsStoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             detailsStoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            detailsStoreLabel.topAnchor.constraint(equalTo: storeLabel.bottomAnchor, constant: 32)
+            detailsStoreLabel.topAnchor.constraint(equalTo: storeLabel.bottomAnchor, constant: 16)
         ]
 
         let storeInfoStackViewConstraints = [
@@ -272,10 +280,10 @@ class StoreDetailsViewController: UIViewController {
         ]
 
         let storeImageViewConstraints = [
-            storeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            storeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            storeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             storeImageView.topAnchor.constraint(equalTo: promotionView.bottomAnchor, constant: 32),
-            storeImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32)
+            storeImageView.heightAnchor.constraint(equalToConstant: 120),
+            storeImageView.widthAnchor.constraint(equalToConstant: 200)
         ]
         
         NSLayoutConstraint.activate(storeLabelConstraints)

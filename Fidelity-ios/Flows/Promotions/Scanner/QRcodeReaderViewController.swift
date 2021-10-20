@@ -8,16 +8,18 @@
 import AVFoundation
 import UIKit
 
-class QRcodeReaderViewController: UIViewController {
+class QRcodeReaderViewController: UIViewController, TicketPreseterDelegate {
+    
     private var captureSession: AVCaptureSession!
-    private var previewLayer = UIView()
+    var scannerView = UIView()
+    private let presenter = TicketPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.view = self
         
         view.backgroundColor = UIColor(named: "Background")
-        configureSubViews()
-        scanner()
+        configureViewConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,8 +38,22 @@ class QRcodeReaderViewController: UIViewController {
         }
     }
     
-    func configureSubViews() {
-        view.addSubview(previewLayer)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scanner()
+    }
+    
+    func configureViewConstraints() {
+        view.addSubview(scannerView)
+
+        scannerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scannerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            scannerView.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
     }
 }
 
@@ -74,11 +90,12 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
         
         let scannerOverlayPreviewLayer = ScannerOverlayPreviewLayer(session: captureSession)
-        scannerOverlayPreviewLayer.frame = view.layer.bounds
-        scannerOverlayPreviewLayer.maskSize = CGSize(width: 200, height: 200)
-        scannerOverlayPreviewLayer.backgroundColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+        scannerOverlayPreviewLayer.frame = scannerView.bounds
+        scannerOverlayPreviewLayer.maskSize = CGSize(width: 250, height: 250)
+        scannerOverlayPreviewLayer.videoGravity = .resizeAspectFill
+        scannerOverlayPreviewLayer.backgroundColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        scannerView.layer.addSublayer(scannerOverlayPreviewLayer)
         metadataOutput.rectOfInterest = scannerOverlayPreviewLayer.rectOfInterest
-        previewLayer.layer.addSublayer(scannerOverlayPreviewLayer)
         
         captureSession.startRunning()
     }
@@ -104,6 +121,6 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func found(code: String) {
-        print(code)
+        presenter.create(code: code)
     }
 }
