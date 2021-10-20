@@ -52,7 +52,7 @@ class QRcodeReaderViewController: UIViewController, TicketPreseterDelegate {
             scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scannerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            scannerView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
+            scannerView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
     }
 }
