@@ -27,7 +27,7 @@ class DatePicker: UIView {
     }
     
     // MARK: - Views
-    let picker: UIDatePicker = {
+    public let picker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = .date

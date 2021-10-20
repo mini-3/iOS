@@ -84,11 +84,7 @@ class UserPresenter {
             
         }
     }
-    func signUp(email: String, cpf: String, password: String, confirmPassword: String, birthday: String) {
-        DispatchQueue.main.async {
-            self.view?.presentLoadingScreen()
-        }
-//        let body = [["cpf":cpf], ["password":password], ["email":email],["birthday":birthday]]
-//        WebService.post(path: "/users", body: body, type: <#T##(Decodable & Encodable).Protocol#>, handler: <#T##(Result<Decodable & Encodable, WebServiceError>) -> Void#>)
+    func signUp(email: String?, cpf: String?, password: String?, confirmPassword: String?, birthday: String?) {
+        print(email, cpf, password, confirmPassword, birthday)
     }
 }

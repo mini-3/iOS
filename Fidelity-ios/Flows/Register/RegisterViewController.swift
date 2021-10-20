@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UserPresenterDelegate {
+    
+    private let presenter = UserPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +18,7 @@ class RegisterViewController: UIViewController {
         view.bindToKeyboard()
         addSubviews()
         addConstraint()
+        continueButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapSignIn))
         signInLabel.isUserInteractionEnabled = true
         signInLabel.addGestureRecognizer(tap)
@@ -59,6 +62,16 @@ class RegisterViewController: UIViewController {
     
     @objc private func didTapSignIn() {
         navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc private func didTapSignUp() {
+        let email = emailTextField.text
+        let cpf = cpfTextField.text
+        let password = passwordTextField.text
+        let confirmPassword = confirmPasswordField.text
+        let birthday = birthdayDatePicker.picker.date.toISOString()
+        
+        presenter.signUp(email: email, cpf: cpf, password: password, confirmPassword: confirmPassword, birthday: birthday)
     }
     
     //MARK: - Views
@@ -110,7 +123,7 @@ class RegisterViewController: UIViewController {
         return label
     }()
     
-    private let birthdayDatePicker: UIView = {
+    private let birthdayDatePicker: DatePicker = {
         let datePicker = DatePicker(label: "Birthday")
         return datePicker
     }()
