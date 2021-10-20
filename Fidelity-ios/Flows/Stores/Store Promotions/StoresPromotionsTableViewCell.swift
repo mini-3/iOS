@@ -134,7 +134,7 @@ class StoresPromotionsTableViewCell: UITableViewCell {
     func configureConstraints() {
         
         let spacing = [
-            mainView.heightAnchor.constraint(equalToConstant: 80),
+            //mainView.heightAnchor.constraint(equalToConstant: 80),
             mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             mainView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
