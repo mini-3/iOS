@@ -136,7 +136,7 @@ class UserPresenter {
         
         let body = ["email":email, "password":password, "birthday":birthday, "cpf":cpf]
         
-        WebService.post(path: "/users", body: body, type: [UserSignUpRequest].self) {[weak self] result in
+        WebService.post(path: "/users", body: body, type: CreateUserResponse.self) {[weak self] result in
             guard let self = self else {
                 DispatchQueue.main.async {
                     self?.view?.dismiss(animated: true, completion: nil)
@@ -147,7 +147,7 @@ class UserPresenter {
             case .success(_):
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
-                    self.view?.presentAlert(message: "Conta criada com sucesso.")
+                    self.view?.presentAlert(message: "Conta criada com sucesso.", title: "Parabéns!")
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
