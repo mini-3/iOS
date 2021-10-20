@@ -13,7 +13,8 @@ class StoresPromotionsViewController: UIViewController {
     
     private let promotionPresenter: PromotionPresenter = PromotionPresenter()
     //private let categories:
-    private var promotions: [PromotionViewModel] = []
+    var promotions: [PromotionViewModel] = []
+    var filteredData: [PromotionViewModel] = []
     
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
@@ -45,6 +46,7 @@ class StoresPromotionsViewController: UIViewController {
         configureSubViews()
         configureConstraints()
         self.promotionPresenter.fetchPromotions()
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Buscar"
         navigationItem.searchController = searchController
         
@@ -92,12 +94,12 @@ class StoresPromotionsViewController: UIViewController {
 
 extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return promotions.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = storesTableView.dequeueReusableCell(withIdentifier: StoresPromotionsTableViewCell.identifier) as? StoresPromotionsTableViewCell else { return UITableViewCell() }
-        let viewModel = self.promotions[indexPath.row]
+        let viewModel = self.filteredData[indexPath.row]
         
         cell.configure(storeImage: "", storeName: viewModel.promotion?.store?.name ?? "Loja", storePromotionDescription: viewModel.awardPhraseBuild())
         
@@ -122,12 +124,39 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TO DO
         // ir para a tela de detalhes com a promo
-        let viewModel = promotions[indexPath.row]
+        let viewModel = filteredData[indexPath.row]
         let storeDetailsVC = StoreDetailsViewController()
         storeDetailsVC.promotion = viewModel
         self.navigationController?.pushViewController(storeDetailsVC, animated: true)
     }
     
+}
+
+extension StoresPromotionsViewController: UISearchBarDelegate {
+    
+    //    var isEmptyFiltering: Bool {
+    //        promotions.map{$1}.reduce([],+).count < 1
+    //    }
+    //
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        promotionPresenter.fetchPromotions()
+        self.storesTableView.reloadData()
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        
+        filteredData = promotions
+        
+        if !searchText.isEmpty {
+            filteredData = promotions.filter{ $0.storeName.lowercased().contains(searchText.lowercased()) || $0.award.lowercased().contains(searchText.lowercased())}
+            self.storesTableView.reloadData()
+            
+        }
+        
+    }
 }
 
 //extension UserStoresViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -151,10 +180,10 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
 
 extension StoresPromotionsViewController: PromotionPresenterDelegate {
     func fetched(promotions: [PromotionViewModel]) {
+        self.filteredData = promotions
         self.promotions = promotions
         DispatchQueue.main.async {
             self.storesTableView.reloadData()
         }
-        
     }
 }
