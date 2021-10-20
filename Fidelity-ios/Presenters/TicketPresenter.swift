@@ -9,10 +9,12 @@ import UIKit
 
 protocol TicketPreseterDelegate: AnyObject {
     func created()
+    func batched(wasBatched: Bool)
 }
 
 extension TicketPreseterDelegate {
     func created() {}
+    func batched(wasBatched: Bool) {}
 }
 
 class TicketPresenter {
@@ -42,6 +44,29 @@ class TicketPresenter {
                 DispatchQueue.main.async {
                     self.view?.presentAlert(message: "Ocorreu algum erro ao processar o ticket")
                     self.view?.viewDidLoad()
+                }
+            }
+        }
+    }
+    
+    func batch(code: String) {
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen()
+        }
+        WebService.post(path: "/tickets/batch", body: ["code": code], type: TicketBatchResponse.self) {[weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.view?.dismiss(animated: true, completion: nil)
+            }
+            switch result {
+            case .success(let wasCompleted):
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "Você resgatou seus tickets", title: "Parabéns!")
+                }
+                self.view?.batched(wasBatched: wasCompleted.wasUsed)
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "Ocorreu algum erro ao processar os tickets")
                 }
             }
         }

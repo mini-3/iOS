@@ -27,7 +27,8 @@ class UserPromotionsViewController: UIViewController {
     
     private var userPromotionTickets: [UserPromotionTicketsResponse] = []
     private var userPromotionTicketsFiltered: [UserPromotionTicketsResponse] = []
-    private let presenter = UserPresenter()
+    private let userPresenter = UserPresenter()
+    private let ticketPresenter = TicketPresenter()
     private var cancellables: [AnyCancellable] = []
 
     //MARK: - Lifecycle
@@ -57,7 +58,7 @@ class UserPromotionsViewController: UIViewController {
     
     private func configureObservers() {
         SyncService.shared.$ticketSync.sink { _ in
-            self.presenter.fetchUserTicketofPromotion()
+            self.userPresenter.fetchUserTicketofPromotion()
         }
         .store(in: &cancellables)
     }
@@ -65,8 +66,9 @@ class UserPromotionsViewController: UIViewController {
     private func configureUI() {
         title = "Promoções"
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.presenter.view = self
-        self.presenter.fetchUserTicketofPromotion()
+        self.userPresenter.view = self
+        self.userPresenter.fetchUserTicketofPromotion()
+        self.ticketPresenter.view = self
     }
     
     private func addSubviews() {
@@ -142,8 +144,23 @@ extension UserPromotionsViewController: UITableViewDataSource {
         let userPromotionTicket = userPromotionTicketsFiltered[indexPath.row]
         guard let model = userPromotionTicket.promotion else { return UITableViewCell() }
         let viewModel = PromotionViewModel(with: model)
-        cell.configure(storeName: viewModel.storeName, ticketCount: "\(userPromotionTicket.ticketAmount)/\(model.win_ticket_amount)", awardPrize: viewModel.award, awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount, dateEnd: viewModel.endDateString)
+        cell.configure(storeName: viewModel.storeName, ticketCount: "\(userPromotionTicket.ticketAmount)/\(model.win_ticket_amount)", awardPrize: viewModel.award, awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount, dateEnd: viewModel.endDateString, code: model.code)
+        cell.delegate = self
         cell.selectionStyle = .none
         return cell
+    }
+}
+
+extension UserPromotionsViewController: TicketPreseterDelegate {
+    func batched(wasBatched: Bool) {
+        if wasBatched {
+            self.userPresenter.fetchUserTicketofPromotion()
+        }
+    }
+}
+
+extension UserPromotionsViewController: UserPromotionsTableViewCellDelegate {
+    func didTapCell(code: String) {
+        self.ticketPresenter.batch(code: code)
     }
 }

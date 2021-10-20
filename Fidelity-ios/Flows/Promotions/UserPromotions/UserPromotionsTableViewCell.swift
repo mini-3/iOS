@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol UserPromotionsTableViewCellDelegate: AnyObject {
+    func didTapCell(code: String)
+}
+
 class UserPromotionsTableViewCell: UITableViewCell {
     static let identifier = String(describing: self)
+    
+    private var code: String?
+    weak var delegate: UserPromotionsTableViewCellDelegate?
     
     //MARK: - Subviews
     private let mainView: GradientView = {
@@ -153,7 +160,7 @@ class UserPromotionsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(dateLabelConstraints)
     }
     
-    func configure(storeName: String, ticketCount: String, awardPrize: String, awardAmount: Int, currentAmount: Int, dateEnd: String) {
+    func configure(storeName: String, ticketCount: String, awardPrize: String, awardAmount: Int, currentAmount: Int, dateEnd: String, code: String) {
         self.addSubviews()
         self.addConstraints()
         storeNameLabel.text = storeName
@@ -164,6 +171,14 @@ class UserPromotionsTableViewCell: UITableViewCell {
         self.currentAmount = currentAmount
         self.collectionView.dataSource = self
         contentView.backgroundColor = UIColor(named: "Background")
+        self.code = code
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapMainView))
+        self.mainView.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func didTapMainView() {
+        guard let code = self.code else { return }
+        self.delegate?.didTapCell(code: code)
     }
 
 }

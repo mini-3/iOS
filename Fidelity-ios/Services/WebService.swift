@@ -60,9 +60,14 @@ struct WebService {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data else { handler(.failure(.noDataError)); return }
 
-            guard let data = try? JSONDecoder().decode(T.self, from: data) else { handler(.failure(.parsingJsonError)); return }
+            do {
+                let data = try JSONDecoder().decode(T.self, from: data)
+                handler(.success(data))
+            } catch {
+                print(error)
+                handler(.failure(.parsingJsonError))
+            }
             
-            handler(.success(data))
         }
         .resume()
     }
