@@ -15,7 +15,7 @@ class DatePicker: UIView {
         self.heightAnchor.constraint(equalToConstant: 40).isActive = true
         self.layer.cornerRadius = 16
         self.layer.borderWidth = 1.5
-        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderColor = UIColor.label.cgColor
         
         addSubviews()
         addConstraints()
