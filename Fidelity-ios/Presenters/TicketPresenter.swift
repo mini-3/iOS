@@ -60,18 +60,19 @@ class TicketPresenter {
             }
             switch result {
             case .success(let wasCompleted):
+                print(wasCompleted)
                 if wasCompleted.wasUsed {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.view?.presentAlert(message: "Você resgatou seus tickets", title: "Parabéns!")
                     }
                     self.view?.batched()
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.view?.presentAlert(message: "Você ainda não tem tickets suficientes")
                     }
                 }
             case .failure(_):
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.view?.presentAlert(message: "Ocorreu algum erro ao processar os tickets")
                 }
             }
