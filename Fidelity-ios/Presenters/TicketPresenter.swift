@@ -9,12 +9,12 @@ import UIKit
 
 protocol TicketPreseterDelegate: AnyObject {
     func created()
-    func batched(wasBatched: Bool)
+    func batched()
 }
 
 extension TicketPreseterDelegate {
     func created() {}
-    func batched(wasBatched: Bool) {}
+    func batched() {}
 }
 
 class TicketPresenter {
@@ -60,12 +60,18 @@ class TicketPresenter {
             }
             switch result {
             case .success(let wasCompleted):
-                DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Você resgatou seus tickets", title: "Parabéns!")
+                if wasCompleted.wasUsed {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self.view?.presentAlert(message: "Você resgatou seus tickets", title: "Parabéns!")
+                    }
+                    self.view?.batched()
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self.view?.presentAlert(message: "Você ainda não tem tickets suficientes")
+                    }
                 }
-                self.view?.batched(wasBatched: wasCompleted.wasUsed)
             case .failure(_):
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.view?.presentAlert(message: "Ocorreu algum erro ao processar os tickets")
                 }
             }

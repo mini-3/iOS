@@ -153,9 +153,7 @@ extension UserPromotionsViewController: UITableViewDataSource {
 
 extension UserPromotionsViewController: TicketPreseterDelegate {
     func batched(wasBatched: Bool) {
-        if wasBatched {
-            self.userPresenter.fetchUserTicketofPromotion()
-        }
+        self.userPresenter.fetchUserTicketofPromotion()
     }
 }
 
