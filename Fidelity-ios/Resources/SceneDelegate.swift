@@ -62,7 +62,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
               let cpf = KeyChainService.shared.retrieveToken(key: "cpf"),
               let password = KeyChainService.shared.retrieveToken(key: "password")
         else {
-            window?.rootViewController = LoginViewController()
+            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
             return
         }
         if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {

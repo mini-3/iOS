@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		348CED31271E00370098E199 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348CED30271E00370098E199 /* RegisterViewController.swift */; };
+		34F1731D271F4F84007ABCC8 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1731C271F4F84007ABCC8 /* DatePicker.swift */; };
+		34F17321271F8B41007ABCC8 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */; };
+		34F17323271F99CE007ABCC8 /* ValidatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F17322271F99CE007ABCC8 /* ValidatorService.swift */; };
 		4E1984CB27177014004C34B8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CA27177014004C34B8 /* UserViewModel.swift */; };
 		4E1984CD2717701F004C34B8 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CC2717701F004C34B8 /* UserPresenter.swift */; };
 		4E44827C271F3D4D0006A68E /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E44827B271F3D4D0006A68E /* StoreViewModel.swift */; };
@@ -37,6 +41,8 @@
 		6D18D62F271748AC007D3FAD /* PromotionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */; };
 		6D18D63127175357007D3FAD /* ControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D63027175357007D3FAD /* ControllerExtensions.swift */; };
 		6D18D63327175631007D3FAD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D63227175631007D3FAD /* StringExtensions.swift */; };
+		6D56F74527208ADD00306459 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */; };
+		6D56F7472720951200306459 /* CreateUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D56F7462720951200306459 /* CreateUserResponse.swift */; };
 		6D36740D271F40410032ABEC /* TicketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36740C271F40410032ABEC /* TicketPresenter.swift */; };
 		6D36740F271F96690032ABEC /* TicketBatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36740E271F96690032ABEC /* TicketBatchResponse.swift */; };
 		6D71F85D2717414900D16173 /* StorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D71F85C2717414900D16173 /* StorePresenter.swift */; };
@@ -76,6 +82,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		348CED30271E00370098E199 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		34F1731C271F4F84007ABCC8 /* DatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
+		34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
+		34F17322271F99CE007ABCC8 /* ValidatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorService.swift; sourceTree = "<group>"; };
 		4E1984CA27177014004C34B8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		4E1984CC2717701F004C34B8 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
 		4E44827B271F3D4D0006A68E /* StoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
@@ -109,6 +119,7 @@
 		6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionPresenter.swift; sourceTree = "<group>"; };
 		6D18D63027175357007D3FAD /* ControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtensions.swift; sourceTree = "<group>"; };
 		6D18D63227175631007D3FAD /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		6D56F7462720951200306459 /* CreateUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserResponse.swift; sourceTree = "<group>"; };
 		6D36740C271F40410032ABEC /* TicketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketPresenter.swift; sourceTree = "<group>"; };
 		6D36740E271F96690032ABEC /* TicketBatchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketBatchResponse.swift; sourceTree = "<group>"; };
 		6D71F85C2717414900D16173 /* StorePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePresenter.swift; sourceTree = "<group>"; };
@@ -136,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */,
+				6D56F74527208ADD00306459 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +168,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		348CED2F271E00220098E199 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				348CED30271E00370098E199 /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		34F1731E271F8B10007ABCC8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				34F1731F271F8B20007ABCC8 /* Extensions */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		34F1731F271F8B20007ABCC8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4E44827D271F3D710006A68E /* Store Promotions */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +239,7 @@
 		4EC563642710BE4700411EA6 /* Fidelity-iosTests */ = {
 			isa = PBXGroup;
 			children = (
+				34F1731E271F8B10007ABCC8 /* Resources */,
 				4EC563652710BE4700411EA6 /* Fidelity_iosTests.swift */,
 			);
 			path = "Fidelity-iosTests";
@@ -227,6 +264,7 @@
 				4EC5638B2710C47A00411EA6 /* EmailUser.swift */,
 				4EC563942710C73700411EA6 /* SessionResponse.swift */,
 				6D8EE33D2718A370005165AA /* UserPromotionTicketsResponse.swift */,
+				6D56F7462720951200306459 /* CreateUserResponse.swift */,
 				6D36740E271F96690032ABEC /* TicketBatchResponse.swift */,
 			);
 			path = Models;
@@ -235,6 +273,7 @@
 		4EC5637F2710BEA200411EA6 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				348CED2F271E00220098E199 /* Register */,
 				6DAF579A2719E860003620A6 /* Stores */,
 				6DAE7D6F2718EE5600B04B6B /* Other */,
 				6D8EE33A27189D12005165AA /* Promotions */,
@@ -265,6 +304,7 @@
 				4EC563922710C6EB00411EA6 /* WebService.swift */,
 				4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */,
 				DE2B415F2719E8F3007AE381 /* QRcodeService.swift */,
+				34F17322271F99CE007ABCC8 /* ValidatorService.swift */,
 				DE2B4166271F451A007AE381 /* SyncService.swift */,
 			);
 			path = Services;
@@ -315,6 +355,7 @@
 			children = (
 				6D8EE3442718E1F4005165AA /* GradientView.swift */,
 				6DAF579E271A0F2A003620A6 /* TextField.swift */,
+				34F1731C271F4F84007ABCC8 /* DatePicker.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -392,6 +433,7 @@
 			name = "Fidelity-ios";
 			packageProductDependencies = (
 				4E7657C52710C853007F9BFA /* KeychainAccess */,
+				6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */,
 			);
 			productName = "Fidelity-ios";
 			productReference = 4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */;
@@ -467,6 +509,7 @@
 			mainGroup = 4EC563422710BE4400411EA6;
 			packageReferences = (
 				4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				6D56F74327208ADD00306459 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 4EC5634C2710BE4400411EA6 /* Products */;
 			projectDirPath = "";
@@ -516,6 +559,8 @@
 				6DDF017B271CD11E00222A36 /* ButtonExtensions.swift in Sources */,
 				4EC563822710BFC400411EA6 /* Promotion.swift in Sources */,
 				6D8EE33C27189DAB005165AA /* UserPromotionsViewController.swift in Sources */,
+				6D56F7472720951200306459 /* CreateUserResponse.swift in Sources */,
+				34F17323271F99CE007ABCC8 /* ValidatorService.swift in Sources */,
 				DE2B415E2718A402007AE381 /* StoreDetailsViewController.swift in Sources */,
 				6D18D62F271748AC007D3FAD /* PromotionPresenter.swift in Sources */,
 				4EC563952710C73800411EA6 /* SessionResponse.swift in Sources */,
@@ -533,6 +578,7 @@
 				4EE752162719FC67004D64B5 /* ImageExtensions.swift in Sources */,
 				6DAF579F271A0F2A003620A6 /* TextField.swift in Sources */,
 				6DAF579D271A0551003620A6 /* LoginViewController.swift in Sources */,
+				348CED31271E00370098E199 /* RegisterViewController.swift in Sources */,
 				4E448281271F3D9E0006A68E /* CategoriesCollectionViewCell.swift in Sources */,
 				4E1984CB27177014004C34B8 /* UserViewModel.swift in Sources */,
 				4EC563862710C26F00411EA6 /* Store.swift in Sources */,
@@ -543,6 +589,7 @@
 				6DAE7D712718EE7500B04B6B /* UserPromotionsCollectionViewCell.swift in Sources */,
 				4EC5638F2710C67E00411EA6 /* SessionService.swift in Sources */,
 				4EC563842710C10100411EA6 /* Types.swift in Sources */,
+				34F1731D271F4F84007ABCC8 /* DatePicker.swift in Sources */,
 				6DC4A0362710DF1400C4AD69 /* DateExtensions.swift in Sources */,
 				6D18D63127175357007D3FAD /* ControllerExtensions.swift in Sources */,
 				4E1984CD2717701F004C34B8 /* UserPresenter.swift in Sources */,
@@ -561,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EC563662710BE4700411EA6 /* Fidelity_iosTests.swift in Sources */,
+				34F17321271F8B41007ABCC8 /* DateExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,7 +771,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5MVGTUBM8B;
+				DEVELOPMENT_TEAM = R5QH5STGGP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Veras;
@@ -754,7 +802,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5MVGTUBM8B;
+				DEVELOPMENT_TEAM = R5QH5STGGP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Veras;
@@ -924,6 +972,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		6D56F74327208ADD00306459 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -931,6 +987,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D56F74327208ADD00306459 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

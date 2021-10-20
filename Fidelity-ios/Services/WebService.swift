@@ -67,7 +67,6 @@ struct WebService {
                 print(error)
                 handler(.failure(.parsingJsonError))
             }
-            
         }
         .resume()
     }

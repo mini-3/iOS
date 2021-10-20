@@ -84,4 +84,78 @@ class UserPresenter {
             
         }
     }
+    
+    func signUp(email: String?, cpf: String?, password: String?, confirmPassword: String?, birthday: String?) {
+        guard let email = email,
+              let cpf = cpf,
+              let password = password,
+              let confirmPassword = confirmPassword,
+              let birthday = birthday,
+              !email.isEmpty && !cpf.isEmpty && !password.isEmpty && !confirmPassword.isEmpty && !birthday.isEmpty
+        else {
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "Você precisa preencher todos os campos")
+            }
+            return
+        }
+        if password != confirmPassword {
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "As senhas inseridas não são iguais.")
+            }
+            return
+        }
+        
+        if !ValidatorService.validate(value: email, type: .email) {
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "Email inválido.")
+            }
+            return
+        }
+        if !ValidatorService.validate(value: cpf, type: .CPF) {
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "CPF inválido.")
+            }
+            return
+        }
+        if !ValidatorService.validate(value: password, type: .CNPJ) {
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "Senha inválida.")
+            }
+            return
+        }
+        if !ValidatorService.validate(value: birthday, type: .ISOString) {
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "Data de nascimento inválida.")
+            }
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen()
+        }
+        
+        let body = ["email":email, "password":password, "birthday":birthday, "cpf":cpf]
+        
+        WebService.post(path: "/users", body: body, type: CreateUserResponse.self) {[weak self] result in
+            guard let self = self else {
+                DispatchQueue.main.async {
+                    self?.view?.dismiss(animated: true, completion: nil)
+                }
+                return
+            }
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                    self.view?.presentAlert(message: "Conta criada com sucesso.", title: "Parabéns!")
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                    self.view?.presentAlert(message: "Erro ao criar conta.")
+                }
+                print(error)
+            }
+        }
+    }
 }
