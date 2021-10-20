@@ -41,10 +41,10 @@
 		6D18D62F271748AC007D3FAD /* PromotionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */; };
 		6D18D63127175357007D3FAD /* ControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D63027175357007D3FAD /* ControllerExtensions.swift */; };
 		6D18D63327175631007D3FAD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D63227175631007D3FAD /* StringExtensions.swift */; };
-		6D56F74527208ADD00306459 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */; };
-		6D56F7472720951200306459 /* CreateUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D56F7462720951200306459 /* CreateUserResponse.swift */; };
 		6D36740D271F40410032ABEC /* TicketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36740C271F40410032ABEC /* TicketPresenter.swift */; };
 		6D36740F271F96690032ABEC /* TicketBatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36740E271F96690032ABEC /* TicketBatchResponse.swift */; };
+		6D56F74527208ADD00306459 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */; };
+		6D56F7472720951200306459 /* CreateUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D56F7462720951200306459 /* CreateUserResponse.swift */; };
 		6D71F85D2717414900D16173 /* StorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D71F85C2717414900D16173 /* StorePresenter.swift */; };
 		6D8EE33C27189DAB005165AA /* UserPromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE33B27189DAB005165AA /* UserPromotionsViewController.swift */; };
 		6D8EE33E2718A370005165AA /* UserPromotionTicketsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE33D2718A370005165AA /* UserPromotionTicketsResponse.swift */; };
@@ -119,9 +119,9 @@
 		6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionPresenter.swift; sourceTree = "<group>"; };
 		6D18D63027175357007D3FAD /* ControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtensions.swift; sourceTree = "<group>"; };
 		6D18D63227175631007D3FAD /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		6D56F7462720951200306459 /* CreateUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserResponse.swift; sourceTree = "<group>"; };
 		6D36740C271F40410032ABEC /* TicketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketPresenter.swift; sourceTree = "<group>"; };
 		6D36740E271F96690032ABEC /* TicketBatchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketBatchResponse.swift; sourceTree = "<group>"; };
+		6D56F7462720951200306459 /* CreateUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserResponse.swift; sourceTree = "<group>"; };
 		6D71F85C2717414900D16173 /* StorePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePresenter.swift; sourceTree = "<group>"; };
 		6D8EE33B27189DAB005165AA /* UserPromotionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotionsViewController.swift; sourceTree = "<group>"; };
 		6D8EE33D2718A370005165AA /* UserPromotionTicketsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotionTicketsResponse.swift; sourceTree = "<group>"; };
@@ -771,7 +771,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R5QH5STGGP;
+				DEVELOPMENT_TEAM = 3XP27NL574;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Veras;
@@ -802,7 +802,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R5QH5STGGP;
+				DEVELOPMENT_TEAM = 3XP27NL574;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Veras;
