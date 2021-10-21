@@ -146,17 +146,17 @@ extension RegisterViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == cpfTextField {
             guard let text = textField.text else { return true }
-            if range.lowerBound == 3 {
+            if range.lowerBound == 3 && range.length == 0 {
                 textField.text = text + "."
                 return false
             }
             
-            if range.lowerBound == 7 {
+            if range.lowerBound == 7 && range.length == 0 {
                 textField.text = text + "."
                 return false
             }
             
-            if range.lowerBound == 11 {
+            if range.lowerBound == 11 && range.length == 0 {
                 textField.text = text + "-"
                 return false
             }
