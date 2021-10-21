@@ -76,8 +76,7 @@ class UserPromotionsViewController: UIViewController {
     private func addConstraints() {
         let segmentedConstraints = [
             segmentedControl.centerXAnchor.constraint(equalTo: segmentedControl.superview!.centerXAnchor),
-            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32),
-            segmentedControl.topAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: 8)
+            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32)
         ]
         
         let tableViewConstraints = [
