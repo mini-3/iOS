@@ -158,4 +158,27 @@ class UserPresenter {
             }
         }
     }
+    
+    func deleteAccount() {
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen()
+        }
+        WebService.delete(path: "/users", type: [User].self) {[weak self] result in
+            guard let self = self else {
+                self?.view?.dismiss(animated: true, completion: nil)
+                return
+            }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
+                print(error)
+            }
+        }
+    }
 }

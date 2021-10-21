@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import KeychainAccess
 
 class SessionService {
     
@@ -37,6 +38,14 @@ class SessionService {
                 handler(false)
             }
         }
+    }
+    
+    public func logOut() {
+        self.token = ""
+        KeyChainService.shared.clearKey(key: "token")
+        KeyChainService.shared.clearKey(key: "password")
+        KeyChainService.shared.clearKey(key: "cpf")
+        
     }
     
 }

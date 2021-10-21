@@ -19,6 +19,7 @@
 		4E448283271F3D9E0006A68E /* StoresPromotionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E448280271F3D9E0006A68E /* StoresPromotionsTableViewCell.swift */; };
 		4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7657C52710C853007F9BFA /* KeychainAccess */; };
 		4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */; };
+		4EBC2DEE2721DC15004BF16B /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC2DED2721DC15004BF16B /* ConfigurationViewController.swift */; };
 		4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5634E2710BE4400411EA6 /* AppDelegate.swift */; };
 		4EC563512710BE4400411EA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563502710BE4400411EA6 /* SceneDelegate.swift */; };
 		4EC563582710BE4600411EA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EC563572710BE4600411EA6 /* Assets.xcassets */; };
@@ -157,6 +158,7 @@
 		4E44827F271F3D9E0006A68E /* StoresPromotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresPromotionsViewController.swift; sourceTree = "<group>"; };
 		4E448280271F3D9E0006A68E /* StoresPromotionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresPromotionsTableViewCell.swift; sourceTree = "<group>"; };
 		4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		4EBC2DED2721DC15004BF16B /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidelity-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC5634E2710BE4400411EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EC563502710BE4400411EA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -310,6 +312,14 @@
 			path = "Store Promotions";
 			sourceTree = "<group>";
 		};
+		4EBC2DEC2721DC02004BF16B /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				4EBC2DED2721DC15004BF16B /* ConfigurationViewController.swift */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 		4EC563422710BE4400411EA6 = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +397,7 @@
 		4EC5637F2710BEA200411EA6 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				4EBC2DEC2721DC02004BF16B /* Configurations */,
 				348CED2F271E00220098E199 /* Register */,
 				6DAF579A2719E860003620A6 /* Stores */,
 				6DAE7D6F2718EE5600B04B6B /* Other */,
@@ -890,6 +901,7 @@
 				6D18D63127175357007D3FAD /* ControllerExtensions.swift in Sources */,
 				4E1984CD2717701F004C34B8 /* UserPresenter.swift in Sources */,
 				6D8EE33E2718A370005165AA /* UserPromotionTicketsResponse.swift in Sources */,
+				4EBC2DEE2721DC15004BF16B /* ConfigurationViewController.swift in Sources */,
 				4EC563882710C31E00411EA6 /* Ticket.swift in Sources */,
 				4EC563512710BE4400411EA6 /* SceneDelegate.swift in Sources */,
 				6D8EE3452718E1F4005165AA /* GradientView.swift in Sources */,
