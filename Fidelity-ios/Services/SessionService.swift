@@ -22,8 +22,9 @@ class SessionService {
     }
     
     public func logIn(cpf: String, password: String, handler: @escaping (Bool) -> Void) {
+        let cpfNormalized = cpf.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: "-", with: "")
         let body: [String: AnyHashable] = [
-            "cpf": cpf,
+            "cpf": cpfNormalized,
             "password": password
         ]
         
