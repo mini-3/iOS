@@ -92,6 +92,9 @@
 		DE2B4162271A09EF007AE381 /* QRcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */; };
 		DE2B4165271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */; };
 		DE2B4167271F451A007AE381 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4166271F451A007AE381 /* SyncService.swift */; };
+		DE2B416A2721F4D8007AE381 /* WonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B41692721F4D8007AE381 /* WonViewController.swift */; };
+		DE2B416D27220244007AE381 /* LogInUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B416B272201D7007AE381 /* LogInUserResponse.swift */; };
+		DE2B416E27220245007AE381 /* LogInUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B416B272201D7007AE381 /* LogInUserResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +223,8 @@
 		DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeReaderViewController.swift; sourceTree = "<group>"; };
 		DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerOverlayPreviewLayer.swift; sourceTree = "<group>"; };
 		DE2B4166271F451A007AE381 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
+		DE2B41692721F4D8007AE381 /* WonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WonViewController.swift; sourceTree = "<group>"; };
+		DE2B416B272201D7007AE381 /* LogInUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUserResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +395,7 @@
 				6D8EE33D2718A370005165AA /* UserPromotionTicketsResponse.swift */,
 				6D56F7462720951200306459 /* CreateUserResponse.swift */,
 				6D36740E271F96690032ABEC /* TicketBatchResponse.swift */,
+				DE2B416B272201D7007AE381 /* LogInUserResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 		6D8EE33A27189D12005165AA /* Promotions */ = {
 			isa = PBXGroup;
 			children = (
+				DE2B41682721F4C6007AE381 /* Won */,
 				DE2B4163271A0CDF007AE381 /* Scanner */,
 				6D8EE33F2718BAD6005165AA /* UserPromotions */,
 			);
@@ -587,6 +594,14 @@
 				DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */,
 			);
 			path = Scanner;
+			sourceTree = "<group>";
+		};
+		DE2B41682721F4C6007AE381 /* Won */ = {
+			isa = PBXGroup;
+			children = (
+				DE2B41692721F4D8007AE381 /* WonViewController.swift */,
+			);
+			path = Won;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -767,6 +782,7 @@
 					};
 					6DFDEA272721D2920014F389 = {
 						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
 					};
 				};
 			};
@@ -881,7 +897,9 @@
 				DE2B41602719E8F3007AE381 /* QRcodeService.swift in Sources */,
 				4EC5638C2710C47A00411EA6 /* EmailUser.swift in Sources */,
 				4E448282271F3D9E0006A68E /* StoresPromotionsViewController.swift in Sources */,
+				DE2B416A2721F4D8007AE381 /* WonViewController.swift in Sources */,
 				4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */,
+				DE2B416E27220245007AE381 /* LogInUserResponse.swift in Sources */,
 				4EE752162719FC67004D64B5 /* ImageExtensions.swift in Sources */,
 				6DAF579F271A0F2A003620A6 /* TextField.swift in Sources */,
 				6DAF579D271A0551003620A6 /* LoginViewController.swift in Sources */,
@@ -942,6 +960,7 @@
 				6DFDEA3D2721D32D0014F389 /* StoreViewModel.swift in Sources */,
 				6DFDEA432721D3C50014F389 /* UserDefaultsService.swift in Sources */,
 				6DFDEA362721D3130014F389 /* Ticket.swift in Sources */,
+				DE2B416D27220244007AE381 /* LogInUserResponse.swift in Sources */,
 				6DFDE9F52721D1FF0014F389 /* ViewController.swift in Sources */,
 				6DFDEA342721D30E0014F389 /* Promotion.swift in Sources */,
 				6DFDEA392721D3190014F389 /* SessionResponse.swift in Sources */,
@@ -1161,7 +1180,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3XP27NL574;
+				DEVELOPMENT_TEAM = 5MVGTUBM8B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Veras;
@@ -1192,7 +1211,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3XP27NL574;
+				DEVELOPMENT_TEAM = 5MVGTUBM8B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Fidelity-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Veras;
@@ -1471,6 +1490,7 @@
 		6DFDEA312721D2920014F389 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1492,6 +1512,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1502,6 +1523,7 @@
 		6DFDEA322721D2920014F389 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

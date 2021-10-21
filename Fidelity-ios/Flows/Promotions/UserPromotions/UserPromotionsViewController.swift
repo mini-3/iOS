@@ -50,6 +50,7 @@ class UserPromotionsViewController: UIViewController {
     private func configureTableView() {
         self.userPromotionsTableView.tableHeaderView = segmentedControl
         self.userPromotionsTableView.dataSource = self
+        self.userPromotionsTableView.delegate = self
         self.userPromotionsTableView.separatorStyle = .none
         self.userPromotionsTableView.backgroundColor = UIColor(named: "Background")
     }
@@ -76,8 +77,7 @@ class UserPromotionsViewController: UIViewController {
     private func addConstraints() {
         let segmentedConstraints = [
             segmentedControl.centerXAnchor.constraint(equalTo: segmentedControl.superview!.centerXAnchor),
-            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32),
-            segmentedControl.topAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: 8)
+            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32)
         ]
         
         let tableViewConstraints = [
@@ -131,7 +131,7 @@ extension UserPromotionsViewController: UserPresenterDelegate {
     }
 }
 
-extension UserPromotionsViewController: UITableViewDataSource {
+extension UserPromotionsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.userPromotionTicketsFiltered.count
     }
@@ -147,6 +147,21 @@ extension UserPromotionsViewController: UITableViewDataSource {
         cell.delegate = self
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let userPromotionTicket = userPromotionTicketsFiltered[indexPath.row]
+        guard let model = userPromotionTicket.promotion else { return }
+        
+        if model.win_ticket_amount <= userPromotionTicket.ticketAmount && userPromotionTicket.ticketAmount > 0 && model.win_ticket_amount > 0 {
+            let wonVC = WonViewControler()
+            wonVC.userPromotionTicket = model
+            wonVC.modalPresentationStyle = .automatic
+            let navVC = UINavigationController(rootViewController: wonVC)
+            navVC.modalPresentationStyle = .automatic
+            self.present(navVC, animated: true, completion: nil)
+        } else {
+        }
     }
 }
 

@@ -12,10 +12,13 @@ class SessionService {
     
     static let shared: SessionService = SessionService()
     var token: String = ""
+    var email: String = ""
     
     private init() {
         guard let token = KeyChainService.shared.retrieveToken(key: "token") else { return }
         self.token = token
+        guard let email = KeyChainService.shared.retrieveToken(key: "email") else { return }
+        self.email = email
     }
     
     public func logIn(cpf: String, password: String, handler: @escaping (Bool) -> Void) {
@@ -24,7 +27,7 @@ class SessionService {
             "password": password
         ]
         
-        WebService.post(path: "/user_sessions", body: body, type: SessionResponse.self) { [weak self] response in
+        WebService.post(path: "/user_sessions", body: body, type: LogInUserResponse.self) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let response):
@@ -33,6 +36,9 @@ class SessionService {
                 let cpfSaved = KeyChainService.shared.save(data: cpf, key: "cpf")
                 let passwordSaved = KeyChainService.shared.save(data: password, key: "password")
                 UserDefaultsService.shared.save(data: Date(), key: "token_date")
+                if let user = response.data.user.email_user {
+                    let _ = KeyChainService.shared.save(data: user.email, key: "email")
+                }
                 handler(tokenSaved && cpfSaved && passwordSaved)
             case .failure(_):
                 handler(false)
