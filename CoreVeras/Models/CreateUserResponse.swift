@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CreateUserResponse: Codable {
+public struct CreateUserResponse: Codable {
     let id: Int
     let cpf: String
     let birthday: DateISO

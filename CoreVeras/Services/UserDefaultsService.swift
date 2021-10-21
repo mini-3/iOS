@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserDefaultsService {
+public class UserDefaultsService {
     static let shared: UserDefaultsService = UserDefaultsService()
     
     private init() {}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserPromotionTicketsResponse: Codable {
+public struct UserPromotionTicketsResponse: Codable {
     let promotion: Promotion?
     let ticketAmount: Int
     let storeName: String?
