@@ -43,9 +43,7 @@ class UserPromotionsViewController: UIViewController {
     }
     
     deinit{
-        cancellables.forEach{
-            $0.cancel()
-        }
+        cancellables.forEach{ $0.cancel() }
     }
     
     //MARK: - Functionalities
@@ -79,6 +77,7 @@ class UserPromotionsViewController: UIViewController {
         let segmentedConstraints = [
             segmentedControl.centerXAnchor.constraint(equalTo: segmentedControl.superview!.centerXAnchor),
             segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32),
+            segmentedControl.topAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: 8)
         ]
         
         let tableViewConstraints = [

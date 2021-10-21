@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-struct QRcodeService {
+public struct QRcodeService {
     static let shared: QRcodeService = QRcodeService()
     
-    func generateQRCode(from string: String) -> UIImage? {
+    public func generateQRCode(from string: String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
         
         if let filter = CIFilter(name: "CIQRCodeGenerator") {

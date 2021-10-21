@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct TicketBatchResponse: Codable {
+public struct TicketBatchResponse: Codable {
     let wasUsed: Bool
 }

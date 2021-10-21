@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ValidatorDataTypes {
+public enum ValidatorDataTypes {
     case CPF
     case email
     case ISOString
@@ -15,8 +15,8 @@ enum ValidatorDataTypes {
     case CNPJ
 }
 
-struct ValidatorService {
-    static func validate(value: String, type: ValidatorDataTypes) -> Bool {
+public struct ValidatorService {
+    static public func validate(value: String, type: ValidatorDataTypes) -> Bool {
         [
             ValidatorDataTypes.CPF: validateCpf(value),
             ValidatorDataTypes.email: validateEmail(value),

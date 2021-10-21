@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserViewModel {
+public class UserViewModel {
     var user: User?
     
     init(with model: User) {
