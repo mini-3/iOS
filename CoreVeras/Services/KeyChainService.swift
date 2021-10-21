@@ -28,4 +28,9 @@ public class KeyChainService {
         return nil
     }
     
+    public func clearKey(key: String) {
+        guard let _ = try? keychain.remove(key) else { return }
+        
+    }
+    
 }

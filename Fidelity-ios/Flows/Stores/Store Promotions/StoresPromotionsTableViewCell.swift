@@ -12,7 +12,6 @@ class StoresPromotionsTableViewCell: UITableViewCell {
     
     static let identifier: String = String(describing: self)
     
-    
     private lazy var mainView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16
