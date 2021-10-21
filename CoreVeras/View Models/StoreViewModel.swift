@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StoreViewModel {
+public class StoreViewModel {
     var store: Store?
     
     init(with model: Store) {

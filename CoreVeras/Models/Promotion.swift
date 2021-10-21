@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Promotion: Codable {
+public struct Promotion: Codable {
     let id: Int
     let name: String
     let code: String

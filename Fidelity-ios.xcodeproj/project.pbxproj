@@ -57,6 +57,35 @@
 		6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0302710DD3A00C4AD69 /* MainTabBarViewController.swift */; };
 		6DC4A0362710DF1400C4AD69 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0352710DF1400C4AD69 /* DateExtensions.swift */; };
 		6DDF017B271CD11E00222A36 /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDF017A271CD11E00222A36 /* ButtonExtensions.swift */; };
+		6DFDE9F12721D1FF0014F389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F02721D1FF0014F389 /* AppDelegate.swift */; };
+		6DFDE9F32721D1FF0014F389 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F22721D1FF0014F389 /* SceneDelegate.swift */; };
+		6DFDE9F52721D1FF0014F389 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F42721D1FF0014F389 /* ViewController.swift */; };
+		6DFDE9F82721D1FF0014F389 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F62721D1FF0014F389 /* Main.storyboard */; };
+		6DFDE9FA2721D2010014F389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F92721D2010014F389 /* Assets.xcassets */; };
+		6DFDE9FD2721D2010014F389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDE9FB2721D2010014F389 /* LaunchScreen.storyboard */; };
+		6DFDEA082721D2010014F389 /* VerasStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDEA072721D2010014F389 /* VerasStoreTests.swift */; };
+		6DFDEA122721D2010014F389 /* VerasStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDEA112721D2010014F389 /* VerasStoreUITests.swift */; };
+		6DFDEA142721D2010014F389 /* VerasStoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDEA132721D2010014F389 /* VerasStoreUITestsLaunchTests.swift */; };
+		6DFDEA2B2721D2920014F389 /* CoreVeras.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DFDEA2A2721D2920014F389 /* CoreVeras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6DFDEA2E2721D2920014F389 /* CoreVeras.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DFDEA282721D2920014F389 /* CoreVeras.framework */; };
+		6DFDEA2F2721D2920014F389 /* CoreVeras.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6DFDEA282721D2920014F389 /* CoreVeras.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6DFDEA342721D30E0014F389 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563812710BFC400411EA6 /* Promotion.swift */; };
+		6DFDEA352721D3110014F389 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563852710C26F00411EA6 /* Store.swift */; };
+		6DFDEA362721D3130014F389 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563872710C31E00411EA6 /* Ticket.swift */; };
+		6DFDEA372721D3150014F389 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563892710C35D00411EA6 /* User.swift */; };
+		6DFDEA382721D3170014F389 /* EmailUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5638B2710C47A00411EA6 /* EmailUser.swift */; };
+		6DFDEA392721D3190014F389 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563942710C73700411EA6 /* SessionResponse.swift */; };
+		6DFDEA3A2721D31B0014F389 /* UserPromotionTicketsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE33D2718A370005165AA /* UserPromotionTicketsResponse.swift */; };
+		6DFDEA3B2721D31D0014F389 /* CreateUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D56F7462720951200306459 /* CreateUserResponse.swift */; };
+		6DFDEA3C2721D31F0014F389 /* TicketBatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36740E271F96690032ABEC /* TicketBatchResponse.swift */; };
+		6DFDEA3D2721D32D0014F389 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E44827B271F3D4D0006A68E /* StoreViewModel.swift */; };
+		6DFDEA3E2721D3370014F389 /* PromotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D62C27174894007D3FAD /* PromotionViewModel.swift */; };
+		6DFDEA3F2721D33D0014F389 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1984CA27177014004C34B8 /* UserViewModel.swift */; };
+		6DFDEA412721D3C00014F389 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563902710C6DB00411EA6 /* KeyChainService.swift */; };
+		6DFDEA422721D3C30014F389 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563922710C6EB00411EA6 /* WebService.swift */; };
+		6DFDEA432721D3C50014F389 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */; };
+		6DFDEA442721D3C70014F389 /* QRcodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B415F2719E8F3007AE381 /* QRcodeService.swift */; };
+		6DFDEA452721D3C90014F389 /* ValidatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F17322271F99CE007ABCC8 /* ValidatorService.swift */; };
 		DE2B415E2718A402007AE381 /* StoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B415D2718A402007AE381 /* StoreDetailsViewController.swift */; };
 		DE2B41602719E8F3007AE381 /* QRcodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B415F2719E8F3007AE381 /* QRcodeService.swift */; };
 		DE2B4162271A09EF007AE381 /* QRcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */; };
@@ -79,7 +108,42 @@
 			remoteGlobalIDString = 4EC5634A2710BE4400411EA6;
 			remoteInfo = "Fidelity-ios";
 		};
+		6DFDEA042721D2010014F389 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EC563432710BE4400411EA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DFDE9ED2721D1FF0014F389;
+			remoteInfo = VerasStore;
+		};
+		6DFDEA0E2721D2010014F389 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EC563432710BE4400411EA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DFDE9ED2721D1FF0014F389;
+			remoteInfo = VerasStore;
+		};
+		6DFDEA2C2721D2920014F389 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EC563432710BE4400411EA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DFDEA272721D2920014F389;
+			remoteInfo = CoreVeras;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6DFDEA332721D2920014F389 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6DFDEA2F2721D2920014F389 /* CoreVeras.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		348CED30271E00370098E199 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +198,21 @@
 		6DC4A0302710DD3A00C4AD69 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		6DC4A0352710DF1400C4AD69 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		6DDF017A271CD11E00222A36 /* ButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtensions.swift; sourceTree = "<group>"; };
+		6DFDE9EE2721D1FF0014F389 /* VerasStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerasStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFDE9F02721D1FF0014F389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6DFDE9F22721D1FF0014F389 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6DFDE9F42721D1FF0014F389 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6DFDE9F72721D1FF0014F389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6DFDE9F92721D2010014F389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6DFDE9FC2721D2010014F389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6DFDE9FE2721D2010014F389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DFDEA032721D2010014F389 /* VerasStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerasStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFDEA072721D2010014F389 /* VerasStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerasStoreTests.swift; sourceTree = "<group>"; };
+		6DFDEA0D2721D2010014F389 /* VerasStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerasStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFDEA112721D2010014F389 /* VerasStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerasStoreUITests.swift; sourceTree = "<group>"; };
+		6DFDEA132721D2010014F389 /* VerasStoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerasStoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6DFDEA282721D2920014F389 /* CoreVeras.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreVeras.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFDEA2A2721D2920014F389 /* CoreVeras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreVeras.h; sourceTree = "<group>"; };
 		DE2B415D2718A402007AE381 /* StoreDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailsViewController.swift; sourceTree = "<group>"; };
 		DE2B415F2719E8F3007AE381 /* QRcodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeService.swift; sourceTree = "<group>"; };
 		DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeReaderViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +227,7 @@
 			files = (
 				4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */,
 				6D56F74527208ADD00306459 /* IQKeyboardManagerSwift in Frameworks */,
+				6DFDEA2E2721D2920014F389 /* CoreVeras.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +239,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4EC563682710BE4700411EA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDE9EB2721D1FF0014F389 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDEA002721D2010014F389 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDEA0A2721D2010014F389 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDEA252721D2920014F389 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,6 +316,10 @@
 				4EC5634D2710BE4400411EA6 /* Fidelity-ios */,
 				4EC563642710BE4700411EA6 /* Fidelity-iosTests */,
 				4EC5636E2710BE4700411EA6 /* Fidelity-iosUITests */,
+				6DFDE9EF2721D1FF0014F389 /* VerasStore */,
+				6DFDEA062721D2010014F389 /* VerasStoreTests */,
+				6DFDEA102721D2010014F389 /* VerasStoreUITests */,
+				6DFDEA292721D2920014F389 /* CoreVeras */,
 				4EC5634C2710BE4400411EA6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -218,6 +330,10 @@
 				4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */,
 				4EC563612710BE4700411EA6 /* Fidelity-iosTests.xctest */,
 				4EC5636B2710BE4700411EA6 /* Fidelity-iosUITests.xctest */,
+				6DFDE9EE2721D1FF0014F389 /* VerasStore.app */,
+				6DFDEA032721D2010014F389 /* VerasStoreTests.xctest */,
+				6DFDEA0D2721D2010014F389 /* VerasStoreUITests.xctest */,
+				6DFDEA282721D2920014F389 /* CoreVeras.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,12 +341,10 @@
 		4EC5634D2710BE4400411EA6 /* Fidelity-ios */ = {
 			isa = PBXGroup;
 			children = (
-				6D71F85E2717415100D16173 /* View Models */,
 				6D71F85B2717412700D16173 /* Presenters */,
 				4EC5638D2710C65900411EA6 /* Services */,
 				4EC563802710BEBE00411EA6 /* Resources */,
 				4EC5637F2710BEA200411EA6 /* Flows */,
-				4EC5637E2710BE8F00411EA6 /* Models */,
 				4EC5635C2710BE4600411EA6 /* Info.plist */,
 			);
 			path = "Fidelity-ios";
@@ -300,11 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				4EC5638E2710C67E00411EA6 /* SessionService.swift */,
-				4EC563902710C6DB00411EA6 /* KeyChainService.swift */,
-				4EC563922710C6EB00411EA6 /* WebService.swift */,
-				4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */,
-				DE2B415F2719E8F3007AE381 /* QRcodeService.swift */,
-				34F17322271F99CE007ABCC8 /* ValidatorService.swift */,
 				DE2B4166271F451A007AE381 /* SyncService.swift */,
 			);
 			path = Services;
@@ -406,6 +515,60 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		6DFDE9EF2721D1FF0014F389 /* VerasStore */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDE9F02721D1FF0014F389 /* AppDelegate.swift */,
+				6DFDE9F22721D1FF0014F389 /* SceneDelegate.swift */,
+				6DFDE9F42721D1FF0014F389 /* ViewController.swift */,
+				6DFDE9F62721D1FF0014F389 /* Main.storyboard */,
+				6DFDE9F92721D2010014F389 /* Assets.xcassets */,
+				6DFDE9FB2721D2010014F389 /* LaunchScreen.storyboard */,
+				6DFDE9FE2721D2010014F389 /* Info.plist */,
+			);
+			path = VerasStore;
+			sourceTree = "<group>";
+		};
+		6DFDEA062721D2010014F389 /* VerasStoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDEA072721D2010014F389 /* VerasStoreTests.swift */,
+			);
+			path = VerasStoreTests;
+			sourceTree = "<group>";
+		};
+		6DFDEA102721D2010014F389 /* VerasStoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDEA112721D2010014F389 /* VerasStoreUITests.swift */,
+				6DFDEA132721D2010014F389 /* VerasStoreUITestsLaunchTests.swift */,
+			);
+			path = VerasStoreUITests;
+			sourceTree = "<group>";
+		};
+		6DFDEA292721D2920014F389 /* CoreVeras */ = {
+			isa = PBXGroup;
+			children = (
+				6DFDEA402721D3660014F389 /* Services */,
+				6D71F85E2717415100D16173 /* View Models */,
+				4EC5637E2710BE8F00411EA6 /* Models */,
+				6DFDEA2A2721D2920014F389 /* CoreVeras.h */,
+			);
+			path = CoreVeras;
+			sourceTree = "<group>";
+		};
+		6DFDEA402721D3660014F389 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4EC563902710C6DB00411EA6 /* KeyChainService.swift */,
+				4EC563922710C6EB00411EA6 /* WebService.swift */,
+				4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */,
+				DE2B415F2719E8F3007AE381 /* QRcodeService.swift */,
+				34F17322271F99CE007ABCC8 /* ValidatorService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		DE2B4163271A0CDF007AE381 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +580,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		6DFDEA232721D2920014F389 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDEA2B2721D2920014F389 /* CoreVeras.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		4EC5634A2710BE4400411EA6 /* Fidelity-ios */ = {
 			isa = PBXNativeTarget;
@@ -425,10 +599,12 @@
 				4EC563472710BE4400411EA6 /* Sources */,
 				4EC563482710BE4400411EA6 /* Frameworks */,
 				4EC563492710BE4400411EA6 /* Resources */,
+				6DFDEA332721D2920014F389 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6DFDEA2D2721D2920014F389 /* PBXTargetDependency */,
 			);
 			name = "Fidelity-ios";
 			packageProductDependencies = (
@@ -475,6 +651,77 @@
 			productReference = 4EC5636B2710BE4700411EA6 /* Fidelity-iosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		6DFDE9ED2721D1FF0014F389 /* VerasStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DFDEA1B2721D2010014F389 /* Build configuration list for PBXNativeTarget "VerasStore" */;
+			buildPhases = (
+				6DFDE9EA2721D1FF0014F389 /* Sources */,
+				6DFDE9EB2721D1FF0014F389 /* Frameworks */,
+				6DFDE9EC2721D1FF0014F389 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VerasStore;
+			productName = VerasStore;
+			productReference = 6DFDE9EE2721D1FF0014F389 /* VerasStore.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6DFDEA022721D2010014F389 /* VerasStoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DFDEA1C2721D2010014F389 /* Build configuration list for PBXNativeTarget "VerasStoreTests" */;
+			buildPhases = (
+				6DFDE9FF2721D2010014F389 /* Sources */,
+				6DFDEA002721D2010014F389 /* Frameworks */,
+				6DFDEA012721D2010014F389 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DFDEA052721D2010014F389 /* PBXTargetDependency */,
+			);
+			name = VerasStoreTests;
+			productName = VerasStoreTests;
+			productReference = 6DFDEA032721D2010014F389 /* VerasStoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6DFDEA0C2721D2010014F389 /* VerasStoreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DFDEA1D2721D2010014F389 /* Build configuration list for PBXNativeTarget "VerasStoreUITests" */;
+			buildPhases = (
+				6DFDEA092721D2010014F389 /* Sources */,
+				6DFDEA0A2721D2010014F389 /* Frameworks */,
+				6DFDEA0B2721D2010014F389 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DFDEA0F2721D2010014F389 /* PBXTargetDependency */,
+			);
+			name = VerasStoreUITests;
+			productName = VerasStoreUITests;
+			productReference = 6DFDEA0D2721D2010014F389 /* VerasStoreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		6DFDEA272721D2920014F389 /* CoreVeras */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DFDEA302721D2920014F389 /* Build configuration list for PBXNativeTarget "CoreVeras" */;
+			buildPhases = (
+				6DFDEA232721D2920014F389 /* Headers */,
+				6DFDEA242721D2920014F389 /* Sources */,
+				6DFDEA252721D2920014F389 /* Frameworks */,
+				6DFDEA262721D2920014F389 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreVeras;
+			productName = CoreVeras;
+			productReference = 6DFDEA282721D2920014F389 /* CoreVeras.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -495,6 +742,20 @@
 					4EC5636A2710BE4700411EA6 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = 4EC5634A2710BE4400411EA6;
+					};
+					6DFDE9ED2721D1FF0014F389 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					6DFDEA022721D2010014F389 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 6DFDE9ED2721D1FF0014F389;
+					};
+					6DFDEA0C2721D2010014F389 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 6DFDE9ED2721D1FF0014F389;
+					};
+					6DFDEA272721D2920014F389 = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
@@ -518,6 +779,10 @@
 				4EC5634A2710BE4400411EA6 /* Fidelity-ios */,
 				4EC563602710BE4700411EA6 /* Fidelity-iosTests */,
 				4EC5636A2710BE4700411EA6 /* Fidelity-iosUITests */,
+				6DFDE9ED2721D1FF0014F389 /* VerasStore */,
+				6DFDEA022721D2010014F389 /* VerasStoreTests */,
+				6DFDEA0C2721D2010014F389 /* VerasStoreUITests */,
+				6DFDEA272721D2920014F389 /* CoreVeras */,
 			);
 		};
 /* End PBXProject section */
@@ -540,6 +805,37 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4EC563692710BE4700411EA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDE9EC2721D1FF0014F389 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDE9FD2721D2010014F389 /* LaunchScreen.storyboard in Resources */,
+				6DFDE9FA2721D2010014F389 /* Assets.xcassets in Resources */,
+				6DFDE9F82721D1FF0014F389 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDEA012721D2010014F389 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDEA0B2721D2010014F389 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDEA262721D2920014F389 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -621,6 +917,57 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6DFDE9EA2721D1FF0014F389 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDEA352721D3110014F389 /* Store.swift in Sources */,
+				6DFDEA382721D3170014F389 /* EmailUser.swift in Sources */,
+				6DFDEA3E2721D3370014F389 /* PromotionViewModel.swift in Sources */,
+				6DFDEA3B2721D31D0014F389 /* CreateUserResponse.swift in Sources */,
+				6DFDEA442721D3C70014F389 /* QRcodeService.swift in Sources */,
+				6DFDEA422721D3C30014F389 /* WebService.swift in Sources */,
+				6DFDEA3D2721D32D0014F389 /* StoreViewModel.swift in Sources */,
+				6DFDEA432721D3C50014F389 /* UserDefaultsService.swift in Sources */,
+				6DFDEA362721D3130014F389 /* Ticket.swift in Sources */,
+				6DFDE9F52721D1FF0014F389 /* ViewController.swift in Sources */,
+				6DFDEA342721D30E0014F389 /* Promotion.swift in Sources */,
+				6DFDEA392721D3190014F389 /* SessionResponse.swift in Sources */,
+				6DFDE9F12721D1FF0014F389 /* AppDelegate.swift in Sources */,
+				6DFDEA3A2721D31B0014F389 /* UserPromotionTicketsResponse.swift in Sources */,
+				6DFDEA3C2721D31F0014F389 /* TicketBatchResponse.swift in Sources */,
+				6DFDE9F32721D1FF0014F389 /* SceneDelegate.swift in Sources */,
+				6DFDEA452721D3C90014F389 /* ValidatorService.swift in Sources */,
+				6DFDEA412721D3C00014F389 /* KeyChainService.swift in Sources */,
+				6DFDEA3F2721D33D0014F389 /* UserViewModel.swift in Sources */,
+				6DFDEA372721D3150014F389 /* User.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDE9FF2721D2010014F389 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDEA082721D2010014F389 /* VerasStoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDEA092721D2010014F389 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFDEA142721D2010014F389 /* VerasStoreUITestsLaunchTests.swift in Sources */,
+				6DFDEA122721D2010014F389 /* VerasStoreUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DFDEA242721D2920014F389 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -634,6 +981,21 @@
 			target = 4EC5634A2710BE4400411EA6 /* Fidelity-ios */;
 			targetProxy = 4EC5636C2710BE4700411EA6 /* PBXContainerItemProxy */;
 		};
+		6DFDEA052721D2010014F389 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DFDE9ED2721D1FF0014F389 /* VerasStore */;
+			targetProxy = 6DFDEA042721D2010014F389 /* PBXContainerItemProxy */;
+		};
+		6DFDEA0F2721D2010014F389 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DFDE9ED2721D1FF0014F389 /* VerasStore */;
+			targetProxy = 6DFDEA0E2721D2010014F389 /* PBXContainerItemProxy */;
+		};
+		6DFDEA2D2721D2920014F389 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DFDEA272721D2920014F389 /* CoreVeras */;
+			targetProxy = 6DFDEA2C2721D2920014F389 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -641,6 +1003,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				4EC5635A2710BE4600411EA6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		6DFDE9F62721D1FF0014F389 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DFDE9F72721D1FF0014F389 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6DFDE9FB2721D2010014F389 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DFDE9FC2721D2010014F389 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -781,7 +1159,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -812,7 +1190,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -922,6 +1300,224 @@
 			};
 			name = Release;
 		};
+		6DFDEA152721D2010014F389 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3XP27NL574;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VerasStore/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Veras;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.veras.store.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6DFDEA162721D2010014F389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3XP27NL574;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VerasStore/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Veras;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.br.veras.store.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6DFDEA172721D2010014F389 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3XP27NL574;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pedropacheco.VerasStoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VerasStore.app/VerasStore";
+			};
+			name = Debug;
+		};
+		6DFDEA182721D2010014F389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3XP27NL574;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pedropacheco.VerasStoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VerasStore.app/VerasStore";
+			};
+			name = Release;
+		};
+		6DFDEA192721D2010014F389 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3XP27NL574;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pedropacheco.VerasStoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VerasStore;
+			};
+			name = Debug;
+		};
+		6DFDEA1A2721D2010014F389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3XP27NL574;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pedropacheco.VerasStoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VerasStore;
+			};
+			name = Release;
+		};
+		6DFDEA312721D2920014F389 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3XP27NL574;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pedropacheco.CoreVeras;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6DFDEA322721D2920014F389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3XP27NL574;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pedropacheco.CoreVeras;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -957,6 +1553,42 @@
 			buildConfigurations = (
 				4EC5637C2710BE4700411EA6 /* Debug */,
 				4EC5637D2710BE4700411EA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DFDEA1B2721D2010014F389 /* Build configuration list for PBXNativeTarget "VerasStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFDEA152721D2010014F389 /* Debug */,
+				6DFDEA162721D2010014F389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DFDEA1C2721D2010014F389 /* Build configuration list for PBXNativeTarget "VerasStoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFDEA172721D2010014F389 /* Debug */,
+				6DFDEA182721D2010014F389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DFDEA1D2721D2010014F389 /* Build configuration list for PBXNativeTarget "VerasStoreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFDEA192721D2010014F389 /* Debug */,
+				6DFDEA1A2721D2010014F389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DFDEA302721D2920014F389 /* Build configuration list for PBXNativeTarget "CoreVeras" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFDEA312721D2920014F389 /* Debug */,
+				6DFDEA322721D2920014F389 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

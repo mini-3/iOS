@@ -8,7 +8,7 @@
 import Foundation
 import KeychainAccess
 
-class KeyChainService {
+public class KeyChainService {
     static let shared: KeyChainService = KeyChainService()
     private let keychain: Keychain = Keychain()
     

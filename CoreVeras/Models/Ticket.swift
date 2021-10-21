@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ticket: Codable {
+public struct Ticket: Codable {
     let id: Int
     let isUsed: Bool
     let user: User?

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Store: Codable {
+public struct Store: Codable {
     let id: Int
     let cnpj: String
     let name: String

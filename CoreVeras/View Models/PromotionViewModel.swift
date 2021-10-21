@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class PromotionViewModel {
+public class PromotionViewModel {
     var promotion: Promotion?
     let endDateString: String
     let endDate: Date
