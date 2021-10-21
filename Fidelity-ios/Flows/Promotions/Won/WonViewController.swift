@@ -33,9 +33,8 @@ class WonViewControler: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         let button = UIBarButtonItem(title: "Ok", style: .done, target: self, action: #selector(WonViewControler.tappedBackButton))
         self.navigationItem.rightBarButtonItem = button
-        guard let user = SessionService.shared.user, let promotion = userPromotionTicket else { return }
-        let qrCode = "\(user.email) \(promotion.code)"
-        print(qrCode)
+        guard let promotion = userPromotionTicket else { return }
+        let qrCode = "\(SessionService.shared.email) \(promotion.code)"
         qrCodeImageView.image = QRcodeService.shared.generateQRCode(from: qrCode)
     }
     
