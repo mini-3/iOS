@@ -11,7 +11,7 @@ class SessionService {
     
     static let shared: SessionService = SessionService()
     var token: String = ""
-    var user: CreateUserResponse?
+    var user: EmailUser?
     
     private init() {
         guard let token = KeyChainService.shared.retrieveToken(key: "token") else { return }
@@ -24,11 +24,11 @@ class SessionService {
             "password": password
         ]
         
-        WebService.post(path: "/user_sessions", body: body, type: SessionResponse.self) { [weak self] response in
+        WebService.post(path: "/user_sessions", body: body, type: LogInUserResponse.self) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let response):
-                self.user = response.data.user
+                self.user = response.data.user.email_user
                 self.token = response.data.token
                 let tokenSaved = KeyChainService.shared.save(data: response.data.token, key: "token")
                 let cpfSaved = KeyChainService.shared.save(data: cpf, key: "cpf")
