@@ -15,16 +15,20 @@ struct OnboardSection {
 }
 
 class OnboardViewController: UIViewController {
-    let sections: [OnboardSection] = []
+    let sections: [OnboardSection] = [OnboardSection(image: "", title: "Test", description: "Lorem ipsum dor sit amet")]
     
     override func viewDidLoad() {
         addSubviews()
         addConstrainst()
+        configureTableView()
+        titleLabel.text = "Onboarding"
     }
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.backgroundColor = .red
         return label
     }()
     
@@ -32,6 +36,7 @@ class OnboardViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(OnboardSectionTableViewCell.self, forCellReuseIdentifier: OnboardSectionTableViewCell.identifier)
+        tableView.backgroundColor = .systemPink
         return tableView
     }()
     
@@ -41,6 +46,7 @@ class OnboardViewController: UIViewController {
         button.setTitle("Continue", for: .normal)
         button.layer.cornerRadius = 16
         button.backgroundColor = .label
+        button.backgroundColor = .red
         button.setTitleColor(.systemBackground, for: .normal)
         return button
     }()
@@ -62,12 +68,12 @@ class OnboardViewController: UIViewController {
             sectionsTable.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
             sectionsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             sectionsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            sectionsTable.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -32)
         ]
         
         let continueButtonConstraints = [
             continueButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
-            sectionsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            sectionsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
         NSLayoutConstraint.activate(titleConstraints)
@@ -85,7 +91,7 @@ class OnboardViewController: UIViewController {
 
 extension OnboardViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sections.count
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
