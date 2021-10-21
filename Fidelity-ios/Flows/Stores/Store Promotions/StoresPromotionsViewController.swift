@@ -127,7 +127,10 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
         let viewModel = filteredData[indexPath.row]
         let storeDetailsVC = StoreDetailsViewController()
         storeDetailsVC.promotion = viewModel
-        self.navigationController?.pushViewController(storeDetailsVC, animated: true)
+        storeDetailsVC.modalPresentationStyle = .automatic
+        let navVc = UINavigationController(rootViewController: storeDetailsVC)
+        navVc.modalPresentationStyle = .automatic
+        self.present(navVc, animated: true, completion: nil)
     }
     
 }
