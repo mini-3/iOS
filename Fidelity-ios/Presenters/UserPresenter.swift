@@ -134,7 +134,9 @@ class UserPresenter {
             self.view?.presentLoadingScreen()
         }
         
-        let body = ["email":email, "password":password, "birthday":birthday, "cpf":cpf]
+        let cpfNormalized = cpf.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: "-", with: "")
+        
+        let body = ["email":email, "password":password, "birthday":birthday, "cpf":cpfNormalized]
         
         WebService.post(path: "/users", body: body, type: CreateUserResponse.self) {[weak self] result in
             guard let self = self else {

@@ -27,7 +27,7 @@ public struct ValidatorService {
     }
     
     static private func validateCpf(_ cpf: String) -> Bool {
-        return true
+        return cpf.isCPF
     }
     
     static private func validateEmail(_ email: String)-> Bool {
