@@ -50,10 +50,16 @@ class ConfigurationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Configurações"
-        view.backgroundColor = UIColor(named: "Background")
+        configureUI()
         configureSubViews()
         configureConstraints()
+    }
+    
+    func configureUI() {
+        title = "Configurações"
+        view.backgroundColor = UIColor(named: "Background")
+        let button = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(tappedBackButton))
+        self.navigationItem.rightBarButtonItem = button
     }
     
     func configureSubViews() {
@@ -102,5 +108,9 @@ class ConfigurationViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    @objc func tappedBackButton(sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
 }

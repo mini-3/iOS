@@ -42,7 +42,7 @@ class WonViewControler: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         title = "Resgatar promoção"
         navigationController?.navigationBar.prefersLargeTitles = false
-        let button = UIBarButtonItem(title: "Ok", style: .done, target: self, action: #selector(WonViewControler.tappedBackButton))
+        let button = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(WonViewControler.tappedBackButton))
         self.navigationItem.rightBarButtonItem = button
         guard let promotion = userPromotionTicket else { return }
         let qrCode = "\(SessionService.shared.email) \(promotion.code)"

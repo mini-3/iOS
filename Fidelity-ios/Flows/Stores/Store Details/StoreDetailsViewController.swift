@@ -211,7 +211,7 @@ class StoreDetailsViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         title = "Detalhes"
         navigationController?.navigationBar.prefersLargeTitles = false
-        let button = UIBarButtonItem(title: "Ok", style: .done, target: self, action: #selector(StoreDetailsViewController.tappedBackButton))
+        let button = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(StoreDetailsViewController.tappedBackButton))
         self.navigationItem.rightBarButtonItem = button
         
         guard let promotion = promotion else { return }
