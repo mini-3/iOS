@@ -73,6 +73,8 @@ class UserPromotionsViewController: UIViewController {
     private func configureUI() {
         title = "Promoções"
         navigationController?.navigationBar.prefersLargeTitles = true
+        let gearButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(gearButtonAction))
+        navigationItem.rightBarButtonItem = gearButton
         self.userPresenter.view = self
     }
     
@@ -100,6 +102,14 @@ class UserPromotionsViewController: UIViewController {
     // MARK: - Objc
     @objc private func didRefresh() {
         self.userPresenter.fetchUserTicketofPromotion(withLoadingScreen: false)
+    }
+    
+    @objc private func gearButtonAction() {
+        let configVC = ConfigurationViewController()
+        configVC.modalPresentationStyle = .automatic
+        let navVC = UINavigationController(rootViewController: configVC)
+        navVC.modalPresentationStyle = .automatic
+        self.present(navVC, animated: true)
     }
     
     @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
