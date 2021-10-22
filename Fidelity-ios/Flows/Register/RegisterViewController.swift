@@ -83,6 +83,7 @@ class RegisterViewController: UIViewController, UserPresenterDelegate {
         self.presenter.view = self
         addSubviews()
         addConstraint()
+        cpfTextField.delegate = self
         continueButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapSignIn))
         signInLabel.isUserInteractionEnabled = true
@@ -139,4 +140,30 @@ class RegisterViewController: UIViewController, UserPresenterDelegate {
         presenter.signUp(email: email, cpf: cpf, password: password, confirmPassword: confirmPassword, birthday: birthday)
     }
     
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == cpfTextField {
+            guard let text = textField.text else { return true }
+            if range.lowerBound == 3 && range.length == 0 {
+                textField.text = text + "."
+                return false
+            }
+            
+            if range.lowerBound == 7 && range.length == 0 {
+                textField.text = text + "."
+                return false
+            }
+            
+            if range.lowerBound == 11 && range.length == 0 {
+                textField.text = text + "-"
+                return false
+            }
+            
+            let newLength = text.count + string.count - range.length
+            return newLength <= 14
+        }
+        return true
+    }
 }

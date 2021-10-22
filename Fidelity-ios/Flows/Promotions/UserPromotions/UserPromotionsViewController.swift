@@ -39,7 +39,15 @@ class UserPromotionsViewController: UIViewController {
         self.configureTableView()
         self.addConstraints()
         self.configureObservers()
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+        self.userPromotionsTableView.refreshControl = refresh
         segmentedControl.addTarget(self, action: #selector(didChangedSegmented(_:)), for: .valueChanged)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.userPresenter.fetchUserTicketofPromotion()
     }
     
     deinit{
@@ -50,6 +58,7 @@ class UserPromotionsViewController: UIViewController {
     private func configureTableView() {
         self.userPromotionsTableView.tableHeaderView = segmentedControl
         self.userPromotionsTableView.dataSource = self
+        self.userPromotionsTableView.delegate = self
         self.userPromotionsTableView.separatorStyle = .none
         self.userPromotionsTableView.backgroundColor = UIColor(named: "Background")
     }
@@ -64,9 +73,9 @@ class UserPromotionsViewController: UIViewController {
     private func configureUI() {
         title = "Promoções"
         navigationController?.navigationBar.prefersLargeTitles = true
+        let gearButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(gearButtonAction))
+        navigationItem.rightBarButtonItem = gearButton
         self.userPresenter.view = self
-        self.userPresenter.fetchUserTicketofPromotion()
-        self.ticketPresenter.view = self
     }
     
     private func addSubviews() {
@@ -76,8 +85,7 @@ class UserPromotionsViewController: UIViewController {
     private func addConstraints() {
         let segmentedConstraints = [
             segmentedControl.centerXAnchor.constraint(equalTo: segmentedControl.superview!.centerXAnchor),
-            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32),
-            segmentedControl.topAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: 8)
+            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32)
         ]
         
         let tableViewConstraints = [
@@ -92,6 +100,18 @@ class UserPromotionsViewController: UIViewController {
     }
     
     // MARK: - Objc
+    @objc private func didRefresh() {
+        self.userPresenter.fetchUserTicketofPromotion(withLoadingScreen: false)
+    }
+    
+    @objc private func gearButtonAction() {
+        let configVC = ConfigurationViewController()
+        configVC.modalPresentationStyle = .automatic
+        let navVC = UINavigationController(rootViewController: configVC)
+        navVC.modalPresentationStyle = .automatic
+        self.present(navVC, animated: true)
+    }
+    
     @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             self.userPromotionTicketsFiltered = self.userPromotionTickets.filter {
@@ -127,11 +147,12 @@ extension UserPromotionsViewController: UserPresenterDelegate {
         }
         DispatchQueue.main.async {
             self.userPromotionsTableView.reloadData()
+            self.userPromotionsTableView.refreshControl?.endRefreshing()
         }
     }
 }
 
-extension UserPromotionsViewController: UITableViewDataSource {
+extension UserPromotionsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.userPromotionTicketsFiltered.count
     }
@@ -144,20 +165,28 @@ extension UserPromotionsViewController: UITableViewDataSource {
         guard let model = userPromotionTicket.promotion else { return UITableViewCell() }
         let viewModel = PromotionViewModel(with: model)
         cell.configure(storeName: viewModel.storeName, ticketCount: "\(userPromotionTicket.ticketAmount)/\(model.win_ticket_amount)", awardPrize: viewModel.award, awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount, dateEnd: viewModel.endDateString, code: model.code)
-        cell.delegate = self
         cell.selectionStyle = .none
         return cell
     }
-}
-
-extension UserPromotionsViewController: TicketPreseterDelegate {
-    func batched(wasBatched: Bool) {
-        self.userPresenter.fetchUserTicketofPromotion()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let userPromotionTicket = userPromotionTicketsFiltered[indexPath.row]
+        guard let model = userPromotionTicket.promotion else { return }
+        
+        if model.win_ticket_amount <= userPromotionTicket.ticketAmount && userPromotionTicket.ticketAmount > 0 && model.win_ticket_amount > 0 {
+            let wonVC = WonViewControler()
+            wonVC.delegate = self
+            wonVC.userPromotionTicket = model
+            wonVC.modalPresentationStyle = .automatic
+            let navVC = UINavigationController(rootViewController: wonVC)
+            navVC.modalPresentationStyle = .automatic
+            self.present(navVC, animated: true, completion: nil)
+        }
     }
 }
 
-extension UserPromotionsViewController: UserPromotionsTableViewCellDelegate {
-    func didTapCell(code: String) {
-        self.ticketPresenter.batch(code: code)
+extension UserPromotionsViewController: WonViewControllerDelegate {
+    func dismissed() {
+        self.userPresenter.fetchUserTicketofPromotion()
     }
 }

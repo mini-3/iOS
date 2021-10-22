@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           description: "e introdutivo sobre o nosso app exposto de maneira rápida e clara")
                           ],
                 handleContinue: {
-                    print("continue")
                     UserDefaultsService.shared.save(data: "true", key: "first_login")
                     let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
                     DispatchQueue.main.async {
@@ -83,7 +82,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
+        guard let _ = UserDefaultsService.shared.retrieve(key: "first_login", type: String.self) else {
+            return
+        }
+        
         let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+        
         guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date"),
               let cpf = KeyChainService.shared.retrieveToken(key: "cpf"),
               let password = KeyChainService.shared.retrieveToken(key: "password")
