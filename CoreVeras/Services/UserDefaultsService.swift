@@ -16,6 +16,13 @@ public class UserDefaultsService {
         UserDefaults.standard.setValue(data, forKey: key)
     }
     
+    public func retrieve<T>(key: String, type: T.Type) -> T? {
+        if let value = UserDefaults.standard.object(forKey: key) as? T {
+            return value
+        }
+        return nil
+    }
+    
     public func retrieveDate(key: String) -> Date? {
         if let date = UserDefaults.standard.object(forKey: key) as? Date {
             return date

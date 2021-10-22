@@ -24,7 +24,7 @@ class OnboardSectionTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 21,weight: UIFont.Weight(rawValue: 0.5))
-        
+        label.numberOfLines = 0
         label.textColor = .label
         return label
     }()
