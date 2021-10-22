@@ -22,9 +22,11 @@ class UserPresenter {
     
     init() {}
     
-    func fetchUserTicketofPromotion() {
-        DispatchQueue.main.async {
-            self.view?.presentLoadingScreen()
+    func fetchUserTicketofPromotion(withLoadingScreen: Bool = true) {
+        if withLoadingScreen {
+            DispatchQueue.main.async {
+                self.view?.presentLoadingScreen()
+            }
         }
         WebService.get(path: "/email_users/promotions", type: [UserPromotionTicketsResponse].self) {[weak self] result in
             guard let self = self else {

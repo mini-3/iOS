@@ -7,17 +7,12 @@
 
 import UIKit
 
-protocol UserPromotionsTableViewCellDelegate: AnyObject {
-    func didTapCell(code: String)
-}
-
 class UserPromotionsTableViewCell: UITableViewCell {
     static let identifier = String(describing: self)
     
     private var code: String?
     private var awardAmount: Int = 0
     private var currentAmount: Int = 0
-    weak var delegate: UserPromotionsTableViewCellDelegate?
     
     //MARK: - Subviews
     private let mainView: GradientView = {

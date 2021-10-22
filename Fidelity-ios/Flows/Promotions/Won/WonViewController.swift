@@ -8,7 +8,15 @@
 import Foundation
 import UIKit
 
+protocol WonViewControllerDelegate: AnyObject {
+    func dismissed()
+}
+
 class WonViewControler: UIViewController {
+    
+    weak var delegate: WonViewControllerDelegate?
+    
+    var userPromotionTicket: Promotion?
     
     private lazy var qrCodeImageView: UIImageView = {
         let imageView = UIImageView()
@@ -17,14 +25,17 @@ class WonViewControler: UIViewController {
         return imageView
     }()
     
-    var userPromotionTicket: Promotion?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.configureUI()
         self.configureSubViews()
         self.configureConstraints()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.delegate?.dismissed()
     }
     
     func configureUI() {
