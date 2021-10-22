@@ -50,6 +50,7 @@ class UserPromotionsTableViewCell: UITableViewCell {
     private let ticketCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentHuggingPriority(.required, for: .horizontal)
         label.font = UIFont.systemFont(ofSize: 14)
         label.setContentHuggingPriority(.required, for: .horizontal)
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -68,7 +69,8 @@ class UserPromotionsTableViewCell: UITableViewCell {
     private let dateEndLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .white
         return label
     }()
