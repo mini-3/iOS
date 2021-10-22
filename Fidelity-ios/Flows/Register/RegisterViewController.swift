@@ -160,6 +160,9 @@ extension RegisterViewController: UITextFieldDelegate {
                 textField.text = text + "-"
                 return false
             }
+            
+            let newLength = text.count + string.count - range.length
+            return newLength <= 14
         }
         return true
     }

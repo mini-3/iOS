@@ -148,7 +148,11 @@ extension LoginViewController: UITextFieldDelegate {
             if range.lowerBound == 11 && range.length == 0 {
                 textField.text = text + "-"
             }
+            
+            let newLength = text.count + string.count - range.length
+            return newLength <= 14
         }
         return true
     }
+    
 }
