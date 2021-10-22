@@ -7,6 +7,7 @@
 
 public struct SessionData: Codable {
     let token: String
+    let user: CreateUserResponse?
 }
 
 public struct SessionResponse: Codable {

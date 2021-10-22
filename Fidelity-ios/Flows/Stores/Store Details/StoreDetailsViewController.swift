@@ -211,6 +211,8 @@ class StoreDetailsViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         title = "Detalhes"
         navigationController?.navigationBar.prefersLargeTitles = false
+        let button = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(StoreDetailsViewController.tappedBackButton))
+        self.navigationItem.rightBarButtonItem = button
         
         guard let promotion = promotion else { return }
         
@@ -221,6 +223,10 @@ class StoreDetailsViewController: UIViewController {
         requirementsStoreLabel.text = promotion.ticketsNeeded
         rewardStoreLabel.text = promotion.award
         storeImageView.image = UIImage(systemName: "photo")
+    }
+    
+    @objc func tappedBackButton(sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     func configureSubViews() {

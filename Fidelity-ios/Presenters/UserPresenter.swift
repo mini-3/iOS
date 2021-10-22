@@ -22,9 +22,11 @@ class UserPresenter {
     
     init() {}
     
-    func fetchUserTicketofPromotion() {
-        DispatchQueue.main.async {
-            self.view?.presentLoadingScreen()
+    func fetchUserTicketofPromotion(withLoadingScreen: Bool = true) {
+        if withLoadingScreen {
+            DispatchQueue.main.async {
+                self.view?.presentLoadingScreen()
+            }
         }
         WebService.get(path: "/email_users/promotions", type: [UserPromotionTicketsResponse].self) {[weak self] result in
             guard let self = self else {
@@ -134,7 +136,9 @@ class UserPresenter {
             self.view?.presentLoadingScreen()
         }
         
-        let body = ["email":email, "password":password, "birthday":birthday, "cpf":cpf]
+        let cpfNormalized = cpf.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: "-", with: "")
+        
+        let body = ["email":email, "password":password, "birthday":birthday, "cpf":cpfNormalized]
         
         WebService.post(path: "/users", body: body, type: CreateUserResponse.self) {[weak self] result in
             guard let self = self else {
@@ -153,6 +157,29 @@ class UserPresenter {
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                     self.view?.presentAlert(message: "Erro ao criar conta.")
+                }
+                print(error)
+            }
+        }
+    }
+    
+    func deleteAccount() {
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen()
+        }
+        WebService.delete(path: "/users", type: [User].self) {[weak self] result in
+            guard let self = self else {
+                self?.view?.dismiss(animated: true, completion: nil)
+                return
+            }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
                 }
                 print(error)
             }
