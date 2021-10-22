@@ -10,9 +10,9 @@ import UIKit
 
 class OnboardSectionTableViewCell: UITableViewCell {
     static let identifier = String(describing: self)
-    
     private let containerView: UIView = UIView()
     
+    //MARK: - Views
     private let iconImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -39,6 +39,8 @@ class OnboardSectionTableViewCell: UITableViewCell {
         return label
     }()
     
+    
+    //MARK: - Methods
     func configure(image: String, title: String, description: String) {
         self.titleLabel.text = title
         self.descriptionLabel.text = description

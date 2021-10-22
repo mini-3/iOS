@@ -15,19 +15,20 @@ struct OnboardSection {
 }
 
 class OnboardViewController: UIViewController {
-    let sections: [OnboardSection] = [
-        OnboardSection(image: "rectangle-white", title: "Test", description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium corrupti."),
-        OnboardSection(image: "rectangle-white", title: "Test", description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis deleniti atque corrupti quos dolores.")
-    ]
+    
+    var sections: [OnboardSection] = []
+    var handleContinue: () -> Void = { }
     
     override func viewDidLoad() {
         addSubviews()
         addConstrainst()
         configureTableView()
         view.backgroundColor = UIColor(named: "Background")
+        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
         titleLabel.text = "Onboarding"
     }
     
+    //MARK: - Views
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -86,10 +87,22 @@ class OnboardViewController: UIViewController {
         NSLayoutConstraint.activate(continueButtonConstraints)
     }
     
+    //MARK: - Methods
     private func configureTableView() {
         self.sectionsTable.dataSource = self
         self.sectionsTable.separatorStyle = .none
         self.sectionsTable.backgroundColor = UIColor(named: "Background")
+    }
+    
+    public func configure(title: String, sections: [OnboardSection], handleContinue: @escaping () -> Void) {
+        self.titleLabel.text = title
+        self.sections = sections
+        self.handleContinue = handleContinue
+        self.sectionsTable.reloadData()
+    }
+    
+    @objc private func didTapContinue() {
+        handleContinue()
     }
     
 }
@@ -103,6 +116,7 @@ extension OnboardViewController: UITableViewDataSource {
         guard let cell = self.sectionsTable.dequeueReusableCell(withIdentifier: OnboardSectionTableViewCell.identifier) as? OnboardSectionTableViewCell else { fatalError() }
         let section = sections[indexPath.row]
         cell.configure(image: section.image, title: section.title, description: section.description)
+        
         return cell
     }
     
