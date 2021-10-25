@@ -23,6 +23,7 @@ class RegisterViewController: UIViewController, UserPresenterDelegate {
     private let emailTextField: TextField = {
         let textField = TextField(placeholder: "Email")
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
         return textField
     }()
     
