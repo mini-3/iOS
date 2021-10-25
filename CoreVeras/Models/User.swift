@@ -10,7 +10,6 @@ import Foundation
 public struct User: Codable {
     let id: Int
     let cpf: String
-    let email: String
     let birthday: DateISO
     let password: String
 }
