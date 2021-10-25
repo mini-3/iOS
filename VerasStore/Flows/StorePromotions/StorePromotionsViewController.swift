@@ -44,7 +44,21 @@ class StorePromotionsViewController: UIViewController {
     }
     
     private func configureConstraints() {
+        let segmentedControlConstraints = [
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leftAnchor, constant: 32),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.rightAnchor, constant: 32),
+            segmentedControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
+        ]
         
+        let promotionsTableViewConstraints = [
+            promotionsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            promotionsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            promotionsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            promotionsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(segmentedControlConstraints)
+        NSLayoutConstraint.activate(promotionsTableViewConstraints)
     }
     
     private func configureRefresh() {
