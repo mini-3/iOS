@@ -83,7 +83,6 @@
 		6DF5B7E72722D2AA0073D689 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6DF5B7E62722D2AA0073D689 /* IQKeyboardManagerSwift */; };
 		6DFDE9F12721D1FF0014F389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F02721D1FF0014F389 /* AppDelegate.swift */; };
 		6DFDE9F32721D1FF0014F389 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F22721D1FF0014F389 /* SceneDelegate.swift */; };
-		6DFDE9F52721D1FF0014F389 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F42721D1FF0014F389 /* ViewController.swift */; };
 		6DFDE9FA2721D2010014F389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDE9F92721D2010014F389 /* Assets.xcassets */; };
 		6DFDE9FD2721D2010014F389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DFDE9FB2721D2010014F389 /* LaunchScreen.storyboard */; };
 		6DFDEA082721D2010014F389 /* VerasStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFDEA072721D2010014F389 /* VerasStoreTests.swift */; };
@@ -237,7 +236,6 @@
 		6DFDE9EE2721D1FF0014F389 /* VerasStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerasStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DFDE9F02721D1FF0014F389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DFDE9F22721D1FF0014F389 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6DFDE9F42721D1FF0014F389 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6DFDE9F92721D2010014F389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6DFDE9FC2721D2010014F389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6DFDE9FE2721D2010014F389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -646,7 +644,6 @@
 				4E79D04A272732BF009BD2E5 /* Flows */,
 				6DC67E94272724B400FD79E0 /* Services */,
 				6DF5B7DA2722D2010073D689 /* Resources */,
-				6DFDE9F42721D1FF0014F389 /* ViewController.swift */,
 				6DFDE9FE2721D2010014F389 /* Info.plist */,
 			);
 			path = VerasStore;
@@ -1079,7 +1076,6 @@
 				4E79D04F2727331F009BD2E5 /* StoreDetailsPresenter.swift in Sources */,
 				6DF5B7E02722D2450073D689 /* ControllerExtensions.swift in Sources */,
 				DE2B416D27220244007AE381 /* LogInUserResponse.swift in Sources */,
-				6DFDE9F52721D1FF0014F389 /* ViewController.swift in Sources */,
 				6DFDEA342721D30E0014F389 /* Promotion.swift in Sources */,
 				6DF5B7DF2722D2420073D689 /* StringExtensions.swift in Sources */,
 				6DFDEA392721D3190014F389 /* SessionResponse.swift in Sources */,

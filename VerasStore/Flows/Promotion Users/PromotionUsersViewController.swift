@@ -18,7 +18,15 @@ class PromotionUsersViewController: UIViewController {
         return tableView
     }()
     
+    private let searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.placeholder = "Buscar"
+        return searchController
+    }()
+    
     private var tickets: [Ticket] = []
+    private var filteredTickets: [Ticket] = []
     private let presenter = PromotionUsersPresenter()
     var promotionId = 1
     
@@ -28,6 +36,8 @@ class PromotionUsersViewController: UIViewController {
         title = "Clientes"
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.dataSource = self
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
         presenter.view = self
         self.addSubviews()
         self.addConstraints()
@@ -53,7 +63,7 @@ class PromotionUsersViewController: UIViewController {
 
 extension PromotionUsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tickets.count
+        return filteredTickets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,7 +71,7 @@ extension PromotionUsersViewController: UITableViewDataSource {
         else {
             return UITableViewCell()
         }
-        let model = tickets[indexPath.row]
+        let model = filteredTickets[indexPath.row]
         guard let emailUser = model.email_user else { return UITableViewCell() }
         cell.configure(email: emailUser.email)
         return cell
@@ -72,8 +82,24 @@ extension PromotionUsersViewController: UITableViewDataSource {
 extension PromotionUsersViewController: PromotionUsersPresenterDelegate {
     func fetched(tickets: [Ticket]) {
         self.tickets = tickets
+        self.filteredTickets = tickets
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+}
+
+extension PromotionUsersViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filteredTickets = self.tickets
+        
+        if !searchText.isEmpty {
+            self.filteredTickets = self.filteredTickets.filter({ ticket in
+                guard let user = ticket.email_user else { return false }
+                return user.email.lowercased().contains(searchText.lowercased())
+            })
+        }
+        
+        tableView.reloadData()
     }
 }

@@ -26,14 +26,13 @@ class PromotionUsersPresenter {
             self.view?.presentLoadingScreen()
         }
         
-        WebService.get(path: "/promotion_users/\(promotionId)", type: Promotion.self) {[weak self] result in
+        WebService.get(path: "/promotion_users/\(promotionId)", type: [Ticket].self) {[weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.view?.dismiss(animated: true, completion: nil)
             }
             switch result {
-            case .success(let promotion):
-                guard let tickets = promotion.tickets else { return }
+            case .success(let tickets):
                 self.view?.fetched(tickets: tickets)
             case .failure(_):
                 DispatchQueue.main.async {
