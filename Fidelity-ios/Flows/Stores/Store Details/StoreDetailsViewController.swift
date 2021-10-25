@@ -178,7 +178,6 @@ class StoreDetailsViewController: UIViewController {
     private lazy var rewardStoreLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         label.textColor = .label
         label.numberOfLines = 0
