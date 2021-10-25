@@ -23,6 +23,8 @@
 		4E448283271F3D9E0006A68E /* StoresPromotionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E448280271F3D9E0006A68E /* StoresPromotionsTableViewCell.swift */; };
 		4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 4E7657C52710C853007F9BFA /* KeychainAccess */; };
 		4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */; };
+		4E79D04D272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79D04C272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift */; };
+		4E79D04F2727331F009BD2E5 /* StoreDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79D04E2727331F009BD2E5 /* StoreDetailsPresenter.swift */; };
 		4EBC2DEE2721DC15004BF16B /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC2DED2721DC15004BF16B /* ConfigurationViewController.swift */; };
 		4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5634E2710BE4400411EA6 /* AppDelegate.swift */; };
 		4EC563512710BE4400411EA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563502710BE4400411EA6 /* SceneDelegate.swift */; };
@@ -178,6 +180,8 @@
 		4E44827F271F3D9E0006A68E /* StoresPromotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresPromotionsViewController.swift; sourceTree = "<group>"; };
 		4E448280271F3D9E0006A68E /* StoresPromotionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresPromotionsTableViewCell.swift; sourceTree = "<group>"; };
 		4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		4E79D04C272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFidelityDetailsViewController.swift; sourceTree = "<group>"; };
+		4E79D04E2727331F009BD2E5 /* StoreDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailsPresenter.swift; sourceTree = "<group>"; };
 		4EBC2DED2721DC15004BF16B /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidelity-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC5634E2710BE4400411EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -365,6 +369,22 @@
 				4E44827F271F3D9E0006A68E /* StoresPromotionsViewController.swift */,
 			);
 			path = "Store Promotions";
+			sourceTree = "<group>";
+		};
+		4E79D04A272732BF009BD2E5 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				4E79D04C272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		4E79D04B272732D0009BD2E5 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				4E79D04E2727331F009BD2E5 /* StoreDetailsPresenter.swift */,
+			);
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 		4EBC2DEC2721DC02004BF16B /* Configurations */ = {
@@ -604,6 +624,8 @@
 		6DFDE9EF2721D1FF0014F389 /* VerasStore */ = {
 			isa = PBXGroup;
 			children = (
+				4E79D04B272732D0009BD2E5 /* Presenters */,
+				4E79D04A272732BF009BD2E5 /* Flows */,
 				6DC67E94272724B400FD79E0 /* Services */,
 				6DF5B7DA2722D2010073D689 /* Resources */,
 				6DFDE9F42721D1FF0014F389 /* ViewController.swift */,
@@ -1031,11 +1053,13 @@
 				6DF5B7DC2722D2120073D689 /* Types.swift in Sources */,
 				6DFDEA3B2721D31D0014F389 /* CreateUserResponse.swift in Sources */,
 				6DC67E982727252500FD79E0 /* SessionService.swift in Sources */,
+				4E79D04D272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift in Sources */,
 				6DF5B7DE2722D2400073D689 /* DateExtensions.swift in Sources */,
 				6DFDEA442721D3C70014F389 /* QRcodeService.swift in Sources */,
 				6DFDEA3D2721D32D0014F389 /* StoreViewModel.swift in Sources */,
 				34F243112721E66F00F2BADC /* OnboardViewController.swift in Sources */,
 				6DFDEA362721D3130014F389 /* Ticket.swift in Sources */,
+				4E79D04F2727331F009BD2E5 /* StoreDetailsPresenter.swift in Sources */,
 				6DF5B7E02722D2450073D689 /* ControllerExtensions.swift in Sources */,
 				DE2B416D27220244007AE381 /* LogInUserResponse.swift in Sources */,
 				6DFDE9F52721D1FF0014F389 /* ViewController.swift in Sources */,
