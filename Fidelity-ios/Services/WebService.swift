@@ -14,10 +14,11 @@ public enum WebServiceError: Error {
 }
 
 public struct WebService {
+    static private let ABSOLUTE_PATH = "http://ec2-54-245-34-54.us-west-2.compute.amazonaws.com:3000"
     
     // MARK: - Get
     static public func get<T:Codable>(path: String, type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
-        guard let url = URL(string: "http://ec2-35-86-122-173.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
+        guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }
         
         var request = URLRequest(url: url)
         
@@ -44,7 +45,7 @@ public struct WebService {
     
     // MARK: - Post
     static public func post<T:Codable>(path: String, body: [String: AnyHashable], type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
-        guard let url = URL(string: "http://ec2-35-86-122-173.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
+        guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }
         
         guard let body = try? JSONSerialization.data(withJSONObject: body, options: []) else { handler(.failure(.parsingJsonError)); return }
         
@@ -73,7 +74,7 @@ public struct WebService {
     
     // MARK: - Put
     static public func put<T:Codable>(path: String, body: [String: AnyHashable], type: T.Type, handler: @escaping (Result<Int, WebServiceError>) -> Void) {
-        guard let url = URL(string: "http://ec2-35-86-122-173.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
+        guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }
         
         guard let body = try? JSONSerialization.data(withJSONObject: body, options: []) else { handler(.failure(.parsingJsonError)); return }
         
@@ -96,7 +97,7 @@ public struct WebService {
     
     // MARK: - Delete
     static public func delete<T:Codable>(path: String, type: T.Type, handler: @escaping (Result<Int, WebServiceError>) -> Void) {
-        guard let url = URL(string: "http://ec2-35-86-122-173.us-west-2.compute.amazonaws.com:3000\(path)") else { handler(.failure(.badUrlError)); return }
+        guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }
         
         var request = URLRequest(url: url)
         
