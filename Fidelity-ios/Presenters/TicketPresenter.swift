@@ -60,7 +60,6 @@ class TicketPresenter {
             }
             switch result {
             case .success(let wasCompleted):
-                print(wasCompleted)
                 if wasCompleted.wasUsed {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.view?.presentAlert(message: "Você resgatou seus tickets", title: "Parabéns!")
