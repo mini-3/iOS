@@ -148,7 +148,9 @@ class CreateUpdatePromotionViewController: UIViewController {
         return button
     }()
     
-    var type: PromotionManipulationType = .create
+    private var promotion: Promotion?
+    private var type: PromotionManipulationType = .create
+    private let presenter = PromotionPresenter()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -157,6 +159,9 @@ class CreateUpdatePromotionViewController: UIViewController {
         self.addSubviews()
         self.addConstraints()
         self.configure(type: .create)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapExecute))
+        executeButton.addGestureRecognizer(gesture)
+        presenter.view = self
     }
     
     func configure(type: PromotionManipulationType){
@@ -166,6 +171,21 @@ class CreateUpdatePromotionViewController: UIViewController {
         case .update:
             executeButton.setTitle("Atualizar", for: .normal)
             self.type = .update
+        }
+    }
+    
+    // MARK: - ObjC
+    @objc func didTapExecute() {
+        self.executeButton.pulsate()
+        if let winAmount = winAmountTextField.text {
+            print(winAmount)
+            switch type {
+            case .create:
+                self.presenter.create(name: nameTextField.text, ticketType: ticketTypeTextField.text, winTicketAmount: Int(winAmount), award: awardTextField.text, start: startDatePicker.picker.date, end: endDatePicker.picker.date, storeId: 1)
+            case .update:
+                guard let promotion = promotion else { return }
+                self.presenter.update(promotionId: promotion.id, name: nameTextField.text, ticketType: ticketTypeTextField.text, winTicketAmount: Int(winAmount), award: awardTextField.text, start: startDatePicker.picker.date, end: endDatePicker.picker.date)
+            }
         }
     }
     

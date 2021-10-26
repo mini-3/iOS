@@ -64,6 +64,7 @@ class PromotionPresenter {
     func create(name: String?, ticketType: String?, winTicketAmount: Int?, award: String?, start: Date?, end: Date?, storeId: Int) {
         var body: [String: AnyHashable] = ["store_id": storeId]
         
+        print(winTicketAmount)
         if let winTicketAmount = winTicketAmount {
             body["win_ticket_amount"] = winTicketAmount
         }
@@ -75,7 +76,6 @@ class PromotionPresenter {
         if let ticketType = ticketType, !ticketType.isEmpty {
             body["ticket_type"] = ticketType
         }
-
         
         if let award = award, !award.isEmpty {
             body["award"] = award
@@ -92,6 +92,8 @@ class PromotionPresenter {
         DispatchQueue.main.async {
             self.view?.presentLoadingScreen()
         }
+        
+        print(body)
         
         WebService.post(path: "/promotions", body: body, type: Promotion.self) {[weak self] result in
             guard let self = self else { return }
