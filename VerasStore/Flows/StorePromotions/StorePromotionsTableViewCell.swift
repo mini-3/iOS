@@ -25,7 +25,8 @@ class StorePromotionsTableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.contentMode = .top
+        stackView.distribution = .equalCentering
         
         return stackView
     }()
@@ -94,6 +95,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.alpha = 1
+        view.clipsToBounds = true
         
         return view
     }()
@@ -105,7 +107,6 @@ class StorePromotionsTableViewCell: UITableViewCell {
         imageView.backgroundColor = .white
         imageView.tintColor = .black
         imageView.contentScaleFactor = 1
-        imageView.alpha = 1
         
         return imageView
     }()
@@ -127,6 +128,9 @@ class StorePromotionsTableViewCell: UITableViewCell {
         self.configureSubViews()
         self.configureStacks()
         self.configureConstraints()
+        
+        contentView.backgroundColor = UIColor(named: "Background")
+        self.qrCodeView.layer.cornerRadius = qrCodeView.frame.width/2
         
         self.promotionNameLabel.text = promotionName
         self.amountLabel.text = "\(amount)x"
@@ -165,16 +169,23 @@ class StorePromotionsTableViewCell: UITableViewCell {
             horizontalStackView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16)
         ]
         
+        let avatarImageViewConstraints = [
+            avatarImageView.heightAnchor.constraint(equalToConstant: 50),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 50)
+        ]
+        
         let verticalStackViewConstraints = [
             verticalStackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
             verticalStackView.trailingAnchor.constraint(equalTo: qrCodeView.leadingAnchor, constant: -16),
-            verticalStackView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 16),
-            verticalStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
+            verticalStackView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 24),
+            verticalStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -24)
         ]
         
         let qrCodeViewConstraints = [
+            qrCodeView.heightAnchor.constraint(equalToConstant: 50),
+            qrCodeView.widthAnchor.constraint(equalToConstant: 50),
             qrCodeView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
-            qrCodeView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
+            qrCodeView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -24)
         ]
         
         let qrCodeImageViewConstraints = [
@@ -184,6 +195,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate(mainViewConstraints)
         NSLayoutConstraint.activate(horizontalStackViewConstraints)
+        NSLayoutConstraint.activate(avatarImageViewConstraints)
         NSLayoutConstraint.activate(verticalStackViewConstraints)
         NSLayoutConstraint.activate(qrCodeViewConstraints)
         NSLayoutConstraint.activate(qrCodeImageViewConstraints)

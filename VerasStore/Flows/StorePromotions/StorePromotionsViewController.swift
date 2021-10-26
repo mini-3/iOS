@@ -120,13 +120,13 @@ class StorePromotionsViewController: UIViewController {
         let segmentedControlConstraints = [
             segmentedControl.centerXAnchor.constraint(equalTo: segmentedControl.superview!.centerXAnchor),
             segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32),
-            segmentedControl.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 22)
+            segmentedControl.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 32)
         ]
         
         let promotionsTableViewConstraints = [
             promotionsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             promotionsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            promotionsTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 16),
+            promotionsTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 32),
             promotionsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
