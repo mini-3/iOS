@@ -27,7 +27,7 @@ class StorePromotionsViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textColor = .label
         label.numberOfLines = 1
-        label.text = "Nome da loja"
+        label.text = "Estabelecimento"
         
         return label
     }()
@@ -76,6 +76,7 @@ class StorePromotionsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor(named: "Background")
         tableView.register(StorePromotionsTableViewCell.self, forCellReuseIdentifier: StorePromotionsTableViewCell.identifier)
+        tableView.separatorStyle = .none
         
         return tableView
     }()
@@ -87,6 +88,8 @@ class StorePromotionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        promotionsTableView.dataSource = self
+        
         self.configureUI()
         self.configureSubViews()
         self.configureConstraints()
@@ -97,6 +100,8 @@ class StorePromotionsViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = UIColor(named: "Background")
+        verticalStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        storeLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
     }
     
     private func configureSubViews() {
@@ -109,7 +114,7 @@ class StorePromotionsViewController: UIViewController {
         let horizontalStackViewConstraints = [
             horizontalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             horizontalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            horizontalStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 16)
+            horizontalStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 22)
         ]
         
         let segmentedControlConstraints = [
@@ -147,5 +152,22 @@ class StorePromotionsViewController: UIViewController {
     
     @objc private func didRefresh() {
         print("teste")
+    }
+}
+
+extension StorePromotionsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StorePromotionsTableViewCell.identifier) as? StorePromotionsTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.configure(promotionName: "Almoço gratis", amount: 15, customersNumber: 151, dateEnd: "23/10/2022")
+        cell.selectionStyle = .none
+        
+        return cell
     }
 }

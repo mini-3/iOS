@@ -123,11 +123,19 @@ class StorePromotionsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    private func configure() {
+    func configure(promotionName: String, amount: Int, customersNumber: Int, dateEnd: String) {
+        self.configureSubViews()
+        self.configureStacks()
+        self.configureConstraints()
         
+        self.promotionNameLabel.text = promotionName
+        self.amountLabel.text = "\(amount)x"
+        self.customersLabel.text = customersNumber == 1 ? "\(customersNumber) participante" : "\(customersNumber) participantes"
+        self.dateLabel.text = "Válido até \(dateEnd)"
     }
     
     private func configureSubViews() {
+        contentView.addSubview(mainView)
         mainView.addSubview(horizontalStackView)
         mainView.addSubview(verticalStackView)
         qrCodeView.addSubview(qrCodeImageView)
@@ -143,6 +151,14 @@ class StorePromotionsTableViewCell: UITableViewCell {
     }
     
     private func configureConstraints() {
+        let mainViewConstraints = [
+            mainView.heightAnchor.constraint(equalToConstant: 168),
+            mainView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
+            mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
+            mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
+        ]
+        
         let horizontalStackViewConstraints = [
             horizontalStackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
             horizontalStackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
@@ -161,9 +177,16 @@ class StorePromotionsTableViewCell: UITableViewCell {
             qrCodeView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
         ]
         
+        let qrCodeImageViewConstraints = [
+            qrCodeImageView.centerYAnchor.constraint(equalTo: qrCodeView.centerYAnchor),
+            qrCodeImageView.centerXAnchor.constraint(equalTo: qrCodeView.centerXAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(mainViewConstraints)
         NSLayoutConstraint.activate(horizontalStackViewConstraints)
         NSLayoutConstraint.activate(verticalStackViewConstraints)
         NSLayoutConstraint.activate(qrCodeViewConstraints)
+        NSLayoutConstraint.activate(qrCodeImageViewConstraints)
     }
 
 }
