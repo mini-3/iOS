@@ -67,7 +67,7 @@ class GenerateTicketViewController: UIViewController {
         let addCustomerButtonConstraints = [
             addCustomerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             addCustomerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            addCustomerButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            addCustomerButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -16),
             addCustomerButton.heightAnchor.constraint(equalToConstant: 40)
         ]
         
@@ -77,7 +77,19 @@ class GenerateTicketViewController: UIViewController {
     
     //MARK: - Objc
     @objc func addCustomer(sender: UIButton) {
+        let alert = UIAlertController(title: "Adicionar ticket por email", message: "", preferredStyle: .alert)
         
+        alert.addTextField { (textField) in
+            textField.placeholder = "Digite o email"
+        }
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func tappedBackButton(sender: UIBarButtonItem) {
