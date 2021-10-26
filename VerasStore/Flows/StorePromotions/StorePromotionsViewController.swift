@@ -81,7 +81,8 @@ class StorePromotionsViewController: UIViewController {
         return tableView
     }()
     
-    private var store: StoreViewModel?
+    var promotions: [PromotionViewModel] = []
+    private let promotionPresenter = PromotionPresenter()
     
     //MARK: - Lifecycle
     
@@ -89,11 +90,18 @@ class StorePromotionsViewController: UIViewController {
         super.viewDidLoad()
         
         promotionsTableView.dataSource = self
+        self.promotionPresenter.view = self
         
         self.configureUI()
         self.configureSubViews()
         self.configureConstraints()
         self.configureStacks()
+        self.configureRefresh()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.promotionPresenter.fetch(withLoadingScreen: true)
     }
     
     //MARK: - Functionalities
@@ -151,13 +159,23 @@ class StorePromotionsViewController: UIViewController {
     // MARK: - Objc
     
     @objc private func didRefresh() {
-        print("teste")
+        self.promotionPresenter.fetch(withLoadingScreen: false)
+    }
+}
+
+extension StorePromotionsViewController: PromotionPresenterDelegate {
+    func fetched(promotions: [PromotionViewModel]) {
+        self.promotions = promotions
+        DispatchQueue.main.async {
+            self.promotionsTableView.reloadData()
+            self.promotionsTableView.refreshControl?.endRefreshing()
+        }
     }
 }
 
 extension StorePromotionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.promotions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,7 +183,10 @@ extension StorePromotionsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(promotionName: "Almoço gratis", amount: 15, customersNumber: 151, dateEnd: "23/10/2022")
+        let promotion = promotions[indexPath.row]
+        guard let model = promotion.promotion else { return UITableViewCell() }
+        
+        cell.configure(promotionName: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
         cell.selectionStyle = .none
         
         return cell

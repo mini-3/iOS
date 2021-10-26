@@ -130,12 +130,12 @@ class StorePromotionsTableViewCell: UITableViewCell {
         self.configureConstraints()
         
         contentView.backgroundColor = UIColor(named: "Background")
-        self.qrCodeView.layer.cornerRadius = qrCodeView.frame.width/2
+        self.qrCodeView.layer.cornerRadius = 25
         
         self.promotionNameLabel.text = promotionName
         self.amountLabel.text = "\(amount)x"
         self.customersLabel.text = customersNumber == 1 ? "\(customersNumber) participante" : "\(customersNumber) participantes"
-        self.dateLabel.text = "Válido até \(dateEnd)"
+        self.dateLabel.text = "Válido \(dateEnd)"
     }
     
     private func configureSubViews() {
