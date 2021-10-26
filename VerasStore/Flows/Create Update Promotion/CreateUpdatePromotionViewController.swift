@@ -12,7 +12,7 @@ enum PromotionManipulationType {
     case update
 }
 
-class CreateUpdatePromotionViewController: UIViewController {
+class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterDelegate {
     
     // MARK: - Subviews
     private let cardView: GradientView = {

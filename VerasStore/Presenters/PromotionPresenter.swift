@@ -100,8 +100,6 @@ class PromotionPresenter {
             self.view?.presentLoadingScreen()
         }
         
-        print(body)
-        
         WebService.post(path: "/promotions", body: body, type: Promotion.self) {[weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
