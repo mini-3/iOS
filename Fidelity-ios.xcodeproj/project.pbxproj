@@ -119,6 +119,7 @@
 		DEC0F018272736CE002ACFC4 /* StorePromotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0F017272736CE002ACFC4 /* StorePromotionsViewController.swift */; };
 		DEC0F01C27273A6C002ACFC4 /* StorePromotionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0F01B27273A6C002ACFC4 /* StorePromotionsTableViewCell.swift */; };
 		DEC0F01D2727A502002ACFC4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE3442718E1F4005165AA /* GradientView.swift */; };
+		DEC0F02227288BE3002ACFC4 /* GenerateTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0F02127288BE3002ACFC4 /* GenerateTicketViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,6 +262,7 @@
 		DE2B416B272201D7007AE381 /* LogInUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUserResponse.swift; sourceTree = "<group>"; };
 		DEC0F017272736CE002ACFC4 /* StorePromotionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePromotionsViewController.swift; sourceTree = "<group>"; };
 		DEC0F01B27273A6C002ACFC4 /* StorePromotionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePromotionsTableViewCell.swift; sourceTree = "<group>"; };
+		DEC0F02127288BE3002ACFC4 /* GenerateTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateTicketViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -720,6 +722,23 @@
 		DEC0F01A2727374A002ACFC4 /* StorePromotions */ = {
 			isa = PBXGroup;
 			children = (
+				DEC0F02327288BF8002ACFC4 /* StorePromotions */,
+				DEC0F02027288BA9002ACFC4 /* GenerateTicket */,
+			);
+			path = StorePromotions;
+			sourceTree = "<group>";
+		};
+		DEC0F02027288BA9002ACFC4 /* GenerateTicket */ = {
+			isa = PBXGroup;
+			children = (
+				DEC0F02127288BE3002ACFC4 /* GenerateTicketViewController.swift */,
+			);
+			path = GenerateTicket;
+			sourceTree = "<group>";
+		};
+		DEC0F02327288BF8002ACFC4 /* StorePromotions */ = {
+			isa = PBXGroup;
+			children = (
 				DEC0F017272736CE002ACFC4 /* StorePromotionsViewController.swift */,
 				DEC0F01B27273A6C002ACFC4 /* StorePromotionsTableViewCell.swift */,
 			);
@@ -1120,6 +1139,7 @@
 				DEC0F018272736CE002ACFC4 /* StorePromotionsViewController.swift in Sources */,
 				6D921D3227273FF6004170EA /* PromotionUsersPresenter.swift in Sources */,
 				6DC67E9B272725AA00FD79E0 /* LogInStoreResponse.swift in Sources */,
+				DEC0F02227288BE3002ACFC4 /* GenerateTicketViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
