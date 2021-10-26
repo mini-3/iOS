@@ -91,6 +91,7 @@ class StorePromotionsViewController: UIViewController {
         super.viewDidLoad()
         
         promotionsTableView.dataSource = self
+        promotionsTableView.delegate = self
         self.promotionPresenter.view = self
         
         self.configureUI()
@@ -197,7 +198,7 @@ extension StorePromotionsViewController: PromotionPresenterDelegate {
     }
 }
 
-extension StorePromotionsViewController: UITableViewDataSource {
+extension StorePromotionsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredPromotions.count
     }
@@ -214,5 +215,12 @@ extension StorePromotionsViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let promotion = filteredPromotions[indexPath.row]
+        let vc = StoreFidelityDetailsViewController()
+        vc.promotion = promotion
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
