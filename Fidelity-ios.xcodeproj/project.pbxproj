@@ -64,6 +64,9 @@
 		6DAE7D712718EE7500B04B6B /* UserPromotionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAE7D702718EE7500B04B6B /* UserPromotionsCollectionViewCell.swift */; };
 		6DAF579D271A0551003620A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF579C271A0551003620A6 /* LoginViewController.swift */; };
 		6DAF579F271A0F2A003620A6 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF579E271A0F2A003620A6 /* TextField.swift */; };
+		6DC06CF527287F87006A8079 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF579E271A0F2A003620A6 /* TextField.swift */; };
+		6DC06CF627287F89006A8079 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1731C271F4F84007ABCC8 /* DatePicker.swift */; };
+		6DC06CFA27288064006A8079 /* CreateUpdatePromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC06CF927288064006A8079 /* CreateUpdatePromotionViewController.swift */; };
 		6DC4A0312710DD3A00C4AD69 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0302710DD3A00C4AD69 /* MainTabBarViewController.swift */; };
 		6DC4A0362710DF1400C4AD69 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4A0352710DF1400C4AD69 /* DateExtensions.swift */; };
 		6DC67E96272724C100FD79E0 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC67E95272724C100FD79E0 /* WebService.swift */; };
@@ -227,6 +230,7 @@
 		6DAE7D702718EE7500B04B6B /* UserPromotionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPromotionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6DAF579C271A0551003620A6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6DAF579E271A0F2A003620A6 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		6DC06CF927288064006A8079 /* CreateUpdatePromotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUpdatePromotionViewController.swift; sourceTree = "<group>"; };
 		6DC4A0302710DD3A00C4AD69 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		6DC4A0352710DF1400C4AD69 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		6DC67E95272724C100FD79E0 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
@@ -381,8 +385,9 @@
 		4E79D04A272732BF009BD2E5 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				6DC06CF827288036006A8079 /* Create Update Promotion */,
+				6DC06CF727288029006A8079 /* Store Fidelity */,
 				6DC67EA027273A6F00FD79E0 /* Promotion Users */,
-				4E79D04C272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -573,6 +578,22 @@
 				DE2B415D2718A402007AE381 /* StoreDetailsViewController.swift */,
 			);
 			path = "Store Details";
+			sourceTree = "<group>";
+		};
+		6DC06CF727288029006A8079 /* Store Fidelity */ = {
+			isa = PBXGroup;
+			children = (
+				4E79D04C272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift */,
+			);
+			path = "Store Fidelity";
+			sourceTree = "<group>";
+		};
+		6DC06CF827288036006A8079 /* Create Update Promotion */ = {
+			isa = PBXGroup;
+			children = (
+				6DC06CF927288064006A8079 /* CreateUpdatePromotionViewController.swift */,
+			);
+			path = "Create Update Promotion";
 			sourceTree = "<group>";
 		};
 		6DC4A02E2710DCCB00C4AD69 /* Login */ = {
@@ -1082,6 +1103,7 @@
 				DE2B416D27220244007AE381 /* LogInUserResponse.swift in Sources */,
 				6DFDEA342721D30E0014F389 /* Promotion.swift in Sources */,
 				6DF5B7DF2722D2420073D689 /* StringExtensions.swift in Sources */,
+				6DC06CF527287F87006A8079 /* TextField.swift in Sources */,
 				6DFDEA392721D3190014F389 /* SessionResponse.swift in Sources */,
 				6DF5B7DD2722D23D0073D689 /* ImageExtensions.swift in Sources */,
 				6DFDE9F12721D1FF0014F389 /* AppDelegate.swift in Sources */,
@@ -1089,6 +1111,7 @@
 				6DFDEA3A2721D31B0014F389 /* UserPromotionTicketsResponse.swift in Sources */,
 				6DFDEA3C2721D31F0014F389 /* TicketBatchResponse.swift in Sources */,
 				6DFDE9F32721D1FF0014F389 /* SceneDelegate.swift in Sources */,
+				6DC06CFA27288064006A8079 /* CreateUpdatePromotionViewController.swift in Sources */,
 				6DC67EA327273A8800FD79E0 /* PromotionUsersViewController.swift in Sources */,
 				6DF5B7E22722D24C0073D689 /* ButtonExtensions.swift in Sources */,
 				6DC67E96272724C100FD79E0 /* WebService.swift in Sources */,
@@ -1102,6 +1125,7 @@
 				34F243132721E67400F2BADC /* OnboardSectionTableViewCell.swift in Sources */,
 				6D921D3227273FF6004170EA /* PromotionUsersPresenter.swift in Sources */,
 				6DC67E9B272725AA00FD79E0 /* LogInStoreResponse.swift in Sources */,
+				6DC06CF627287F89006A8079 /* DatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

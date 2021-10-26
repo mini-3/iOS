@@ -467,7 +467,7 @@ class StoreFidelityDetailsViewController: UIViewController {
         ]
         
         let cardViewContraints = [
-            card.topAnchor.constraint(equalTo: view.topAnchor, constant: 64),
+            card.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 64),
             card.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             card.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             card.heightAnchor.constraint(equalToConstant: 168)
