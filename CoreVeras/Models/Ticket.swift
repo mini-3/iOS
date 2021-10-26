@@ -10,7 +10,7 @@ import Foundation
 public struct Ticket: Codable {
     let id: Int
     let isUsed: Bool
-    let user: EmailUser?
+    let email_user: EmailUser?
     let user_id: Int?
     let promotion: Promotion?
     let promotion_id: Int?
