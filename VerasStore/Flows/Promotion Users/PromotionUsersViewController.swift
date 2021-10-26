@@ -42,8 +42,6 @@ class PromotionUsersViewController: UIViewController {
         self.addSubviews()
         self.addConstraints()
         presenter.fetch(promotionId: promotionId)
-        let presenter = PromotionPresenter()
-        presenter.create(name: "Promoção de aniversário", ticketType: "almoço", winTicketAmount: 5, award: "Um almoço", start: Date(), end: Date(), storeId: 3)
     }
     
     // MARK: - Functionalities
