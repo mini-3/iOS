@@ -14,362 +14,332 @@ class StoreFidelityDetailsViewController: ViewController {
     
     //MARK: - CARD VIEW
     private let card: GradientView = {
-        let card = GradientView()
-        card.layer.cornerRadius = 12
-        card.backgroundColor = UIColor.random
-        card.clipsToBounds = true
-        card.translatesAutoresizingMaskIntoConstraints = false
-        return card
+        let view = GradientView()
+        view.layer.cornerRadius = 12
+        view.backgroundColor = UIColor.random
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     //MARK: - CARD INNER VIEWS
     private let avatarImageView: UIImageView = {
-        let avatarImageView = UIImageView()
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.tintColor = .white
-        avatarImageView.image = UIImage(systemName: "person.fill")
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = .white
+        imageView.image = UIImage(systemName: "person.fill")
         
-        return avatarImageView
+        return imageView
     }()
     
     private let storeNameLabel: UILabel = {
-        let storeNameLabel = UILabel()
-        storeNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        storeNameLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        storeNameLabel.numberOfLines = 3
-        storeNameLabel.textColor = .white
-        storeNameLabel.text = "storeNameLabel"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.numberOfLines = 3
+        label.textColor = .white
+        label.text = "storeNameLabel"
         
-        return storeNameLabel
+        return label
     }()
     
     private let ticketCountLabel: UILabel = {
-        let ticketCountLabel = UILabel()
-        ticketCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        ticketCountLabel.setContentHuggingPriority(.required, for: .horizontal)
-        ticketCountLabel.font = UIFont.systemFont(ofSize: 14)
-        ticketCountLabel.setContentHuggingPriority(.required, for: .horizontal)
-        ticketCountLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        ticketCountLabel.textColor = .white
-        ticketCountLabel.text = "ticketCountLabel"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        label.textColor = .white
+        label.text = "ticketCountLabel"
         
-        return ticketCountLabel
+        return label
     }()
     
     private let awardPrizeLabel: UILabel = {
-        let awardPrizeLabel = UILabel()
-        awardPrizeLabel.translatesAutoresizingMaskIntoConstraints = false
-        awardPrizeLabel.font = UIFont.systemFont(ofSize: 14)
-        awardPrizeLabel.textColor = .white
-        awardPrizeLabel.text = "awardPrizeLabel"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .white
+        label.text = "awardPrizeLabel"
         
-        return awardPrizeLabel
+        return label
     }()
     
     //MARK: - DESCRIPTION STACKVIEW
     private lazy var descriptionStackView: UIStackView = {
-        let descriptionStackView = UIStackView()
-        descriptionStackView.axis = .vertical
-        descriptionStackView.translatesAutoresizingMaskIntoConstraints = false
-        descriptionStackView.spacing = 2
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 2
         
-        return descriptionStackView
+        return stackView
     }()
     
     private lazy var descriptionLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
-        descriptionLabel.textColor = UIColor(named: "secondaryLabel")
-        descriptionLabel.numberOfLines = 1
-        descriptionLabel.text = "Descrição"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "secondaryLabel")
+        label.numberOfLines = 1
+        label.text = "Descrição"
         
-        return descriptionLabel
+        return label
     }()
     
     private lazy var descriptionContentLabel: UILabel = {
-        let descriptionContentLabel = UILabel()
-        descriptionContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionContentLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        descriptionContentLabel.textColor = .label
-        descriptionContentLabel.numberOfLines = 0
-        descriptionContentLabel.text = "recompensa x" //TODO "Recompensa da promoção"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .label
+        label.numberOfLines = 0
         
-        return descriptionContentLabel
+        return label
     }()
     
     //MARK: - QUANTITY STACKVIEW
     private lazy var quantityStackView: UIStackView = {
-        let quantityStackView = UIStackView()
-        quantityStackView.axis = .vertical
-        quantityStackView.translatesAutoresizingMaskIntoConstraints = false
-        quantityStackView.spacing = 2
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 2
         
-        return quantityStackView
+        return stackView
     }()
     
     private lazy var quantityLabel: UILabel = {
-        let quantityLabel = UILabel()
-        quantityLabel.translatesAutoresizingMaskIntoConstraints = false
-        quantityLabel.font = UIFont.systemFont(ofSize: 14)
-        quantityLabel.textColor = UIColor(named: "secondaryLabel")
-        quantityLabel.numberOfLines = 1
-        quantityLabel.text = "Descrição"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "secondaryLabel")
+        label.numberOfLines = 1
+        label.text = "Quantidade"
         
-        return quantityLabel
+        return label
     }()
     
     private lazy var quantityContentLabel: UILabel = {
-        let quantityContentLabel = UILabel()
-        quantityContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        quantityContentLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        quantityContentLabel.textColor = .label
-        quantityContentLabel.numberOfLines = 0
-        quantityContentLabel.text = "10" //TODO "Recompensa da promoção"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .label
+        label.numberOfLines = 0
+        label.text = "10" //TODO "Recompensa da promoção"
         
-        return quantityContentLabel
+        return label
     }()
     
     //MARK: - AWARD STACKVIEW
     private lazy var awardStackView: UIStackView = {
-        let awardStackView = UIStackView()
-        awardStackView.axis = .vertical
-        awardStackView.translatesAutoresizingMaskIntoConstraints = false
-        awardStackView.spacing = 2
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 2
         
-        return awardStackView
+        return stackView
     }()
     
     private lazy var awardLabel: UILabel = {
-        let awardLabel = UILabel()
-        awardLabel.translatesAutoresizingMaskIntoConstraints = false
-        awardLabel.font = UIFont.systemFont(ofSize: 14)
-        awardLabel.textColor = UIColor(named: "secondaryLabel")
-        awardLabel.numberOfLines = 1
-        awardLabel.text = "Recompensa"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "secondaryLabel")
+        label.numberOfLines = 1
+        label.text = "Recompensa"
         
-        return awardLabel
+        return label
     }()
     
     private lazy var awardContentLabel: UILabel = {
-        let awardContentLabel = UILabel()
-        awardContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        awardContentLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        awardContentLabel.textColor = .label
-        awardContentLabel.numberOfLines = 0
-        awardContentLabel.text = "1 biceps" //TODO "Recompensa da promoção"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .label
+        label.numberOfLines = 0
         
-        return awardContentLabel
+        return label
     }()
     
     private lazy var horizontalDateStackView: UIStackView = {
-        let horizontalDateStackView = UIStackView()
-        horizontalDateStackView.axis = .horizontal
-        horizontalDateStackView.translatesAutoresizingMaskIntoConstraints = false
-        //horizontalDateStackView.spacing = 0
-        horizontalDateStackView.distribution = .equalSpacing
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .equalSpacing
         
-        return horizontalDateStackView
+        return stackView
     }()
     
     //MARK: - STARTDATE STACKVIEW
     private lazy var startDateStackView: UIStackView = {
-        let startDateStackView = UIStackView()
-        startDateStackView.axis = .vertical
-        startDateStackView.translatesAutoresizingMaskIntoConstraints = false
-        startDateStackView.spacing = 2
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 2
         
-        return startDateStackView
+        return stackView
     }()
     
     private lazy var startDateLabel: UILabel = {
-        let startDateLabel = UILabel()
-        startDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        startDateLabel.font = UIFont.systemFont(ofSize: 14)
-        startDateLabel.textColor = UIColor(named: "secondaryLabel")
-        startDateLabel.numberOfLines = 1
-        startDateLabel.text = "Data inicial"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "secondaryLabel")
+        label.numberOfLines = 1
+        label.text = "Data inicial"
         
-        return startDateLabel
+        return label
     }()
     
     private lazy var startDateContentLabel: UILabel = {
-        let startDateContentLabel = UILabel()
-        startDateContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        startDateContentLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        startDateContentLabel.textColor = .label
-        startDateContentLabel.numberOfLines = 0
-        startDateContentLabel.text = "1 biceps" //TODO "Recompensa da promoção"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .label
+        label.numberOfLines = 0
         
-        return startDateContentLabel
+        return label
     }()
     
     //MARK: - ENDDATE STACKVIEW
     private lazy var endDateStackView: UIStackView = {
-        let endDateStackView = UIStackView()
-        endDateStackView.axis = .vertical
-        endDateStackView.translatesAutoresizingMaskIntoConstraints = false
-        endDateStackView.spacing = 2
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 2
         
-        return endDateStackView
+        return stackView
     }()
     
     private lazy var endDateLabel: UILabel = {
-        let endDateLabel = UILabel()
-        endDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        endDateLabel.font = UIFont.systemFont(ofSize: 14)
-        endDateLabel.textColor = UIColor(named: "secondaryLabel")
-        endDateLabel.numberOfLines = 1
-        endDateLabel.text = "Data final"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "secondaryLabel")
+        label.numberOfLines = 1
+        label.text = "Data final"
         
-        return endDateLabel
+        return label
     }()
     
     private lazy var endDateContentLabel: UILabel = {
-        let endDateContentLabel = UILabel()
-        endDateContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        endDateContentLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        endDateContentLabel.textColor = .label
-        endDateContentLabel.numberOfLines = 0
-        endDateContentLabel.text = "1 biceps" //TODO "Recompensa da promoção"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .label
+        label.numberOfLines = 0
         
-        return endDateContentLabel
-    }()
-    
-    private lazy var horizontalParticipantsStackView: UIStackView = {
-        let horizontalParticipantsStackView = UIStackView()
-        horizontalParticipantsStackView.axis = .horizontal
-        horizontalParticipantsStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalParticipantsStackView.spacing = 16
-        
-        return horizontalParticipantsStackView
+        return label
     }()
     
     //MARK: - PARTICIPANTS STACKVIEW
     private lazy var participantsStackView: UIStackView = {
-        let participantsStackView = UIStackView()
-        participantsStackView.axis = .vertical
-        participantsStackView.translatesAutoresizingMaskIntoConstraints = false
-        participantsStackView.spacing = 2
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 2
         
-        return participantsStackView
+        return stackView
     }()
     
     private lazy var participantsLabel: UILabel = {
-        let participantsLabel = UILabel()
-        participantsLabel.translatesAutoresizingMaskIntoConstraints = false
-        participantsLabel.font = UIFont.systemFont(ofSize: 14)
-        participantsLabel.textColor = UIColor(named: "secondaryLabel")
-        participantsLabel.numberOfLines = 1
-        participantsLabel.text = "Participantes"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(named: "secondaryLabel")
+        label.numberOfLines = 1
+        label.text = "Participantes"
         
-        return participantsLabel
+        return label
     }()
     
     private lazy var participantsContentLabel: UILabel = {
-        let participantsContentLabel = UILabel()
-        participantsContentLabel.translatesAutoresizingMaskIntoConstraints = false
-        participantsContentLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        participantsContentLabel.textColor = .label
-        participantsContentLabel.numberOfLines = 0
-        participantsContentLabel.text = "150" //TODO "Recompensa da promoção"
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .label
+        label.numberOfLines = 0
         
-        return participantsContentLabel
+        return label
     }()
     
     //MARK: - SEEPARTICIPANTS BUTTON
     private lazy var seeParticipantsButton: UIButton = {
-        let seeParticipantsButton = UIButton()
-        seeParticipantsButton.translatesAutoresizingMaskIntoConstraints = false
-        seeParticipantsButton.setTitle("Ver participantes", for: .normal)
-        seeParticipantsButton.setTitleColor(.black, for: .normal)
-        seeParticipantsButton.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
-        seeParticipantsButton.backgroundColor = .white
-        seeParticipantsButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        seeParticipantsButton.titleLabel?.textAlignment = .center
-        //seeParticipantsButton.addTarget(self, action: #selector(seeParticipants), for: .touchUpInside)
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Ver participantes", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
+        button.backgroundColor = .white
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(seeParticipants), for: .touchUpInside)
         
-        return seeParticipantsButton
+        return button
     }()
     
     //MARK: - HORIZONTAL BUTTON STACKVIEW
     private lazy var horizontalButtonStackView: UIStackView = {
-        let horizontalButtonStackView = UIStackView()
-        horizontalButtonStackView.axis = .horizontal
-        horizontalButtonStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalButtonStackView.spacing = 8
-        horizontalButtonStackView.distribution = .fillEqually
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 16
+        stackView.distribution = .fillEqually
         
-        return horizontalButtonStackView
+        return stackView
     }()
     
     private lazy var editButton: UIButton = {
-        let editButton = UIButton()
-        editButton.translatesAutoresizingMaskIntoConstraints = false
-        editButton.setTitle("Editar", for: .normal)
-        editButton.setTitleColor(.black, for: .normal)
-        editButton.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
-        editButton.backgroundColor = .white
-        editButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        editButton.titleLabel?.textAlignment = .center
-        //seeParticipantsButton.addTarget(self, action: #selector(editPromotion), for: .touchUpInside)
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Editar", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
+        button.backgroundColor = .white
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(editPromotion), for: .touchUpInside)
         
-        return editButton
+        return button
     }()
-    
-    private lazy var endButton: UIButton = {
-        let endButton = UIButton()
-        endButton.translatesAutoresizingMaskIntoConstraints = false
-        endButton.setTitle("Encerrrar", for: .normal)
-        endButton.setTitleColor(.black, for: .normal)
-        endButton.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
-        endButton.backgroundColor = .white
-        endButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        endButton.titleLabel?.textAlignment = .center
-        //seeParticipantsButton.addTarget(self, action: #selector(endPromotion), for: .touchUpInside)
-        
-        return editButton
-    }()
-    
     //MARK: - VERTICAL BUTTON STACKVIEW
     private lazy var verticalButtonStackView: UIStackView = {
-        let verticalButtonStackView = UIStackView()
-        verticalButtonStackView.axis = .vertical
-        verticalButtonStackView.translatesAutoresizingMaskIntoConstraints = false
-        verticalButtonStackView.spacing = 4
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 16
         
-        return horizontalButtonStackView
+        return stackView
     }()
     
     //MARK: - registerClient Button
     private lazy var registerClientButton: UIButton = {
-        let registerClientButton = UIButton()
-        registerClientButton.translatesAutoresizingMaskIntoConstraints = false
-        registerClientButton.setTitle("Cadastrar cliente", for: .normal)
-        registerClientButton.setTitleColor(.black, for: .normal)
-        registerClientButton.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
-        registerClientButton.backgroundColor = .white
-        registerClientButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        registerClientButton.titleLabel?.textAlignment = .center
-        //seeParticipantsButton.addTarget(self, action: #selector(endPromotion), for: .touchUpInside)
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Cadastrar cliente", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
+        button.backgroundColor = .white
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(registerClient), for: .touchUpInside)
         
-        return registerClientButton
+        return button
     }()
     
     //MARK: - qrCode Button
     private lazy var qrCodeButton: UIButton = {
-        let qrCodeButton = UIButton()
-        qrCodeButton.translatesAutoresizingMaskIntoConstraints = false
-        qrCodeButton.setTitle("Mostrar QR Code", for: .normal)
-        qrCodeButton.setTitleColor(.black, for: .normal)
-        qrCodeButton.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
-        qrCodeButton.backgroundColor = .white
-        qrCodeButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        qrCodeButton.titleLabel?.textAlignment = .center
-        //seeParticipantsButton.addTarget(self, action: #selector(endPromotion), for: .touchUpInside)
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Mostrar QR Code", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
+        button.backgroundColor = .white
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(qrCode), for: .touchUpInside)
         
-        return qrCodeButton
+        return button
     }()
     
     //MARK: - VIEWDIDLOAD
@@ -392,20 +362,20 @@ class StoreFidelityDetailsViewController: ViewController {
     }
     
     func configureData() {
-        storeNameLabel.text = "teste" //promotion?.storeName
-        ticketCountLabel.text = "teste" //promotion?.ticketsNeeded
-        awardContentLabel.text = "teste" //promotion?.award
-        quantityContentLabel.text = "teste" //promotion?.ticketsNeeded
-        participantsContentLabel.text = "teste" //promotion?.usersCount
-        startDateContentLabel.text = "teste" //promotion?.startDate
-        endDateContentLabel.text = "teste" //promotion?.endDateStringStore
-        awardPrizeLabel.text = "teste" //promotion?.award
-        descriptionContentLabel.text = "teste" //promotion?.storeDescription
+        storeNameLabel.text = promotion?.storeName
+        ticketCountLabel.text = promotion?.ticketsNeeded
+        awardContentLabel.text = promotion?.award
+        quantityContentLabel.text = promotion?.ticketsNeeded
+        participantsContentLabel.text = promotion?.usersCount
+        startDateContentLabel.text = promotion?.startDate
+        endDateContentLabel.text = promotion?.endDateStringStore
+        awardPrizeLabel.text = promotion?.award
+        descriptionContentLabel.text = promotion?.storeDescription
     }
     
     //MARK: - UI
     func configureUI() {
-        title = "TESTE"
+        title = "Fidelidade"
         view.backgroundColor = UIColor(named: "Background")
     }
     
@@ -436,9 +406,6 @@ class StoreFidelityDetailsViewController: ViewController {
         //MARK: - endDate stackView
         view.addSubview(endDateStackView)
         
-        //MARK: - participantsAndButtonStackView
-        //view.addSubview(horizontalParticipantsStackView)
-        
         //MARK: - participants stackView
         view.addSubview(participantsStackView)
         
@@ -464,8 +431,6 @@ class StoreFidelityDetailsViewController: ViewController {
         startDateStackView.addArrangedSubview(startDateContentLabel)
         endDateStackView.addArrangedSubview(endDateLabel)
         endDateStackView.addArrangedSubview(endDateContentLabel)
-        //horizontalParticipantsStackView.addArrangedSubview(participantsStackView)
-        //horizontalParticipantsStackView.addArrangedSubview(seeParticipantsButton)
         participantsStackView.addArrangedSubview(participantsLabel)
         participantsStackView.addArrangedSubview(participantsContentLabel)
         horizontalButtonStackView.addArrangedSubview(seeParticipantsButton)
@@ -506,21 +471,18 @@ class StoreFidelityDetailsViewController: ViewController {
             card.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             card.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             card.heightAnchor.constraint(equalToConstant: 168)
-            //card.bottomAnchor.constraint(equalTo: descriptionStackView.topAnchor)
         ]
         
         let descriptionStackViewContraints = [
             descriptionStackView.topAnchor.constraint(equalTo: card.bottomAnchor, constant: 16),
             descriptionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            descriptionStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            //descriptionStackView.bottomAnchor.constraint(equalTo: quantityStackView.topAnchor)
+            descriptionStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
         ]
         
         let quantityStackViewContraints = [
             quantityStackView.topAnchor.constraint(equalTo: descriptionStackView.bottomAnchor, constant: 16),
             quantityStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            quantityStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            //quantityStackView.bottomAnchor.constraint(equalTo: awardStackView.topAnchor)
+            quantityStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
             
         ]
         
@@ -536,12 +498,6 @@ class StoreFidelityDetailsViewController: ViewController {
             horizontalDateStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
         ]
         
-        //        let horizontalParticipantsStackViewContraints = [
-        //            horizontalParticipantsStackView.topAnchor.constraint(equalTo: horizontalDateStackView.bottomAnchor, constant: 16),
-        //            horizontalParticipantsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-        //            horizontalParticipantsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
-        //        ]
-        
         let participantsStackViewContraints = [
             participantsStackView.topAnchor.constraint(equalTo: horizontalDateStackView.bottomAnchor, constant: 16),
             participantsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
@@ -549,7 +505,7 @@ class StoreFidelityDetailsViewController: ViewController {
         ]
         
         let horizontalButtonsStackViewContraints = [
-            horizontalButtonStackView.topAnchor.constraint(equalTo: participantsStackView.bottomAnchor, constant: 16),
+            horizontalButtonStackView.topAnchor.constraint(equalTo: participantsStackView.bottomAnchor, constant: 32),
             horizontalButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             horizontalButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
         ]
@@ -563,8 +519,7 @@ class StoreFidelityDetailsViewController: ViewController {
         ]
         
         let verticalButtonsStackViewContraints = [
-            verticalButtonStackView.topAnchor.constraint(equalTo: horizontalButtonStackView.bottomAnchor, constant: 16),
-            //verticalButtonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16),
+            verticalButtonStackView.topAnchor.constraint(equalTo: horizontalButtonStackView.bottomAnchor, constant: 32),
             verticalButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             verticalButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
         ]
@@ -580,9 +535,30 @@ class StoreFidelityDetailsViewController: ViewController {
         NSLayoutConstraint.activate(datesStackViewContraints)
         NSLayoutConstraint.activate(participantsStackViewContraints)
         NSLayoutConstraint.activate(buttonsHeightContraints)
-        //NSLayoutConstraint.activate(horizontalParticipantsStackViewContraints)
         NSLayoutConstraint.activate(horizontalButtonsStackViewContraints)
         NSLayoutConstraint.activate(verticalButtonsStackViewContraints)
         
+    }
+    
+    //MARK: - buttonAction functions
+    
+    @objc func qrCode() {
+        //TODO
+        // go to QRcode Screen
+    }
+    
+    @objc func registerClient() {
+        //TODO
+        // go to register client Screen
+    }
+    
+    @objc func editPromotion() {
+        //TODO
+        // go to edit promotion Screen with promotion DATA
+    }
+    
+    @objc func seeParticipants() {
+        //TODO
+        // go to see participants Screen with promotion DATA
     }
 }
