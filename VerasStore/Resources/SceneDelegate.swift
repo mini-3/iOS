@@ -14,8 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
+        SessionService.shared.logIn(cnpj: "0000", password: "pedroadmin") { iss in
+            print(iss)
+        }
         let vc = StorePromotionsViewController()
-        window.rootViewController = vc
+        let navVc = UINavigationController(rootViewController: vc)
+        window.rootViewController = navVc
         window.makeKeyAndVisible()
         self.window = window
         return
