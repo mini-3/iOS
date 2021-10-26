@@ -553,8 +553,10 @@ class StoreFidelityDetailsViewController: UIViewController {
     }
     
     @objc func editPromotion() {
-        //TODO
-        // go to edit promotion Screen with promotion DATA
+        guard let viewModel = promotion, let promotion = viewModel.promotion else { return }
+        let vc = CreateUpdatePromotionViewController()
+        vc.configure(type: .update, promotion: promotion)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func seeParticipants() {
