@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class StoreFidelityDetailsViewController: ViewController {
+class StoreFidelityDetailsViewController: UIViewController {
     
     var promotion: PromotionViewModel?
     
