@@ -82,6 +82,7 @@ class StorePromotionsViewController: UIViewController {
     }()
     
     var promotions: [PromotionViewModel] = []
+    var filteredPromotions: [PromotionViewModel] = []
     private let promotionPresenter = PromotionPresenter()
     
     //MARK: - Lifecycle
@@ -110,6 +111,7 @@ class StorePromotionsViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         verticalStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
         storeLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        segmentedControl.addTarget(self, action: #selector(didChangedSegmented(_:)), for: .valueChanged)
     }
     
     private func configureSubViews() {
@@ -161,11 +163,33 @@ class StorePromotionsViewController: UIViewController {
     @objc private func didRefresh() {
         self.promotionPresenter.fetch(withLoadingScreen: false)
     }
+    
+    @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            self.filteredPromotions = self.promotions.filter {
+                guard let promotion = $0.promotion else { return false }
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+                guard let date = formatter.date(from: promotion.end) else { return false }
+                return date >= Date()
+            }
+        } else {
+            self.filteredPromotions = self.promotions.filter {
+                guard let promotion = $0.promotion else { return false }
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+                guard let date = formatter.date(from: promotion.end) else { return false }
+                return date < Date()
+            }
+        }
+        promotionsTableView.reloadData()
+    }
 }
 
 extension StorePromotionsViewController: PromotionPresenterDelegate {
     func fetched(promotions: [PromotionViewModel]) {
         self.promotions = promotions
+        self.filteredPromotions = promotions
         DispatchQueue.main.async {
             self.promotionsTableView.reloadData()
             self.promotionsTableView.refreshControl?.endRefreshing()
@@ -175,7 +199,7 @@ extension StorePromotionsViewController: PromotionPresenterDelegate {
 
 extension StorePromotionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.promotions.count
+        return self.filteredPromotions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -183,7 +207,7 @@ extension StorePromotionsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let promotion = promotions[indexPath.row]
+        let promotion = filteredPromotions[indexPath.row]
         guard let model = promotion.promotion else { return UITableViewCell() }
         
         cell.configure(promotionName: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
