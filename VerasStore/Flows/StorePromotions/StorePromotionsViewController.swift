@@ -80,6 +80,8 @@ class StorePromotionsViewController: UIViewController {
         return tableView
     }()
     
+    private var store: StoreViewModel?
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -98,15 +100,22 @@ class StorePromotionsViewController: UIViewController {
     }
     
     private func configureSubViews() {
+        view.addSubview(horizontalStackView)
         view.addSubview(segmentedControl)
         view.addSubview(promotionsTableView)
     }
     
     private func configureConstraints() {
+        let horizontalStackViewConstraints = [
+            horizontalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            horizontalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            horizontalStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 16)
+        ]
+        
         let segmentedControlConstraints = [
             segmentedControl.centerXAnchor.constraint(equalTo: segmentedControl.superview!.centerXAnchor),
             segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32),
-            segmentedControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
+            segmentedControl.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 22)
         ]
         
         let promotionsTableViewConstraints = [
@@ -116,12 +125,16 @@ class StorePromotionsViewController: UIViewController {
             promotionsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
+        NSLayoutConstraint.activate(horizontalStackViewConstraints)
         NSLayoutConstraint.activate(segmentedControlConstraints)
         NSLayoutConstraint.activate(promotionsTableViewConstraints)
     }
     
     private func configureStacks() {
-        
+        horizontalStackView.addArrangedSubview(storeLabel)
+        horizontalStackView.addArrangedSubview(verticalStackView)
+        verticalStackView.addArrangedSubview(customersLabel1)
+        verticalStackView.addArrangedSubview(customersLabel2)
     }
     
     private func configureRefresh() {
