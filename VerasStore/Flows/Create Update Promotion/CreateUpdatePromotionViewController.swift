@@ -18,7 +18,6 @@ class CreateUpdatePromotionViewController: UIViewController {
     private let cardView: GradientView = {
         let view = GradientView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 12
         return view
     }()
     
@@ -178,10 +177,9 @@ class CreateUpdatePromotionViewController: UIViewController {
     @objc func didTapExecute() {
         self.executeButton.pulsate()
         if let winAmount = winAmountTextField.text {
-            print(winAmount)
             switch type {
             case .create:
-                self.presenter.create(name: nameTextField.text, ticketType: ticketTypeTextField.text, winTicketAmount: Int(winAmount), award: awardTextField.text, start: startDatePicker.picker.date, end: endDatePicker.picker.date, storeId: 1)
+                self.presenter.create(name: nameTextField.text, ticketType: ticketTypeTextField.text, winTicketAmount: Int(winAmount), award: awardTextField.text, start: startDatePicker.picker.date, end: endDatePicker.picker.date, storeId: SessionService.shared.storeId)
             case .update:
                 guard let promotion = promotion else { return }
                 self.presenter.update(promotionId: promotion.id, name: nameTextField.text, ticketType: ticketTypeTextField.text, winTicketAmount: Int(winAmount), award: awardTextField.text, start: startDatePicker.picker.date, end: endDatePicker.picker.date)

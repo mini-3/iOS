@@ -63,8 +63,7 @@ class PromotionPresenter {
     
     func create(name: String?, ticketType: String?, winTicketAmount: Int?, award: String?, start: Date?, end: Date?, storeId: Int) {
         var body: [String: AnyHashable] = ["store_id": storeId]
-        
-        print(winTicketAmount)
+
         if let winTicketAmount = winTicketAmount {
             body["win_ticket_amount"] = winTicketAmount
         }
