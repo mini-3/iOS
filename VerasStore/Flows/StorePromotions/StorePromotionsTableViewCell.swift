@@ -128,15 +128,42 @@ class StorePromotionsTableViewCell: UITableViewCell {
     }
     
     private func configureSubViews() {
-        
+        mainView.addSubview(horizontalStackView)
+        mainView.addSubview(verticalStackView)
+        qrCodeView.addSubview(qrCodeImageView)
+        mainView.addSubview(qrCodeView)
     }
     
     private func configureStacks() {
-        
+        horizontalStackView.addArrangedSubview(avatarImageView)
+        horizontalStackView.addArrangedSubview(promotionNameLabel)
+        horizontalStackView.addArrangedSubview(amountLabel)
+        verticalStackView.addArrangedSubview(customersLabel)
+        verticalStackView.addArrangedSubview(dateLabel)
     }
     
     private func configureConstraints() {
+        let horizontalStackViewConstraints = [
+            horizontalStackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
+            horizontalStackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
+            horizontalStackView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16)
+        ]
         
+        let verticalStackViewConstraints = [
+            verticalStackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
+            verticalStackView.trailingAnchor.constraint(equalTo: qrCodeView.leadingAnchor, constant: -16),
+            verticalStackView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 16),
+            verticalStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
+        ]
+        
+        let qrCodeViewConstraints = [
+            qrCodeView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
+            qrCodeView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
+        ]
+        
+        NSLayoutConstraint.activate(horizontalStackViewConstraints)
+        NSLayoutConstraint.activate(verticalStackViewConstraints)
+        NSLayoutConstraint.activate(qrCodeViewConstraints)
     }
 
 }
