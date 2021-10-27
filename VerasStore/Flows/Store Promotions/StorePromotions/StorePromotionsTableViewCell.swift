@@ -46,7 +46,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private var promotionNameLabel: UILabel = {
+    private var awardNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -70,9 +70,19 @@ class StorePromotionsTableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.distribution = .equalCentering
         
         return stackView
+    }()
+    
+    private var promotionNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.numberOfLines = 1
+        label.textColor = .white
+        
+        return label
     }()
     
     private var customersLabel: UILabel = {
@@ -124,7 +134,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
 
     //MARK: - Funcionalities
     
-    func configure(promotionName: String, amount: Int, customersNumber: Int, dateEnd: String) {
+    func configure(promotionName: String, promotionAward: String, amount: Int, customersNumber: Int, dateEnd: String) {
         self.configureSubViews()
         self.configureStacks()
         self.configureConstraints()
@@ -135,6 +145,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         let button = UITapGestureRecognizer(target: self, action: #selector(StorePromotionsTableViewCell.generateTicket))
         qrCodeView.addGestureRecognizer(button)
         
+        self.awardNameLabel.text = promotionAward
         self.promotionNameLabel.text = promotionName
         self.amountLabel.text = "\(amount)x"
         self.customersLabel.text = customersNumber == 1 ? "\(customersNumber) participante" : "\(customersNumber) participantes"
@@ -151,8 +162,9 @@ class StorePromotionsTableViewCell: UITableViewCell {
     
     private func configureStacks() {
         horizontalStackView.addArrangedSubview(avatarImageView)
-        horizontalStackView.addArrangedSubview(promotionNameLabel)
+        horizontalStackView.addArrangedSubview(awardNameLabel)
         horizontalStackView.addArrangedSubview(amountLabel)
+        verticalStackView.addArrangedSubview(promotionNameLabel)
         verticalStackView.addArrangedSubview(customersLabel)
         verticalStackView.addArrangedSubview(dateLabel)
     }
@@ -180,7 +192,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         let verticalStackViewConstraints = [
             verticalStackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 16),
             verticalStackView.trailingAnchor.constraint(equalTo: qrCodeView.leadingAnchor, constant: -16),
-            verticalStackView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 24),
+            verticalStackView.topAnchor.constraint(equalTo: horizontalStackView.bottomAnchor, constant: 16),
             verticalStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -24)
         ]
         
