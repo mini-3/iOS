@@ -545,6 +545,8 @@ class StoreFidelityDetailsViewController: UIViewController {
     @objc func qrCode() {
         //TODO
         // go to QRcode Screen
+        let vc = GenerateTicketViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func registerClient() {

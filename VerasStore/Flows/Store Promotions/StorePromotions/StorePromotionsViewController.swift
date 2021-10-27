@@ -110,9 +110,16 @@ class StorePromotionsViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = UIColor(named: "Background")
+        
         verticalStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
         storeLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        
         segmentedControl.addTarget(self, action: #selector(didChangedSegmented(_:)), for: .valueChanged)
+        
+        let gearButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(gearButtonAction))
+        navigationItem.rightBarButtonItem = gearButton
+        let cameraButton = UIBarButtonItem(image: UIImage(systemName: "camera"), style: .plain, target: self, action: #selector(scannerButtonAction))
+        navigationItem.leftBarButtonItem = cameraButton
     }
     
     private func configureSubViews() {
@@ -185,6 +192,14 @@ class StorePromotionsViewController: UIViewController {
         }
         promotionsTableView.reloadData()
     }
+    
+    @objc private func gearButtonAction() {
+        print("configs")
+    }
+    
+    @objc private func scannerButtonAction() {
+        print("scanners")
+    }
 }
 
 extension StorePromotionsViewController: PromotionPresenterDelegate {
@@ -211,7 +226,7 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         let promotion = filteredPromotions[indexPath.row]
         guard let model = promotion.promotion else { return UITableViewCell() }
         
-        cell.configure(promotionName: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
+        cell.configure(promotionName: model.name, promotionAward: model.award,amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
         cell.selectionStyle = .none
         cell.delegate = self
         
