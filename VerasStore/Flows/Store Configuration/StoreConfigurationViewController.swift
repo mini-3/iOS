@@ -2,15 +2,15 @@
 //  ConfigurationViewController.swift
 //  Fidelity-ios
 //
-//  Created by Matheus Homrich on 21/10/21.
+//  Created by Matheus Homrich on 27/10/21.
 //
 
 import Foundation
 import UIKit
 
-class ConfigurationViewController: UIViewController {
+class StoreConfigurationViewController: UIViewController {
     
-    private let userPresenter: UserPresenter = UserPresenter()
+    private let storePresenter: StorePresenter = StorePresenter()
     
     private lazy var buttonStack: UIStackView = {
         let button = UIStackView()
@@ -90,7 +90,7 @@ class ConfigurationViewController: UIViewController {
         let alert = UIAlertController(title: "Fazer logout?", message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Sim", style: UIAlertAction.Style.default, handler: {_ in
             SessionService.shared.logOut()
-            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            window?.rootViewController = UINavigationController(rootViewController: StoreLoginViewController())
         }))
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -102,8 +102,8 @@ class ConfigurationViewController: UIViewController {
         
         let alert = UIAlertController(title: "Alerta", message: "Você tem certeza que quer deletar sua conta?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Sim", style: UIAlertAction.Style.default, handler: {_ in
-            self.userPresenter.deleteAccount()
-            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            self.storePresenter.deleteAccount()
+            window?.rootViewController = UINavigationController(rootViewController: StoreLoginViewController())
         }))
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
