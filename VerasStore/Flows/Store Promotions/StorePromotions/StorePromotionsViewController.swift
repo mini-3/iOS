@@ -249,9 +249,9 @@ extension StorePromotionsViewController: StorePromotionsTableViewCellDelegate {
     func didTapQrCodeButton(cell: UITableViewCell) {
         guard let indexPath = promotionsTableView.indexPath(for: cell) else { return }
         let promotion = filteredPromotions[indexPath.row]
-        print(promotion.award)
         
         let vc = GenerateTicketViewController()
+        vc.promotion = promotion
         navigationController?.pushViewController(vc, animated: true)
     }
 }
