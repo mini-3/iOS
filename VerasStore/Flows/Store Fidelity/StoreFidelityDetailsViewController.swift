@@ -560,7 +560,9 @@ class StoreFidelityDetailsViewController: UIViewController {
     }
     
     @objc func seeParticipants() {
-        //TODO
-        // go to see participants Screen with promotion DATA
+        guard let viewModel = promotion, let promotion = viewModel.promotion else { return }
+        let vc = PromotionUsersViewController()
+        vc.promotionId = promotion.id
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -173,7 +173,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         self.ticketTypeTextField.text = promotion.ticket_type
     }
     
-    func configure(type: PromotionManipulationType, promotion: Promotion){
+    func configure(type: PromotionManipulationType, promotion: Promotion?){
         self.promotion = promotion
         switch type {
         case .create:
@@ -182,7 +182,9 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
             executeButton.setTitle("Atualizar", for: .normal)
             self.type = .update
         }
-        configureTexts(promotion: promotion)
+        if let promotion = promotion {
+            configureTexts(promotion: promotion)
+        }
     }
     
     // MARK: - ObjC
