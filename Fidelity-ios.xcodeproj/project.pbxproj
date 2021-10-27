@@ -25,7 +25,6 @@
 		4E7657C82710CA45007F9BFA /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7657C72710CA45007F9BFA /* UserDefaultsService.swift */; };
 		4E79D04D272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79D04C272732FC009BD2E5 /* StoreFidelityDetailsViewController.swift */; };
 		4E79D04F2727331F009BD2E5 /* StoreDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E79D04E2727331F009BD2E5 /* StoreDetailsPresenter.swift */; };
-		4E79D05027274716009BD2E5 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE3442718E1F4005165AA /* GradientView.swift */; };
 		4EBC2DEE2721DC15004BF16B /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC2DED2721DC15004BF16B /* ConfigurationViewController.swift */; };
 		4EC5634F2710BE4400411EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC5634E2710BE4400411EA6 /* AppDelegate.swift */; };
 		4EC563512710BE4400411EA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563502710BE4400411EA6 /* SceneDelegate.swift */; };
@@ -903,7 +902,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					4EC5634A2710BE4400411EA6 = {
 						CreatedOnToolsVersion = 13.0;
@@ -1138,7 +1137,6 @@
 				6DFDEA3F2721D33D0014F389 /* UserViewModel.swift in Sources */,
 				6DC67E9D272730FB00FD79E0 /* UserDefaultsService.swift in Sources */,
 				6DFDEA372721D3150014F389 /* User.swift in Sources */,
-				4E79D05027274716009BD2E5 /* GradientView.swift in Sources */,
 				34F243132721E67400F2BADC /* OnboardSectionTableViewCell.swift in Sources */,
 				DEC0F018272736CE002ACFC4 /* StorePromotionsViewController.swift in Sources */,
 				6D921D3227273FF6004170EA /* PromotionUsersPresenter.swift in Sources */,

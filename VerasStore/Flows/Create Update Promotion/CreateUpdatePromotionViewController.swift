@@ -18,6 +18,8 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     private let cardView: GradientView = {
         let view = GradientView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 12
+        view.clipsToBounds = true
         return view
     }()
     
