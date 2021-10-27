@@ -14,6 +14,7 @@ enum PromotionManipulationType {
 
 class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterDelegate {
     
+    
     // MARK: - Subviews
     private let cardView: GradientView = {
         let view = GradientView()
@@ -155,17 +156,25 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
+        title = "Editar"
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
         self.addSubviews()
         self.addConstraints()
-        self.configure(type: .create)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapExecute))
         executeButton.addGestureRecognizer(gesture)
         presenter.view = self
     }
     
-    func configure(type: PromotionManipulationType){
+    func configureTexts(promotion: Promotion) {
+        self.nameTextField.text = promotion.name
+        self.awardTextField.text = promotion.award
+        self.winAmountTextField.text = "\(promotion.win_ticket_amount)"
+        self.ticketTypeTextField.text = promotion.ticket_type
+    }
+    
+    func configure(type: PromotionManipulationType, promotion: Promotion){
+        self.promotion = promotion
         switch type {
         case .create:
             executeButton.setTitle("Criar", for: .normal)
@@ -173,6 +182,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
             executeButton.setTitle("Atualizar", for: .normal)
             self.type = .update
         }
+        configureTexts(promotion: promotion)
     }
     
     // MARK: - ObjC

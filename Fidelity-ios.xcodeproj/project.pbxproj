@@ -391,7 +391,7 @@
 			children = (
 				6DC06CF827288036006A8079 /* Create Update Promotion */,
 				6DC06CF727288029006A8079 /* Store Fidelity */,
-				DEC0F01A2727374A002ACFC4 /* StorePromotions */,
+				DEC0F01A2727374A002ACFC4 /* Store Promotions */,
 				6DC67EA027273A6F00FD79E0 /* Promotion Users */,
 			);
 			path = Flows;
@@ -737,13 +737,13 @@
 			path = Won;
 			sourceTree = "<group>";
 		};
-		DEC0F01A2727374A002ACFC4 /* StorePromotions */ = {
+		DEC0F01A2727374A002ACFC4 /* Store Promotions */ = {
 			isa = PBXGroup;
 			children = (
 				DEC0F017272736CE002ACFC4 /* StorePromotionsViewController.swift */,
 				DEC0F01B27273A6C002ACFC4 /* StorePromotionsTableViewCell.swift */,
 			);
-			path = StorePromotions;
+			path = "Store Promotions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
