@@ -46,8 +46,6 @@ class GenerateTicketViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         title = "Almoço grátis"
         navigationController?.navigationBar.prefersLargeTitles = false
-        let button = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(tappedBackButton))
-        self.navigationItem.rightBarButtonItem = button
         qrCodeImageView.image = QRcodeService.shared.generateQRCode(from: "qrCode")
     }
     
@@ -84,15 +82,13 @@ class GenerateTicketViewController: UIViewController {
         }
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+             
+            guard let textField = alert?.textFields?[0] else { return }// Force unwrapping because we know it exists.
+            print(textField.text ?? "erro")
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    @objc func tappedBackButton(sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
     }
 }

@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol StorePromotionsTableViewCellDelegate: AnyObject {
+    func didTapQrCodeButton(cell: UITableViewCell)
+}
+
 class StorePromotionsTableViewCell: UITableViewCell {
     static let identifier = String(describing: self)
+    var delegate: StorePromotionsTableViewCellDelegate?
     
     //MARK: - Subviews
     private var mainView: GradientView = {
@@ -118,11 +123,6 @@ class StorePromotionsTableViewCell: UITableViewCell {
     }
 
     //MARK: - Funcionalities
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     func configure(promotionName: String, amount: Int, customersNumber: Int, dateEnd: String) {
         self.configureSubViews()
@@ -131,6 +131,9 @@ class StorePromotionsTableViewCell: UITableViewCell {
         
         contentView.backgroundColor = UIColor(named: "Background")
         self.qrCodeView.layer.cornerRadius = 25
+        
+        let button = UITapGestureRecognizer(target: self, action: #selector(StorePromotionsTableViewCell.generateTicket))
+        qrCodeView.addGestureRecognizer(button)
         
         self.promotionNameLabel.text = promotionName
         self.amountLabel.text = "\(amount)x"
@@ -200,5 +203,8 @@ class StorePromotionsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(qrCodeViewConstraints)
         NSLayoutConstraint.activate(qrCodeImageViewConstraints)
     }
-
+    
+    @objc public func generateTicket() {
+        delegate?.didTapQrCodeButton(cell: self)
+    }
 }

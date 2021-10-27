@@ -212,7 +212,19 @@ extension StorePromotionsViewController: UITableViewDataSource {
         
         cell.configure(promotionName: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
         cell.selectionStyle = .none
+        cell.delegate = self
         
         return cell
+    }
+}
+
+extension StorePromotionsViewController: StorePromotionsTableViewCellDelegate {
+    func didTapQrCodeButton(cell: UITableViewCell) {
+        guard let indexPath = promotionsTableView.indexPath(for: cell) else { return }
+        let promotion = filteredPromotions[indexPath.row]
+        print(promotion.award)
+        
+        let vc = GenerateTicketViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
