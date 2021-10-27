@@ -61,28 +61,28 @@ class StorePresenter {
             self.view?.presentLoadingScreen()
         }
         
-        SessionService.shared.logIn(cnpj: cnpj, password: password) {[weak self] isRegistered in
-            guard let self = self else {
-                DispatchQueue.main.async {
-                    self?.view?.dismiss(animated: true, completion: nil)
-                }
-                return
-            }
-            DispatchQueue.main.async {
-                self.view?.dismiss(animated: true, completion: nil)
-            }
-            if isRegistered {
-                DispatchQueue.main.async {
-                    let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
-                    window?.rootViewController = StorePromotionsViewController()
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Usuário não cadastrado")
-                }
-            }
-            
-        }
+//        SessionService.shared.logIn(cnpj: cnpj, password: password) {[weak self] isRegistered in
+//            guard let self = self else {
+//                DispatchQueue.main.async {
+//                    self?.view?.dismiss(animated: true, completion: nil)
+//                }
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                self.view?.dismiss(animated: true, completion: nil)
+//            }
+//            if isRegistered {
+//                DispatchQueue.main.async {
+//                    let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+//                    window?.rootViewController = StorePromotionsViewController()
+//                }
+//            } else {
+//                DispatchQueue.main.async {
+//                    self.view?.presentAlert(message: "Usuário não cadastrado")
+//                }
+//            }
+//            
+//        }
     }
     
     func deleteAccount() {
