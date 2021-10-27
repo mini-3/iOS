@@ -15,7 +15,7 @@ class TextField: UITextField {
         super.init(frame: .zero)
         self.layer.borderWidth = 1.5
         self.layer.borderColor = UIColor.label.cgColor
-        self.layer.cornerRadius = 16
+        self.layer.cornerRadius = 8
         self.placeholder = placeholder
     }
     

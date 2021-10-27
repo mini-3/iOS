@@ -467,9 +467,9 @@ class StoreFidelityDetailsViewController: UIViewController {
         ]
         
         let cardViewContraints = [
-            card.topAnchor.constraint(equalTo: view.topAnchor, constant: 64),
-            card.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            card.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            card.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32),
+            card.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            card.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             card.heightAnchor.constraint(equalToConstant: 168)
         ]
         
@@ -553,12 +553,16 @@ class StoreFidelityDetailsViewController: UIViewController {
     }
     
     @objc func editPromotion() {
-        //TODO
-        // go to edit promotion Screen with promotion DATA
+        guard let viewModel = promotion, let promotion = viewModel.promotion else { return }
+        let vc = CreateUpdatePromotionViewController()
+        vc.configure(type: .update, promotion: promotion)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func seeParticipants() {
-        //TODO
-        // go to see participants Screen with promotion DATA
+        guard let viewModel = promotion, let promotion = viewModel.promotion else { return }
+        let vc = PromotionUsersViewController()
+        vc.promotionId = promotion.id
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
