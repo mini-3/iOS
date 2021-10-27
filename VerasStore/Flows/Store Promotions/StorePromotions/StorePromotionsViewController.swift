@@ -213,6 +213,7 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         
         cell.configure(promotionName: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
         cell.selectionStyle = .none
+        cell.delegate = self
         
         return cell
     }
@@ -221,6 +222,17 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         let promotion = filteredPromotions[indexPath.row]
         let vc = StoreFidelityDetailsViewController()
         vc.promotion = promotion
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension StorePromotionsViewController: StorePromotionsTableViewCellDelegate {
+    func didTapQrCodeButton(cell: UITableViewCell) {
+        guard let indexPath = promotionsTableView.indexPath(for: cell) else { return }
+        let promotion = filteredPromotions[indexPath.row]
+        print(promotion.award)
+        
+        let vc = GenerateTicketViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 }
