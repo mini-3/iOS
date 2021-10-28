@@ -159,7 +159,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        title = "Editar"
+        //title = "Editar"
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
         self.addSubviews()
@@ -184,8 +184,10 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         self.promotion = promotion
         switch type {
         case .create:
+            title = "Nova Fidelidade"
             executeButton.setTitle("Criar", for: .normal)
         case .update:
+            title = "Editar Fidelidade"
             executeButton.setTitle("Atualizar", for: .normal)
             self.type = .update
         }
