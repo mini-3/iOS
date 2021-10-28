@@ -15,6 +15,7 @@
 		345615F2272B164B00A24E82 /* RegisterAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345615F1272B164B00A24E82 /* RegisterAViewController.swift */; };
 		345615F7272B16F000A24E82 /* RegisterBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345615F6272B16F000A24E82 /* RegisterBViewController.swift */; };
 		345615F9272B16F900A24E82 /* RegisterCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345615F8272B16F900A24E82 /* RegisterCViewController.swift */; };
+		34597CF3272B332E00603EC6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 34597CF2272B332E00603EC6 /* Kingfisher */; };
 		348CED31271E00370098E199 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348CED30271E00370098E199 /* RegisterViewController.swift */; };
 		34F1731D271F4F84007ABCC8 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1731C271F4F84007ABCC8 /* DatePicker.swift */; };
 		34F17321271F8B41007ABCC8 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F17320271F8B41007ABCC8 /* DateExtensionsTests.swift */; };
@@ -293,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34597CF3272B332E00603EC6 /* Kingfisher in Frameworks */,
 				4E7657C62710C853007F9BFA /* KeychainAccess in Frameworks */,
 				6D56F74527208ADD00306459 /* IQKeyboardManagerSwift in Frameworks */,
 				6DFDEA2E2721D2920014F389 /* CoreVeras.framework in Frameworks */,
@@ -881,6 +883,7 @@
 			packageProductDependencies = (
 				4E7657C52710C853007F9BFA /* KeychainAccess */,
 				6D56F74427208ADD00306459 /* IQKeyboardManagerSwift */,
+				34597CF2272B332E00603EC6 /* Kingfisher */,
 			);
 			productName = "Fidelity-ios";
 			productReference = 4EC5634B2710BE4400411EA6 /* Fidelity-ios.app */;
@@ -1047,6 +1050,7 @@
 			packageReferences = (
 				4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				6D56F74327208ADD00306459 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				34597CF1272B332E00603EC6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 4EC5634C2710BE4400411EA6 /* Products */;
 			projectDirPath = "";
@@ -1910,6 +1914,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		34597CF1272B332E00603EC6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
@@ -1929,6 +1941,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		34597CF2272B332E00603EC6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34597CF1272B332E00603EC6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		4E7657C52710C853007F9BFA /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4E7657C42710C853007F9BFA /* XCRemoteSwiftPackageReference "KeychainAccess" */;

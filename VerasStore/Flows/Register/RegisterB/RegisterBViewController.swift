@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import UniformTypeIdentifiers
 
 class RegisterBViewController: UIViewController {
     private let stackView: UIStackView = {
@@ -16,7 +17,7 @@ class RegisterBViewController: UIViewController {
         stackView.spacing = 16
         return stackView
     }()
-
+    
     private let addAvatarButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -40,8 +41,8 @@ class RegisterBViewController: UIViewController {
         textField.autocapitalizationType = .none
         return textField
     }()
-
-   
+    
+    
     private let continueButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +55,7 @@ class RegisterBViewController: UIViewController {
     
     private func addSubviews() {
         view?.addSubview(stackView)
+        stackView.addArrangedSubview(addAvatarButton)
         stackView.addArrangedSubview(companyNameTextField)
         stackView.addArrangedSubview(userNameTextField)
         stackView.addArrangedSubview(continueButton)
@@ -87,6 +89,7 @@ class RegisterBViewController: UIViewController {
         addSubviews()
         addConstraints()
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+        self.addAvatarButton.addTarget(self, action: #selector(didTapAddAvatar), for: .touchUpInside)
     }
     
     @objc func didTapContinue() {
@@ -94,5 +97,20 @@ class RegisterBViewController: UIViewController {
         navigationController?.pushViewController(registerCViewController, animated: true)
     }
     
-    
+    @objc func didTapAddAvatar() {
+        if #available(iOS 14.0, *) {
+            let supportedTypes = [UTType.image]
+            let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes, asCopy: true)
+            documentPicker.delegate = self
+            documentPicker.allowsMultipleSelection = false
+            documentPicker.shouldShowFileExtensions = true
+            present(documentPicker, animated: true, completion: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+}
+
+extension RegisterBViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {}
 }
