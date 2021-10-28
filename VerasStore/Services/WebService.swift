@@ -72,7 +72,7 @@ public struct WebService {
     }
     
     // MARK: - Put
-    static public func put<T:Codable>(path: String, body: [String: AnyHashable], type: T.Type, handler: @escaping (Result<Int, WebServiceError>) -> Void) {
+    static public func put<T:Codable>(path: String, body: [String: AnyHashable], type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
         guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }
         
         guard let body = try? JSONSerialization.data(withJSONObject: body, options: []) else { handler(.failure(.parsingJsonError)); return }
@@ -87,9 +87,15 @@ public struct WebService {
         request.addValue("Bearer \(SessionService.shared.token)", forHTTPHeaderField: "Authorization")
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard error == nil, let response = response, let httpResponse = response as? HTTPURLResponse else { handler(.failure(.noDataError)); return }
+            guard error == nil, let data = data else { handler(.failure(.noDataError)); return }
 
-            handler(.success(httpResponse.statusCode))
+            do {
+                let data = try JSONDecoder().decode(T.self, from: data)
+                handler(.success(data))
+            } catch {
+                print(error)
+                handler(.failure(.parsingJsonError))
+            }
         }
         .resume()
     }
