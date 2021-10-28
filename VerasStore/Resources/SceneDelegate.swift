@@ -17,9 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         SessionService.shared.logIn(cnpj: "0000", password: "pedroadmin") { iss in
             print(iss)
         }
-        let vc = StorePromotionsViewController()
-        let navVc = UINavigationController(rootViewController: vc)
-        window.rootViewController = navVc
+        let vc = StoreMainTabBarViewController()
+        window.rootViewController = vc
         window.makeKeyAndVisible()
         self.window = window
         return

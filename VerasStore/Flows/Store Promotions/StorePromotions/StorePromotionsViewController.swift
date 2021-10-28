@@ -145,7 +145,7 @@ class StorePromotionsViewController: UIViewController {
             promotionsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             promotionsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             promotionsTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 32),
-            promotionsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            promotionsTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(horizontalStackViewConstraints)
