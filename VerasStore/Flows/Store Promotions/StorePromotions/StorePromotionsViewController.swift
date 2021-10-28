@@ -235,7 +235,7 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         let promotion = filteredPromotions[indexPath.row]
         guard let model = promotion.promotion else { return UITableViewCell() }
         
-        cell.configure(promotionName: model.name, promotionAward: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
+        cell.configure(promotionName: model.name, avatar: model.store?.avatar ?? "photo.circle", promotionAward: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
         cell.selectionStyle = .none
         cell.delegate = self
         

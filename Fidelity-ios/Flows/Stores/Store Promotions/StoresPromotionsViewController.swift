@@ -100,7 +100,7 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
         guard let cell = storesTableView.dequeueReusableCell(withIdentifier: StoresPromotionsTableViewCell.identifier) as? StoresPromotionsTableViewCell else { return UITableViewCell() }
         let viewModel = self.filteredData[indexPath.row]
         
-        cell.configure(storeImage: "", storeName: viewModel.promotion?.store?.name ?? "Loja", storePromotionDescription: viewModel.awardPhraseBuild())
+        cell.configure(storeImage: viewModel.promotion?.store?.avatar ?? "photo.circle", storeName: viewModel.promotion?.store?.name ?? "Loja", storePromotionDescription: viewModel.awardPhraseBuild())
         
         return cell
     }
