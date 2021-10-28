@@ -91,10 +91,13 @@ class StorePresenter {
     }
     
     func deleteAccount() {
+        
+        let id = SessionService.shared.storeId
+        
         DispatchQueue.main.async {
             self.view?.presentLoadingScreen()
         }
-        WebService.delete(path: "/stores", type: [User].self) {[weak self] result in
+        WebService.delete(path: "/stores/\(id)", type: [Store].self) {[weak self] result in
             guard let self = self else {
                 self?.view?.dismiss(animated: true, completion: nil)
                 return
