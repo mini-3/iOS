@@ -14,12 +14,53 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        SessionService.shared.logIn(cnpj: "0000", password: "pedroadmin") { iss in
-            print(iss)
+        guard let _ = UserDefaultsService.shared.retrieve(key: "first_login", type: String.self) else {
+            let vc = OnboardViewController()
+            vc.configure(
+                title: "Onboarding",
+                sections: [OnboardSection(image: "rectangle-white",
+                                          title: "Conteúdo Informativo 1",
+                                          description: "e introdutivo sobre o nosso app exposto de maneira rápida e clara"),
+                           OnboardSection(image: "rectangle-white",
+                                          title: "Conteúdo Informativo 2",
+                                          description: "e introdutivo sobre o nosso app exposto de maneira rápida e clara")
+                          ],
+                handleContinue: {
+                    UserDefaultsService.shared.save(data: "true", key: "first_login")
+                    let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+                    DispatchQueue.main.async {
+                        window?.rootViewController = UINavigationController(rootViewController: StoreLoginViewController())
+                    }
+                    
+                })
+            window.rootViewController = vc
+            window.makeKeyAndVisible()
+            self.window = window
+            return
         }
-        let vc = StoreMainTabBarViewController()
-        window.rootViewController = vc
+        
+        guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date"),
+              let cnpj = KeyChainService.shared.retrieveToken(key: "cnpj"),
+              let password = KeyChainService.shared.retrieveToken(key: "password")
+        else {
+            window.rootViewController = StoreLoginViewController()
+            window.makeKeyAndVisible()
+            self.window = window
+            return
+        }
+        if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {
+            SessionService.shared.logIn(cnpj: cnpj, password: password) { isRegistered in
+                if !isRegistered {
+                    DispatchQueue.main.async {
+                        window.rootViewController = StoreLoginViewController()
+                    }
+                    
+                }
+            }
+        }
+        window.rootViewController = StoreMainTabBarViewController()
         window.makeKeyAndVisible()
+        
         self.window = window
         return
     }
@@ -42,8 +83,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
+        guard let _ = UserDefaultsService.shared.retrieve(key: "first_login", type: String.self) else {
+            return
+        }
+        
+        let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+        
+        guard let date = UserDefaultsService.shared.retrieveDate(key: "token_date"),
+              let cnpj = KeyChainService.shared.retrieveToken(key: "cnpj"),
+              let password = KeyChainService.shared.retrieveToken(key: "password")
+        else {
+            window?.rootViewController = UINavigationController(rootViewController: StoreLoginViewController())
+            return
+        }
+        if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {
+            SessionService.shared.logIn(cnpj: cnpj, password: password) { isRegistered in
+                if !isRegistered {
+                    window?.rootViewController = StoreLoginViewController()
+                }
+            }
+        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
