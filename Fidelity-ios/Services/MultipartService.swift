@@ -40,7 +40,7 @@ struct MultipartService {
         .resume()
     }
     
-    static private func buildBody(image: Data, data: Data, boundary: String) -> Data? {
+    static private func buildBody(image: Data, data: Data, boundary: String) -> Data {
         let body = NSMutableData()
         let boundaryPrefix = " — \(boundary)\r\n"
         //add image
