@@ -236,7 +236,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         let cardViewConstraints = [
             cardView.heightAnchor.constraint(equalToConstant: 168),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            cardView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32),
+            cardView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 4),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
         ]
         
