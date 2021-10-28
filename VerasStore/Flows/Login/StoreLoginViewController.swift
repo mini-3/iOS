@@ -121,8 +121,8 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
     }
     
     @objc private func didTapRegister() {
-        //let registerViewController = RegisterViewController()
-        //navigationController?.pushViewController(registerViewController, animated: true)
+        let registerAViewController = RegisterAViewController()
+        navigationController?.pushViewController(registerAViewController, animated: true)
     }
 }
 

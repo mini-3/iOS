@@ -83,8 +83,15 @@ class RegisterBViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        view.backgroundColor = UIColor(named: "Background")
         addSubviews()
         addConstraints()
+        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+    }
+    
+    @objc func didTapContinue() {
+        let registerCViewController = RegisterCViewController()
+        navigationController?.pushViewController(registerCViewController, animated: true)
     }
     
     

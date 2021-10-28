@@ -69,6 +69,7 @@ class RegisterCViewController: UIViewController {
         stackView.addArrangedSubview(neighboutTextField)
         stackView.addArrangedSubview(numberTextField)
         stackView.addArrangedSubview(complementTextField)
+        stackView.addArrangedSubview(continueButton)
     }
     
     private func addConstraints() {
@@ -96,9 +97,14 @@ class RegisterCViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        view.backgroundColor = UIColor(named: "Background")
         addSubviews()
         addConstraints()
+        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
     }
     
+    @objc func didTapContinue() {
+        navigationController?.popToRootViewController(animated: true)
+    }
     
 }
