@@ -76,7 +76,10 @@ class StorePresenter {
             if isRegistered {
                 DispatchQueue.main.async {
                     let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
-                    window?.rootViewController = StoreMainTabBarViewController()
+                    let startVC = StoreMainTabBarViewController()
+                    startVC.selectedIndex = 1
+                    window?.rootViewController = startVC
+                    
                 }
             } else {
                 DispatchQueue.main.async {

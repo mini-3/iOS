@@ -156,7 +156,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     private var promotion: Promotion?
     private var type: PromotionManipulationType = .create
     private let presenter = PromotionPresenter()
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         //title = "Editar"
@@ -185,6 +185,9 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         switch type {
         case .create:
             title = "Nova Fidelidade"
+            let gearButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(gearButtonAction))
+            navigationItem.rightBarButtonItem = gearButton
+            
             executeButton.setTitle("Criar", for: .normal)
         case .update:
             title = "Editar Fidelidade"
@@ -208,6 +211,14 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
                 self.presenter.update(promotionId: promotion.id, name: nameTextField.text, ticketType: ticketTypeTextField.text, winTicketAmount: Int(winAmount), award: awardTextField.text, start: startDatePicker.picker.date, end: endDatePicker.picker.date)
             }
         }
+    }
+    
+    @objc private func gearButtonAction() {
+        let configVC = StoreConfigurationViewController()
+        configVC.modalPresentationStyle = .automatic
+        let navVC = UINavigationController(rootViewController: configVC)
+        navVC.modalPresentationStyle = .automatic
+        self.present(navVC, animated: true)
     }
     
     // MARK: - Functions
@@ -236,7 +247,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         let cardViewConstraints = [
             cardView.heightAnchor.constraint(equalToConstant: 168),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            cardView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 4),
+            cardView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 16),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
         ]
         
@@ -303,5 +314,5 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         NSLayoutConstraint.activate(finishButtonConstraints)
         NSLayoutConstraint.activate(executeButtonConstraints)
     }
-
+    
 }
