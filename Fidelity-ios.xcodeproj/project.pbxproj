@@ -51,6 +51,10 @@
 		4EC563912710C6DB00411EA6 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563902710C6DB00411EA6 /* KeyChainService.swift */; };
 		4EC563932710C6EB00411EA6 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563922710C6EB00411EA6 /* WebService.swift */; };
 		4EC563952710C73800411EA6 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC563942710C73700411EA6 /* SessionResponse.swift */; };
+		4ECF7BF72729D79C00C18CE6 /* StoreConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7BF62729D79C00C18CE6 /* StoreConfigurationViewController.swift */; };
+		4ECF7BF82729D7DD00C18CE6 /* StorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D71F85C2717414900D16173 /* StorePresenter.swift */; };
+		4ECF7BFB2729DB3F00C18CE6 /* StoreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7BFA2729DB3F00C18CE6 /* StoreLoginViewController.swift */; };
+		4ECF7BFE272B091500C18CE6 /* StoreMainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7BFD272B091500C18CE6 /* StoreMainTabBarViewController.swift */; };
 		4EE752162719FC67004D64B5 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE752152719FC67004D64B5 /* ImageExtensions.swift */; };
 		6D18D62D27174894007D3FAD /* PromotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D62C27174894007D3FAD /* PromotionViewModel.swift */; };
 		6D18D62F271748AC007D3FAD /* PromotionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */; };
@@ -227,6 +231,9 @@
 		4EC563902710C6DB00411EA6 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		4EC563922710C6EB00411EA6 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		4EC563942710C73700411EA6 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
+		4ECF7BF62729D79C00C18CE6 /* StoreConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfigurationViewController.swift; sourceTree = "<group>"; };
+		4ECF7BFA2729DB3F00C18CE6 /* StoreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLoginViewController.swift; sourceTree = "<group>"; };
+		4ECF7BFD272B091500C18CE6 /* StoreMainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMainTabBarViewController.swift; sourceTree = "<group>"; };
 		4EE752152719FC67004D64B5 /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		6D18D62C27174894007D3FAD /* PromotionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewModel.swift; sourceTree = "<group>"; };
 		6D18D62E271748AC007D3FAD /* PromotionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionPresenter.swift; sourceTree = "<group>"; };
@@ -439,6 +446,9 @@
 			isa = PBXGroup;
 			children = (
 				345615F0272B162B00A24E82 /* Register */,
+				4ECF7BFC272B090100C18CE6 /* Main */,
+				4ECF7BF92729DB2C00C18CE6 /* Login */,
+				4ECF7BF52729D76600C18CE6 /* Store Configuration */,
 				DEC0F0242729CB4D002ACFC4 /* Store Promotions */,
 				6DC06CF827288036006A8079 /* Create Update Promotion */,
 				6DC06CF727288029006A8079 /* Store Fidelity */,
@@ -576,6 +586,30 @@
 				345615E92729DC5800A24E82 /* MultipartService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		4ECF7BF52729D76600C18CE6 /* Store Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF7BF62729D79C00C18CE6 /* StoreConfigurationViewController.swift */,
+			);
+			path = "Store Configuration";
+			sourceTree = "<group>";
+		};
+		4ECF7BF92729DB2C00C18CE6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF7BFA2729DB3F00C18CE6 /* StoreLoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		4ECF7BFC272B090100C18CE6 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4ECF7BFD272B091500C18CE6 /* StoreMainTabBarViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		6D71F85B2717412700D16173 /* Presenters */ = {
@@ -1171,6 +1205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DFDEA352721D3110014F389 /* Store.swift in Sources */,
+				4ECF7BF72729D79C00C18CE6 /* StoreConfigurationViewController.swift in Sources */,
 				6DF5B7E12722D2470073D689 /* ColorExtensions.swift in Sources */,
 				6DFDEA382721D3170014F389 /* EmailUser.swift in Sources */,
 				6DFDEA3E2721D3370014F389 /* PromotionViewModel.swift in Sources */,
@@ -1188,7 +1223,9 @@
 				345615EF272B159F00A24E82 /* MultipartService.swift in Sources */,
 				DEC0F01D2727A502002ACFC4 /* GradientView.swift in Sources */,
 				6DF5B7E02722D2450073D689 /* ControllerExtensions.swift in Sources */,
+				4ECF7BFB2729DB3F00C18CE6 /* StoreLoginViewController.swift in Sources */,
 				DEC0F02E2729CB4D002ACFC4 /* StorePromotionsViewController.swift in Sources */,
+				4ECF7BFE272B091500C18CE6 /* StoreMainTabBarViewController.swift in Sources */,
 				DE2B416D27220244007AE381 /* LogInUserResponse.swift in Sources */,
 				6DFDEA342721D30E0014F389 /* Promotion.swift in Sources */,
 				6DF5B7DF2722D2420073D689 /* StringExtensions.swift in Sources */,
@@ -1197,6 +1234,7 @@
 				6DF5B7DD2722D23D0073D689 /* ImageExtensions.swift in Sources */,
 				6DFDE9F12721D1FF0014F389 /* AppDelegate.swift in Sources */,
 				6D958D172728616E00685828 /* PromotionPresenter.swift in Sources */,
+				4ECF7BF82729D7DD00C18CE6 /* StorePresenter.swift in Sources */,
 				6DFDEA3A2721D31B0014F389 /* UserPromotionTicketsResponse.swift in Sources */,
 				6DFDEA3C2721D31F0014F389 /* TicketBatchResponse.swift in Sources */,
 				6DFDE9F32721D1FF0014F389 /* SceneDelegate.swift in Sources */,

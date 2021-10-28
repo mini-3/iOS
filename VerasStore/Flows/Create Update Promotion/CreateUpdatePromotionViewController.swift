@@ -65,6 +65,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     private let ticketTypeTextField: TextField = {
         let textField = TextField(placeholder: "")
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -87,6 +88,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     private let winAmountTextField: TextField = {
         let textField = TextField(placeholder: "")
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -109,6 +111,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     private let awardTextField: TextField = {
         let textField = TextField(placeholder: "")
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -156,7 +159,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        title = "Editar"
+        //title = "Editar"
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
         self.addSubviews()
@@ -171,14 +174,20 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         self.awardTextField.text = promotion.award
         self.winAmountTextField.text = "\(promotion.win_ticket_amount)"
         self.ticketTypeTextField.text = promotion.ticket_type
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        self.startDatePicker.picker.date = formatter.date(from: promotion.start) ?? Date()
+        self.endDatePicker.picker.date = formatter.date(from: promotion.end) ?? Date()
     }
     
     func configure(type: PromotionManipulationType, promotion: Promotion?){
         self.promotion = promotion
         switch type {
         case .create:
+            title = "Nova Fidelidade"
             executeButton.setTitle("Criar", for: .normal)
         case .update:
+            title = "Editar Fidelidade"
             executeButton.setTitle("Atualizar", for: .normal)
             self.type = .update
         }
@@ -227,7 +236,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         let cardViewConstraints = [
             cardView.heightAnchor.constraint(equalToConstant: 168),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            cardView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32),
+            cardView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 4),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
         ]
         

@@ -32,6 +32,8 @@ class GenerateTicketViewController: UIViewController {
         return button
     }()
     
+    var promotion: PromotionViewModel?
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +46,19 @@ class GenerateTicketViewController: UIViewController {
     //MARK: - Funcionalities
     func configureUI() {
         view.backgroundColor = UIColor(named: "Background")
-        title = "Almoço grátis"
+        
+        guard let promotion = promotion else { return }
+        title = promotion.award
         navigationController?.navigationBar.prefersLargeTitles = false
-        qrCodeImageView.image = QRcodeService.shared.generateQRCode(from: "qrCode")
+        guard let qrCode = promotion.promotion?.code else { return }
+        
+        // TO DO
+        if qrCode != "aa" {
+            qrCodeImageView.image = QRcodeService.shared.generateQRCode(from: qrCode)
+        } else {
+            navigationController?.popToRootViewController(animated: true)
+        }
+        
     }
     
     func configureSubViews() {

@@ -110,9 +110,16 @@ class StorePromotionsViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = UIColor(named: "Background")
+        
         verticalStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
         storeLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        
         segmentedControl.addTarget(self, action: #selector(didChangedSegmented(_:)), for: .valueChanged)
+        
+        let gearButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(gearButtonAction))
+        navigationItem.rightBarButtonItem = gearButton
+        let cameraButton = UIBarButtonItem(image: UIImage(systemName: "camera"), style: .plain, target: self, action: #selector(scannerButtonAction))
+        navigationItem.leftBarButtonItem = cameraButton
     }
     
     private func configureSubViews() {
@@ -138,7 +145,7 @@ class StorePromotionsViewController: UIViewController {
             promotionsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             promotionsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             promotionsTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 32),
-            promotionsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            promotionsTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ]
         
         NSLayoutConstraint.activate(horizontalStackViewConstraints)
@@ -159,22 +166,8 @@ class StorePromotionsViewController: UIViewController {
         self.promotionsTableView.refreshControl = refresh
     }
     
-    // MARK: - Objc
-    
-    @objc private func didRefresh() {
-        self.promotionPresenter.fetch(withLoadingScreen: false)
-    }
-    
-    @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            self.filteredPromotions = self.promotions.filter {
-                guard let promotion = $0.promotion else { return false }
-                let formatter = ISO8601DateFormatter()
-                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-                guard let date = formatter.date(from: promotion.end) else { return false }
-                return date >= Date()
-            }
-        } else {
+    private func filterData() {
+        if self.segmentedControl.selectedSegmentIndex == 1 {
             self.filteredPromotions = self.promotions.filter {
                 guard let promotion = $0.promotion else { return false }
                 let formatter = ISO8601DateFormatter()
@@ -182,8 +175,38 @@ class StorePromotionsViewController: UIViewController {
                 guard let date = formatter.date(from: promotion.end) else { return false }
                 return date < Date()
             }
+        } else {
+            self.filteredPromotions = self.promotions.filter {
+                guard let promotion = $0.promotion else { return false }
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+                guard let date = formatter.date(from: promotion.end) else { return false }
+                return date >= Date()
+            }
         }
+    }
+    
+    // MARK: - Objc
+    
+    @objc private func didRefresh() {
+        self.promotionPresenter.fetch(withLoadingScreen: false)
+    }
+    
+    @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
+        self.filterData()
         promotionsTableView.reloadData()
+    }
+    
+    @objc private func gearButtonAction() {
+        let configVC = StoreConfigurationViewController()
+        configVC.modalPresentationStyle = .automatic
+        let navVC = UINavigationController(rootViewController: configVC)
+        navVC.modalPresentationStyle = .automatic
+        self.present(navVC, animated: true)
+    }
+    
+    @objc private func scannerButtonAction() {
+        print("scanners")
     }
 }
 
@@ -192,6 +215,7 @@ extension StorePromotionsViewController: PromotionPresenterDelegate {
         self.promotions = promotions
         self.filteredPromotions = promotions
         DispatchQueue.main.async {
+            self.filterData()
             self.promotionsTableView.reloadData()
             self.promotionsTableView.refreshControl?.endRefreshing()
         }
@@ -211,7 +235,7 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         let promotion = filteredPromotions[indexPath.row]
         guard let model = promotion.promotion else { return UITableViewCell() }
         
-        cell.configure(promotionName: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
+        cell.configure(promotionName: model.name, promotionAward: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
         cell.selectionStyle = .none
         cell.delegate = self
         
@@ -230,9 +254,9 @@ extension StorePromotionsViewController: StorePromotionsTableViewCellDelegate {
     func didTapQrCodeButton(cell: UITableViewCell) {
         guard let indexPath = promotionsTableView.indexPath(for: cell) else { return }
         let promotion = filteredPromotions[indexPath.row]
-        print(promotion.award)
         
         let vc = GenerateTicketViewController()
+        vc.promotion = promotion
         navigationController?.pushViewController(vc, animated: true)
     }
 }
