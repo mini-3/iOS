@@ -65,6 +65,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     private let ticketTypeTextField: TextField = {
         let textField = TextField(placeholder: "")
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -87,6 +88,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     private let winAmountTextField: TextField = {
         let textField = TextField(placeholder: "")
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -109,6 +111,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     private let awardTextField: TextField = {
         let textField = TextField(placeholder: "")
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -171,6 +174,10 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         self.awardTextField.text = promotion.award
         self.winAmountTextField.text = "\(promotion.win_ticket_amount)"
         self.ticketTypeTextField.text = promotion.ticket_type
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        self.startDatePicker.picker.date = formatter.date(from: promotion.start) ?? Date()
+        self.endDatePicker.picker.date = formatter.date(from: promotion.end) ?? Date()
     }
     
     func configure(type: PromotionManipulationType, promotion: Promotion?){
