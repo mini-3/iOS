@@ -166,22 +166,8 @@ class StorePromotionsViewController: UIViewController {
         self.promotionsTableView.refreshControl = refresh
     }
     
-    // MARK: - Objc
-    
-    @objc private func didRefresh() {
-        self.promotionPresenter.fetch(withLoadingScreen: false)
-    }
-    
-    @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            self.filteredPromotions = self.promotions.filter {
-                guard let promotion = $0.promotion else { return false }
-                let formatter = ISO8601DateFormatter()
-                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-                guard let date = formatter.date(from: promotion.end) else { return false }
-                return date >= Date()
-            }
-        } else {
+    private func filterData() {
+        if self.segmentedControl.selectedSegmentIndex == 1 {
             self.filteredPromotions = self.promotions.filter {
                 guard let promotion = $0.promotion else { return false }
                 let formatter = ISO8601DateFormatter()
@@ -189,7 +175,25 @@ class StorePromotionsViewController: UIViewController {
                 guard let date = formatter.date(from: promotion.end) else { return false }
                 return date < Date()
             }
+        } else {
+            self.filteredPromotions = self.promotions.filter {
+                guard let promotion = $0.promotion else { return false }
+                let formatter = ISO8601DateFormatter()
+                formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+                guard let date = formatter.date(from: promotion.end) else { return false }
+                return date >= Date()
+            }
         }
+    }
+    
+    // MARK: - Objc
+    
+    @objc private func didRefresh() {
+        self.promotionPresenter.fetch(withLoadingScreen: false)
+    }
+    
+    @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
+        self.filterData()
         promotionsTableView.reloadData()
     }
     
@@ -211,6 +215,7 @@ extension StorePromotionsViewController: PromotionPresenterDelegate {
         self.promotions = promotions
         self.filteredPromotions = promotions
         DispatchQueue.main.async {
+            self.filterData()
             self.promotionsTableView.reloadData()
             self.promotionsTableView.refreshControl?.endRefreshing()
         }
