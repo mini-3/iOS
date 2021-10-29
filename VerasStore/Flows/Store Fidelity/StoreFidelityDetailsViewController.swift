@@ -12,6 +12,19 @@ class StoreFidelityDetailsViewController: UIViewController {
     
     var promotion: PromotionViewModel?
     
+    //MARK: - scrollView
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     //MARK: - CARD VIEW
     private let card: GradientView = {
         let view = GradientView()
@@ -381,39 +394,43 @@ class StoreFidelityDetailsViewController: UIViewController {
     
     //MARK: - SUBVIEWS
     func configureSubviews() {
+        //MARK: - scrollView
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
         //MARK: - card View
-        view.addSubview(card)
+        contentView.addSubview(card)
         card.addSubview(avatarImageView)
         card.addSubview(storeNameLabel)
         card.addSubview(ticketCountLabel)
         card.addSubview(awardPrizeLabel)
         
         //MARK: - description stackView
-        view.addSubview(descriptionStackView)
+        contentView.addSubview(descriptionStackView)
         
         //MARK: - quantity stackView
-        view.addSubview(quantityStackView)
+        contentView.addSubview(quantityStackView)
         
         //MARK: - award stackView
-        view.addSubview(awardStackView)
+        contentView.addSubview(awardStackView)
         
         //MARK: - horizontalDateStackView
-        view.addSubview(horizontalDateStackView)
+        contentView.addSubview(horizontalDateStackView)
         
         //MARK: - startDate stackView
-        view.addSubview(startDateStackView)
+        contentView.addSubview(startDateStackView)
         
         //MARK: - endDate stackView
-        view.addSubview(endDateStackView)
+        contentView.addSubview(endDateStackView)
         
         //MARK: - participants stackView
-        view.addSubview(participantsStackView)
+        contentView.addSubview(participantsStackView)
         
         //MARK: - buttonHorizontalStackView
-        view.addSubview(horizontalButtonStackView)
+        contentView.addSubview(horizontalButtonStackView)
         
         //MARK: - buttonVerticalStackView
-        view.addSubview(verticalButtonStackView)
+        contentView.addSubview(verticalButtonStackView)
     }
     
     //MARK: - STACKS
@@ -443,6 +460,25 @@ class StoreFidelityDetailsViewController: UIViewController {
     //MARK: - CONSTRAINTS
     func configureConstraints() {
         
+        let scrollViewConstraints = [
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ]
+        
+        let contentViewConstraints = [
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+        ]
+        
+        let constraint = contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        constraint.priority = UILayoutPriority(250)
+        constraint.isActive = true
+        
+        
         let avatarImageConstraints = [
             avatarImageView.heightAnchor.constraint(equalToConstant: 50),
             avatarImageView.widthAnchor.constraint(equalToConstant: 50),
@@ -453,7 +489,7 @@ class StoreFidelityDetailsViewController: UIViewController {
         
         let storeNameConstraints = [
             storeNameLabel.topAnchor.constraint(equalTo: card.topAnchor, constant: 16),
-            storeNameLabel.trailingAnchor.constraint(equalTo: ticketCountLabel.leadingAnchor, constant: -48),
+            storeNameLabel.trailingAnchor.constraint(equalTo: ticketCountLabel.leadingAnchor, constant: -4),
         ]
         
         let ticketCountConstraints = [
@@ -467,47 +503,47 @@ class StoreFidelityDetailsViewController: UIViewController {
         ]
         
         let cardViewContraints = [
-            card.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32),
-            card.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            card.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            card.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 32),
+            card.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            card.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             card.heightAnchor.constraint(equalToConstant: 168)
         ]
         
         let descriptionStackViewContraints = [
             descriptionStackView.topAnchor.constraint(equalTo: card.bottomAnchor, constant: 16),
-            descriptionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            descriptionStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            descriptionStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            descriptionStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let quantityStackViewContraints = [
             quantityStackView.topAnchor.constraint(equalTo: descriptionStackView.bottomAnchor, constant: 16),
-            quantityStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            quantityStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            quantityStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            quantityStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
             
         ]
         
         let awardStackViewContraints = [
             awardStackView.topAnchor.constraint(equalTo: quantityStackView.bottomAnchor, constant: 16),
-            awardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            awardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            awardStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            awardStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let datesStackViewContraints = [
             horizontalDateStackView.topAnchor.constraint(equalTo: awardStackView.bottomAnchor, constant: 16),
-            horizontalDateStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            horizontalDateStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            horizontalDateStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            horizontalDateStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let participantsStackViewContraints = [
             participantsStackView.topAnchor.constraint(equalTo: horizontalDateStackView.bottomAnchor, constant: 16),
-            participantsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            participantsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            participantsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            participantsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let horizontalButtonsStackViewContraints = [
             horizontalButtonStackView.topAnchor.constraint(equalTo: participantsStackView.bottomAnchor, constant: 32),
-            horizontalButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            horizontalButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            horizontalButtonStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            horizontalButtonStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let buttonsHeightContraints = [
@@ -520,10 +556,13 @@ class StoreFidelityDetailsViewController: UIViewController {
         
         let verticalButtonsStackViewContraints = [
             verticalButtonStackView.topAnchor.constraint(equalTo: horizontalButtonStackView.bottomAnchor, constant: 32),
-            verticalButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            verticalButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            verticalButtonStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            verticalButtonStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            verticalButtonStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ]
         
+        NSLayoutConstraint.activate(scrollViewConstraints)
+        NSLayoutConstraint.activate(contentViewConstraints)
         NSLayoutConstraint.activate(avatarImageConstraints)
         NSLayoutConstraint.activate(storeNameConstraints)
         NSLayoutConstraint.activate(ticketCountConstraints)
