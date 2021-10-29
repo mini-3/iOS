@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class GenerateTicketViewController: UIViewController {
+class GenerateTicketViewController: UIViewController, TicketPreseterDelegate {
     
     //MARK: - SubViews
     private var qrCodeImageView: UIImageView = {
@@ -33,10 +33,12 @@ class GenerateTicketViewController: UIViewController {
     }()
     
     var promotion: PromotionViewModel?
+    private let presenter = TicketPresenter()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.view = self
         
         self.configureUI()
         self.configureSubViews()
@@ -96,12 +98,13 @@ class GenerateTicketViewController: UIViewController {
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
              
-            guard let textField = alert?.textFields?[0] else { return }// Force unwrapping because we know it exists.
-            print(textField.text ?? "erro")
+            guard let textField = alert?.textFields?[0], let email = textField.text, let code = self.promotion?.promotion?.code else { return }// Force unwrapping because we know it exists.
+            self.presenter.create(code: code, email: email)
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
     }
+    
 }

@@ -8,10 +8,12 @@
 import UIKit
 
 protocol TicketPreseterDelegate: AnyObject {
+    func created() 
     func batched()
 }
 
 extension TicketPreseterDelegate {
+    func created() {}
     func batched() {}
 }
 
@@ -20,6 +22,29 @@ class TicketPresenter {
     weak var view: (TicketPreseterDelegate & UIViewController)?
     
     init() {}
+    
+    func create(code: String, email: String) {
+        guard !code.isEmpty else {
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "O código está vazio")
+            }
+            return
+        }
+        
+        WebService.post(path: "/tickets/store", body: ["code": code, "email": email], type: Ticket.self) {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "Ticket processado com sucesso", title: "Parabéns!")
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "Ocorreu algum erro ao processar o ticket")
+                }
+            }
+        }
+    }
     
     func batch(code: String, email: String) {
         DispatchQueue.main.async {
