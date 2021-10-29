@@ -17,4 +17,5 @@ public struct Store: Codable {
     let promotions: [Promotion]?
     let description: String?
     let isAppearing: Bool
+    let avatar: String?
 }

@@ -23,7 +23,7 @@ public class PromotionViewModel {
     let ticketsDone: String
     let usersCount: String
     //let storePhone: String
-    //let image: UIImage
+    let image: String
     
     init(with model: Promotion) {
         self.promotion = model
@@ -46,6 +46,7 @@ public class PromotionViewModel {
         self.ticketsNeeded = "\(model.win_ticket_amount) \(model.ticket_type)(s)"
         self.ticketsDone = "\(model.tickets?.count ?? 0)"
         self.usersCount = "10" //TODO
+        self.image = model.store?.avatar ?? "photo.circle"
     }
     
     func awardPhraseBuild() -> String {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol StorePromotionsTableViewCellDelegate: AnyObject {
     func didTapQrCodeButton(cell: UITableViewCell)
@@ -41,7 +42,6 @@ class StorePromotionsTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
-        imageView.image = UIImage(systemName: "person.fill")
         
         return imageView
     }()
@@ -134,7 +134,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
 
     //MARK: - Funcionalities
     
-    func configure(promotionName: String, promotionAward: String, amount: Int, customersNumber: Int, dateEnd: String) {
+    func configure(promotionName: String, avatar: String, promotionAward: String, amount: Int, customersNumber: Int, dateEnd: String) {
         self.configureSubViews()
         self.configureStacks()
         self.configureConstraints()
@@ -150,6 +150,13 @@ class StorePromotionsTableViewCell: UITableViewCell {
         self.amountLabel.text = "\(amount)x"
         self.customersLabel.text = customersNumber == 1 ? "\(customersNumber) participante" : "\(customersNumber) participantes"
         self.dateLabel.text = "Válido \(dateEnd)"
+        
+        if avatar == "photo.circle" {
+            avatarImageView.image = UIImage(systemName: avatar)
+        } else {
+            let url = URL(string: avatar)
+            avatarImageView.kf.setImage(with: url)
+        }
     }
     
     private func configureSubViews() {
