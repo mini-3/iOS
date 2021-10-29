@@ -351,8 +351,6 @@ class StoreFidelityDetailsViewController: UIViewController {
         self.configureStacks()
         self.configureConstraints()
         self.setConrnerRadius()
-        
-        self.avatarImageView.circleImage()
     }
     
     func setConrnerRadius() {
@@ -381,6 +379,8 @@ class StoreFidelityDetailsViewController: UIViewController {
             self.avatarImageView.kf.setImage(with: url)
         }
         
+        viewLayoutMarginsDidChange()
+        self.avatarImageView.circleImage()
         
     }
     

@@ -132,7 +132,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     //MARK: - Funcionalities
     
     func configure(promotionName: String, avatar: String, promotionAward: String, amount: Int, customersNumber: Int, dateEnd: String) {
@@ -156,11 +156,13 @@ class StorePromotionsTableViewCell: UITableViewCell {
             self.avatarImageView.image = UIImage(systemName: avatar)
         } else {
             let url = URL(string: avatar)
-            self.avatarImageView.circleImage()
             self.avatarImageView.kf.setImage(with: url)
         }
         
+        setNeedsLayout()
+        layoutIfNeeded()
         
+        self.avatarImageView.circleImage()
         
     }
     
