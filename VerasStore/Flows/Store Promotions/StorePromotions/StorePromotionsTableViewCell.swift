@@ -42,6 +42,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -131,7 +132,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     //MARK: - Funcionalities
     
     func configure(promotionName: String, avatar: String, promotionAward: String, amount: Int, customersNumber: Int, dateEnd: String) {
@@ -152,11 +153,17 @@ class StorePromotionsTableViewCell: UITableViewCell {
         self.dateLabel.text = "Válido \(dateEnd)"
         
         if avatar == "photo.circle" {
-            avatarImageView.image = UIImage(systemName: avatar)
+            self.avatarImageView.image = UIImage(systemName: avatar)
         } else {
             let url = URL(string: avatar)
-            avatarImageView.kf.setImage(with: url)
+            self.avatarImageView.kf.setImage(with: url)
         }
+        
+        setNeedsLayout()
+        layoutIfNeeded()
+        
+        self.avatarImageView.circleImage()
+        
     }
     
     private func configureSubViews() {

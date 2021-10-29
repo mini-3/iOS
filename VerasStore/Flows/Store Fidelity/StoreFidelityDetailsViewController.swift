@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class StoreFidelityDetailsViewController: UIViewController {
     
@@ -41,7 +42,6 @@ class StoreFidelityDetailsViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
-        imageView.image = UIImage(systemName: "person.fill")
         
         return imageView
     }()
@@ -359,11 +359,11 @@ class StoreFidelityDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
+        self.configureData()
         self.configureSubviews()
         self.configureStacks()
         self.configureConstraints()
         self.setConrnerRadius()
-        self.configureData()
     }
     
     func setConrnerRadius() {
@@ -375,15 +375,26 @@ class StoreFidelityDetailsViewController: UIViewController {
     }
     
     func configureData() {
-        storeNameLabel.text = promotion?.storeName
-        ticketCountLabel.text = promotion?.ticketsNeeded
-        awardContentLabel.text = promotion?.award
-        quantityContentLabel.text = promotion?.ticketsNeeded
-        participantsContentLabel.text = promotion?.usersCount
-        startDateContentLabel.text = promotion?.startDate
-        endDateContentLabel.text = promotion?.endDateStringStore
-        awardPrizeLabel.text = promotion?.award
-        descriptionContentLabel.text = promotion?.storeDescription
+        self.storeNameLabel.text = promotion?.storeName
+        self.ticketCountLabel.text = promotion?.ticketsNeeded
+        self.awardContentLabel.text = promotion?.award
+        self.quantityContentLabel.text = promotion?.ticketsNeeded
+        self.participantsContentLabel.text = promotion?.usersCount
+        self.startDateContentLabel.text = promotion?.startDate
+        self.endDateContentLabel.text = promotion?.endDateStringStore
+        self.awardPrizeLabel.text = promotion?.award
+        self.descriptionContentLabel.text = promotion?.storeDescription
+        
+        if promotion?.image == "circle.photo" {
+            self.avatarImageView.image = UIImage(systemName: promotion?.image ?? "circle.photo")
+        } else {
+            let url = URL(string: promotion!.image)
+            self.avatarImageView.kf.setImage(with: url)
+        }
+        
+        viewLayoutMarginsDidChange()
+        self.avatarImageView.circleImage()
+        
     }
     
     //MARK: - UI

@@ -241,6 +241,7 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         cell.selectionStyle = .none
         cell.delegate = self
         
+        
         return cell
     }
     
