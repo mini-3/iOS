@@ -16,6 +16,18 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     
     // MARK: - Subviews
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private let cardView: GradientView = {
         let view = GradientView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -223,76 +235,97 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     // MARK: - Functions
     private func addSubviews() {
-        view.addSubview(cardView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(cardView)
         nameStackView.addArrangedSubview(nameLabel)
         nameStackView.addArrangedSubview(nameTextField)
-        view.addSubview(nameStackView)
+        contentView.addSubview(nameStackView)
         ticketTypeStackView.addArrangedSubview(ticketTypeLabel)
         ticketTypeStackView.addArrangedSubview(ticketTypeTextField)
-        view.addSubview(ticketTypeStackView)
+        contentView.addSubview(ticketTypeStackView)
         winAmountStackView.addArrangedSubview(winAmountLabel)
         winAmountStackView.addArrangedSubview(winAmountTextField)
-        view.addSubview(winAmountStackView)
+        contentView.addSubview(winAmountStackView)
         awardStackView.addArrangedSubview(awardLabel)
         awardStackView.addArrangedSubview(awardTextField)
-        view.addSubview(awardStackView)
+        contentView.addSubview(awardStackView)
         datesStackView.addArrangedSubview(startDatePicker)
         datesStackView.addArrangedSubview(endDatePicker)
-        view.addSubview(datesStackView)
-        view.addSubview(finishButton)
-        view.addSubview(executeButton)
+        contentView.addSubview(datesStackView)
+        contentView.addSubview(finishButton)
+        contentView.addSubview(executeButton)
     }
     
     private func addConstraints() {
+        let scrollViewConstraints = [
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ]
+        
+        let contentViewConstraints = [
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+        ]
+        
+        let constraint = contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        constraint.priority = UILayoutPriority(250)
+        constraint.isActive = true
+        
         let cardViewConstraints = [
             cardView.heightAnchor.constraint(equalToConstant: 168),
-            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            cardView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 16),
-            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            cardView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 16),
+            cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
         ]
         
         let nameStackViewConstraints = [
-            nameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            nameStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             nameStackView.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 8),
-            nameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            nameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
         ]
         
         let ticketTypeStackViewConstraints = [
-            ticketTypeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            ticketTypeStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             ticketTypeStackView.topAnchor.constraint(equalTo: nameStackView.bottomAnchor, constant: 8),
-            ticketTypeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            ticketTypeStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
         ]
         
         let winAmountStackViewConstraints = [
-            winAmountStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            winAmountStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             winAmountStackView.topAnchor.constraint(equalTo: ticketTypeStackView.bottomAnchor, constant: 8),
-            winAmountStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            winAmountStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
         ]
         
         let awardStackViewConstraints = [
-            awardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            awardStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             awardStackView.topAnchor.constraint(equalTo: winAmountStackView.bottomAnchor, constant: 8),
-            awardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            awardStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
         ]
         
         let datesStackViewConstraints = [
-            datesStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            datesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             datesStackView.topAnchor.constraint(equalTo: awardStackView.bottomAnchor, constant: 16),
-            datesStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            datesStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
         ]
         
         let finishButtonConstraints = [
-            finishButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            finishButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             finishButton.topAnchor.constraint(equalTo: datesStackView.bottomAnchor, constant: 16),
-            finishButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            finishButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             finishButton.heightAnchor.constraint(equalToConstant: 38)
         ]
         
         let executeButtonConstraints = [
-            executeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            executeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             executeButton.topAnchor.constraint(equalTo: finishButton.bottomAnchor, constant: 16),
-            executeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            executeButton.heightAnchor.constraint(equalToConstant: 38)
+            executeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            executeButton.heightAnchor.constraint(equalToConstant: 38),
+            executeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ]
         
         let inputHeightConstraints = [
@@ -304,6 +337,8 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
             endDatePicker.heightAnchor.constraint(equalToConstant: 40)
         ]
         
+        NSLayoutConstraint.activate(scrollViewConstraints)
+        NSLayoutConstraint.activate(contentViewConstraints)
         NSLayoutConstraint.activate(cardViewConstraints)
         NSLayoutConstraint.activate(nameStackViewConstraints)
         NSLayoutConstraint.activate(inputHeightConstraints)
