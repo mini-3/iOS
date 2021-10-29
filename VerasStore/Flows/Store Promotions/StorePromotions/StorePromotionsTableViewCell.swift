@@ -42,6 +42,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -152,11 +153,15 @@ class StorePromotionsTableViewCell: UITableViewCell {
         self.dateLabel.text = "Válido \(dateEnd)"
         
         if avatar == "photo.circle" {
-            avatarImageView.image = UIImage(systemName: avatar)
+            self.avatarImageView.image = UIImage(systemName: avatar)
         } else {
             let url = URL(string: avatar)
-            avatarImageView.kf.setImage(with: url)
+            self.avatarImageView.circleImage()
+            self.avatarImageView.kf.setImage(with: url)
         }
+        
+        
+        
     }
     
     private func configureSubViews() {
