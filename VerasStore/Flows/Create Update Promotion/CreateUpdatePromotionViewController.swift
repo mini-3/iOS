@@ -162,6 +162,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         //title = "Editar"
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
+        self.tabBarController?.tabBar.isHidden = false
         self.addSubviews()
         self.addConstraints()
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapExecute))

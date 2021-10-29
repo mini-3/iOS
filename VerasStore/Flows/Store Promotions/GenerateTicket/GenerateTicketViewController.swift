@@ -46,6 +46,7 @@ class GenerateTicketViewController: UIViewController {
     //MARK: - Funcionalities
     func configureUI() {
         view.backgroundColor = UIColor(named: "Background")
+        self.tabBarController?.tabBar.isHidden = true
         
         guard let promotion = promotion else { return }
         title = promotion.award
