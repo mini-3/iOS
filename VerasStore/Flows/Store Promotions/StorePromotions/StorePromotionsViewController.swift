@@ -206,7 +206,8 @@ class StorePromotionsViewController: UIViewController {
     }
     
     @objc private func scannerButtonAction() {
-        print("scanners")
+        let vc = QRcodeReaderViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

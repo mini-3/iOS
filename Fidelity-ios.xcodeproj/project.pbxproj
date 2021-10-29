@@ -131,6 +131,8 @@
 		DE2B416A2721F4D8007AE381 /* WonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B41692721F4D8007AE381 /* WonViewController.swift */; };
 		DE2B416D27220244007AE381 /* LogInUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B416B272201D7007AE381 /* LogInUserResponse.swift */; };
 		DE2B416E27220245007AE381 /* LogInUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B416B272201D7007AE381 /* LogInUserResponse.swift */; };
+		DEAD7C58272B223B00E26312 /* ScannerOverlayPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */; };
+		DEAD7C5B272B228500E26312 /* QRcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAD7C5A272B228500E26312 /* QRcodeReaderViewController.swift */; };
 		DEC0F01D2727A502002ACFC4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE3442718E1F4005165AA /* GradientView.swift */; };
 		DEC0F02C2729CB4D002ACFC4 /* GenerateTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0F0262729CB4D002ACFC4 /* GenerateTicketViewController.swift */; };
 		DEC0F02D2729CB4D002ACFC4 /* StorePromotionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC0F0282729CB4D002ACFC4 /* StorePromotionsTableViewCell.swift */; };
@@ -284,6 +286,7 @@
 		DE2B4166271F451A007AE381 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		DE2B41692721F4D8007AE381 /* WonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WonViewController.swift; sourceTree = "<group>"; };
 		DE2B416B272201D7007AE381 /* LogInUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUserResponse.swift; sourceTree = "<group>"; };
+		DEAD7C5A272B228500E26312 /* QRcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeReaderViewController.swift; sourceTree = "<group>"; };
 		DEC0F0262729CB4D002ACFC4 /* GenerateTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateTicketViewController.swift; sourceTree = "<group>"; };
 		DEC0F0282729CB4D002ACFC4 /* StorePromotionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePromotionsTableViewCell.swift; sourceTree = "<group>"; };
 		DEC0F0292729CB4D002ACFC4 /* StorePromotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePromotionsViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +422,7 @@
 		34F2430A2721E18100F2BADC /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */,
 				6D8EE3442718E1F4005165AA /* GradientView.swift */,
 				6DAF579E271A0F2A003620A6 /* TextField.swift */,
 				34F1731C271F4F84007ABCC8 /* DatePicker.swift */,
@@ -813,7 +817,6 @@
 			isa = PBXGroup;
 			children = (
 				DE2B4161271A09EF007AE381 /* QRcodeReaderViewController.swift */,
-				DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -826,9 +829,18 @@
 			path = Won;
 			sourceTree = "<group>";
 		};
+		DEAD7C59272B226800E26312 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				DEAD7C5A272B228500E26312 /* QRcodeReaderViewController.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
 		DEC0F0242729CB4D002ACFC4 /* Store Promotions */ = {
 			isa = PBXGroup;
 			children = (
+				DEAD7C59272B226800E26312 /* Scanner */,
 				DEC0F0252729CB4D002ACFC4 /* GenerateTicket */,
 				DEC0F0272729CB4D002ACFC4 /* StorePromotions */,
 			);
@@ -1215,6 +1227,7 @@
 				6DF5B7E12722D2470073D689 /* ColorExtensions.swift in Sources */,
 				6DFDEA382721D3170014F389 /* EmailUser.swift in Sources */,
 				6DFDEA3E2721D3370014F389 /* PromotionViewModel.swift in Sources */,
+				DEAD7C58272B223B00E26312 /* ScannerOverlayPreviewLayer.swift in Sources */,
 				6DF5B7DC2722D2120073D689 /* Types.swift in Sources */,
 				6DFDEA3B2721D31D0014F389 /* CreateUserResponse.swift in Sources */,
 				6DC67E982727252500FD79E0 /* SessionService.swift in Sources */,
@@ -1254,6 +1267,7 @@
 				345615EE2729EA7200A24E82 /* MutableDataExtensions.swift in Sources */,
 				6DFDEA452721D3C90014F389 /* ValidatorService.swift in Sources */,
 				6DFDEA412721D3C00014F389 /* KeyChainService.swift in Sources */,
+				DEAD7C5B272B228500E26312 /* QRcodeReaderViewController.swift in Sources */,
 				6DFDEA3F2721D33D0014F389 /* UserViewModel.swift in Sources */,
 				6DC67E9D272730FB00FD79E0 /* UserDefaultsService.swift in Sources */,
 				6DFDEA372721D3150014F389 /* User.swift in Sources */,
