@@ -104,6 +104,7 @@ class StorePromotionsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.promotionPresenter.fetch(withLoadingScreen: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     //MARK: - Functionalities

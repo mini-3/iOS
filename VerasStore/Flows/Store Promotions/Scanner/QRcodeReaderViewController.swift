@@ -8,13 +8,15 @@
 import AVFoundation
 import UIKit
 
-class QRcodeReaderViewController: UIViewController {
+class QRcodeReaderViewController: UIViewController, TicketPreseterDelegate {
     
     private var captureSession: AVCaptureSession!
     var scannerView = UIView()
+    private let presenter = TicketPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.view = self
         
         view.backgroundColor = UIColor(named: "Background")
         configureViewConstraints()
@@ -112,10 +114,16 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            print(stringValue)
+            found(code: stringValue)
             
         }
         
         dismiss(animated: true)
+    }
+    
+    func found(code: String) {
+        let subcode = code.split(separator: " ")
+        print(subcode[0])
+        presenter.batch(code: String(subcode[1]), email: String(subcode[0]))
     }
 }

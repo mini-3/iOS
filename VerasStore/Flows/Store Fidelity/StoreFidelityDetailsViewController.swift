@@ -377,6 +377,7 @@ class StoreFidelityDetailsViewController: UIViewController {
     func configureUI() {
         title = "Fidelidade"
         view.backgroundColor = UIColor(named: "Background")
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     //MARK: - SUBVIEWS
