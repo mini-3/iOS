@@ -226,6 +226,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         self.startDatePicker.picker.date = formatter.date(from: promotion.start) ?? Date()
         self.endDatePicker.picker.date = formatter.date(from: promotion.end) ?? Date()
+        self.awardNameLabel.text = "Recompensa: \(promotion.award)"
         if let store = promotion.store {
             self.storeNameLabel.text = store.name
         }
