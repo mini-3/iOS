@@ -9,10 +9,14 @@ import UIKit
 
 protocol PromotionPresenterDelegate: AnyObject {
     func fetched(promotions: [PromotionViewModel])
+    func fetchedOne(promotion: PromotionViewModel)
+    func updated(promotion: Promotion)
 }
 
 extension PromotionPresenterDelegate {
     func fetched(promotions: [PromotionViewModel]) {}
+    func updated(promotion: Promotion) {}
+    func fetchedOne(promotion: PromotionViewModel) {}
 }
 
 class PromotionPresenter {
@@ -57,8 +61,9 @@ class PromotionPresenter {
                 self.view?.dismiss(animated: true, completion: nil)
             }
             switch result {
-            case .success(_):
+            case .success(let promotion):
                 DispatchQueue.main.async {
+                    self.view?.updated(promotion: promotion)
                     self.view?.presentAlert(message: "Promoção atualizada com sucesso", title: "Parabéns")
                 }
             case .failure(_):
@@ -134,6 +139,32 @@ class PromotionPresenter {
                 let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
                 self.view?.fetched(promotions: viewModels)
                 DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
+                print(error)
+            }
+        }
+    }
+    
+    func fetchOne(withLoadingScreen: Bool, promotionId: Int) {
+        if withLoadingScreen {
+            DispatchQueue.main.async {
+                self.view?.presentLoadingScreen()
+            }
+        }
+        WebService.get(path: "/promotions/\(promotionId)", type: Promotion.self) {[weak self] result in
+            guard let self = self else {
+                self?.view?.dismiss(animated: true, completion: nil)
+                return
+            }
+            switch result {
+            case .success(let promotion):
+                DispatchQueue.main.async {
+                    self.view?.fetchedOne(promotion: PromotionViewModel(with: promotion))
                     self.view?.dismiss(animated: true, completion: nil)
                 }
             case .failure(let error):

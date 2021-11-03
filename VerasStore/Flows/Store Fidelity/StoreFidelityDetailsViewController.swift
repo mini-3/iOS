@@ -11,8 +11,6 @@ import Kingfisher
 
 class StoreFidelityDetailsViewController: UIViewController {
     
-    var promotion: PromotionViewModel?
-    
     //MARK: - scrollView
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -355,9 +353,22 @@ class StoreFidelityDetailsViewController: UIViewController {
         return button
     }()
     
+    private let presenter = PromotionPresenter()
+    var promotionId: Int = 0
+    var promotion: PromotionViewModel?
+    
     //MARK: - VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureView()
+        self.presenter.view = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        presenter.fetchOne(withLoadingScreen: true, promotionId: promotionId)
+    }
+    
+    func configureView() {
         self.configureUI()
         self.configureData()
         self.configureSubviews()
@@ -371,7 +382,6 @@ class StoreFidelityDetailsViewController: UIViewController {
         seeParticipantsButton.layer.cornerRadius = 20
         registerClientButton.layer.cornerRadius = 20
         qrCodeButton.layer.cornerRadius = 20
-        
     }
     
     func configureData() {
@@ -388,8 +398,10 @@ class StoreFidelityDetailsViewController: UIViewController {
         if promotion?.image == "circle.photo" {
             self.avatarImageView.image = UIImage(systemName: promotion?.image ?? "circle.photo")
         } else {
-            let url = URL(string: promotion!.image)
-            self.avatarImageView.kf.setImage(with: url)
+            if let path = promotion?.image {
+                let url = URL(string: path)
+                self.avatarImageView.kf.setImage(with: url)
+            }
         }
         
         viewLayoutMarginsDidChange()
@@ -617,5 +629,13 @@ class StoreFidelityDetailsViewController: UIViewController {
         let vc = PromotionUsersViewController()
         vc.promotionId = promotion.id
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension StoreFidelityDetailsViewController: PromotionPresenterDelegate {
+    func fetchedOne(promotion: PromotionViewModel) {
+        self.promotion = promotion
+        print(promotion)
+        self.configureView()
     }
 }
