@@ -248,7 +248,8 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let promotion = filteredPromotions[indexPath.row]
         let vc = StoreFidelityDetailsViewController()
-        vc.promotion = promotion
+        guard let model = promotion.promotion else { return }
+        vc.promotionId = model.id
         navigationController?.pushViewController(vc, animated: true)
     }
 }
