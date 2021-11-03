@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 enum PromotionManipulationType {
     case create
@@ -34,6 +35,35 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         view.layer.cornerRadius = 12
         view.clipsToBounds = true
         return view
+    }()
+    
+    private let storeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = .white
+        imageView.image = UIImage(named: "photo.circle")
+        return imageView
+    }()
+    
+    private let storeNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.tintColor = .white
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let awardNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Recompensa: "
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.tintColor = .white
+        label.numberOfLines = 0
+        return label
     }()
     
     private let nameStackView: UIStackView = {
@@ -177,9 +207,14 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         self.tabBarController?.tabBar.isHidden = false
         self.addSubviews()
         self.addConstraints()
+        if let promotion = promotion, let store = promotion.store {
+            self.storeImageView.kf.setImage(with: URL(string: store.avatar ?? ""))
+        }
+        self.storeImageView.layer.cornerRadius = self.storeImageView.frame.height/2
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapExecute))
         executeButton.addGestureRecognizer(gesture)
         presenter.view = self
+        awardTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     func configureTexts(promotion: Promotion) {
@@ -191,6 +226,9 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         self.startDatePicker.picker.date = formatter.date(from: promotion.start) ?? Date()
         self.endDatePicker.picker.date = formatter.date(from: promotion.end) ?? Date()
+        if let store = promotion.store {
+            self.storeNameLabel.text = store.name
+        }
     }
     
     func configure(type: PromotionManipulationType, promotion: Promotion?){
@@ -213,6 +251,11 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     }
     
     // MARK: - ObjC
+    @objc func textFieldDidChange(_ sender: UITextField) {
+        guard let text = sender.text else { return }
+        awardNameLabel.text = "Recompensa: \(text)"
+    }
+    
     @objc func didTapExecute() {
         self.executeButton.pulsate()
         if let winAmount = winAmountTextField.text {
@@ -239,6 +282,9 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(cardView)
+        cardView.addSubview(storeImageView)
+        cardView.addSubview(storeNameLabel)
+        cardView.addSubview(awardNameLabel)
         nameStackView.addArrangedSubview(nameLabel)
         nameStackView.addArrangedSubview(nameTextField)
         contentView.addSubview(nameStackView)
@@ -282,6 +328,24 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
             cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             cardView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 16),
             cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+        ]
+        
+        let imageViewConstraints = [
+            storeImageView.heightAnchor.constraint(equalToConstant: 48),
+            storeImageView.widthAnchor.constraint(equalToConstant: 48),
+            storeImageView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
+            storeImageView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20)
+        ]
+        
+        let storeNameLabelConstraints = [
+            storeNameLabel.leadingAnchor.constraint(equalTo: storeImageView.trailingAnchor, constant: 16),
+            storeNameLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20)
+        ]
+        
+        let awardNameLabelConstraints = [
+            awardNameLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
+            awardNameLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: 24),
+            awardNameLabel.topAnchor.constraint(equalTo: storeImageView.bottomAnchor, constant: 60)
         ]
         
         let nameStackViewConstraints = [
@@ -341,6 +405,9 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         NSLayoutConstraint.activate(scrollViewConstraints)
         NSLayoutConstraint.activate(contentViewConstraints)
         NSLayoutConstraint.activate(cardViewConstraints)
+        NSLayoutConstraint.activate(imageViewConstraints)
+        NSLayoutConstraint.activate(storeNameLabelConstraints)
+        NSLayoutConstraint.activate(awardNameLabelConstraints)
         NSLayoutConstraint.activate(nameStackViewConstraints)
         NSLayoutConstraint.activate(inputHeightConstraints)
         NSLayoutConstraint.activate(ticketTypeStackViewConstraints)
