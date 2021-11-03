@@ -31,7 +31,7 @@ class TicketPresenter {
             return
         }
         
-        WebService.post(path: "/tickets/store", body: ["code": code, "email": email], type: Ticket.self) {[weak self] result in
+        WebService.post(path: "/tickets", body: ["code": code, "email": email], type: Ticket.self) {[weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(_):

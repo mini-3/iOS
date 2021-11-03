@@ -23,7 +23,7 @@ class TicketPresenter {
     
     init() {}
     
-    func create(code: String) {
+    func create(code: String, email: String) {
         guard !code.isEmpty else {
             DispatchQueue.main.async {
                 self.view?.presentAlert(message: "O seu código está vazio")
@@ -31,7 +31,7 @@ class TicketPresenter {
             return
         }
         
-        WebService.post(path: "/tickets", body: ["code": code], type: Ticket.self) {[weak self] result in
+        WebService.post(path: "/tickets", body: ["code": code, "email": email], type: Ticket.self) {[weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(_):

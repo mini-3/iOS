@@ -121,6 +121,6 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func found(code: String) {
-        presenter.create(code: code)
+        presenter.create(code: code, email: SessionService.shared.email)
     }
 }
