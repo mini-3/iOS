@@ -635,7 +635,6 @@ class StoreFidelityDetailsViewController: UIViewController {
 extension StoreFidelityDetailsViewController: PromotionPresenterDelegate {
     func fetchedOne(promotion: PromotionViewModel) {
         self.promotion = promotion
-        print(promotion)
         self.configureView()
     }
 }
