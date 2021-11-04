@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class RegisterAViewController: UIViewController {
+    var registerModelController = RegisterStoreModelController()
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,15 +83,26 @@ class RegisterAViewController: UIViewController {
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Background")
+        setInputFirstValues()
         addSubviews()
         addConstraints()
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
     }
     
     @objc func didTapContinue() {
+        registerModelController.email = emailTextField.text ?? ""
+        registerModelController.password = passwordTextField.text ?? ""
+        registerModelController.confirmPassword = confirmPasswordField.text ?? ""
+        
         let registerBViewController = RegisterBViewController()
+        registerBViewController.configure(modelController: registerModelController)
         navigationController?.pushViewController(registerBViewController, animated: true)
     }
     
+    func setInputFirstValues() {
+        emailTextField.text = registerModelController.email
+        passwordTextField.text = registerModelController.password
+        confirmPasswordField.text = registerModelController.confirmPassword
+    }
     
 }
