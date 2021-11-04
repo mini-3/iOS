@@ -13,7 +13,7 @@ class TextField: UITextField {
     
     init(placeholder: String) {
         super.init(frame: .zero)
-        //self.layer.borderWidth = 1.5
+        self.layer.borderWidth = 0
         self.backgroundColor = UIColor.init(rgb: 0x4F4F4F)
         //self.layer.borderColor = UIColor.systemGray.cgColor
         self.layer.cornerRadius = 8
@@ -38,6 +38,7 @@ class TextField: UITextField {
     
     override func becomeFirstResponder() -> Bool {
         if super.becomeFirstResponder() {
+            self.layer.borderWidth = 1.5
             self.layer.borderColor = UIColor.systemBlue.cgColor
             self.backgroundColor = UIColor.init(rgb: 0x303030)
             return true
@@ -47,6 +48,7 @@ class TextField: UITextField {
     
     override func resignFirstResponder() -> Bool {
         if super.resignFirstResponder() {
+            self.layer.borderWidth = 0
             self.backgroundColor = UIColor.init(rgb: 0x4F4F4F)
             //self.layer.borderColor = UIColor.systemGray.cgColor
             return true
