@@ -126,16 +126,12 @@ class StorePromotionsTableViewCell: UITableViewCell {
         
         return imageView
     }()
-
-    //MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    
+    private let presenter = PromotionUsersPresenter()
     
     //MARK: - Funcionalities
     
-    func configure(promotionName: String, avatar: String, promotionAward: String, amount: Int, customersNumber: Int, dateEnd: String) {
+    func configure(promotionName: String, avatar: String, promotionAward: String, amount: Int, promotionId: Int, dateEnd: String) {
         self.configureSubViews()
         self.configureStacks()
         self.configureConstraints()
@@ -149,7 +145,6 @@ class StorePromotionsTableViewCell: UITableViewCell {
         self.awardNameLabel.text = promotionAward
         self.promotionNameLabel.text = promotionName
         self.amountLabel.text = "\(amount)x"
-        self.customersLabel.text = customersNumber == 1 ? "\(customersNumber) participante" : "\(customersNumber) participantes"
         self.dateLabel.text = "Válido \(dateEnd)"
         
         if avatar == "photo.circle" {
@@ -158,7 +153,9 @@ class StorePromotionsTableViewCell: UITableViewCell {
             let url = URL(string: avatar)
             self.avatarImageView.kf.setImage(with: url)
         }
-        
+    
+        presenter.tableViewCell = self
+        self.presenter.fetch(promotionId: promotionId)
         setNeedsLayout()
         layoutIfNeeded()
         
@@ -232,5 +229,19 @@ class StorePromotionsTableViewCell: UITableViewCell {
     
     @objc public func generateTicket() {
         delegate?.didTapQrCodeButton(cell: self)
+    }
+}
+
+extension StorePromotionsTableViewCell: PromotionUsersPresenterDelegate {
+    func fetched(tickets: [Ticket]) {
+        let emailUsers = tickets.compactMap { ticket in
+            return ticket.email_user
+        }
+        let count = emailUsers.reduce(0) { partialResult, current in
+            return emailUsers.filter { $0.id == current.id }.count + partialResult
+        }
+        DispatchQueue.main.async {
+            self.customersLabel.text = count == 1 ? "\(count) participante" : "\(count) participantes"
+        }
     }
 }

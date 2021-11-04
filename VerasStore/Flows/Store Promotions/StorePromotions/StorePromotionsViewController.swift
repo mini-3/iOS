@@ -237,7 +237,7 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         let promotion = filteredPromotions[indexPath.row]
         guard let model = promotion.promotion else { return UITableViewCell() }
         
-        cell.configure(promotionName: model.name, avatar: model.store?.avatar ?? "photo.circle", promotionAward: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
+        cell.configure(promotionName: model.name, avatar: model.store?.avatar ?? "photo.circle", promotionAward: model.award, amount: model.win_ticket_amount, promotionId: model.id, dateEnd: promotion.endDateString)
         cell.selectionStyle = .none
         cell.delegate = self
         
@@ -252,6 +252,7 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         vc.promotionId = model.id
         navigationController?.pushViewController(vc, animated: true)
     }
+
 }
 
 extension StorePromotionsViewController: StorePromotionsTableViewCellDelegate {
