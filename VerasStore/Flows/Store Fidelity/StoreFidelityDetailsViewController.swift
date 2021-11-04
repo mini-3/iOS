@@ -354,6 +354,7 @@ class StoreFidelityDetailsViewController: UIViewController {
     }()
     
     private let presenter = PromotionPresenter()
+    private let promotionUsersPresenter = PromotionUsersPresenter()
     var promotionId: Int = 0
     var promotion: PromotionViewModel?
     
@@ -362,10 +363,12 @@ class StoreFidelityDetailsViewController: UIViewController {
         super.viewDidLoad()
         self.configureView()
         self.presenter.view = self
+        self.promotionUsersPresenter.view = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         presenter.fetchOne(withLoadingScreen: true, promotionId: promotionId)
+        promotionUsersPresenter.fetch(promotionId: promotionId)
     }
     
     func configureView() {
@@ -389,7 +392,6 @@ class StoreFidelityDetailsViewController: UIViewController {
         self.ticketCountLabel.text = promotion?.ticketsNeeded
         self.awardContentLabel.text = promotion?.award
         self.quantityContentLabel.text = promotion?.ticketsNeeded
-        self.participantsContentLabel.text = promotion?.usersCount
         self.startDateContentLabel.text = promotion?.startDate
         self.endDateContentLabel.text = promotion?.endDateStringStore
         self.awardPrizeLabel.text = promotion?.award
@@ -636,5 +638,19 @@ extension StoreFidelityDetailsViewController: PromotionPresenterDelegate {
     func fetchedOne(promotion: PromotionViewModel) {
         self.promotion = promotion
         self.configureView()
+    }
+}
+
+extension StoreFidelityDetailsViewController: PromotionUsersPresenterDelegate {
+    func fetched(tickets: [Ticket]) {
+        let emailUsers = tickets.compactMap { ticket in
+            return ticket.email_user
+        }
+        let count = emailUsers.reduce(0) { partialResult, current in
+            return emailUsers.filter { $0.id == current.id }.count + partialResult
+        }
+        DispatchQueue.main.async {
+            self.participantsContentLabel.text = count == 1 ? "\(count) participante" : "\(count) participantes"
+        }
     }
 }
