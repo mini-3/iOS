@@ -13,9 +13,9 @@ class TextField: UITextField {
     
     init(placeholder: String) {
         super.init(frame: .zero)
-        self.layer.borderWidth = 1.5
-        self.backgroundColor = UIColor.systemGray
-        self.layer.borderColor = UIColor.systemGray.cgColor
+        //self.layer.borderWidth = 1.5
+        self.backgroundColor = UIColor.init(rgb: 0x4F4F4F)
+        //self.layer.borderColor = UIColor.systemGray.cgColor
         self.layer.cornerRadius = 8
         self.placeholder = placeholder
     }
@@ -38,8 +38,8 @@ class TextField: UITextField {
     
     override func becomeFirstResponder() -> Bool {
         if super.becomeFirstResponder() {
-            self.layer.borderColor = UIColor.systemBlue.cgColor
-            self.backgroundColor = UIColor.init(hex: "0x303030")
+            //self.layer.borderColor = UIColor.systemBlue.cgColor
+            self.backgroundColor = UIColor.init(rgb: 0x303030)
             return true
         }
         return false
@@ -47,8 +47,8 @@ class TextField: UITextField {
     
     override func resignFirstResponder() -> Bool {
         if super.resignFirstResponder() {
-            self.backgroundColor = UIColor.systemGray
-            self.layer.borderColor = UIColor.systemGray.cgColor
+            self.backgroundColor = UIColor.init(rgb: 0x4F4F4F)
+            //self.layer.borderColor = UIColor.systemGray.cgColor
             return true
         }
         return false

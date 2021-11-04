@@ -123,7 +123,6 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     func found(code: String) {
         let subcode = code.split(separator: " ")
-        print(subcode[0])
         presenter.batch(code: String(subcode[1]), email: String(subcode[0]))
     }
 }
