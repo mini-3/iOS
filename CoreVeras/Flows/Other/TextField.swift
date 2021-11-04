@@ -38,7 +38,7 @@ class TextField: UITextField {
     
     override func becomeFirstResponder() -> Bool {
         if super.becomeFirstResponder() {
-            //self.layer.borderColor = UIColor.systemBlue.cgColor
+            self.layer.borderColor = UIColor.systemBlue.cgColor
             self.backgroundColor = UIColor.init(rgb: 0x303030)
             return true
         }
