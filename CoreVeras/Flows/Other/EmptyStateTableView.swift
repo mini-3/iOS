@@ -60,8 +60,9 @@ public class EmptyStateTableView: UIView {
     private func addConstraints() {
         
         let verticalStackViewConstraints = [
-            verticalStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            verticalStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            verticalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 64),
+            verticalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -64),
+            verticalStackView.topAnchor.constraint(equalTo:self.topAnchor, constant: 64)
         ]
         
         let imageViewConstraints = [
