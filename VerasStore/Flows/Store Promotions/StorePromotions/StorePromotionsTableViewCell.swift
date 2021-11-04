@@ -78,6 +78,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
     
     private var promotionNameLabel: UILabel = {
         let label = UILabel()
+        label.setContentHuggingPriority(.required, for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.numberOfLines = 1
@@ -160,7 +161,6 @@ class StorePromotionsTableViewCell: UITableViewCell {
         layoutIfNeeded()
         
         self.avatarImageView.circleImage()
-        
     }
     
     private func configureSubViews() {
@@ -184,10 +184,13 @@ class StorePromotionsTableViewCell: UITableViewCell {
         let mainViewConstraints = [
             mainView.heightAnchor.constraint(equalToConstant: 168),
             mainView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
-            mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
             mainView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             mainView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
+        
+        let constraint = mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2)
+        constraint.priority = UILayoutPriority(999)
+        constraint.isActive = true
         
         let horizontalStackViewConstraints = [
             horizontalStackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
