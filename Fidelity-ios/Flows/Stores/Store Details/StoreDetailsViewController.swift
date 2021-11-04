@@ -220,7 +220,12 @@ class StoreDetailsViewController: UIViewController {
         //telephoneStoreLabel.text = promotion.storePhone
         requirementsStoreLabel.text = promotion.ticketsNeeded
         rewardStoreLabel.text = promotion.award
-        storeImageView.image = UIImage(systemName: "photo")
+        if promotion.image == "photo.circle" {
+            storeImageView.image = UIImage(systemName: promotion.image)
+        } else {
+            let url = URL(string: promotion.image)
+            storeImageView.kf.setImage(with: url)
+        }
     }
     
     @objc func tappedBackButton(sender: UIBarButtonItem) {

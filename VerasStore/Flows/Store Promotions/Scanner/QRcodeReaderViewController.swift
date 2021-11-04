@@ -1,8 +1,8 @@
 //
 //  QRcodeReaderViewController.swift
-//  Fidelity-ios
+//  VerasStore
 //
-//  Created by Santiago del Castillo Gonzaga on 15/10/21.
+//  Created by Santiago del Castillo Gonzaga on 28/10/21.
 //
 
 import AVFoundation
@@ -115,12 +115,14 @@ extension QRcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             found(code: stringValue)
+            
         }
         
         dismiss(animated: true)
     }
     
     func found(code: String) {
-        presenter.create(code: code, email: SessionService.shared.email)
+        let subcode = code.split(separator: " ")
+        presenter.batch(code: String(subcode[1]), email: String(subcode[0]))
     }
 }

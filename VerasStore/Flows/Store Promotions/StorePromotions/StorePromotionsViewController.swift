@@ -104,6 +104,7 @@ class StorePromotionsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.promotionPresenter.fetch(withLoadingScreen: true)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     //MARK: - Functionalities
@@ -206,7 +207,8 @@ class StorePromotionsViewController: UIViewController {
     }
     
     @objc private func scannerButtonAction() {
-        print("scanners")
+        let vc = QRcodeReaderViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -235,9 +237,10 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
         let promotion = filteredPromotions[indexPath.row]
         guard let model = promotion.promotion else { return UITableViewCell() }
         
-        cell.configure(promotionName: model.name, promotionAward: model.award, amount: model.win_ticket_amount, customersNumber: 100, dateEnd: promotion.endDateString)
+        cell.configure(promotionName: model.name, avatar: model.store?.avatar ?? "photo.circle", promotionAward: model.award, amount: model.win_ticket_amount, promotionId: model.id, dateEnd: promotion.endDateString)
         cell.selectionStyle = .none
         cell.delegate = self
+        
         
         return cell
     }
@@ -245,9 +248,11 @@ extension StorePromotionsViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let promotion = filteredPromotions[indexPath.row]
         let vc = StoreFidelityDetailsViewController()
-        vc.promotion = promotion
+        guard let model = promotion.promotion else { return }
+        vc.promotionId = model.id
         navigationController?.pushViewController(vc, animated: true)
     }
+
 }
 
 extension StorePromotionsViewController: StorePromotionsTableViewCellDelegate {

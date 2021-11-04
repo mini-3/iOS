@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol StorePromotionsTableViewCellDelegate: AnyObject {
     func didTapQrCodeButton(cell: UITableViewCell)
@@ -41,7 +42,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
-        imageView.image = UIImage(systemName: "person.fill")
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -125,16 +126,12 @@ class StorePromotionsTableViewCell: UITableViewCell {
         
         return imageView
     }()
-
-    //MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+    
+    private let presenter = PromotionUsersPresenter()
+    
     //MARK: - Funcionalities
     
-    func configure(promotionName: String, promotionAward: String, amount: Int, customersNumber: Int, dateEnd: String) {
+    func configure(promotionName: String, avatar: String, promotionAward: String, amount: Int, promotionId: Int, dateEnd: String) {
         self.configureSubViews()
         self.configureStacks()
         self.configureConstraints()
@@ -148,8 +145,22 @@ class StorePromotionsTableViewCell: UITableViewCell {
         self.awardNameLabel.text = promotionAward
         self.promotionNameLabel.text = promotionName
         self.amountLabel.text = "\(amount)x"
-        self.customersLabel.text = customersNumber == 1 ? "\(customersNumber) participante" : "\(customersNumber) participantes"
         self.dateLabel.text = "Válido \(dateEnd)"
+        
+        if avatar == "photo.circle" {
+            self.avatarImageView.image = UIImage(systemName: avatar)
+        } else {
+            let url = URL(string: avatar)
+            self.avatarImageView.kf.setImage(with: url)
+        }
+    
+        presenter.tableViewCell = self
+        self.presenter.fetch(promotionId: promotionId)
+        setNeedsLayout()
+        layoutIfNeeded()
+        
+        self.avatarImageView.circleImage()
+        
     }
     
     private func configureSubViews() {
@@ -218,5 +229,24 @@ class StorePromotionsTableViewCell: UITableViewCell {
     
     @objc public func generateTicket() {
         delegate?.didTapQrCodeButton(cell: self)
+    }
+}
+
+extension StorePromotionsTableViewCell: PromotionUsersPresenterDelegate {
+    func fetched(tickets: [Ticket]) {
+        let emailUsers = tickets.compactMap { ticket in
+            return ticket.email_user
+        }
+        var aux = [EmailUser]()
+        let count = emailUsers.reduce(0) { partialResult, current in
+            if !aux.contains(current) {
+                aux.append(current)
+                return 1 + partialResult
+            }
+            return partialResult + 0
+        }
+        DispatchQueue.main.async {
+            self.customersLabel.text = count == 1 ? "\(count) participante" : "\(count) participantes"
+        }
     }
 }

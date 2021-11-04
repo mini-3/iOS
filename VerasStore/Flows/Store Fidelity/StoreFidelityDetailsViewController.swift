@@ -7,10 +7,22 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class StoreFidelityDetailsViewController: UIViewController {
     
-    var promotion: PromotionViewModel?
+    //MARK: - scrollView
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     //MARK: - CARD VIEW
     private let card: GradientView = {
@@ -28,7 +40,6 @@ class StoreFidelityDetailsViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
-        imageView.image = UIImage(systemName: "person.fill")
         
         return imageView
     }()
@@ -342,15 +353,31 @@ class StoreFidelityDetailsViewController: UIViewController {
         return button
     }()
     
+    private let presenter = PromotionPresenter()
+    private let promotionUsersPresenter = PromotionUsersPresenter()
+    var promotionId: Int = 0
+    var promotion: PromotionViewModel?
+    
     //MARK: - VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureView()
+        self.presenter.view = self
+        self.promotionUsersPresenter.view = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        presenter.fetchOne(withLoadingScreen: true, promotionId: promotionId)
+        promotionUsersPresenter.fetch(promotionId: promotionId)
+    }
+    
+    func configureView() {
         self.configureUI()
+        self.configureData()
         self.configureSubviews()
         self.configureStacks()
         self.configureConstraints()
         self.setConrnerRadius()
-        self.configureData()
     }
     
     func setConrnerRadius() {
@@ -358,62 +385,78 @@ class StoreFidelityDetailsViewController: UIViewController {
         seeParticipantsButton.layer.cornerRadius = 20
         registerClientButton.layer.cornerRadius = 20
         qrCodeButton.layer.cornerRadius = 20
-        
     }
     
     func configureData() {
-        storeNameLabel.text = promotion?.storeName
-        ticketCountLabel.text = promotion?.ticketsNeeded
-        awardContentLabel.text = promotion?.award
-        quantityContentLabel.text = promotion?.ticketsNeeded
-        participantsContentLabel.text = promotion?.usersCount
-        startDateContentLabel.text = promotion?.startDate
-        endDateContentLabel.text = promotion?.endDateStringStore
-        awardPrizeLabel.text = promotion?.award
-        descriptionContentLabel.text = promotion?.storeDescription
+        self.storeNameLabel.text = promotion?.storeName
+        self.ticketCountLabel.text = promotion?.ticketsNeeded
+        self.awardContentLabel.text = promotion?.award
+        self.quantityContentLabel.text = promotion?.ticketsNeeded
+        self.startDateContentLabel.text = promotion?.startDate
+        self.endDateContentLabel.text = promotion?.endDateStringStore
+        self.awardPrizeLabel.text = promotion?.award
+        self.descriptionContentLabel.text = promotion?.storeDescription
+        
+        if promotion?.image == "circle.photo" {
+            self.avatarImageView.image = UIImage(systemName: promotion?.image ?? "circle.photo")
+        } else {
+            if let path = promotion?.image {
+                let url = URL(string: path)
+                self.avatarImageView.kf.setImage(with: url)
+            }
+        }
+        
+        viewLayoutMarginsDidChange()
+        self.avatarImageView.circleImage()
+        
     }
     
     //MARK: - UI
     func configureUI() {
         title = "Fidelidade"
         view.backgroundColor = UIColor(named: "Background")
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     //MARK: - SUBVIEWS
     func configureSubviews() {
+        //MARK: - scrollView
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
         //MARK: - card View
-        view.addSubview(card)
+        contentView.addSubview(card)
         card.addSubview(avatarImageView)
         card.addSubview(storeNameLabel)
         card.addSubview(ticketCountLabel)
         card.addSubview(awardPrizeLabel)
         
         //MARK: - description stackView
-        view.addSubview(descriptionStackView)
+        contentView.addSubview(descriptionStackView)
         
         //MARK: - quantity stackView
-        view.addSubview(quantityStackView)
+        contentView.addSubview(quantityStackView)
         
         //MARK: - award stackView
-        view.addSubview(awardStackView)
+        contentView.addSubview(awardStackView)
         
         //MARK: - horizontalDateStackView
-        view.addSubview(horizontalDateStackView)
+        contentView.addSubview(horizontalDateStackView)
         
         //MARK: - startDate stackView
-        view.addSubview(startDateStackView)
+        contentView.addSubview(startDateStackView)
         
         //MARK: - endDate stackView
-        view.addSubview(endDateStackView)
+        contentView.addSubview(endDateStackView)
         
         //MARK: - participants stackView
-        view.addSubview(participantsStackView)
+        contentView.addSubview(participantsStackView)
         
         //MARK: - buttonHorizontalStackView
-        view.addSubview(horizontalButtonStackView)
+        contentView.addSubview(horizontalButtonStackView)
         
         //MARK: - buttonVerticalStackView
-        view.addSubview(verticalButtonStackView)
+        contentView.addSubview(verticalButtonStackView)
     }
     
     //MARK: - STACKS
@@ -443,6 +486,25 @@ class StoreFidelityDetailsViewController: UIViewController {
     //MARK: - CONSTRAINTS
     func configureConstraints() {
         
+        let scrollViewConstraints = [
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ]
+        
+        let contentViewConstraints = [
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+        ]
+        
+        let constraint = contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        constraint.priority = UILayoutPriority(250)
+        constraint.isActive = true
+        
+        
         let avatarImageConstraints = [
             avatarImageView.heightAnchor.constraint(equalToConstant: 50),
             avatarImageView.widthAnchor.constraint(equalToConstant: 50),
@@ -453,7 +515,7 @@ class StoreFidelityDetailsViewController: UIViewController {
         
         let storeNameConstraints = [
             storeNameLabel.topAnchor.constraint(equalTo: card.topAnchor, constant: 16),
-            storeNameLabel.trailingAnchor.constraint(equalTo: ticketCountLabel.leadingAnchor, constant: -48),
+            storeNameLabel.trailingAnchor.constraint(equalTo: ticketCountLabel.leadingAnchor, constant: -4),
         ]
         
         let ticketCountConstraints = [
@@ -467,47 +529,47 @@ class StoreFidelityDetailsViewController: UIViewController {
         ]
         
         let cardViewContraints = [
-            card.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32),
-            card.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            card.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            card.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 32),
+            card.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            card.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             card.heightAnchor.constraint(equalToConstant: 168)
         ]
         
         let descriptionStackViewContraints = [
             descriptionStackView.topAnchor.constraint(equalTo: card.bottomAnchor, constant: 16),
-            descriptionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            descriptionStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            descriptionStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            descriptionStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let quantityStackViewContraints = [
             quantityStackView.topAnchor.constraint(equalTo: descriptionStackView.bottomAnchor, constant: 16),
-            quantityStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            quantityStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            quantityStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            quantityStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
             
         ]
         
         let awardStackViewContraints = [
             awardStackView.topAnchor.constraint(equalTo: quantityStackView.bottomAnchor, constant: 16),
-            awardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            awardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            awardStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            awardStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let datesStackViewContraints = [
             horizontalDateStackView.topAnchor.constraint(equalTo: awardStackView.bottomAnchor, constant: 16),
-            horizontalDateStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            horizontalDateStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            horizontalDateStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            horizontalDateStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let participantsStackViewContraints = [
             participantsStackView.topAnchor.constraint(equalTo: horizontalDateStackView.bottomAnchor, constant: 16),
-            participantsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            participantsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            participantsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            participantsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let horizontalButtonsStackViewContraints = [
             horizontalButtonStackView.topAnchor.constraint(equalTo: participantsStackView.bottomAnchor, constant: 32),
-            horizontalButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            horizontalButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            horizontalButtonStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            horizontalButtonStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ]
         
         let buttonsHeightContraints = [
@@ -520,10 +582,13 @@ class StoreFidelityDetailsViewController: UIViewController {
         
         let verticalButtonsStackViewContraints = [
             verticalButtonStackView.topAnchor.constraint(equalTo: horizontalButtonStackView.bottomAnchor, constant: 32),
-            verticalButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            verticalButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            verticalButtonStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            verticalButtonStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            verticalButtonStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32)
         ]
         
+        NSLayoutConstraint.activate(scrollViewConstraints)
+        NSLayoutConstraint.activate(contentViewConstraints)
         NSLayoutConstraint.activate(avatarImageConstraints)
         NSLayoutConstraint.activate(storeNameConstraints)
         NSLayoutConstraint.activate(ticketCountConstraints)
@@ -566,5 +631,31 @@ class StoreFidelityDetailsViewController: UIViewController {
         let vc = PromotionUsersViewController()
         vc.promotionId = promotion.id
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension StoreFidelityDetailsViewController: PromotionPresenterDelegate {
+    func fetchedOne(promotion: PromotionViewModel) {
+        self.promotion = promotion
+        self.configureView()
+    }
+}
+
+extension StoreFidelityDetailsViewController: PromotionUsersPresenterDelegate {
+    func fetched(tickets: [Ticket]) {
+        let emailUsers = tickets.compactMap { ticket in
+            return ticket.email_user
+        }
+        var aux = [EmailUser]()
+        let count = emailUsers.reduce(0) { partialResult, current in
+            if !aux.contains(current) {
+                aux.append(current)
+                return 1 + partialResult
+            }
+            return partialResult + 0
+        }
+        DispatchQueue.main.async {
+            self.participantsContentLabel.text = count == 1 ? "\(count) participante" : "\(count) participantes"
+        }
     }
 }

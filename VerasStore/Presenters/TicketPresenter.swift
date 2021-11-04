@@ -1,14 +1,14 @@
 //
 //  TicketPresenter.swift
-//  Fidelity-ios
+//  VerasStore
 //
-//  Created by Pedro Gomes Rubbo Pacheco on 19/10/21.
+//  Created by Santiago del Castillo Gonzaga on 29/10/21.
 //
 
 import UIKit
 
 protocol TicketPreseterDelegate: AnyObject {
-    func created()
+    func created() 
     func batched()
 }
 
@@ -26,7 +26,7 @@ class TicketPresenter {
     func create(code: String, email: String) {
         guard !code.isEmpty else {
             DispatchQueue.main.async {
-                self.view?.presentAlert(message: "O seu código está vazio")
+                self.view?.presentAlert(message: "O código está vazio")
             }
             return
         }
@@ -35,25 +35,22 @@ class TicketPresenter {
             guard let self = self else { return }
             switch result {
             case .success(_):
-                SyncService.shared.syncTickets()
                 DispatchQueue.main.async {
-                    self.view?.tabBarController?.selectedIndex = 0
-                    //self.view?.presentAlert(message: "Ticket processado com sucesso", title: "Parabéns!")
+                    self.view?.presentAlert(message: "Ticket processado com sucesso", title: "Parabéns!")
                 }
             case .failure(_):
                 DispatchQueue.main.async {
                     self.view?.presentAlert(message: "Ocorreu algum erro ao processar o ticket")
-                    self.view?.viewDidLoad()
                 }
             }
         }
     }
     
-    func batch(code: String) {
+    func batch(code: String, email: String) {
         DispatchQueue.main.async {
             self.view?.presentLoadingScreen()
         }
-        WebService.post(path: "/tickets/batch", body: ["code": code], type: TicketBatchResponse.self) {[weak self] result in
+        WebService.post(path: "/tickets/batch", body: ["code": code, "email": email], type: TicketBatchResponse.self) {[weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.view?.dismiss(animated: true, completion: nil)
@@ -62,20 +59,23 @@ class TicketPresenter {
             case .success(let wasCompleted):
                 if wasCompleted.wasUsed {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.view?.presentAlert(message: "Você resgatou seus tickets", title: "Parabéns!")
+                        self.view?.presentAlert(message: "O cliente completou a promoção. Permita ele resgatar a recompensa!", title: "Parabéns!")
+                        self.view?.viewDidLoad()
                     }
                     self.view?.batched()
                 } else {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.view?.presentAlert(message: "Você ainda não tem tickets suficientes")
+                        self.view?.presentAlert(message: "O cliente ainda não tem tickets suficientes")
+                        self.view?.viewDidLoad()
                     }
                 }
             case .failure(_):
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.view?.presentAlert(message: "Ocorreu algum erro ao processar os tickets")
+                    self.view?.viewDidLoad()
                 }
             }
         }
     }
-    
 }
+

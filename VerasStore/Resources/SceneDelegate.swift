@@ -58,7 +58,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
-        window.rootViewController = StoreMainTabBarViewController()
+        
+        let startVC = StoreMainTabBarViewController()
+        startVC.selectedIndex = 1
+        
+        window.rootViewController = startVC
         window.makeKeyAndVisible()
         
         self.window = window
