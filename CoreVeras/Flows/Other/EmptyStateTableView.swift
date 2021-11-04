@@ -45,7 +45,7 @@ public class EmptyStateTableView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.textColor = .white
         
         return label
@@ -60,8 +60,8 @@ public class EmptyStateTableView: UIView {
     private func addConstraints() {
         
         let verticalStackViewConstraints = [
-            verticalStackView.centerXAnchor.constraint(equalTo: superview?.centerXAnchor ?? self.centerXAnchor),
-            verticalStackView.centerYAnchor.constraint(equalTo: superview?.centerYAnchor ?? self.centerYAnchor)
+            verticalStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            verticalStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ]
         
         let imageViewConstraints = [
