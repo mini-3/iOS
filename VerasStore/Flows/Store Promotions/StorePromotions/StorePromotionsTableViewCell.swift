@@ -237,8 +237,13 @@ extension StorePromotionsTableViewCell: PromotionUsersPresenterDelegate {
         let emailUsers = tickets.compactMap { ticket in
             return ticket.email_user
         }
+        var aux = [EmailUser]()
         let count = emailUsers.reduce(0) { partialResult, current in
-            return emailUsers.filter { $0.id == current.id }.count + partialResult
+            if !aux.contains(current) {
+                aux.append(current)
+                return 1 + partialResult
+            }
+            return partialResult + 0
         }
         DispatchQueue.main.async {
             self.customersLabel.text = count == 1 ? "\(count) participante" : "\(count) participantes"
