@@ -9,6 +9,13 @@ import Foundation
 import UIKit
 
 class RegisterCViewController: UIViewController {
+    var registerPresenter = RegisterPresenter()
+    var registerModelController: RegisterStoreModelController? = nil
+    
+    public func configure(modelController: RegisterStoreModelController) {
+        registerModelController = modelController
+    }
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -17,40 +24,14 @@ class RegisterCViewController: UIViewController {
         return stackView
     }()
     
-    private let cepTextField: TextField = {
-        let textField = TextField(placeholder: "CEP")
+    private let addressTextField: TextField = {
+        let textField = TextField(placeholder: "Endereço")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
         return textField
     }()
+    
 
-    private let streetTextField: TextField = {
-        let textField = TextField(placeholder: "Rua")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocapitalizationType = .none
-        return textField
-    }()
-    
-    private let neighboutTextField: TextField = {
-        let textField = TextField(placeholder: "Bairro")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocapitalizationType = .none
-        return textField
-    }()
-    
-    private let numberTextField: TextField = {
-        let textField = TextField(placeholder: "num")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocapitalizationType = .none
-        return textField
-    }()
-    
-    private let complementTextField: TextField = {
-        let textField = TextField(placeholder: "complemento")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocapitalizationType = .none
-        return textField
-    }()
     
     private let continueButton: UIButton = {
         let button = UIButton()
@@ -64,11 +45,7 @@ class RegisterCViewController: UIViewController {
     
     private func addSubviews() {
         view?.addSubview(stackView)
-        stackView.addArrangedSubview(cepTextField)
-        stackView.addArrangedSubview(streetTextField)
-        stackView.addArrangedSubview(neighboutTextField)
-        stackView.addArrangedSubview(numberTextField)
-        stackView.addArrangedSubview(complementTextField)
+        stackView.addArrangedSubview(addressTextField)
         stackView.addArrangedSubview(continueButton)
     }
     
@@ -80,11 +57,7 @@ class RegisterCViewController: UIViewController {
         ]
         
         let textFieldConstraints = [
-            cepTextField.heightAnchor.constraint(equalToConstant: 40),
-            streetTextField.heightAnchor.constraint(equalToConstant: 40),
-            neighboutTextField.heightAnchor.constraint(equalToConstant: 40),
-            numberTextField.heightAnchor.constraint(equalToConstant: 40),
-            complementTextField.heightAnchor.constraint(equalToConstant: 40)
+            addressTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         let buttonConstraints = [
@@ -100,11 +73,21 @@ class RegisterCViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         addSubviews()
         addConstraints()
+        self.registerPresenter.view = self
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
     }
     
     @objc func didTapContinue() {
-        navigationController?.popToRootViewController(animated: true)
+        registerModelController?.address = addressTextField.text ?? ""
+        
+        if let registerModelController = registerModelController, registerPresenter.validateContinueC(registerModelController) {
+            registerPresenter.register(registerModelController) {
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
+        }
+        
+      
     }
-    
 }

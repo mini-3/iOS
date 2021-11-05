@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 class RegisterAViewController: UIViewController {
+    var registerPresenter = RegisterPresenter()
+    var registerModelController = RegisterStoreModelController()
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -16,14 +19,14 @@ class RegisterAViewController: UIViewController {
         stackView.spacing = 16
         return stackView
     }()
-
+    
     private let emailTextField: TextField = {
         let textField = TextField(placeholder: "Email")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
         return textField
     }()
-
+    
     private let passwordTextField: TextField = {
         let textField = TextField(placeholder: "Senha")
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -81,15 +84,29 @@ class RegisterAViewController: UIViewController {
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "Background")
+        setInputFirstValues()
         addSubviews()
         addConstraints()
+        self.registerPresenter.view = self
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
     }
     
     @objc func didTapContinue() {
-        let registerBViewController = RegisterBViewController()
-        navigationController?.pushViewController(registerBViewController, animated: true)
+        registerModelController.email = emailTextField.text ?? ""
+        registerModelController.password = passwordTextField.text ?? ""
+        registerModelController.confirmPassword = confirmPasswordField.text ?? ""
+        
+        if registerPresenter.validateContinueA(registerModelController) {
+            let registerBViewController = RegisterBViewController()
+            registerBViewController.configure(modelController: registerModelController)
+            navigationController?.pushViewController(registerBViewController, animated: true)
+        }
     }
     
+    func setInputFirstValues() {
+        emailTextField.text = registerModelController.email
+        passwordTextField.text = registerModelController.password
+        confirmPasswordField.text = registerModelController.confirmPassword
+    }
     
 }
