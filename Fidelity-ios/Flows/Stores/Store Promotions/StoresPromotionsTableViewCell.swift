@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class StoresPromotionsTableViewCell: UITableViewCell {
     
@@ -25,7 +26,6 @@ class StoresPromotionsTableViewCell: UITableViewCell {
     private lazy var storeImageView: UIImageView = {
         let storeImageView = UIImageView()
         storeImageView.translatesAutoresizingMaskIntoConstraints = false
-        storeImageView.circleImage()
         return storeImageView
     }()
     
@@ -108,7 +108,14 @@ class StoresPromotionsTableViewCell: UITableViewCell {
     func configure(storeImage: String, storeName: String, storePromotionDescription: String) {
         configureSubviews()
         configureConstraints()
-        self.storeImageView.image = UIImage(systemName: "person.fill")
+        
+        if storeImage == "photo.circle" {
+            self.storeImageView.image = UIImage(systemName: storeImage)
+        } else {
+            let url = URL(string: storeImage)
+            self.storeImageView.kf.setImage(with: url)
+        }
+        storeImageView.circleImage()
         self.storeName.text = storeName
         self.storePromotionDescription.text = storePromotionDescription
         self.contentView.backgroundColor = UIColor(named: "Background")

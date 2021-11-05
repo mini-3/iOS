@@ -16,5 +16,6 @@ public struct Store: Codable {
     let password: String?
     let promotions: [Promotion]?
     let description: String?
-    let isAppearing: Bool
+    let isAppearing: Bool?
+    let avatar: String?
 }

@@ -146,7 +146,6 @@ class StoreDetailsViewController: UIViewController {
     private lazy var requirementsStoreLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         label.textColor = .label
         label.numberOfLines = 0
@@ -177,7 +176,6 @@ class StoreDetailsViewController: UIViewController {
     
     private lazy var rewardStoreLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         label.textColor = .label
@@ -222,7 +220,12 @@ class StoreDetailsViewController: UIViewController {
         //telephoneStoreLabel.text = promotion.storePhone
         requirementsStoreLabel.text = promotion.ticketsNeeded
         rewardStoreLabel.text = promotion.award
-        storeImageView.image = UIImage(systemName: "photo")
+        if promotion.image == "photo.circle" {
+            storeImageView.image = UIImage(systemName: promotion.image)
+        } else {
+            let url = URL(string: promotion.image)
+            storeImageView.kf.setImage(with: url)
+        }
     }
     
     @objc func tappedBackButton(sender: UIBarButtonItem) {

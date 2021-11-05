@@ -30,6 +30,7 @@ class GradientView: UIView {
         shapeLayer.shadowOffset = CGSize(width: 0, height: 0)
         shapeLayer.shadowRadius = 3
         self.layer.mask = shapeLayer
+        self.layer.cornerRadius = 12
     }
     
     override public func draw(_ rect: CGRect) {

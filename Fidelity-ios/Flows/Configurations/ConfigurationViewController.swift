@@ -13,39 +13,39 @@ class ConfigurationViewController: UIViewController {
     private let userPresenter: UserPresenter = UserPresenter()
     
     private lazy var buttonStack: UIStackView = {
-        let buttonStack = UIStackView()
-        buttonStack.translatesAutoresizingMaskIntoConstraints = false
-        buttonStack.axis = .vertical
-        buttonStack.spacing = 8
+        let button = UIStackView()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.axis = .vertical
+        button.spacing = 8
         
-        return buttonStack
+        return button
     }()
     
     private lazy var logOutButton: UIButton = {
-        let logOutButton = UIButton()
-        logOutButton.translatesAutoresizingMaskIntoConstraints = false
-        logOutButton.setTitle("Sair da conta", for: .normal)
-        logOutButton.setTitleColor(.black, for: .normal)
-        logOutButton.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
-        logOutButton.backgroundColor = .white
-        logOutButton.layer.cornerRadius = 20
-        logOutButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        logOutButton.titleLabel?.textAlignment = .center
-        logOutButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Sair da conta", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 20
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         
-        return logOutButton
+        return button
     }()
     
     private lazy var deleteAccountButton: UIButton = {
-        let deleteAccountButton = UIButton()
-        deleteAccountButton.translatesAutoresizingMaskIntoConstraints = false
-        deleteAccountButton.setTitle("Deletar conta", for: .normal)
-        deleteAccountButton.setTitleColor(.red, for: .normal)
-        deleteAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        deleteAccountButton.titleLabel?.textAlignment = .center
-        deleteAccountButton.addTarget(self, action: #selector(deleteAccount), for: .touchUpInside)
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Deletar conta", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(deleteAccount), for: .touchUpInside)
         
-        return deleteAccountButton
+        return button
     }()
     
     override func viewDidLoad() {
@@ -70,7 +70,7 @@ class ConfigurationViewController: UIViewController {
     
     func configureConstraints() {
         let buttonStackContraints = [
-            buttonStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            buttonStack.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
             buttonStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             buttonStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
         ]

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserPromotionsTableViewCell: UITableViewCell {
     static let identifier = String(describing: self)
@@ -29,7 +30,6 @@ class UserPromotionsTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
-        imageView.image = UIImage(systemName: "person.fill")
         return imageView
     }()
     
@@ -266,7 +266,7 @@ class UserPromotionsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(wonBackgroundViewConstraints)
     }
     
-    func configure(storeName: String, ticketCount: String, awardPrize: String, awardAmount: Int, currentAmount: Int, dateEnd: String, code: String) {
+    func configure(storeName: String, ticketCount: String, avatar: String, awardPrize: String, awardAmount: Int, currentAmount: Int, dateEnd: String, code: String) {
         self.addSubviews()
         self.addConstraints()
         self.wonView.layer.cornerRadius = self.wonView.frame.height/2
@@ -278,6 +278,15 @@ class UserPromotionsTableViewCell: UITableViewCell {
         dateEndLabel.text = dateEnd
         self.awardAmount = awardAmount
         self.currentAmount = currentAmount
+        
+        if avatar == "photo.circle" {
+            self.avatarImageView.image = UIImage(systemName: avatar)
+        } else {
+            let url = URL(string: avatar)
+            self.avatarImageView.kf.setImage(with: url)
+        }
+        
+        self.avatarImageView.circleImage()
         self.collectionView.dataSource = self
         contentView.backgroundColor = UIColor(named: "Background")
         self.code = code

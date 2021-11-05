@@ -15,6 +15,7 @@ class DatePicker: UIView {
         self.heightAnchor.constraint(equalToConstant: 40).isActive = true
         self.layer.cornerRadius = 16
         self.layer.borderWidth = 1.5
+        self.label.text = label
         self.layer.borderColor = UIColor.label.cgColor
         
         addSubviews()
@@ -45,7 +46,7 @@ class DatePicker: UIView {
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Birthday"
+        label.text = "Aniversário"
         label.textColor = .tertiaryLabel
         return label
     }()

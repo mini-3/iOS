@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    func presentLoadingScreen() {
+    func presentLoadingScreen(completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: "Carregando...", preferredStyle: .alert)
         
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
@@ -17,7 +17,8 @@ extension UIViewController {
         loadingIndicator.startAnimating();
         
         alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: completion)
+        
     }
     
     func presentAlert(message: String, title: String = "Oops") {

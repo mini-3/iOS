@@ -15,6 +15,9 @@ class UserPromotionsViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UserPromotionsTableViewCell.self, forCellReuseIdentifier: UserPromotionsTableViewCell.identifier)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor(named: "Background")
+        
         return tableView
     }()
     
@@ -22,7 +25,15 @@ class UserPromotionsViewController: UIViewController {
         let segmented = UISegmentedControl(items: ["Em andamento", "Finalizados"])
         segmented.translatesAutoresizingMaskIntoConstraints = false
         segmented.selectedSegmentIndex = 0
+        
         return segmented
+    }()
+    
+    private var emptyState: EmptyStateTableView = {
+        let empty = EmptyStateTableView(image: UIImage(systemName: "ticket.fill")!, label: "Você ainda não está participando de nenhuma promoção. Visite nossos estabelecimentos parceiros!")
+        empty.translatesAutoresizingMaskIntoConstraints = false
+        
+        return empty
     }()
     
     private var userPromotionTickets: [UserPromotionTicketsResponse] = []
@@ -34,15 +45,14 @@ class UserPromotionsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.configureUI()
         self.addSubviews()
         self.configureTableView()
         self.addConstraints()
         self.configureObservers()
-        let refresh = UIRefreshControl()
-        refresh.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
-        self.userPromotionsTableView.refreshControl = refresh
-        segmentedControl.addTarget(self, action: #selector(didChangedSegmented(_:)), for: .valueChanged)
+        self.configureRefresh()
+        self.emptyStateControl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,11 +66,14 @@ class UserPromotionsViewController: UIViewController {
     
     //MARK: - Functionalities
     private func configureTableView() {
-        self.userPromotionsTableView.tableHeaderView = segmentedControl
         self.userPromotionsTableView.dataSource = self
         self.userPromotionsTableView.delegate = self
-        self.userPromotionsTableView.separatorStyle = .none
-        self.userPromotionsTableView.backgroundColor = UIColor(named: "Background")
+    }
+    
+    private func configureRefresh() {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+        self.userPromotionsTableView.refreshControl = refresh
     }
     
     private func configureObservers() {
@@ -71,49 +84,59 @@ class UserPromotionsViewController: UIViewController {
     }
     
     private func configureUI() {
+        view.backgroundColor = UIColor(named: "Background")
         title = "Promoções"
         navigationController?.navigationBar.prefersLargeTitles = true
         let gearButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(gearButtonAction))
         navigationItem.rightBarButtonItem = gearButton
         self.userPresenter.view = self
+        segmentedControl.addTarget(self, action: #selector(didChangedSegmented(_:)), for: .valueChanged)
     }
     
     private func addSubviews() {
+        view.addSubview(segmentedControl)
         view.addSubview(userPromotionsTableView)
+        view.addSubview(emptyState)
     }
     
     private func addConstraints() {
-        let segmentedConstraints = [
+        let segmentedControlConstraints = [
             segmentedControl.centerXAnchor.constraint(equalTo: segmentedControl.superview!.centerXAnchor),
-            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32)
+            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControl.superview!.leadingAnchor, constant: 32),
+            segmentedControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32)
         ]
         
         let tableViewConstraints = [
             userPromotionsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            userPromotionsTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            userPromotionsTableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 32),
             userPromotionsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            userPromotionsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            userPromotionsTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ]
         
+        let emptyStateConstraints = [
+            emptyState.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyState.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyState.heightAnchor.constraint(equalToConstant: 300),
+            emptyState.widthAnchor.constraint(equalToConstant: 250)
+        ]
+        
+        NSLayoutConstraint.activate(segmentedControlConstraints)
         NSLayoutConstraint.activate(tableViewConstraints)
-        NSLayoutConstraint.activate(segmentedConstraints)
+        NSLayoutConstraint.activate(emptyStateConstraints)
     }
     
-    // MARK: - Objc
-    @objc private func didRefresh() {
-        self.userPresenter.fetchUserTicketofPromotion(withLoadingScreen: false)
+    private func emptyStateControl() {
+        if userPromotionTicketsFiltered.count == 0 {
+            emptyState.isHidden = false
+            userPromotionsTableView.isHidden = true
+        } else {
+            emptyState.isHidden = true
+            userPromotionsTableView.isHidden = false
+        }
     }
     
-    @objc private func gearButtonAction() {
-        let configVC = ConfigurationViewController()
-        configVC.modalPresentationStyle = .automatic
-        let navVC = UINavigationController(rootViewController: configVC)
-        navVC.modalPresentationStyle = .automatic
-        self.present(navVC, animated: true)
-    }
-    
-    @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
+    private func filterData() {
+        if self.segmentedControl.selectedSegmentIndex == 0 {
             self.userPromotionTicketsFiltered = self.userPromotionTickets.filter {
                 guard let promotion = $0.promotion else { return false }
                 let formatter = ISO8601DateFormatter()
@@ -130,7 +153,25 @@ class UserPromotionsViewController: UIViewController {
                 return date < Date()
             }
         }
+    }
+    
+    // MARK: - Objc
+    @objc private func didRefresh() {
+        self.userPresenter.fetchUserTicketofPromotion(withLoadingScreen: false)
+    }
+    
+    @objc private func gearButtonAction() {
+        let configVC = ConfigurationViewController()
+        configVC.modalPresentationStyle = .automatic
+        let navVC = UINavigationController(rootViewController: configVC)
+        navVC.modalPresentationStyle = .automatic
+        self.present(navVC, animated: true)
+    }
+    
+    @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
+        self.filterData()
         userPromotionsTableView.reloadData()
+        self.emptyStateControl()
     }
 
 }
@@ -138,15 +179,11 @@ class UserPromotionsViewController: UIViewController {
 extension UserPromotionsViewController: UserPresenterDelegate {
     func fetched(response: [UserPromotionTicketsResponse]) {
         self.userPromotionTickets = response
-        self.userPromotionTicketsFiltered = response.filter {
-            guard let promotion = $0.promotion else { return false }
-            let formatter = ISO8601DateFormatter()
-            formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            guard let date = formatter.date(from: promotion.end) else { return false }
-            return date >= Date()
-        }
+        self.userPromotionTicketsFiltered = response
         DispatchQueue.main.async {
+            self.filterData()
             self.userPromotionsTableView.reloadData()
+            self.emptyStateControl()
             self.userPromotionsTableView.refreshControl?.endRefreshing()
         }
     }
@@ -164,7 +201,7 @@ extension UserPromotionsViewController: UITableViewDataSource, UITableViewDelega
         let userPromotionTicket = userPromotionTicketsFiltered[indexPath.row]
         guard let model = userPromotionTicket.promotion else { return UITableViewCell() }
         let viewModel = PromotionViewModel(with: model)
-        cell.configure(storeName: viewModel.storeName, ticketCount: "\(userPromotionTicket.ticketAmount)/\(model.win_ticket_amount)", awardPrize: viewModel.award, awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount, dateEnd: viewModel.endDateString, code: model.code)
+        cell.configure(storeName: viewModel.storeName, ticketCount: "\(userPromotionTicket.ticketAmount)/\(model.win_ticket_amount)", avatar: viewModel.image, awardPrize: viewModel.award, awardAmount: model.win_ticket_amount, currentAmount: userPromotionTicket.ticketAmount, dateEnd: viewModel.endDateString, code: model.code)
         cell.selectionStyle = .none
         return cell
     }
