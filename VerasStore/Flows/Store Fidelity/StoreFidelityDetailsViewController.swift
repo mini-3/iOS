@@ -367,7 +367,7 @@ class StoreFidelityDetailsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        presenter.fetchOne(withLoadingScreen: true, promotionId: promotionId)
+        presenter.fetchOne(withLoadingScreen: false, promotionId: promotionId)
         promotionUsersPresenter.fetch(promotionId: promotionId)
     }
     
@@ -396,9 +396,8 @@ class StoreFidelityDetailsViewController: UIViewController {
         self.endDateContentLabel.text = promotion?.endDateStringStore
         self.awardPrizeLabel.text = promotion?.award
         self.descriptionContentLabel.text = promotion?.storeDescription
-        
-        if promotion?.image == "circle.photo" {
-            self.avatarImageView.image = UIImage(systemName: promotion?.image ?? "circle.photo")
+        if promotion?.image == "photo.circle" {
+            self.avatarImageView.image = UIImage(systemName: "photo.circle")
         } else {
             if let path = promotion?.image {
                 let url = URL(string: path)
@@ -529,7 +528,7 @@ class StoreFidelityDetailsViewController: UIViewController {
         ]
         
         let cardViewContraints = [
-            card.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 32),
+            card.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 16),
             card.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             card.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             card.heightAnchor.constraint(equalToConstant: 168)

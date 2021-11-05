@@ -17,7 +17,7 @@ extension UIViewController {
         loadingIndicator.startAnimating();
         
         alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
     }
     
