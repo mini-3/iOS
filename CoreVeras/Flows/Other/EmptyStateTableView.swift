@@ -37,7 +37,7 @@ public class EmptyStateTableView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-        label.numberOfLines = 3
+        label.numberOfLines = 0
         label.textColor = .white
         label.textAlignment = .center
         label.alpha = 0.4
