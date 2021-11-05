@@ -8,7 +8,7 @@
 import Foundation
 
 struct MultipartService {
-    static private let ABSOLUTE_PATH = "http://localhost:3000"
+    static private let ABSOLUTE_PATH = "http://ec2-52-41-99-1.us-west-2.compute.amazonaws.com:3000"
     
     static public func post<T:Codable>(path: String, image: Data, data: [String: AnyHashable], type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
         guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }

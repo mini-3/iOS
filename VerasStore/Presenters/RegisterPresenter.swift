@@ -20,20 +20,13 @@ class RegisterPresenter {
                 .presentAlert(message: "Erro ao carregar imagem")
             return
         }
-        //        let data = [
-        //            "cnpj": modelController.cnpj,
-        //            "name": modelController.name,
-        //            "address": modelController.address,
-        //            "password": modelController.password,
-        //            "description": modelController.description
-        //        ]
         let data = [
-            "cnpj": "12345678",
-            "name": "bob",
-            "email":"email@gmail.com",
-            "address": "liberty avenue 22",
-            "password": "123456",
-            "description": "Nice company."
+            "cnpj": modelController.cnpj,
+            "name": modelController.name,
+            "address": modelController.address,
+            "password": modelController.password,
+            "description": modelController.description,
+            "email":modelController.email
         ]
         DispatchQueue.main.async {
             self.view?.presentLoadingScreen()
