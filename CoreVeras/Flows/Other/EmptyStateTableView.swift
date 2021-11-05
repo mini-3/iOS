@@ -22,21 +22,13 @@ public class EmptyStateTableView: UIView {
         fatalError()
     }
     
-    private var verticalStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        
-        return stackView
-    }()
-    
     private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
         imageView.clipsToBounds = true
+        imageView.alpha = 0.4
         
         return imageView
     }()
@@ -44,33 +36,38 @@ public class EmptyStateTableView: UIView {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.numberOfLines = 3
         label.textColor = .white
+        label.textAlignment = .center
+        label.alpha = 0.4
         
         return label
     }()
     
     private func addSubviews() {
-        self.addSubview(verticalStackView)
-        verticalStackView.addArrangedSubview(imageView)
-        verticalStackView.addArrangedSubview(titleLabel)
+    
+        self.addSubview(imageView)
+        self.addSubview(titleLabel)
     }
     
     private func addConstraints() {
-        
-        let verticalStackViewConstraints = [
-            verticalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 64),
-            verticalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -64),
-            verticalStackView.topAnchor.constraint(equalTo:self.topAnchor, constant: 64)
-        ]
+
         
         let imageViewConstraints = [
-            imageView.heightAnchor.constraint(equalToConstant: 150),
-            imageView.widthAnchor.constraint(equalToConstant: 150)
+            imageView.heightAnchor.constraint(equalToConstant: 60),
+            imageView.widthAnchor.constraint(equalToConstant: 80),
+            imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
         ]
         
-        NSLayoutConstraint.activate(verticalStackViewConstraints)
+        let titleLabelConstraint = [
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16)
+        ]
+        
         NSLayoutConstraint.activate(imageViewConstraints)
+        NSLayoutConstraint.activate(titleLabelConstraint)
     }
 }
