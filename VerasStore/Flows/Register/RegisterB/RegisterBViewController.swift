@@ -48,11 +48,19 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         let textField = TextField(placeholder: "CNPJ")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
+        textField.keyboardType = .numberPad
         return textField
     }()
     
     private let companyNameTextField: TextField = {
         let textField = TextField(placeholder: "Nome da empresa")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
+        return textField
+    }()
+    
+    private let descriptionTextField: TextField = {
+        let textField = TextField(placeholder: "Descrição")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
         return textField
@@ -74,6 +82,7 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         stackView.addArrangedSubview(addAvatarButton)
         stackView.addArrangedSubview(companyNameTextField)
         stackView.addArrangedSubview(cnpjTextField)
+        stackView.addArrangedSubview(descriptionTextField)
         stackView.addArrangedSubview(continueButton)
         
     }
@@ -95,7 +104,8 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         
         let textFieldConstraints = [
             companyNameTextField.heightAnchor.constraint(equalToConstant: 40),
-            cnpjTextField.heightAnchor.constraint(equalToConstant: 40)
+            cnpjTextField.heightAnchor.constraint(equalToConstant: 40),
+            descriptionTextField.heightAnchor.constraint(equalToConstant: 40),
         ]
         
         let buttonConstraints = [
@@ -114,6 +124,7 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         setInputFirstValues()
         addSubviews()
         addConstraints()
+        self.cnpjTextField.delegate = self
         imagePicker.delegate = self
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
         self.addAvatarButton.addTarget(self, action: #selector(didTapAddAvatar), for: .touchUpInside)
@@ -121,7 +132,10 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
     
     @objc func didTapContinue() {
         registerModelController?.name = companyNameTextField.text ?? ""
-        registerModelController?.cnpj = cnpjTextField.text ?? ""
+        
+        registerModelController?.cnpj = (cnpjTextField.text ?? "").replacingOccurrences(of: ".", with: "").replacingOccurrences(of: "/", with: "").replacingOccurrences(of: "-", with: "")
+        
+        registerModelController?.description = descriptionTextField.text ?? ""
         registerModelController?.avatar = avatarImage.image
         
         let registerCViewController = RegisterCViewController()
@@ -151,6 +165,34 @@ extension RegisterBViewController: UIImagePickerControllerDelegate {
             
         }
         self.imagePicker.dismiss(animated: true) {}
-        //        self.picker.dismiss(animated: true, completion: nil)
     }
+}
+
+extension RegisterBViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == cnpjTextField {
+            guard let text = textField.text else { return true }
+            if range.lowerBound == 2 && range.length == 0 {
+                textField.text = text + "."
+            }
+            
+            if range.lowerBound == 6 && range.length == 0 {
+                textField.text = text + "."
+            }
+            
+            if range.lowerBound == 10 && range.length == 0 {
+                textField.text = text + "/"
+            }
+            
+            if range.lowerBound == 15 && range.length == 0 {
+                textField.text = text + "-"
+            }
+            
+            let newLength = text.count + string.count - range.length
+            return newLength <= 18
+        }
+        return true
+    }
+    
 }

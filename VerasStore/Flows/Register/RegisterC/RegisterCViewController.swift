@@ -31,12 +31,7 @@ class RegisterCViewController: UIViewController {
         return textField
     }()
     
-    private let descriptionTextField: TextField = {
-        let textField = TextField(placeholder: "Descrição")
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocapitalizationType = .none
-        return textField
-    }()
+
     
     private let continueButton: UIButton = {
         let button = UIButton()
@@ -51,7 +46,6 @@ class RegisterCViewController: UIViewController {
     private func addSubviews() {
         view?.addSubview(stackView)
         stackView.addArrangedSubview(addressTextField)
-        stackView.addArrangedSubview(descriptionTextField)
         stackView.addArrangedSubview(continueButton)
     }
     
@@ -63,8 +57,7 @@ class RegisterCViewController: UIViewController {
         ]
         
         let textFieldConstraints = [
-            addressTextField.heightAnchor.constraint(equalToConstant: 40),
-            descriptionTextField.heightAnchor.constraint(equalToConstant: 40)
+            addressTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         let buttonConstraints = [
@@ -87,7 +80,6 @@ class RegisterCViewController: UIViewController {
     @objc func didTapContinue() {
         guard var registerModelController = registerModelController else { return }
         registerModelController.address = addressTextField.text ?? ""
-        registerModelController.description = descriptionTextField.text ?? ""
         print(registerModelController)
         registerPresenter.register(registerModelController) {
             DispatchQueue.main.async {
