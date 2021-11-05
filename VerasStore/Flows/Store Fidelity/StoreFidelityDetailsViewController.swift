@@ -323,21 +323,6 @@ class StoreFidelityDetailsViewController: UIViewController {
         return stackView
     }()
     
-    //MARK: - registerClient Button
-    private lazy var registerClientButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Cadastrar cliente", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.textColor = UIColor(named: "DeleteButtonColor")
-        button.backgroundColor = .white
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        button.titleLabel?.textAlignment = .center
-        button.addTarget(self, action: #selector(registerClient), for: .touchUpInside)
-        
-        return button
-    }()
-    
     //MARK: - qrCode Button
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
@@ -383,7 +368,6 @@ class StoreFidelityDetailsViewController: UIViewController {
     func setConrnerRadius() {
         editButton.layer.cornerRadius = 20
         seeParticipantsButton.layer.cornerRadius = 20
-        registerClientButton.layer.cornerRadius = 20
         qrCodeButton.layer.cornerRadius = 20
     }
     
@@ -477,7 +461,6 @@ class StoreFidelityDetailsViewController: UIViewController {
         participantsStackView.addArrangedSubview(participantsContentLabel)
         horizontalButtonStackView.addArrangedSubview(seeParticipantsButton)
         horizontalButtonStackView.addArrangedSubview(editButton)
-        verticalButtonStackView.addArrangedSubview(registerClientButton)
         verticalButtonStackView.addArrangedSubview(qrCodeButton)
         
     }
@@ -574,8 +557,7 @@ class StoreFidelityDetailsViewController: UIViewController {
         let buttonsHeightContraints = [
             editButton.heightAnchor.constraint(equalToConstant: 40),
             seeParticipantsButton.heightAnchor.constraint(equalToConstant: 40),
-            qrCodeButton.heightAnchor.constraint(equalToConstant: 40),
-            registerClientButton.heightAnchor.constraint(equalToConstant: 40)
+            qrCodeButton.heightAnchor.constraint(equalToConstant: 40)
             
         ]
         
@@ -607,17 +589,11 @@ class StoreFidelityDetailsViewController: UIViewController {
     //MARK: - buttonAction functions
     
     @objc func qrCode() {
-        //TODO
-        // go to QRcode Screen
         let vc = GenerateTicketViewController()
+        vc.promotion = promotion
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    @objc func registerClient() {
-        //TODO
-        // go to register client Screen
-    }
-    
+
     @objc func editPromotion() {
         guard let viewModel = promotion, let promotion = viewModel.promotion else { return }
         let vc = CreateUpdatePromotionViewController()
