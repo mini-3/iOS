@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class RegisterAViewController: UIViewController {
+    var registerPresenter = RegisterPresenter()
     var registerModelController = RegisterStoreModelController()
     
     private let stackView: UIStackView = {
@@ -18,14 +19,14 @@ class RegisterAViewController: UIViewController {
         stackView.spacing = 16
         return stackView
     }()
-
+    
     private let emailTextField: TextField = {
         let textField = TextField(placeholder: "Email")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
         return textField
     }()
-
+    
     private let passwordTextField: TextField = {
         let textField = TextField(placeholder: "Senha")
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +87,7 @@ class RegisterAViewController: UIViewController {
         setInputFirstValues()
         addSubviews()
         addConstraints()
+        self.registerPresenter.view = self
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
     }
     
@@ -94,9 +96,11 @@ class RegisterAViewController: UIViewController {
         registerModelController.password = passwordTextField.text ?? ""
         registerModelController.confirmPassword = confirmPasswordField.text ?? ""
         
-        let registerBViewController = RegisterBViewController()
-        registerBViewController.configure(modelController: registerModelController)
-        navigationController?.pushViewController(registerBViewController, animated: true)
+        if registerPresenter.validateContinueA(registerModelController) {
+            let registerBViewController = RegisterBViewController()
+            registerBViewController.configure(modelController: registerModelController)
+            navigationController?.pushViewController(registerBViewController, animated: true)
+        }
     }
     
     func setInputFirstValues() {

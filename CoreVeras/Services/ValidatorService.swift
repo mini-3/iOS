@@ -35,7 +35,7 @@ public struct ValidatorService {
     }
     
     static private func validatePassword(_ password: String) -> Bool{
-        return true
+        return password.count > 5 && password.count < 13
     }
     
     static private func validateCNPJ(_ cnpj: String) -> Bool {

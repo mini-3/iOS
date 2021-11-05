@@ -78,13 +78,16 @@ class RegisterCViewController: UIViewController {
     }
     
     @objc func didTapContinue() {
-        guard var registerModelController = registerModelController else { return }
-        registerModelController.address = addressTextField.text ?? ""
-        print(registerModelController)
-        registerPresenter.register(registerModelController) {
-            DispatchQueue.main.async {
-                self.navigationController?.popToRootViewController(animated: true)
+        registerModelController?.address = addressTextField.text ?? ""
+        
+        if let registerModelController = registerModelController, registerPresenter.validateContinueC(registerModelController) {
+            registerPresenter.register(registerModelController) {
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
             }
         }
+        
+      
     }
 }

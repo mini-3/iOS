@@ -11,6 +11,7 @@ import UniformTypeIdentifiers
 import Kingfisher
 
 class RegisterBViewController: UIViewController, UINavigationControllerDelegate {
+    var registerPresenter = RegisterPresenter()
     var registerModelController:RegisterStoreModelController? = nil
     
     public func configure(modelController: RegisterStoreModelController) {
@@ -124,6 +125,7 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         setInputFirstValues()
         addSubviews()
         addConstraints()
+        self.registerPresenter.view = self
         self.cnpjTextField.delegate = self
         imagePicker.delegate = self
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
@@ -132,16 +134,15 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
     
     @objc func didTapContinue() {
         registerModelController?.name = companyNameTextField.text ?? ""
-        
         registerModelController?.cnpj = (cnpjTextField.text ?? "").replacingOccurrences(of: ".", with: "").replacingOccurrences(of: "/", with: "").replacingOccurrences(of: "-", with: "")
-        
         registerModelController?.description = descriptionTextField.text ?? ""
         registerModelController?.avatar = avatarImage.image
         
-        let registerCViewController = RegisterCViewController()
-        guard let registerModelController = registerModelController else {return }
-        registerCViewController.configure(modelController: registerModelController)
-        navigationController?.pushViewController(registerCViewController, animated: true)
+        if let registerModelController = registerModelController , registerPresenter.validateContinueB(registerModelController) {
+            let registerCViewController = RegisterCViewController()
+            registerCViewController.configure(modelController: registerModelController)
+            navigationController?.pushViewController(registerCViewController, animated: true)
+        }
     }
     
     @objc func didTapAddAvatar() {
