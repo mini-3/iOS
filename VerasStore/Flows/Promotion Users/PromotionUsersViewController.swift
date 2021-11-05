@@ -25,6 +25,13 @@ class PromotionUsersViewController: UIViewController {
         return searchController
     }()
     
+    private var emptyState: EmptyStateTableView = {
+        let empty = EmptyStateTableView(image: UIImage(systemName: "avatar)!, label: "O estabelecimento ainda não possui promoções. Crie promoções e fidelize seus clientes")
+        empty.translatesAutoresizingMaskIntoConstraints = false
+        
+        return empty
+    }()
+    
     private var tickets: [Ticket] = []
     private var filteredTickets: [Ticket] = []
     private let presenter = PromotionUsersPresenter()
