@@ -44,13 +44,19 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         return button
     }()
     
+    private let cnpjTextField: TextField = {
+        let textField = TextField(placeholder: "CNPJ")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
+        return textField
+    }()
+    
     private let companyNameTextField: TextField = {
         let textField = TextField(placeholder: "Nome da empresa")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
         return textField
     }()
-    
     
     private let continueButton: UIButton = {
         let button = UIButton()
@@ -67,6 +73,7 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         view.addSubview(stackView)
         stackView.addArrangedSubview(addAvatarButton)
         stackView.addArrangedSubview(companyNameTextField)
+        stackView.addArrangedSubview(cnpjTextField)
         stackView.addArrangedSubview(continueButton)
         
     }
@@ -87,7 +94,8 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         ]
         
         let textFieldConstraints = [
-            companyNameTextField.heightAnchor.constraint(equalToConstant: 40)
+            companyNameTextField.heightAnchor.constraint(equalToConstant: 40),
+            cnpjTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
         let buttonConstraints = [
@@ -113,6 +121,7 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
     
     @objc func didTapContinue() {
         registerModelController?.name = companyNameTextField.text ?? ""
+        registerModelController?.cnpj = cnpjTextField.text ?? ""
         registerModelController?.avatar = avatarImage.image
         
         let registerCViewController = RegisterCViewController()

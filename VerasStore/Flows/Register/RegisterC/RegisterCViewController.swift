@@ -89,7 +89,10 @@ class RegisterCViewController: UIViewController {
         registerModelController.address = addressTextField.text ?? ""
         registerModelController.description = descriptionTextField.text ?? ""
         print(registerModelController)
-        registerPresenter.register(registerModelController) { self.navigationController?.popToRootViewController(animated: true)
+        registerPresenter.register(registerModelController) {
+            DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
         
     }

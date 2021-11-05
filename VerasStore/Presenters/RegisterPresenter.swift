@@ -13,19 +13,27 @@ class RegisterPresenter {
     init() {}
     
     weak var view: UIViewController?
-
+    
     func register(_ modelController:RegisterStoreModelController, handler: @escaping () -> Void) {
-        guard let image = modelController.avatar?.jpegData(compressionQuality: 0.5) else {
+        guard let image = modelController.avatar?.jpegData(compressionQuality: 1) else {
             self.view?
                 .presentAlert(message: "Erro ao carregar imagem")
             return
         }
+        //        let data = [
+        //            "cnpj": modelController.cnpj,
+        //            "name": modelController.name,
+        //            "address": modelController.address,
+        //            "password": modelController.password,
+        //            "description": modelController.description
+        //        ]
         let data = [
-            "cnpj": modelController.cnpj,
-            "name": modelController.name,
-            "address": modelController.address,
-            "password": modelController.password,
-            "description": modelController.description
+            "cnpj": "12345678",
+            "name": "bob",
+            "email":"email@gmail.com",
+            "address": "liberty avenue 22",
+            "password": "123456",
+            "description": "Nice company."
         ]
         DispatchQueue.main.async {
             self.view?.presentLoadingScreen()
@@ -35,12 +43,12 @@ class RegisterPresenter {
             case .success(_):
                 DispatchQueue.main.async {
                     print("sucess")
-                    self?.view?.presentLoadingScreen()
+                    self?.view?.dismiss(animated: true)
                     handler()
                 }
-            case .failure(_):
+            case .failure(let error):
                 DispatchQueue.main.async {
-                    print("error")
+                    print("error",error)
                     self?.view?.presentAlert(message: "Erro ao registrar estabelecimento")
                 }
             }

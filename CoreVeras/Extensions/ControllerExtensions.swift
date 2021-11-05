@@ -19,10 +19,6 @@ extension UIViewController {
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-            self.dismiss(animated: true)
-        })
-        
     }
     
     func presentAlert(message: String, title: String = "Oops") {
