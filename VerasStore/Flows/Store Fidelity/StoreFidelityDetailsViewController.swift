@@ -367,7 +367,7 @@ class StoreFidelityDetailsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        presenter.fetchOne(withLoadingScreen: true, promotionId: promotionId)
+        presenter.fetchOne(withLoadingScreen: false, promotionId: promotionId)
         promotionUsersPresenter.fetch(promotionId: promotionId)
     }
     
