@@ -98,8 +98,10 @@ class GenerateTicketViewController: UIViewController, TicketPreseterDelegate {
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
              
-            guard let textField = alert?.textFields?[0], let email = textField.text, let code = self.promotion?.promotion?.code else { return }// Force unwrapping because we know it exists.
+            guard let textField = alert?.textFields?[0], let email = textField.text, let code = self.promotion?.promotion?.code else { return }
+            
             self.presenter.create(code: code, email: email)
+            self.navigationController?.popViewController(animated: true)
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

@@ -116,10 +116,9 @@ extension PromotionUsersViewController: PromotionUsersPresenterDelegate {
     func fetched(tickets: [Ticket]) {
         self.tickets = tickets
         self.filteredTickets = tickets
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.emptyStateControl()
-        }
+        self.tableView.reloadData()
+        self.emptyStateControl()
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

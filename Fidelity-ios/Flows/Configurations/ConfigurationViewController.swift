@@ -70,7 +70,7 @@ class ConfigurationViewController: UIViewController {
     
     func configureConstraints() {
         let buttonStackContraints = [
-            buttonStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            buttonStack.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
             buttonStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             buttonStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
         ]
