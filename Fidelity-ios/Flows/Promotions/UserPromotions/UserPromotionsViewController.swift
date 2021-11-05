@@ -29,6 +29,13 @@ class UserPromotionsViewController: UIViewController {
         return segmented
     }()
     
+    private var emptyState: EmptyStateTableView = {
+        let empty = EmptyStateTableView(image: UIImage(systemName: "ticket.fill")!, label: "Você ainda não está participando de nenhuma promoção. Visite nossos estabelecimentos parceiros!")
+        empty.translatesAutoresizingMaskIntoConstraints = false
+        
+        return empty
+    }()
+    
     private var userPromotionTickets: [UserPromotionTicketsResponse] = []
     private var userPromotionTicketsFiltered: [UserPromotionTicketsResponse] = []
     private let userPresenter = UserPresenter()
@@ -45,7 +52,7 @@ class UserPromotionsViewController: UIViewController {
         self.addConstraints()
         self.configureObservers()
         self.configureRefresh()
-        
+        self.emptyStateControl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,10 +66,8 @@ class UserPromotionsViewController: UIViewController {
     
     //MARK: - Functionalities
     private func configureTableView() {
-        //self.userPromotionsTableView.tableHeaderView = segmentedControl
         self.userPromotionsTableView.dataSource = self
         self.userPromotionsTableView.delegate = self
-        
     }
     
     private func configureRefresh() {
@@ -91,6 +96,7 @@ class UserPromotionsViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(segmentedControl)
         view.addSubview(userPromotionsTableView)
+        view.addSubview(emptyState)
     }
     
     private func addConstraints() {
@@ -107,8 +113,26 @@ class UserPromotionsViewController: UIViewController {
             userPromotionsTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ]
         
+        let emptyStateConstraints = [
+            emptyState.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyState.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyState.heightAnchor.constraint(equalToConstant: 300),
+            emptyState.widthAnchor.constraint(equalToConstant: 250)
+        ]
+        
         NSLayoutConstraint.activate(segmentedControlConstraints)
         NSLayoutConstraint.activate(tableViewConstraints)
+        NSLayoutConstraint.activate(emptyStateConstraints)
+    }
+    
+    private func emptyStateControl() {
+        if userPromotionTicketsFiltered.count == 0 {
+            emptyState.isHidden = false
+            userPromotionsTableView.isHidden = true
+        } else {
+            emptyState.isHidden = true
+            userPromotionsTableView.isHidden = false
+        }
     }
     
     private func filterData() {
@@ -147,6 +171,7 @@ class UserPromotionsViewController: UIViewController {
     @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
         self.filterData()
         userPromotionsTableView.reloadData()
+        self.emptyStateControl()
     }
 
 }
@@ -158,6 +183,7 @@ extension UserPromotionsViewController: UserPresenterDelegate {
         DispatchQueue.main.async {
             self.filterData()
             self.userPromotionsTableView.reloadData()
+            self.emptyStateControl()
             self.userPromotionsTableView.refreshControl?.endRefreshing()
         }
     }

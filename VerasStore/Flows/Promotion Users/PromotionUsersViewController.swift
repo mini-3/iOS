@@ -25,6 +25,13 @@ class PromotionUsersViewController: UIViewController {
         return searchController
     }()
     
+    private var emptyState: EmptyStateTableView = {
+        let empty = EmptyStateTableView(image: UIImage(systemName: "person.fill")!, label: "O estabelecimento ainda não tem clientes cadastrados. Divulgue as promoções e fidelize mais seus clientes!")
+        empty.translatesAutoresizingMaskIntoConstraints = false
+        
+        return empty
+    }()
+    
     private var tickets: [Ticket] = []
     private var filteredTickets: [Ticket] = []
     private let presenter = PromotionUsersPresenter()
@@ -33,20 +40,22 @@ class PromotionUsersViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Clientes"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        
         tableView.dataSource = self
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         presenter.view = self
+        self.configureUI()
         self.addSubviews()
         self.addConstraints()
+        self.emptyStateControl()
         presenter.fetch(promotionId: promotionId)
     }
     
     // MARK: - Functionalities
     private func addSubviews() {
         view.addSubview(tableView)
+        view.addSubview(emptyState)
     }
     
     private func addConstraints() {
@@ -57,7 +66,31 @@ class PromotionUsersViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
+        let emptyStateConstraints = [
+            emptyState.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyState.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyState.heightAnchor.constraint(equalToConstant: 300),
+            emptyState.widthAnchor.constraint(equalToConstant: 250)
+        ]
+        
         NSLayoutConstraint.activate(tableViewConstraints)
+        NSLayoutConstraint.activate(emptyStateConstraints)
+    }
+    
+    private func configureUI() {
+        title = "Clientes"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = UIColor(named: "Background")
+    }
+    
+    private func emptyStateControl() {
+        if filteredTickets.count == 0 {
+            emptyState.isHidden = false
+            tableView.isHidden = true
+        } else {
+            emptyState.isHidden = true
+            tableView.isHidden = false
+        }
     }
 }
 
@@ -85,6 +118,7 @@ extension PromotionUsersViewController: PromotionUsersPresenterDelegate {
         self.filteredTickets = tickets
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.emptyStateControl()
         }
     }
 }
@@ -101,5 +135,6 @@ extension PromotionUsersViewController: UISearchBarDelegate {
         }
         
         tableView.reloadData()
+        self.emptyStateControl()
     }
 }

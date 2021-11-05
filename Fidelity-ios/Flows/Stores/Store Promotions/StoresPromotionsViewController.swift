@@ -10,26 +10,13 @@ import UIKit
 
 class StoresPromotionsViewController: UIViewController {
     
-    private let promotionPresenter: PromotionPresenter = PromotionPresenter()
-    //private let categories:
-    var promotions: [PromotionViewModel] = []
-    var filteredData: [PromotionViewModel] = []
-    
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchController.searchBar.placeholder = "Buscar"
         
         return searchController
         
-    }()
-    
-    private lazy var categoriesCollectionView: UICollectionView = {
-        let categoriesCollectionView = UICollectionView()
-        categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        categoriesCollectionView.isScrollEnabled = true
-        
-        
-        return categoriesCollectionView
     }()
     
     private lazy var storesTableView: UITableView = {
@@ -38,17 +25,26 @@ class StoresPromotionsViewController: UIViewController {
         return storesTableView
     }()
     
+    private var emptyState: EmptyStateTableView = {
+        let empty = EmptyStateTableView(image: UIImage(systemName: "creditcard.fill")!, label: "Ainda não existem estabelecimentos parceiros na sua região.")
+        empty.translatesAutoresizingMaskIntoConstraints = false
+        
+        return empty
+    }()
+    
+    private let promotionPresenter: PromotionPresenter = PromotionPresenter()
+    var promotions: [PromotionViewModel] = []
+    var filteredData: [PromotionViewModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.promotionPresenter.view = self
-        configureUI()
-        configureSubViews()
-        configureConstraints()
+        self.configureUI()
+        self.configureSubViews()
+        self.configureConstraints()
+        self.configureRefresh()
         self.promotionPresenter.fetchPromotions()
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Buscar"
-        navigationItem.searchController = searchController
-        
     }
     
     private func configureUI() {
@@ -59,16 +55,20 @@ class StoresPromotionsViewController: UIViewController {
         storesTableView.delegate = self
         storesTableView.dataSource = self
         storesTableView.separatorStyle = .none
-        //        let refreshable = UIRefreshControl()
-        //
-        //        storesTableView.refreshControl = refreshable
-        //        storesTableView.refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        navigationItem.searchController = searchController
+        self.emptyStateControl()
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func configureRefresh() {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        self.storesTableView.refreshControl = refresh
     }
     
     func configureSubViews() {
         view.addSubview(storesTableView)
-        
+        view.addSubview(emptyState)
     }
     
     func configureConstraints() {
@@ -78,11 +78,27 @@ class StoresPromotionsViewController: UIViewController {
             storesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             storesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             storesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            
-            
+        ]
+        
+        let emptyStateConstraints = [
+            emptyState.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyState.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyState.heightAnchor.constraint(equalToConstant: 300),
+            emptyState.widthAnchor.constraint(equalToConstant: 250)
         ]
         
         NSLayoutConstraint.activate(storesTableViewConstraints)
+        NSLayoutConstraint.activate(emptyStateConstraints)
+    }
+    
+    func emptyStateControl() {
+        if filteredData.count == 0 {
+            emptyState.isHidden = false
+            storesTableView.isHidden = true
+        } else {
+            emptyState.isHidden = true
+            storesTableView.isHidden = false
+        }
     }
     
     @objc func handleRefresh() {
@@ -121,8 +137,6 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TO DO
-        // ir para a tela de detalhes com a promo
         let viewModel = filteredData[indexPath.row]
         let storeDetailsVC = StoreDetailsViewController()
         storeDetailsVC.promotion = viewModel
@@ -136,49 +150,24 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
 
 extension StoresPromotionsViewController: UISearchBarDelegate {
     
-    //    var isEmptyFiltering: Bool {
-    //        promotions.map{$1}.reduce([],+).count < 1
-    //    }
-    //
-    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         promotionPresenter.fetchPromotions()
         self.storesTableView.reloadData()
-        
+        self.emptyStateControl()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         
         filteredData = promotions
         
         if !searchText.isEmpty {
             filteredData = promotions.filter{ $0.storeName.lowercased().contains(searchText.lowercased()) || $0.award.lowercased().contains(searchText.lowercased())}
             self.storesTableView.reloadData()
-            
+            self.emptyStateControl()
         }
         
     }
 }
-
-//extension UserStoresViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
-//
-//}
 
 extension StoresPromotionsViewController: PromotionPresenterDelegate {
     func fetched(promotions: [PromotionViewModel]) {
@@ -186,6 +175,8 @@ extension StoresPromotionsViewController: PromotionPresenterDelegate {
         self.promotions = promotions
         DispatchQueue.main.async {
             self.storesTableView.reloadData()
+            self.emptyStateControl()
+            self.storesTableView.refreshControl?.endRefreshing()
         }
     }
 }

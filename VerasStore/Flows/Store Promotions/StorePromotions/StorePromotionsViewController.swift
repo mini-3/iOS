@@ -81,6 +81,13 @@ class StorePromotionsViewController: UIViewController {
         return tableView
     }()
     
+    private var emptyState: EmptyStateTableView = {
+        let empty = EmptyStateTableView(image: UIImage(systemName: "ticket.fill")!, label: "O estabelecimento ainda não possui promoções. Crie promoções e fidelize seus clientes")
+        empty.translatesAutoresizingMaskIntoConstraints = false
+        
+        return empty
+    }()
+    
     var promotions: [PromotionViewModel] = []
     var filteredPromotions: [PromotionViewModel] = []
     private let promotionPresenter = PromotionPresenter()
@@ -99,6 +106,7 @@ class StorePromotionsViewController: UIViewController {
         self.configureConstraints()
         self.configureStacks()
         self.configureRefresh()
+        self.emptyStateControl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -127,6 +135,7 @@ class StorePromotionsViewController: UIViewController {
         view.addSubview(horizontalStackView)
         view.addSubview(segmentedControl)
         view.addSubview(promotionsTableView)
+        view.addSubview(emptyState)
     }
     
     private func configureConstraints() {
@@ -149,9 +158,17 @@ class StorePromotionsViewController: UIViewController {
             promotionsTableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ]
         
+        let emptyStateConstraints = [
+            emptyState.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyState.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyState.heightAnchor.constraint(equalToConstant: 300),
+            emptyState.widthAnchor.constraint(equalToConstant: 250)
+        ]
+        
         NSLayoutConstraint.activate(horizontalStackViewConstraints)
         NSLayoutConstraint.activate(segmentedControlConstraints)
         NSLayoutConstraint.activate(promotionsTableViewConstraints)
+        NSLayoutConstraint.activate(emptyStateConstraints)
     }
     
     private func configureStacks() {
@@ -159,6 +176,16 @@ class StorePromotionsViewController: UIViewController {
         horizontalStackView.addArrangedSubview(verticalStackView)
         verticalStackView.addArrangedSubview(customersLabel1)
         verticalStackView.addArrangedSubview(customersLabel2)
+    }
+    
+    private func emptyStateControl() {
+        if filteredPromotions.count == 0 {
+            emptyState.isHidden = false
+            promotionsTableView.isHidden = true
+        } else {
+            emptyState.isHidden = true
+            promotionsTableView.isHidden = false
+        }
     }
     
     private func configureRefresh() {
@@ -196,6 +223,7 @@ class StorePromotionsViewController: UIViewController {
     @objc private func didChangedSegmented(_ sender: UISegmentedControl) {
         self.filterData()
         promotionsTableView.reloadData()
+        self.emptyStateControl()
     }
     
     @objc private func gearButtonAction() {
@@ -219,6 +247,7 @@ extension StorePromotionsViewController: PromotionPresenterDelegate {
         DispatchQueue.main.async {
             self.filterData()
             self.promotionsTableView.reloadData()
+            self.emptyStateControl()
             self.promotionsTableView.refreshControl?.endRefreshing()
         }
     }
