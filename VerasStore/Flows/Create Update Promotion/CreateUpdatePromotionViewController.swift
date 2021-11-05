@@ -236,12 +236,14 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         self.promotion = promotion
         switch type {
         case .create:
+            self.finishButton.isHidden = true
             title = "Nova Fidelidade"
             let gearButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(gearButtonAction))
             navigationItem.rightBarButtonItem = gearButton
             
             executeButton.setTitle("Criar", for: .normal)
         case .update:
+            self.finishButton.isHidden = false
             title = "Editar Fidelidade"
             executeButton.setTitle("Atualizar", for: .normal)
             self.type = .update
