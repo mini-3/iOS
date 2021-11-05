@@ -17,13 +17,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = UserDefaultsService.shared.retrieve(key: "first_login", type: String.self) else {
             let vc = OnboardViewController()
             vc.configure(
-                title: "Onboarding",
+                title: "Bem vindo ao Veras",
                 sections: [OnboardSection(image: "rectangle-white",
-                                          title: "Conteúdo Informativo 1",
-                                          description: "e introdutivo sobre o nosso app exposto de maneira rápida e clara"),
+                                          title: "Lojas",
+                                          description: "Encontre suas lojas parceiras favoritas e descubra fidelidades"),
                            OnboardSection(image: "rectangle-white",
-                                          title: "Conteúdo Informativo 2",
-                                          description: "e introdutivo sobre o nosso app exposto de maneira rápida e clara")
+                                          title: "Leitor",
+                                          description: "Peça a leitura do QR Code para ganhar pontos  quando elegível"),
+                           OnboardSection(image: "rectangle-white",
+                                          title: "Carteira",
+                                          description: "Acompanhe sua pontuação em seus cartões de fidelidade")
                           ],
                 handleContinue: {
                     UserDefaultsService.shared.save(data: "true", key: "first_login")
