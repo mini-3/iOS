@@ -80,11 +80,12 @@ class RegisterViewController: UIViewController, UserPresenterDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Criar conta"
         view.backgroundColor = UIColor(named: "Background")
         self.presenter.view = self
-        addSubviews()
-        addConstraint()
-        cpfTextField.delegate = self
+        self.addSubviews()
+        self.addConstraint()
+        self.cpfTextField.delegate = self
         continueButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapSignIn))
         signInLabel.isUserInteractionEnabled = true
@@ -149,17 +150,14 @@ extension RegisterViewController: UITextFieldDelegate {
             guard let text = textField.text else { return true }
             if range.lowerBound == 3 && range.length == 0 {
                 textField.text = text + "."
-                return false
             }
             
             if range.lowerBound == 7 && range.length == 0 {
                 textField.text = text + "."
-                return false
             }
             
             if range.lowerBound == 11 && range.length == 0 {
                 textField.text = text + "-"
-                return false
             }
             
             let newLength = text.count + string.count - range.length

@@ -27,5 +27,14 @@ extension UIViewController {
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func presentAlertCreateAccount() {
+        let alertController = UIAlertController(title: "Parabéns!", message: "Conta criada com sucesso.", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 

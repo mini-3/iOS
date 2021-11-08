@@ -151,7 +151,7 @@ class UserPresenter {
             case .success(_):
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
-                    self.view?.presentAlert(message: "Conta criada com sucesso.", title: "Parabéns!")
+                    self.view?.presentAlertCreateAccount()  
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
