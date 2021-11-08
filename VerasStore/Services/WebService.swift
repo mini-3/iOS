@@ -14,7 +14,7 @@ public enum WebServiceError: Error {
 }
 
 public struct WebService {
-    static private let ABSOLUTE_PATH = "http://ec2-52-41-99-1.us-west-2.compute.amazonaws.com:3000"
+    static private let ABSOLUTE_PATH = "http://ec2-54-201-103-70.us-west-2.compute.amazonaws.com:3000"
     
     // MARK: - Get
     static public func get<T:Codable>(path: String, type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
