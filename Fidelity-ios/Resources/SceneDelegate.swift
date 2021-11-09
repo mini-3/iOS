@@ -18,13 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let vc = OnboardViewController()
             vc.configure(
                 title: "Bem vindo ao Veras",
-                sections: [OnboardSection(image: "rectangle-white",
+                sections: [OnboardSection(image: "Fidelidades",
                                           title: "Lojas",
                                           description: "Encontre suas lojas parceiras favoritas e descubra fidelidades"),
-                           OnboardSection(image: "rectangle-white",
+                           OnboardSection(image: "Qrcode",
                                           title: "Leitor",
                                           description: "Peça a leitura do QR Code para ganhar pontos  quando elegível"),
-                           OnboardSection(image: "rectangle-white",
+                           OnboardSection(image: "Carteira",
                                           title: "Carteira",
                                           description: "Acompanhe sua pontuação em seus cartões de fidelidade")
                           ],
