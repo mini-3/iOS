@@ -49,7 +49,7 @@ class RegisterPresenter {
             return false
         }
         //company name
-        if registerModelController.password.count < 1 {
+        if registerModelController.name.count < 1 {
             DispatchQueue.main.async {
                 self.view?.presentAlert(message: "Nome de empresa inválido.")
             }
@@ -64,9 +64,9 @@ class RegisterPresenter {
             return false
         }
         //description
-        if registerModelController.password.count > 50 && registerModelController.password.count < 201 {
+        if !(registerModelController.description.count > 10 && registerModelController.description.count < 201) {
             DispatchQueue.main.async {
-                self.view?.presentAlert(message: "Descrição deve conter entre 50 a 200 caracteres.")
+                self.view?.presentAlert(message: "Descrição deve conter entre 10 a 200 caracteres.")
             }
             return false
         }

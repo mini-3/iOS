@@ -23,7 +23,9 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
     private let avatarImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .white
+        //imageView.backgroundColor = .white
+        imageView.image = UIImage(systemName: "photo.circle")
+        imageView.tintColor = .white
         return imageView
     }()
     
@@ -77,6 +79,21 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         return button
     }()
     
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor(named: "Background")
+        title = "Criar conta (2/3)"
+        setInputFirstValues()
+        addSubviews()
+        addConstraints()
+        self.registerPresenter.view = self
+        self.cnpjTextField.delegate = self
+        self.companyNameTextField.delegate = self
+        self.descriptionTextField.delegate = self
+        imagePicker.delegate = self
+        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+        self.addAvatarButton.addTarget(self, action: #selector(didTapAddAvatar), for: .touchUpInside)
+    }
+    
     private func addSubviews() {
         view.addSubview(avatarImage)
         view.addSubview(stackView)
@@ -120,18 +137,6 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         NSLayoutConstraint.activate(buttonConstraints)
     }
     
-    override func viewDidLoad() {
-        view.backgroundColor = UIColor(named: "Background")
-        setInputFirstValues()
-        addSubviews()
-        addConstraints()
-        self.registerPresenter.view = self
-        self.cnpjTextField.delegate = self
-        imagePicker.delegate = self
-        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-        self.addAvatarButton.addTarget(self, action: #selector(didTapAddAvatar), for: .touchUpInside)
-    }
-    
     @objc func didTapContinue() {
         registerModelController?.name = companyNameTextField.text ?? ""
         registerModelController?.cnpj = (cnpjTextField.text ?? "").replacingOccurrences(of: ".", with: "").replacingOccurrences(of: "/", with: "").replacingOccurrences(of: "-", with: "")
@@ -163,7 +168,7 @@ extension RegisterBViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             self.avatarImage.image = image
-            
+            self.avatarImage.circleImage()
         }
         self.imagePicker.dismiss(animated: true) {}
     }
@@ -194,6 +199,24 @@ extension RegisterBViewController: UITextFieldDelegate {
             return newLength <= 18
         }
         return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+        return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.companyNameTextField:
+            self.cnpjTextField.becomeFirstResponder()
+        case self.cnpjTextField:
+            self.descriptionTextField.becomeFirstResponder()
+        case self.descriptionTextField:
+            didTapContinue()
+        default:
+            self.descriptionTextField.becomeFirstResponder()
+        }
     }
     
 }
