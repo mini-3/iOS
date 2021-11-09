@@ -24,6 +24,7 @@ class RegisterAViewController: UIViewController {
         let textField = TextField(placeholder: "Email")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
+        textField.keyboardType = .emailAddress
         return textField
     }()
     
