@@ -201,7 +201,6 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        //title = "Editar"
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
         self.tabBarController?.tabBar.isHidden = false

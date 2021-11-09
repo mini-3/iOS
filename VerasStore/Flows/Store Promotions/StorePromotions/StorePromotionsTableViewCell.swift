@@ -120,7 +120,8 @@ class StorePromotionsTableViewCell: UITableViewCell {
     private var qrCodeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "qrcode")
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24, weight: .regular, scale: .large)
+        imageView.image = UIImage(systemName: "qrcode", withConfiguration: configuration)
         imageView.backgroundColor = .white
         imageView.tintColor = .black
         imageView.contentScaleFactor = 1
@@ -138,7 +139,7 @@ class StorePromotionsTableViewCell: UITableViewCell {
         self.configureConstraints()
         
         contentView.backgroundColor = UIColor(named: "Background")
-        self.qrCodeView.layer.cornerRadius = 25
+        self.qrCodeView.layer.cornerRadius = 30
         
         let button = UITapGestureRecognizer(target: self, action: #selector(StorePromotionsTableViewCell.generateTicket))
         qrCodeView.addGestureRecognizer(button)
@@ -211,8 +212,8 @@ class StorePromotionsTableViewCell: UITableViewCell {
         ]
         
         let qrCodeViewConstraints = [
-            qrCodeView.heightAnchor.constraint(equalToConstant: 50),
-            qrCodeView.widthAnchor.constraint(equalToConstant: 50),
+            qrCodeView.heightAnchor.constraint(equalToConstant: 60),
+            qrCodeView.widthAnchor.constraint(equalToConstant: 60),
             qrCodeView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -16),
             qrCodeView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -24)
         ]
