@@ -105,14 +105,14 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
     private func addConstraints() {
         let logoImageViewConstraints = [
             logoImageView.heightAnchor.constraint(equalToConstant: 270),
-            logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
+            logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 48),
             logoImageView.widthAnchor.constraint(equalToConstant: 160),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 60),
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64)
         ]
         

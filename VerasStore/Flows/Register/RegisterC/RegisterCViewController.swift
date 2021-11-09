@@ -10,6 +10,14 @@ import UIKit
 
 class RegisterCViewController: UIViewController {
     
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "logoname")
+        return imageView
+    }()
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,12 +57,21 @@ class RegisterCViewController: UIViewController {
     }
     
     private func addSubviews() {
+        view.addSubview(logoImageView)
         view?.addSubview(stackView)
         stackView.addArrangedSubview(addressTextField)
         stackView.addArrangedSubview(continueButton)
     }
     
     private func addConstraints() {
+        
+        let logoImageViewConstraints = [
+            logoImageView.heightAnchor.constraint(equalToConstant: 270),
+            logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 48),
+            logoImageView.widthAnchor.constraint(equalToConstant: 160),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
@@ -69,6 +86,7 @@ class RegisterCViewController: UIViewController {
             continueButton.heightAnchor.constraint(equalToConstant: 40)
         ]
         
+        NSLayoutConstraint.activate(logoImageViewConstraints)
         NSLayoutConstraint.activate(stackViewConstraints)
         NSLayoutConstraint.activate(textFieldConstraints)
         NSLayoutConstraint.activate(buttonConstraints)
