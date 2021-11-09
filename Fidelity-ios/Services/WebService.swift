@@ -14,7 +14,7 @@ public enum WebServiceError: Error {
 }
 
 public struct WebService {
-    static private let ABSOLUTE_PATH = "https://nodedeploy.veras.app"
+    static private let ABSOLUTE_PATH = Constants.API_PATH
     
     // MARK: - Get
     static public func get<T:Codable>(path: String, type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {

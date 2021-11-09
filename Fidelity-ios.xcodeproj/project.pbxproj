@@ -139,6 +139,9 @@
 		DEA2178F2734478A003E6D4B /* EmptyStateTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2178E2734478A003E6D4B /* EmptyStateTableView.swift */; };
 		DEA217902734478A003E6D4B /* EmptyStateTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2178E2734478A003E6D4B /* EmptyStateTableView.swift */; };
 		DEA217912734478A003E6D4B /* EmptyStateTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2178E2734478A003E6D4B /* EmptyStateTableView.swift */; };
+		DEA21794273B0B8E003E6D4B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA21793273B0B8E003E6D4B /* Constants.swift */; };
+		DEA21795273B0B8E003E6D4B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA21793273B0B8E003E6D4B /* Constants.swift */; };
+		DEA21796273B0B8E003E6D4B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA21793273B0B8E003E6D4B /* Constants.swift */; };
 		DEAD7C58272B223B00E26312 /* ScannerOverlayPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2B4164271DEB85007AE381 /* ScannerOverlayPreviewLayer.swift */; };
 		DEAD7C5B272B228500E26312 /* QRcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAD7C5A272B228500E26312 /* QRcodeReaderViewController.swift */; };
 		DEC0F01D2727A502002ACFC4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8EE3442718E1F4005165AA /* GradientView.swift */; };
@@ -299,6 +302,7 @@
 		DE2B416B272201D7007AE381 /* LogInUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUserResponse.swift; sourceTree = "<group>"; };
 		DEA2178C272C80C0003E6D4B /* TicketPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketPresenter.swift; sourceTree = "<group>"; };
 		DEA2178E2734478A003E6D4B /* EmptyStateTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateTableView.swift; sourceTree = "<group>"; };
+		DEA21793273B0B8E003E6D4B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DEAD7C5A272B228500E26312 /* QRcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeReaderViewController.swift; sourceTree = "<group>"; };
 		DEC0F0262729CB4D002ACFC4 /* GenerateTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateTicketViewController.swift; sourceTree = "<group>"; };
 		DEC0F0282729CB4D002ACFC4 /* StorePromotionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePromotionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -818,6 +822,7 @@
 		6DFDEA292721D2920014F389 /* CoreVeras */ = {
 			isa = PBXGroup;
 			children = (
+				DEA21792273B0B76003E6D4B /* Resources */,
 				34F243092721E16700F2BADC /* Flows */,
 				6DC4A0342710DF0600C4AD69 /* Extensions */,
 				6DFDEA402721D3660014F389 /* Services */,
@@ -853,6 +858,14 @@
 				DE2B41692721F4D8007AE381 /* WonViewController.swift */,
 			);
 			path = Won;
+			sourceTree = "<group>";
+		};
+		DEA21792273B0B76003E6D4B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DEA21793273B0B8E003E6D4B /* Constants.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		DEAD7C59272B226800E26312 /* Scanner */ = {
@@ -1173,6 +1186,7 @@
 				4E44827C271F3D4D0006A68E /* StoreViewModel.swift in Sources */,
 				34F243122721E67300F2BADC /* OnboardSectionTableViewCell.swift in Sources */,
 				6DDF017B271CD11E00222A36 /* ButtonExtensions.swift in Sources */,
+				DEA21794273B0B8E003E6D4B /* Constants.swift in Sources */,
 				4EC563822710BFC400411EA6 /* Promotion.swift in Sources */,
 				6D8EE33C27189DAB005165AA /* UserPromotionsViewController.swift in Sources */,
 				6D56F7472720951200306459 /* CreateUserResponse.swift in Sources */,
@@ -1285,6 +1299,7 @@
 				6DFDE9F12721D1FF0014F389 /* AppDelegate.swift in Sources */,
 				6D958D172728616E00685828 /* PromotionPresenter.swift in Sources */,
 				6DFDEA3A2721D31B0014F389 /* UserPromotionTicketsResponse.swift in Sources */,
+				DEA21795273B0B8E003E6D4B /* Constants.swift in Sources */,
 				6DFDEA3C2721D31F0014F389 /* TicketBatchResponse.swift in Sources */,
 				6DFDE9F32721D1FF0014F389 /* SceneDelegate.swift in Sources */,
 				345615F2272B164B00A24E82 /* RegisterAViewController.swift in Sources */,
@@ -1335,6 +1350,7 @@
 			files = (
 				345615EC2729EA4900A24E82 /* MutableDataExtensions.swift in Sources */,
 				DEA217912734478A003E6D4B /* EmptyStateTableView.swift in Sources */,
+				DEA21796273B0B8E003E6D4B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
