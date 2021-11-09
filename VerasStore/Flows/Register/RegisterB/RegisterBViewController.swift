@@ -109,8 +109,8 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         let imageViewConstraints = [
             avatarImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             avatarImage.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -64),
-            avatarImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            avatarImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
+            avatarImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 96),
+            avatarImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -96),
             avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor, multiplier: 1)
         ]
         
@@ -209,13 +209,13 @@ extension RegisterBViewController: UITextFieldDelegate {
     private func switchBasedNextTextField(_ textField: UITextField) {
         switch textField {
         case self.companyNameTextField:
-            self.cnpjTextField.becomeFirstResponder()
+            let _ = self.cnpjTextField.becomeFirstResponder()
         case self.cnpjTextField:
-            self.descriptionTextField.becomeFirstResponder()
+            let _ = self.descriptionTextField.becomeFirstResponder()
         case self.descriptionTextField:
             didTapContinue()
         default:
-            self.descriptionTextField.becomeFirstResponder()
+            let _ = self.descriptionTextField.becomeFirstResponder()
         }
     }
     

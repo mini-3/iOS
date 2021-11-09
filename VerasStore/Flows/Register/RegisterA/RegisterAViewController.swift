@@ -124,13 +124,13 @@ extension RegisterAViewController: UITextFieldDelegate {
     private func switchBasedNextTextField(_ textField: UITextField) {
         switch textField {
         case self.emailTextField:
-            self.passwordTextField.becomeFirstResponder()
+            let _ = self.passwordTextField.becomeFirstResponder()
         case self.passwordTextField:
-            self.confirmPasswordField.becomeFirstResponder()
+            let _ = self.confirmPasswordField.becomeFirstResponder()
         case self.confirmPasswordField:
             didTapContinue()
         default:
-            self.confirmPasswordField.becomeFirstResponder()
+            let _ = self.confirmPasswordField.becomeFirstResponder()
         }
     }
 
