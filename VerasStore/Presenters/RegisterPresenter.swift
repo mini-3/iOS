@@ -100,7 +100,8 @@ class RegisterPresenter {
             case .success(_):
                 DispatchQueue.main.async {
                     print("sucess")
-                    self?.view?.dismiss(animated: true)
+                    self?.view?.dismiss(animated: true, completion: nil)
+                    self?.view?.presentAlertCreateAccount()
                     handler()
                 }
             case .failure(let error):

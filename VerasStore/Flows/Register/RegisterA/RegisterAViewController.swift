@@ -18,6 +18,7 @@ class RegisterAViewController: UIViewController {
         imageView.image = UIImage(named: "logoname")
         return imageView
     }()
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +87,7 @@ class RegisterAViewController: UIViewController {
     private func addConstraints() {
         let logoImageViewConstraints = [
             logoImageView.heightAnchor.constraint(equalToConstant: 270),
-            logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
+            logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 48),
             logoImageView.widthAnchor.constraint(equalToConstant: 160),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
@@ -94,7 +95,7 @@ class RegisterAViewController: UIViewController {
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
-            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 60)
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48)
         ]
         
         let textFieldConstraints = [
