@@ -10,6 +10,14 @@ import UIKit
 class StoreLoginViewController: UIViewController, StorePresenterDelegate {
     
     // MARK: - Subviews
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "logoname")
+        return imageView
+    }()
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +93,7 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
     
     // MARK: - Functionalities
     private func addSubviews() {
+        view.addSubview(logoImageView)
         view.addSubview(stackView)
         stackView.addArrangedSubview(cnpjTextField)
         stackView.addArrangedSubview(passwordTextField)
@@ -94,11 +103,17 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
     }
     
     private func addConstraints() {
+        let logoImageViewConstraints = [
+            logoImageView.heightAnchor.constraint(equalToConstant: 270),
+            logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
+            logoImageView.widthAnchor.constraint(equalToConstant: 160),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            // stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64)
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 60),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64)
         ]
         
         let buttonConstraints = [
@@ -110,6 +125,7 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
             passwordTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
+        NSLayoutConstraint.activate(logoImageViewConstraints)
         NSLayoutConstraint.activate(stackViewConstraints)
         NSLayoutConstraint.activate(buttonConstraints)
         NSLayoutConstraint.activate(textFieldsConstraints)
