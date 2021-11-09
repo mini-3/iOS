@@ -30,6 +30,7 @@ class RegisterAViewController: UIViewController {
         let textField = TextField(placeholder: "Email")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
+        textField.keyboardType = .emailAddress
         return textField
     }()
     
@@ -60,6 +61,19 @@ class RegisterAViewController: UIViewController {
     var registerPresenter = RegisterPresenter()
     var registerModelController = RegisterStoreModelController()
     
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor(named: "Background")
+        title = "Criar conta (1/3)"
+        setInputFirstValues()
+        addSubviews()
+        addConstraints()
+        self.registerPresenter.view = self
+        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.confirmPasswordField.delegate = self
+    }
+    
     private func addSubviews() {
         view.addSubview(logoImageView)
         view.addSubview(stackView)
@@ -67,7 +81,6 @@ class RegisterAViewController: UIViewController {
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(confirmPasswordField)
         stackView.addArrangedSubview(continueButton)
-        
     }
     
     private func addConstraints() {
@@ -100,15 +113,6 @@ class RegisterAViewController: UIViewController {
         NSLayoutConstraint.activate(buttonConstraints)
     }
     
-    override func viewDidLoad() {
-        view.backgroundColor = UIColor(named: "Background")
-        setInputFirstValues()
-        addSubviews()
-        addConstraints()
-        self.registerPresenter.view = self
-        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-    }
-    
     @objc func didTapContinue() {
         registerModelController.email = emailTextField.text ?? ""
         registerModelController.password = passwordTextField.text ?? ""
@@ -126,5 +130,25 @@ class RegisterAViewController: UIViewController {
         passwordTextField.text = registerModelController.password
         confirmPasswordField.text = registerModelController.confirmPassword
     }
+}
+
+extension RegisterAViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+        return true
+    }
     
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.emailTextField:
+            let _ = self.passwordTextField.becomeFirstResponder()
+        case self.passwordTextField:
+            let _ = self.confirmPasswordField.becomeFirstResponder()
+        case self.confirmPasswordField:
+            didTapContinue()
+        default:
+            let _ = self.confirmPasswordField.becomeFirstResponder()
+        }
+    }
+
 }

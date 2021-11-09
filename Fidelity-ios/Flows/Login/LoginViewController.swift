@@ -78,20 +78,28 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Login"
-        view.backgroundColor = UIColor(named: "Background")
+        
         self.presenter.view = self
         self.addSubviews()
         self.addConstraints()
+        self.configureUI()
+        
         self.cpfTextField.delegate = self
         self.passwordTextField.delegate = self
+        
+    }
+    
+    // MARK: - Functionalities
+    private func configureUI() {
+        title = "Login"
+        view.backgroundColor = UIColor(named: "Background")
+        
         self.loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapRegister))
         createAccountLabel.isUserInteractionEnabled = true
         createAccountLabel.addGestureRecognizer(tap)
     }
     
-    // MARK: - Functionalities
     private func addSubviews() {
         view.addSubview(logoImageView)
         view.addSubview(stackView)

@@ -9,12 +9,6 @@ import Foundation
 import UIKit
 
 class RegisterCViewController: UIViewController {
-    var registerPresenter = RegisterPresenter()
-    var registerModelController: RegisterStoreModelController? = nil
-    
-    public func configure(modelController: RegisterStoreModelController) {
-        registerModelController = modelController
-    }
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -31,8 +25,6 @@ class RegisterCViewController: UIViewController {
         return textField
     }()
     
-
-    
     private let continueButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +34,19 @@ class RegisterCViewController: UIViewController {
         button.setTitleColor(.systemBackground, for: .normal)
         return button
     }()
+    
+    var registerPresenter = RegisterPresenter()
+    var registerModelController: RegisterStoreModelController? = nil
+    
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor(named: "Background")
+        title = "Criar conta (3/3)"
+        addSubviews()
+        addConstraints()
+        self.registerPresenter.view = self
+        self.addressTextField.delegate = self
+        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+    }
     
     private func addSubviews() {
         view?.addSubview(stackView)
@@ -69,14 +74,6 @@ class RegisterCViewController: UIViewController {
         NSLayoutConstraint.activate(buttonConstraints)
     }
     
-    override func viewDidLoad() {
-        view.backgroundColor = UIColor(named: "Background")
-        addSubviews()
-        addConstraints()
-        self.registerPresenter.view = self
-        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-    }
-    
     @objc func didTapContinue() {
         registerModelController?.address = addressTextField.text ?? ""
         
@@ -87,7 +84,18 @@ class RegisterCViewController: UIViewController {
                 }
             }
         }
-        
-      
+    }
+  
+    public func configure(modelController: RegisterStoreModelController) {
+        registerModelController = modelController
+    }
+}
+
+extension RegisterCViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == addressTextField {
+            didTapContinue()
+        }
+        return true
     }
 }
