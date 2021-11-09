@@ -79,36 +79,41 @@ class RegisterPresenter {
     }
     
     func register(_ modelController:RegisterStoreModelController, handler: @escaping () -> Void) {
-        guard let image = modelController.avatar?.jpegData(compressionQuality: 1) else {
-            self.view?
-                .presentAlert(message: "Erro ao carregar imagem")
+        guard let image = modelController.avatar else {
+            DispatchQueue.main.async {
+                self.view?
+                    .presentAlert(message: "Erro ao carregar imagem")
+            }
             return
         }
-        let data = [
-            "cnpj": modelController.cnpj,
-            "name": modelController.name,
-            "address": modelController.address,
-            "password": modelController.password,
-            "description": modelController.description,
-            "email":modelController.email
-        ]
-        DispatchQueue.main.async {
-            self.view?.presentLoadingScreen()
-        }
-        MultipartService.post(path: "/stores", image: image, data: data, type: Store.self) { [weak self] result in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    print("sucess")
-                    self?.view?.dismiss(animated: true)
-                    handler()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    print("error",error)
-                    self?.view?.presentAlert(message: "Erro ao registrar estabelecimento")
+        image.resizeByByte(maxByte: 500000, completion: { image in
+            let data = [
+                "cnpj": modelController.cnpj,
+                "name": modelController.name,
+                "address": modelController.address,
+                "password": modelController.password,
+                "description": modelController.description,
+                "email":modelController.email
+            ]
+            DispatchQueue.main.async {
+                self.view?.presentLoadingScreen()
+            }
+            MultipartService.post(path: "/stores", image: image, data: data, type: Store.self) { [weak self] result in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        print("sucess")
+                        self?.view?.dismiss(animated: true)
+                        handler()
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        print("error",error)
+                        self?.view?.presentAlert(message: "Erro ao registrar estabelecimento")
+                    }
                 }
             }
-        }
+        })
+        
     }
 }
