@@ -8,7 +8,7 @@
 import Foundation
 
 struct MultipartService {
-    static private let ABSOLUTE_PATH = "https://nodedeploy.veras.app"
+    static private let ABSOLUTE_PATH = Constants.API_PATH
     
     static public func post<T:Codable>(path: String, image: Data, data: [String: AnyHashable], type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
         guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }

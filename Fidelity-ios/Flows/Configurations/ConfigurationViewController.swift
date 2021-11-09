@@ -119,18 +119,17 @@ class ConfigurationViewController: UIViewController {
     }
     
     @objc func contactSupport() {
-        let email = "santiago.dgonzaga@hotmail.com"
+        let email = Constants.EMAIL
         if let url = URL(string: "mailto:\(email)") {
             UIApplication.shared.open(url)
         }
     }
     
     @objc func goToInstagram() {
-        if let url = URL(string: "https://www.instagram.com/santigonzaga/") {
+        if let url = URL(string: "https://www.instagram.com/\(Constants.INSTAGRAM)/") {
             UIApplication.shared.open(url)
         }
     }
-    
     @objc func logOut() {
         let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
         
