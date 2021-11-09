@@ -119,6 +119,7 @@ class StorePromotionsViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = UIColor(named: "Background")
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         verticalStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
         storeLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
@@ -161,7 +162,7 @@ class StorePromotionsViewController: UIViewController {
         let emptyStateConstraints = [
             emptyState.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emptyState.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            emptyState.heightAnchor.constraint(equalToConstant: 300),
+            emptyState.heightAnchor.constraint(equalToConstant: 250),
             emptyState.widthAnchor.constraint(equalToConstant: 250)
         ]
         
