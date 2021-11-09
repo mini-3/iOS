@@ -56,3 +56,13 @@ extension String {
                                     range: startIndex..<endIndex)
     }
 }
+
+
+extension StringProtocol {
+    var isValidCNPJ: Bool {
+        let numbers = compactMap(\.wholeNumberValue)
+        guard numbers.count == 14 && Set(numbers).count != 1 else { return false }
+        return numbers.prefix(12).digitoCNPJ == numbers[12] &&
+               numbers.prefix(13).digitoCNPJ == numbers[13]
+    }
+}
