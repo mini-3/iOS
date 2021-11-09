@@ -119,7 +119,7 @@ class UserPresenter {
             }
             return
         }
-        if !ValidatorService.validate(value: password, type: .CNPJ) {
+        if !ValidatorService.validate(value: password, type: .password) {
             DispatchQueue.main.async {
                 self.view?.presentAlert(message: "Senha inválida.")
             }
