@@ -21,6 +21,36 @@ class StoreConfigurationViewController: UIViewController {
         return button
     }()
     
+    private lazy var contactButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Contato com o suporte", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.textAlignment = .center
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(contactSupport), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    private lazy var instagramButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Siga nosso Instagram", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.textAlignment = .center
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(goToInstagram), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private lazy var logOutButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -64,24 +94,41 @@ class StoreConfigurationViewController: UIViewController {
     
     func configureSubViews() {
         view.addSubview(buttonStack)
+        buttonStack.addArrangedSubview(contactButton)
+        buttonStack.addArrangedSubview(instagramButton)
         buttonStack.addArrangedSubview(deleteAccountButton)
         buttonStack.addArrangedSubview(logOutButton)
     }
     
     func configureConstraints() {
         let buttonStackContraints = [
-            buttonStack.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -32),
+            buttonStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             buttonStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             buttonStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
         ]
         
         let buttonConstraints = [
+            contactButton.heightAnchor.constraint(equalToConstant: 40),
+            instagramButton.heightAnchor.constraint(equalToConstant: 40),
             logOutButton.heightAnchor.constraint(equalToConstant: 40),
             deleteAccountButton.heightAnchor.constraint(equalToConstant: 40)
         ]
 
         NSLayoutConstraint.activate(buttonStackContraints)
         NSLayoutConstraint.activate(buttonConstraints)
+    }
+    
+    @objc func contactSupport() {
+        let email = "santiago.dgonzaga@hotmail.com"
+        if let url = URL(string: "mailto:\(email)") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @objc func goToInstagram() {
+        if let url = URL(string: "https://www.instagram.com/santigonzaga/") {
+            UIApplication.shared.open(url)
+        }
     }
     
     @objc func logOut() {
