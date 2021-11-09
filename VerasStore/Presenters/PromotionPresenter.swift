@@ -126,28 +126,30 @@ class PromotionPresenter {
     func fetch(withLoadingScreen: Bool) {
         if withLoadingScreen {
             DispatchQueue.main.async {
-                self.view?.presentLoadingScreen()
+                self.view?.presentLoadingScreen(completion: {
+                    WebService.get(path: "/promotions/by_store", type: [Promotion].self) {[weak self] result in
+                        guard let self = self else {
+                            self?.view?.dismiss(animated: true, completion: nil)
+                            return
+                        }
+                        switch result {
+                        case .success(let promotions):
+                            let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
+                            self.view?.fetched(promotions: viewModels)
+                            DispatchQueue.main.async {
+                                self.view?.dismiss(animated: true, completion: nil)
+                            }
+                        case .failure(let error):
+                            DispatchQueue.main.async {
+                                self.view?.dismiss(animated: true, completion: nil)
+                            }
+                            print(error)
+                        }
+                    }
+                })
             }
         }
-        WebService.get(path: "/promotions", type: [Promotion].self) {[weak self] result in
-            guard let self = self else {
-                self?.view?.dismiss(animated: true, completion: nil)
-                return
-            }
-            switch result {
-            case .success(let promotions):
-                let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
-                self.view?.fetched(promotions: viewModels)
-                DispatchQueue.main.async {
-                    self.view?.dismiss(animated: true, completion: nil)
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.view?.dismiss(animated: true, completion: nil)
-                }
-                print(error)
-            }
-        }
+        
     }
     
     func fetchOne(withLoadingScreen: Bool, promotionId: Int) {
