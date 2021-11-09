@@ -81,12 +81,22 @@ class RegisterViewController: UIViewController, UserPresenterDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Criar conta"
-        view.backgroundColor = UIColor(named: "Background")
+        
         self.presenter.view = self
         self.addSubviews()
         self.addConstraint()
+        self.configureUI()
+        
+        self.emailTextField.delegate = self
         self.cpfTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.confirmPasswordField.delegate = self
+    }
+    
+    private func configureUI() {
+        title = "Criar conta"
+        view.backgroundColor = UIColor(named: "Background")
+        
         continueButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapSignIn))
         signInLabel.isUserInteractionEnabled = true
@@ -165,5 +175,25 @@ extension RegisterViewController: UITextFieldDelegate {
             return newLength <= 14
         }
         return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+        return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.emailTextField:
+            self.cpfTextField.becomeFirstResponder()
+        case self.cpfTextField:
+            self.passwordTextField.becomeFirstResponder()
+        case self.passwordTextField:
+            self.confirmPasswordField.becomeFirstResponder()
+        case self.confirmPasswordField:
+            didTapSignUp()
+        default:
+            self.confirmPasswordField.becomeFirstResponder()
+        }
     }
 }
