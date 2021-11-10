@@ -8,7 +8,7 @@
 import Foundation
 
 struct Constants {
-    static let INSTAGRAM: String = "santigonzaga"
-    static let EMAIL: String = "santiago.dgonzaga@hotmail.com"
+    static let INSTAGRAM: String = "veras.app"
+    static let EMAIL: String = "suporte@veras.app"
     static let API_PATH = "https://nodedeploy.veras.app"
 }
