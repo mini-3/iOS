@@ -10,6 +10,13 @@ import UIKit
 class LoginViewController: UIViewController, UserPresenterDelegate {
     
     // MARK: - Subviews
+    private var resetEmailTextField: UITextField = {
+        let textField = TextField(placeholder: "Email")
+        textField.keyboardType = .emailAddress
+        
+        return textField
+    }()
+    
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +115,9 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
         stackView.addArrangedSubview(forgotPasswordLabel)
         stackView.addArrangedSubview(createAccountLabel)
         stackView.addArrangedSubview(loginButton)
+        let resetPasswordTap = UITapGestureRecognizer(target: self, action: #selector(didTapForgotPassword))
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(resetPasswordTap)
     }
     
     private func addConstraints() {
@@ -137,6 +147,31 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
         NSLayoutConstraint.activate(stackViewConstraints)
         NSLayoutConstraint.activate(buttonConstraints)
         NSLayoutConstraint.activate(textFieldsConstraints)
+    }
+    
+    private func displayForm(message:String){
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel" , style: .cancel)
+        
+        let saveAction = UIAlertAction(title: "Submit", style: .default) { (action) -> Void in
+            guard let text = self.resetEmailTextField.text else { return }
+            self.presenter.resetPassword(email: text)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField!) in
+            textField.placeholder = "Email..."
+            self.resetEmailTextField = textField
+        })
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func didTapForgotPassword(){
+        self.displayForm(message: "Resetando a senha")
     }
     
     @objc private func didTapLogin() {

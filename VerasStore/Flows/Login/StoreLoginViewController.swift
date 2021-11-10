@@ -26,6 +26,13 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
         return stackView
     }()
     
+    private var resetEmailTextField: UITextField = {
+        let textField = TextField(placeholder: "Email")
+        textField.keyboardType = .emailAddress
+        
+        return textField
+    }()
+    
     private let cnpjTextField: TextField = {
         let textField = TextField(placeholder: "CNPJ")
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -89,6 +96,9 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapRegister))
         createAccountLabel.isUserInteractionEnabled = true
         createAccountLabel.addGestureRecognizer(tap)
+        let resetPasswordTap = UITapGestureRecognizer(target: self, action: #selector(didTapForgotPassword))
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(resetPasswordTap)
     }
     
     // MARK: - Functionalities
@@ -131,6 +141,31 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
         NSLayoutConstraint.activate(textFieldsConstraints)
     }
     
+    private func displayForm(message:String){
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel" , style: .cancel)
+        
+        let saveAction = UIAlertAction(title: "Submit", style: .default) { (action) -> Void in
+            guard let text = self.resetEmailTextField.text else { return }
+            self.presenter.resetPassword(email: text)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField!) in
+            textField.placeholder = "Email..."
+            self.resetEmailTextField = textField
+        })
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func didTapForgotPassword(){
+        self.displayForm(message: "Resetando a senha")
+    }
+    
     @objc private func didTapLogin() {
         self.loginButton.pulsate()
         presenter.logIn(cnpj: cnpjTextField.text, password: passwordTextField.text)
@@ -156,11 +191,11 @@ extension StoreLoginViewController: UITextFieldDelegate {
             if range.lowerBound == 2 && range.length == 0 {
                 textField.text = text + "."
             }
-
+            
             if range.lowerBound == 6 && range.length == 0 {
                 textField.text = text + "."
             }
-
+            
             if range.lowerBound == 10 && range.length == 0 {
                 textField.text = text + "/"
             }
@@ -168,7 +203,7 @@ extension StoreLoginViewController: UITextFieldDelegate {
             if range.lowerBound == 15 && range.length == 0 {
                 textField.text = text + "-"
             }
-
+            
             let newLength = text.count + string.count - range.length
             return newLength <= 18
         }
