@@ -80,7 +80,7 @@ class UserPresenter {
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Usuário não cadastrado")
+                    self.view?.presentAlert(message: "Usuário não cadastrado ou senha incorreta")
                 }
             }
             
@@ -182,6 +182,27 @@ class UserPresenter {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
                 print(error)
+            }
+        }
+    }
+    
+    func resetPassword(email: String) {
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen()
+        }
+        WebService.post(path: "/user_password/forgot", body: ["email": email]) { result in
+            DispatchQueue.main.async {
+                self.view?.dismiss(animated: true, completion: nil)
+            }
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "O email com sua nova senha foi enviado com sucesso", title: "Parabéns")
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "Email não encontrado")
+                }
             }
         }
     }

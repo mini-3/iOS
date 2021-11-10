@@ -17,7 +17,9 @@ struct RegisterStoreModelController {
     var avatar: UIImage?
     var cnpj: String = ""
     var name: String = ""
-    //C
-    var address: String = ""
     var description: String = ""
+    //C
+    var telephone: String = ""
+    var address: String = ""
+    
 }
