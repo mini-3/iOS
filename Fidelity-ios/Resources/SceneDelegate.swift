@@ -101,7 +101,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if date.hourAfter(n: 23) < Date() || SessionService.shared.token.isEmpty {
             SessionService.shared.logIn(cpf: cpf, password: password) { isRegistered in
                 if !isRegistered {
-                    window?.rootViewController = LoginViewController()
+                    DispatchQueue.main.async {
+                        window?.rootViewController = LoginViewController()
+                    }
                 }
             }
         }

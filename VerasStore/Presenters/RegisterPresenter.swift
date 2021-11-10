@@ -99,9 +99,10 @@ class RegisterPresenter {
                 "address": modelController.address,
                 "password": modelController.password,
                 "description": modelController.description,
-                "email":modelController.email,
-                "phone":modelController.telephone
+                "email": modelController.email,
+                "phone": modelController.telephone
             ]
+            
             DispatchQueue.main.async {
                 self.view?.presentLoadingScreen()
             }
@@ -109,7 +110,6 @@ class RegisterPresenter {
                 switch result {
                 case .success(_):
                     DispatchQueue.main.async {
-                        print("sucess")
                         self?.view?.dismiss(animated: true)
                         handler()
                     }

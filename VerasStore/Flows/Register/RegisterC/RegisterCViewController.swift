@@ -144,6 +144,9 @@ extension RegisterCViewController: UITextFieldDelegate {
             let newString = (text as NSString).replacingCharacters(in: range, with: string)
             textField.text = format(with: "(XX) XXXXX-XXXX", phone: newString)
         }
+        if textField == addressTextField {
+            return true
+        }
         return false
     }
     
