@@ -80,7 +80,7 @@ class UserPresenter {
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Usuário não cadastrado")
+                    self.view?.presentAlert(message: "Usuário não cadastrado ou senha incorreta")
                 }
             }
             
