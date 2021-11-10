@@ -74,7 +74,13 @@ class RegisterPresenter {
     }
     
     func validateContinueC(_ registerModelController: RegisterStoreModelController) -> Bool {
-        //endereço
+        //telephone
+        if registerModelController.telephone.count < 8 {
+            DispatchQueue.main.async {
+                self.view?.presentAlert(message: "Telefone inválido")
+            }
+            return false
+        }
         return true
     }
     
@@ -93,8 +99,10 @@ class RegisterPresenter {
                 "address": modelController.address,
                 "password": modelController.password,
                 "description": modelController.description,
-                "email":modelController.email
+                "email": modelController.email,
+                "phone": modelController.telephone
             ]
+            
             DispatchQueue.main.async {
                 self.view?.presentLoadingScreen()
             }
@@ -102,7 +110,6 @@ class RegisterPresenter {
                 switch result {
                 case .success(_):
                     DispatchQueue.main.async {
-                        print("sucess")
                         self?.view?.dismiss(animated: true)
                         handler()
                     }

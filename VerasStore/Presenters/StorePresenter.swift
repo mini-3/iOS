@@ -62,8 +62,7 @@ class StorePresenter {
                 DispatchQueue.main.async {
                     self.view?.presentAlert(message: "Usuário não cadastrado ou senha incorreta")
                 }
-            }
-            
+            }  
         }
     }
     

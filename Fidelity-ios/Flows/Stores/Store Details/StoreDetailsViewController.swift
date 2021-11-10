@@ -217,7 +217,7 @@ class StoreDetailsViewController: UIViewController {
         storeLabel.text = promotion.storeName
         detailsStoreLabel.text = promotion.storeDescription
         addressStoreLabel.text = promotion.storeAddress
-        //telephoneStoreLabel.text = promotion.storePhone
+        telephoneStoreLabel.text = promotion.storePhone
         requirementsStoreLabel.text = promotion.ticketsNeeded
         rewardStoreLabel.text = promotion.award
         if promotion.image == "photo.circle" {

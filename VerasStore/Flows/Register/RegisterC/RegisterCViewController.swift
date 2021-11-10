@@ -26,6 +26,14 @@ class RegisterCViewController: UIViewController {
         return stackView
     }()
     
+    private let telephoneTextField: TextField = {
+        let textField = TextField(placeholder: "Telefone")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
+        textField.keyboardType = .phonePad
+        return textField
+    }()
+    
     private let addressTextField: TextField = {
         let textField = TextField(placeholder: "Endereço")
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +60,7 @@ class RegisterCViewController: UIViewController {
         addSubviews()
         addConstraints()
         self.registerPresenter.view = self
+        self.telephoneTextField.delegate = self
         self.addressTextField.delegate = self
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
     }
@@ -59,6 +68,7 @@ class RegisterCViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(logoImageView)
         view?.addSubview(stackView)
+        stackView.addArrangedSubview(telephoneTextField)
         stackView.addArrangedSubview(addressTextField)
         stackView.addArrangedSubview(continueButton)
     }
@@ -79,6 +89,7 @@ class RegisterCViewController: UIViewController {
         ]
         
         let textFieldConstraints = [
+            telephoneTextField.heightAnchor.constraint(equalToConstant: 40),
             addressTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
@@ -94,6 +105,7 @@ class RegisterCViewController: UIViewController {
     
     @objc func didTapContinue() {
         registerModelController?.address = addressTextField.text ?? ""
+        registerModelController?.telephone = telephoneTextField.text ?? ""
         
         if let registerModelController = registerModelController, registerPresenter.validateContinueC(registerModelController) {
             registerPresenter.register(registerModelController) {
@@ -103,7 +115,7 @@ class RegisterCViewController: UIViewController {
             }
         }
     }
-  
+    
     public func configure(modelController: RegisterStoreModelController) {
         registerModelController = modelController
     }
@@ -111,9 +123,48 @@ class RegisterCViewController: UIViewController {
 
 extension RegisterCViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == addressTextField {
-            didTapContinue()
-        }
+        self.switchBasedNextTextField(textField)
         return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.telephoneTextField:
+            let _ = self.addressTextField.becomeFirstResponder()
+        case self.addressTextField:
+            didTapContinue()
+        default:
+            let _ = self.addressTextField.becomeFirstResponder()
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == telephoneTextField {
+            guard let text = textField.text else { return false }
+            let newString = (text as NSString).replacingCharacters(in: range, with: string)
+            textField.text = format(with: "(XX) XXXXX-XXXX", phone: newString)
+        }
+        if textField == addressTextField {
+            return true
+        }
+        return false
+    }
+    
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex
+
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                result.append(numbers[index])
+
+                index = numbers.index(after: index)
+
+            } else {
+                result.append(ch)
+            }
+        }
+        return result
     }
 }
