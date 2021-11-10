@@ -29,7 +29,6 @@ struct MultipartService {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data else { handler(.failure(.noDataError)); return }
             do {
-                print(String(data: data, encoding: .utf8))
                 let data = try JSONDecoder().decode(T.self, from: data)
                 handler(.success(data))
             } catch {
