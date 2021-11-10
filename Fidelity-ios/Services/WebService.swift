@@ -112,5 +112,31 @@ public struct WebService {
         }
         .resume()
     }
+    
+    // MARK: - Post without decoding
+    static public func post(path: String, body: [String: AnyHashable], handler: @escaping (Result<Bool, WebServiceError>) -> Void) {
+        guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }
+        
+        guard let body = try? JSONSerialization.data(withJSONObject: body, options: []) else { handler(.failure(.parsingJsonError)); return }
+        
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST"
+        request.httpBody = body
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard error == nil,
+                  let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 201 || httpResponse.statusCode == 204 else {
+                      handler(.failure(.parsingJsonError))
+                      return
+              }
+            handler(.success(true))
+            
+        }
+        .resume()
+    }
 
 }
