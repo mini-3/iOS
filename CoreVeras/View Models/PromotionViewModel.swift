@@ -22,7 +22,7 @@ public class PromotionViewModel {
     let ticketsNeeded: String
     let ticketsDone: String
     let usersCount: String
-    //let storePhone: String
+    let storePhone: String
     let image: String
     
     init(with model: Promotion) {
@@ -47,6 +47,7 @@ public class PromotionViewModel {
         self.ticketsDone = "\(model.tickets?.count ?? 0)"
         self.usersCount = "10" //TODO
         self.image = model.store?.avatar ?? "photo.circle"
+        self.storePhone = model.store?.phone ?? "Telefone do estabelecimento"
     }
     
     func awardPhraseBuild() -> String {
