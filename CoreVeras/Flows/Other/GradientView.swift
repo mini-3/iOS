@@ -43,7 +43,7 @@ class GradientView: UIView {
             color.darker(by: 20)?.cgColor ?? color.cgColor
         ]
         gradient.startPoint = CGPoint(x: 0.2, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1, y: 0.5)
+        gradient.endPoint = CGPoint( x: 1, y: 0.5)
         if gradient.superlayer == nil {
             layer.insertSublayer(gradient, at: 0)
         }
