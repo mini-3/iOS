@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = UserDefaultsService.shared.retrieve(key: "first_login", type: String.self) else {
             let vc = OnboardViewController()
             vc.configure(
-                title: "Onboarding",
+                title: "Bem vindo ao Veras",
                 sections: [OnboardSection(image: "Fidelidades",
                                           title: "Seu negócio",
                                           description: "Cadastre seu negócio e fidelize seus clientes com nosso app!"),

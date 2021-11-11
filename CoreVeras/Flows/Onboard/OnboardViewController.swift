@@ -25,7 +25,7 @@ class OnboardViewController: UIViewController {
         configureTableView()
         view.backgroundColor = UIColor(named: "Background")
         self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-        titleLabel.text = "Onboarding"
+        titleLabel.text = "Bem vindo ao Veras"
     }
     
     //MARK: - Views
