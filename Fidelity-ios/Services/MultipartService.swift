@@ -31,8 +31,11 @@ struct MultipartService {
             do {
                 let data = try JSONDecoder().decode(T.self, from: data)
                 handler(.success(data))
+            } catch {}
+            do {
+                let data = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                handler(.failure(.APIError(message: data.message)))
             } catch {
-                print(error)
                 handler(.failure(.parsingJsonError))
             }
         }

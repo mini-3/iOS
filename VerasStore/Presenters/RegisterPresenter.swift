@@ -104,23 +104,37 @@ class RegisterPresenter {
             ]
             
             DispatchQueue.main.async {
-                self.view?.presentLoadingScreen()
-            }
-            MultipartService.post(path: "/stores", image: image, data: data, type: Store.self) { [weak self] result in
-                switch result {
-                case .success(_):
-                    DispatchQueue.main.async {
-                        self?.view?.dismiss(animated: true)
-                        handler()
+                self.view?.presentLoadingScreen(completion: {
+                    MultipartService.post(path: "/stores", image: image, data: data, type: Store.self) { [weak self] result in
+                        guard let self = self else {
+                            DispatchQueue.main.async {
+                                self?.view?.dismiss(animated: true)
+                            }
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            self.view?.dismiss(animated: true)
+                        }
+                        switch result {
+                        case .success(_):
+                            DispatchQueue.main.async {
+                                handler()
+                            }
+                        case .failure(let error):
+                            switch error {
+                            case .APIError(let message):
+                                DispatchQueue.main.async {
+                                    self.view?.presentAlert(message: message)
+                                }
+                            default:
+                                DispatchQueue.main.async {
+                                    self.view?.presentAlert(message: "Erro ao registrar estabelecimento")
+                                }
+                            }
+                        }
                     }
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        print("error",error)
-                        self?.view?.presentAlert(message: "Erro ao registrar estabelecimento")
-                    }
-                }
+                })
             }
         })
-        
     }
 }

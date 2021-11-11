@@ -24,26 +24,25 @@ class StorePresenter {
     init() {}
     
     func fetchStores() {
-        view?.presentLoadingScreen()
-        WebService.get(path: "/stores", type: [Store].self) {[weak self] result in
-            guard let self = self else {
-                self?.view?.dismiss(animated: true, completion: nil)
-                return
-            }
-            switch result {
-            case .success(let stores):
-                let viewModels = stores.sorted { $0.id < $1.id } .map { StoreViewModel(with: $0) }
-                self.view?.fetched(stores: viewModels)
+        view?.presentLoadingScreen(completion: {
+            WebService.get(path: "/stores", type: [Store].self) {[weak self] result in
+                guard let self = self else {
+                    self?.view?.dismiss(animated: true, completion: nil)
+                    return
+                }
                 DispatchQueue.main.sync {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-            case .failure(let error):
-                DispatchQueue.main.sync {
-                    self.view?.dismiss(animated: true, completion: nil)
+                switch result {
+                case .success(let stores):
+                    let viewModels = stores.sorted { $0.id < $1.id } .map { StoreViewModel(with: $0) }
+                    self.view?.fetched(stores: viewModels)
+                case .failure:
+                    DispatchQueue.main.async {
+                        self.view?.presentAlert(message: "Registros não encontrados")
+                    }
                 }
-                print(error)
             }
-        }
+        })
     }
-    
 }
