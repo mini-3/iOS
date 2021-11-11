@@ -43,7 +43,6 @@ class UserPresenter {
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-                print(error)
             }
         }
     }

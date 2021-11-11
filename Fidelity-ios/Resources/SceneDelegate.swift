@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           description: "Encontre suas lojas parceiras favoritas e descubra fidelidades"),
                            OnboardSection(image: "Qrcode",
                                           title: "Leitor",
-                                          description: "Peça a leitura do QR Code para ganhar pontos  quando elegível"),
+                                          description: "Peça a leitura do QR Code para ganhar pontos quando elegível"),
                            OnboardSection(image: "Carteira",
                                           title: "Carteira",
                                           description: "Acompanhe sua pontuação em seus cartões de fidelidade")
