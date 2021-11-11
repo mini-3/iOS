@@ -34,7 +34,7 @@ class PromotionUsersPresenter {
                             self.view?.fetched(tickets: tickets)
                             self.tableViewCell?.fetched(tickets: tickets)
                         case .failure(_):
-                            self.view?.presentAlert(message: "Ocorreu algum problema ao carregar os clientes!")
+                            self.view?.dismiss(animated: true, completion: nil)
                         }
                     }
                 }

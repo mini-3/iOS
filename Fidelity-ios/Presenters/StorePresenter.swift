@@ -26,6 +26,7 @@ class StorePresenter {
     func fetchStores() {
         view?.presentLoadingScreen(completion: {
             WebService.get(path: "/stores", type: [Store].self) {[weak self] result in
+                print(result)
                 guard let self = self else {
                     self?.view?.dismiss(animated: true, completion: nil)
                     return

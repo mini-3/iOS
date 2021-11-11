@@ -30,15 +30,16 @@ class TicketPresenter {
             }
             return
         }
-        
         WebService.post(path: "/tickets", body: ["code": code, "email": email], type: Ticket.self) {[weak self] result in
             guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.view?.tabBarController?.selectedIndex = 0
+            }
             switch result {
             case .success(_):
                 SyncService.shared.syncTickets()
                 DispatchQueue.main.async {
-                    self.view?.tabBarController?.selectedIndex = 0
-                    //self.view?.presentAlert(message: "Ticket processado com sucesso", title: "Parabéns!")
+                    self.view?.presentAlert(message: "Ticket processado com sucesso", title: "Parabéns!")
                 }
             case .failure(_):
                 DispatchQueue.main.async {
