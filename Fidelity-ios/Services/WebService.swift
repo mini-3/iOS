@@ -11,6 +11,7 @@ public enum WebServiceError: Error {
     case badUrlError
     case parsingJsonError
     case noDataError
+    case APIError(message: String)
 }
 
 public struct WebService {
@@ -28,14 +29,14 @@ public struct WebService {
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data  else { handler(.failure(.noDataError)); return }
-            
-            //guard let data = try? JSONDecoder().decode(T.self, from: data) else { handler(.failure(.parsingJsonError)); return }
-
             do {
                 let data = try JSONDecoder().decode(T.self, from: data)
                 handler(.success(data))
+            } catch {}
+            do {
+                let data = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                handler(.failure(.APIError(message: data.message)))
             } catch {
-                print(error)
                 handler(.failure(.parsingJsonError))
             }
             
@@ -60,12 +61,14 @@ public struct WebService {
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let data = data else { handler(.failure(.noDataError)); return }
-
             do {
                 let data = try JSONDecoder().decode(T.self, from: data)
                 handler(.success(data))
+            } catch {}
+            do {
+                let data = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                handler(.failure(.APIError(message: data.message)))
             } catch {
-                print(error)
                 handler(.failure(.parsingJsonError))
             }
         }
