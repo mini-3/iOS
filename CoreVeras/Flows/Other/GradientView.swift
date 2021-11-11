@@ -32,7 +32,7 @@ class GradientView: UIView {
         gradient.frame = self.bounds
         
         let shapeLayer = CAShapeLayer(layer: self.layer)
-        shapeLayer.path = self.pathSemiCirclesPathForView(givenView: self, circlesDistance: (self.bounds.width/2)-45).cgPath
+        shapeLayer.path = self.pathSemiCirclesPathForView(givenView: self, circlesDistance: (self.bounds.width/2)-75).cgPath
         shapeLayer.frame = self.bounds
         shapeLayer.masksToBounds = true
         shapeLayer.shadowOpacity = 1
@@ -54,7 +54,7 @@ class GradientView: UIView {
         
     }
     
-    func pathSemiCirclesPathForView(givenView: UIView, ciclesRadius:CGFloat = 15, circlesDistance : CGFloat = 20) -> UIBezierPath {
+    func pathSemiCirclesPathForView(givenView: UIView, ciclesRadius:CGFloat = 25, circlesDistance : CGFloat = 20) -> UIBezierPath {
         let width = givenView.frame.size.width
         let height = givenView.frame.size.height
         
@@ -67,7 +67,7 @@ class GradientView: UIView {
         var i = 0
         while x < width {
             x = (semiCircleWidth) * CGFloat(i) + (circlesDistance * CGFloat(i))
-            let pivotPoint = CGPoint(x: x + semiCircleWidth/2, y: height)
+            let pivotPoint = CGPoint(x: x + semiCircleWidth/2, y: height+15)
             if i % 2 != 0 {
                 semiCirclesPath.addArc(withCenter: pivotPoint, radius: ciclesRadius, startAngle: -180 * .pi / 180.0, endAngle: 0 * .pi / 180.0, clockwise: true)
             } else {
@@ -82,7 +82,7 @@ class GradientView: UIView {
         i = 0
         while x > 0 {
             x = width - (semiCircleWidth) * CGFloat(i) - (circlesDistance * CGFloat(i))
-            let pivotPoint = CGPoint(x: x - semiCircleWidth/2, y: 0)
+            let pivotPoint = CGPoint(x: x - semiCircleWidth/2, y: -15)
             if i % 2 != 0 {
                 semiCirclesPath.addArc(withCenter: pivotPoint, radius: ciclesRadius, startAngle: 0 * .pi / 180.0, endAngle: -180 * .pi / 180.0, clockwise: true)
             } else {
