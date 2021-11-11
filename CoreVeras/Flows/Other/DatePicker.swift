@@ -32,6 +32,7 @@ class DatePicker: UIView {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = .date
+        datePicker.locale = Locale(identifier: "pt_BR")
         
         return datePicker
     }()

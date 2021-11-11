@@ -15,7 +15,6 @@ enum PromotionManipulationType {
 
 class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterDelegate {
     
-    
     // MARK: - Subviews
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -170,6 +169,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     private let startDatePicker: DatePicker = {
         let datePicker = DatePicker(label: "Início")
         datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.picker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
         return datePicker
     }()
     
@@ -220,6 +220,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         self.ticketTypeTextField.delegate = self
         self.winAmountTextField.delegate = self
         self.awardTextField.delegate = self
+        self.endDatePicker.picker.minimumDate = startDatePicker.picker.date
     }
     
     func configureTexts(promotion: Promotion) {
@@ -283,6 +284,10 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         let navVC = UINavigationController(rootViewController: configVC)
         navVC.modalPresentationStyle = .automatic
         self.present(navVC, animated: true)
+    }
+    
+    @objc func datePickerChanged(picker: UIDatePicker) {
+        self.endDatePicker.picker.minimumDate = startDatePicker.picker.date
     }
     
     // MARK: - Functions
