@@ -119,6 +119,7 @@ class RegisterPresenter {
                         case .success(_):
                             DispatchQueue.main.async {
                                 handler()
+                                self.view?.presentAlert(message: "Conta criada com sucesso", title: "Parabéns")
                             }
                         case .failure(let error):
                             switch error {

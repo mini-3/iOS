@@ -26,6 +26,8 @@ class RegisterBViewController: UIViewController, UINavigationControllerDelegate 
         //imageView.backgroundColor = .white
         imageView.image = UIImage(systemName: "photo.circle")
         imageView.tintColor = .white
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     

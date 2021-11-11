@@ -59,7 +59,6 @@ struct MultipartService {
         
         //close
         body.appendString("--" + boundary + "--\r\n")
-        print("body:", body)
         return body as Data
     }
 }
