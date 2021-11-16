@@ -18,4 +18,5 @@ public struct Store: Codable {
     let description: String?
     let isAppearing: Bool?
     let avatar: String?
+    let phone: String?
 }

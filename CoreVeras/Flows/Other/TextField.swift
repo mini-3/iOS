@@ -15,7 +15,6 @@ class TextField: UITextField {
         super.init(frame: .zero)
         self.layer.borderWidth = 0
         self.backgroundColor = UIColor.init(rgb: 0x4F4F4F)
-        //self.layer.borderColor = UIColor.systemGray.cgColor
         self.layer.cornerRadius = 8
         self.placeholder = placeholder
     }
@@ -50,7 +49,6 @@ class TextField: UITextField {
         if super.resignFirstResponder() {
             self.layer.borderWidth = 0
             self.backgroundColor = UIColor.init(rgb: 0x4F4F4F)
-            //self.layer.borderColor = UIColor.systemGray.cgColor
             return true
         }
         return false

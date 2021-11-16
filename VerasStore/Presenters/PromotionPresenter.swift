@@ -102,50 +102,81 @@ class PromotionPresenter {
         }
         
         DispatchQueue.main.async {
-            self.view?.presentLoadingScreen()
-        }
-        
-        WebService.post(path: "/promotions", body: body, type: Promotion.self) {[weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.view?.dismiss(animated: true, completion: nil)
-            }
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Promoção criada com sucesso", title: "Parabéns")
+            self.view?.presentLoadingScreen(completion: {
+                WebService.post(path: "/promotions", body: body, type: Promotion.self) {[weak self] result in
+                    guard let self = self else {
+                        DispatchQueue.main.async {
+                            self?.view?.dismiss(animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.view?.dismiss(animated: true, completion: nil)
+                    }
+                    switch result {
+                    case .success(_):
+                        DispatchQueue.main.async {
+                            self.view?.presentAlert(message: "Promoção criada com sucesso", title: "Parabéns")
+                        }
+                    case .failure(let error):
+                        switch error {
+                        case .APIError(let message):
+                            DispatchQueue.main.async {
+                                self.view?.presentAlert(message: message)
+                            }
+                        default:
+                            DispatchQueue.main.async {
+                                self.view?.presentAlert(message: "Ocorreu algum erro ao criar promoção")
+                            }
+                        }
+                    }
                 }
-            case .failure(_):
-                DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Ocorreu algum erro ao criar promoção")
-                }
-            }
+            })
         }
     }
     
     func fetch(withLoadingScreen: Bool) {
         if withLoadingScreen {
             DispatchQueue.main.async {
-                self.view?.presentLoadingScreen()
+                self.view?.presentLoadingScreen(completion: {
+                    WebService.get(path: "/promotions/by_store", type: [Promotion].self) {[weak self] result in
+                        guard let self = self else {
+                            self?.view?.dismiss(animated: true, completion: nil)
+                            return
+                        }
+                        switch result {
+                        case .success(let promotions):
+                            let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
+                            self.view?.fetched(promotions: viewModels)
+                            DispatchQueue.main.async {
+                                self.view?.dismiss(animated: true, completion: nil)
+                            }
+                        case .failure:
+                            DispatchQueue.main.async {
+                                self.view?.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    }
+                })
             }
-        }
-        WebService.get(path: "/promotions", type: [Promotion].self) {[weak self] result in
-            guard let self = self else {
-                self?.view?.dismiss(animated: true, completion: nil)
-                return
-            }
-            switch result {
-            case .success(let promotions):
-                let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
-                self.view?.fetched(promotions: viewModels)
-                DispatchQueue.main.async {
-                    self.view?.dismiss(animated: true, completion: nil)
+        } else {
+            WebService.get(path: "/promotions/by_store", type: [Promotion].self) {[weak self] result in
+                guard let self = self else {
+                    self?.view?.dismiss(animated: true, completion: nil)
+                    return
                 }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.view?.dismiss(animated: true, completion: nil)
+                switch result {
+                case .success(let promotions):
+                    let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
+                    self.view?.fetched(promotions: viewModels)
+                    DispatchQueue.main.async {
+                        self.view?.dismiss(animated: true, completion: nil)
+                    }
+                case .failure:
+                    DispatchQueue.main.async {
+                        self.view?.dismiss(animated: true, completion: nil)
+                    }
                 }
-                print(error)
             }
         }
     }
@@ -167,11 +198,10 @@ class PromotionPresenter {
                     self.view?.fetchedOne(promotion: PromotionViewModel(with: promotion))
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-            case .failure(let error):
+            case .failure:
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-                print(error)
             }
         }
     }

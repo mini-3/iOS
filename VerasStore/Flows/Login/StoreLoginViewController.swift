@@ -10,12 +10,27 @@ import UIKit
 class StoreLoginViewController: UIViewController, StorePresenterDelegate {
     
     // MARK: - Subviews
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "logoname")
+        return imageView
+    }()
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 16
         return stackView
+    }()
+    
+    private var resetEmailTextField: UITextField = {
+        let textField = TextField(placeholder: "Email")
+        textField.keyboardType = .emailAddress
+        
+        return textField
     }()
     
     private let cnpjTextField: TextField = {
@@ -81,10 +96,14 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapRegister))
         createAccountLabel.isUserInteractionEnabled = true
         createAccountLabel.addGestureRecognizer(tap)
+        let resetPasswordTap = UITapGestureRecognizer(target: self, action: #selector(didTapForgotPassword))
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(resetPasswordTap)
     }
     
     // MARK: - Functionalities
     private func addSubviews() {
+        view.addSubview(logoImageView)
         view.addSubview(stackView)
         stackView.addArrangedSubview(cnpjTextField)
         stackView.addArrangedSubview(passwordTextField)
@@ -94,11 +113,17 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
     }
     
     private func addConstraints() {
+        let logoImageViewConstraints = [
+            logoImageView.heightAnchor.constraint(equalToConstant: 270),
+            logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 48),
+            logoImageView.widthAnchor.constraint(equalToConstant: 160),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            // stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64)
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64)
         ]
         
         let buttonConstraints = [
@@ -110,9 +135,35 @@ class StoreLoginViewController: UIViewController, StorePresenterDelegate {
             passwordTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
+        NSLayoutConstraint.activate(logoImageViewConstraints)
         NSLayoutConstraint.activate(stackViewConstraints)
         NSLayoutConstraint.activate(buttonConstraints)
         NSLayoutConstraint.activate(textFieldsConstraints)
+    }
+    
+    private func displayForm(message:String){
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel" , style: .cancel)
+        
+        let saveAction = UIAlertAction(title: "Submit", style: .default) { (action) -> Void in
+            guard let text = self.resetEmailTextField.text else { return }
+            self.presenter.resetPassword(email: text)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField!) in
+            textField.placeholder = "Email..."
+            self.resetEmailTextField = textField
+        })
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func didTapForgotPassword(){
+        self.displayForm(message: "Resetando a senha")
     }
     
     @objc private func didTapLogin() {
@@ -140,11 +191,11 @@ extension StoreLoginViewController: UITextFieldDelegate {
             if range.lowerBound == 2 && range.length == 0 {
                 textField.text = text + "."
             }
-
+            
             if range.lowerBound == 6 && range.length == 0 {
                 textField.text = text + "."
             }
-
+            
             if range.lowerBound == 10 && range.length == 0 {
                 textField.text = text + "/"
             }
@@ -152,7 +203,7 @@ extension StoreLoginViewController: UITextFieldDelegate {
             if range.lowerBound == 15 && range.length == 0 {
                 textField.text = text + "-"
             }
-
+            
             let newLength = text.count + string.count - range.length
             return newLength <= 18
         }

@@ -188,7 +188,7 @@ class StoreDetailsViewController: UIViewController {
     private lazy var storeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 20
         imageView.tintColor = UIColor(named: "secondaryLabel")
         imageView.image = UIImage(systemName: "photo")
@@ -217,7 +217,7 @@ class StoreDetailsViewController: UIViewController {
         storeLabel.text = promotion.storeName
         detailsStoreLabel.text = promotion.storeDescription
         addressStoreLabel.text = promotion.storeAddress
-        //telephoneStoreLabel.text = promotion.storePhone
+        telephoneStoreLabel.text = promotion.storePhone
         requirementsStoreLabel.text = promotion.ticketsNeeded
         rewardStoreLabel.text = promotion.award
         if promotion.image == "photo.circle" {
@@ -238,6 +238,7 @@ class StoreDetailsViewController: UIViewController {
         view.addSubview(verticalStoreInfoStackView)
         view.addSubview(promotionView)
         promotionView.addSubview(verticalPromotionStackView)
+        storeImageView.circleImage()
         view.addSubview(storeImageView)
     }
     
@@ -291,8 +292,8 @@ class StoreDetailsViewController: UIViewController {
         let storeImageViewConstraints = [
             storeImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             storeImageView.topAnchor.constraint(equalTo: promotionView.bottomAnchor, constant: 32),
-            storeImageView.heightAnchor.constraint(equalToConstant: 120),
-            storeImageView.widthAnchor.constraint(equalToConstant: 200)
+            storeImageView.heightAnchor.constraint(equalToConstant: 140),
+            storeImageView.widthAnchor.constraint(equalToConstant: 140)
         ]
         
         NSLayoutConstraint.activate(storeLabelConstraints)

@@ -15,7 +15,6 @@ enum PromotionManipulationType {
 
 class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterDelegate {
     
-    
     // MARK: - Subviews
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -131,6 +130,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     private let winAmountTextField: TextField = {
         let textField = TextField(placeholder: "")
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.keyboardType = .numberPad
         return textField
     }()
     
@@ -169,6 +169,7 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     private let startDatePicker: DatePicker = {
         let datePicker = DatePicker(label: "Início")
         datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.picker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
         return datePicker
     }()
     
@@ -201,7 +202,6 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        //title = "Editar"
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
         self.tabBarController?.tabBar.isHidden = false
@@ -215,6 +215,12 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         executeButton.addGestureRecognizer(gesture)
         presenter.view = self
         awardTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        self.nameTextField.delegate = self
+        self.ticketTypeTextField.delegate = self
+        self.winAmountTextField.delegate = self
+        self.awardTextField.delegate = self
+        self.endDatePicker.picker.minimumDate = startDatePicker.picker.date
     }
     
     func configureTexts(promotion: Promotion) {
@@ -278,6 +284,10 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         let navVC = UINavigationController(rootViewController: configVC)
         navVC.modalPresentationStyle = .automatic
         self.present(navVC, animated: true)
+    }
+    
+    @objc func datePickerChanged(picker: UIDatePicker) {
+        self.endDatePicker.picker.minimumDate = startDatePicker.picker.date
     }
     
     // MARK: - Functions
@@ -421,4 +431,26 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         NSLayoutConstraint.activate(executeButtonConstraints)
     }
     
+}
+
+extension CreateUpdatePromotionViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+        return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.nameTextField:
+            let _ = self.ticketTypeTextField.becomeFirstResponder()
+        case self.ticketTypeTextField:
+            let _ = self.winAmountTextField.becomeFirstResponder()
+        case self.winAmountTextField:
+            let _ = self.awardTextField.becomeFirstResponder()
+        case self.awardTextField:
+            let _ = self.awardTextField.becomeFirstResponder()
+        default:
+            let _ = self.awardTextField.becomeFirstResponder()
+        }
+    }
 }

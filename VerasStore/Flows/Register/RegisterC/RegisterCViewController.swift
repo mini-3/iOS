@@ -9,12 +9,14 @@ import Foundation
 import UIKit
 
 class RegisterCViewController: UIViewController {
-    var registerPresenter = RegisterPresenter()
-    var registerModelController: RegisterStoreModelController? = nil
     
-    public func configure(modelController: RegisterStoreModelController) {
-        registerModelController = modelController
-    }
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "logoname")
+        return imageView
+    }()
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -24,14 +26,20 @@ class RegisterCViewController: UIViewController {
         return stackView
     }()
     
+    private let telephoneTextField: TextField = {
+        let textField = TextField(placeholder: "Telefone")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
+        textField.keyboardType = .phonePad
+        return textField
+    }()
+    
     private let addressTextField: TextField = {
         let textField = TextField(placeholder: "Endereço")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.autocapitalizationType = .none
         return textField
     }()
-    
-
     
     private let continueButton: UIButton = {
         let button = UIButton()
@@ -43,13 +51,37 @@ class RegisterCViewController: UIViewController {
         return button
     }()
     
+    var registerPresenter = RegisterPresenter()
+    var registerModelController: RegisterStoreModelController? = nil
+    
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor(named: "Background")
+        title = "Criar conta (3/3)"
+        addSubviews()
+        addConstraints()
+        self.registerPresenter.view = self
+        self.telephoneTextField.delegate = self
+        self.addressTextField.delegate = self
+        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+    }
+    
     private func addSubviews() {
+        view.addSubview(logoImageView)
         view?.addSubview(stackView)
+        stackView.addArrangedSubview(telephoneTextField)
         stackView.addArrangedSubview(addressTextField)
         stackView.addArrangedSubview(continueButton)
     }
     
     private func addConstraints() {
+        
+        let logoImageViewConstraints = [
+            logoImageView.heightAnchor.constraint(equalToConstant: 270),
+            logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 48),
+            logoImageView.widthAnchor.constraint(equalToConstant: 160),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
@@ -57,6 +89,7 @@ class RegisterCViewController: UIViewController {
         ]
         
         let textFieldConstraints = [
+            telephoneTextField.heightAnchor.constraint(equalToConstant: 40),
             addressTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
@@ -64,21 +97,15 @@ class RegisterCViewController: UIViewController {
             continueButton.heightAnchor.constraint(equalToConstant: 40)
         ]
         
+        NSLayoutConstraint.activate(logoImageViewConstraints)
         NSLayoutConstraint.activate(stackViewConstraints)
         NSLayoutConstraint.activate(textFieldConstraints)
         NSLayoutConstraint.activate(buttonConstraints)
     }
     
-    override func viewDidLoad() {
-        view.backgroundColor = UIColor(named: "Background")
-        addSubviews()
-        addConstraints()
-        self.registerPresenter.view = self
-        self.continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-    }
-    
     @objc func didTapContinue() {
         registerModelController?.address = addressTextField.text ?? ""
+        registerModelController?.telephone = telephoneTextField.text ?? ""
         
         if let registerModelController = registerModelController, registerPresenter.validateContinueC(registerModelController) {
             registerPresenter.register(registerModelController) {
@@ -87,7 +114,57 @@ class RegisterCViewController: UIViewController {
                 }
             }
         }
-        
-      
+    }
+    
+    public func configure(modelController: RegisterStoreModelController) {
+        registerModelController = modelController
+    }
+}
+
+extension RegisterCViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.switchBasedNextTextField(textField)
+        return true
+    }
+    
+    private func switchBasedNextTextField(_ textField: UITextField) {
+        switch textField {
+        case self.telephoneTextField:
+            let _ = self.addressTextField.becomeFirstResponder()
+        case self.addressTextField:
+            didTapContinue()
+        default:
+            let _ = self.addressTextField.becomeFirstResponder()
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == telephoneTextField {
+            guard let text = textField.text else { return false }
+            let newString = (text as NSString).replacingCharacters(in: range, with: string)
+            textField.text = format(with: "(XX) XXXXX-XXXX", phone: newString)
+        }
+        if textField == addressTextField {
+            return true
+        }
+        return false
+    }
+    
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex
+
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                result.append(numbers[index])
+
+                index = numbers.index(after: index)
+
+            } else {
+                result.append(ch)
+            }
+        }
+        return result
     }
 }

@@ -10,6 +10,21 @@ import UIKit
 class LoginViewController: UIViewController, UserPresenterDelegate {
     
     // MARK: - Subviews
+    private var resetEmailTextField: UITextField = {
+        let textField = TextField(placeholder: "Email")
+        textField.keyboardType = .emailAddress
+        
+        return textField
+    }()
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "logoname")
+        return imageView
+    }()
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,35 +85,53 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Login"
-        view.backgroundColor = UIColor(named: "Background")
+        
         self.presenter.view = self
         self.addSubviews()
         self.addConstraints()
+        self.configureUI()
+        
         self.cpfTextField.delegate = self
         self.passwordTextField.delegate = self
+        
+    }
+    
+    // MARK: - Functionalities
+    private func configureUI() {
+        title = "Login"
+        view.backgroundColor = UIColor(named: "Background")
+        
         self.loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapRegister))
         createAccountLabel.isUserInteractionEnabled = true
         createAccountLabel.addGestureRecognizer(tap)
     }
     
-    // MARK: - Functionalities
     private func addSubviews() {
+        view.addSubview(logoImageView)
         view.addSubview(stackView)
         stackView.addArrangedSubview(cpfTextField)
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(forgotPasswordLabel)
         stackView.addArrangedSubview(createAccountLabel)
         stackView.addArrangedSubview(loginButton)
+        let resetPasswordTap = UITapGestureRecognizer(target: self, action: #selector(didTapForgotPassword))
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(resetPasswordTap)
     }
     
     private func addConstraints() {
+        let logoImageViewConstraints = [
+            logoImageView.heightAnchor.constraint(equalToConstant: 270),
+            logoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 48),
+            logoImageView.widthAnchor.constraint(equalToConstant: 160),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
         let stackViewConstraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            // stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64)
         ]
         
         let buttonConstraints = [
@@ -110,9 +143,35 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
             passwordTextField.heightAnchor.constraint(equalToConstant: 40)
         ]
         
+        NSLayoutConstraint.activate(logoImageViewConstraints)
         NSLayoutConstraint.activate(stackViewConstraints)
         NSLayoutConstraint.activate(buttonConstraints)
         NSLayoutConstraint.activate(textFieldsConstraints)
+    }
+    
+    private func displayForm(message:String){
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel" , style: .cancel)
+        
+        let saveAction = UIAlertAction(title: "Submit", style: .default) { (action) -> Void in
+            guard let text = self.resetEmailTextField.text else { return }
+            self.presenter.resetPassword(email: text)
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField!) in
+            textField.placeholder = "Email..."
+            self.resetEmailTextField = textField
+        })
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func didTapForgotPassword(){
+        self.displayForm(message: "Resetando a senha")
     }
     
     @objc private func didTapLogin() {

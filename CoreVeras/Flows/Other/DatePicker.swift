@@ -13,10 +13,10 @@ class DatePicker: UIView {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        self.layer.cornerRadius = 16
-        self.layer.borderWidth = 1.5
+        self.layer.cornerRadius = 8
+        self.layer.borderWidth = 0
         self.label.text = label
-        self.layer.borderColor = UIColor.label.cgColor
+        self.backgroundColor = UIColor.init(rgb: 0x4F4F4F)
         
         addSubviews()
         addConstraints()
@@ -32,6 +32,7 @@ class DatePicker: UIView {
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = .date
+        datePicker.locale = Locale(identifier: "pt_BR")
         
         return datePicker
     }()

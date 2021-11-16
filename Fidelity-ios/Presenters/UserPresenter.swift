@@ -43,7 +43,6 @@ class UserPresenter {
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-                print(error)
             }
         }
     }
@@ -60,31 +59,32 @@ class UserPresenter {
         }
         
         DispatchQueue.main.async {
-            self.view?.presentLoadingScreen()
+            self.view?.presentLoadingScreen(completion: {
+                SessionService.shared.logIn(cpf: cpf, password: password) {[weak self] isRegistered in
+                    guard let self = self else {
+                        DispatchQueue.main.async {
+                            self?.view?.dismiss(animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.view?.dismiss(animated: true, completion: nil)
+                    }
+                    if isRegistered {
+                        DispatchQueue.main.async {
+                            let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+                            window?.rootViewController = MainTabBarViewController()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.view?.presentAlert(message: "Usuário não cadastrado ou senha incorreta")
+                        }
+                    }
+                    
+                }
+            })
         }
         
-        SessionService.shared.logIn(cpf: cpf, password: password) {[weak self] isRegistered in
-            guard let self = self else {
-                DispatchQueue.main.async {
-                    self?.view?.dismiss(animated: true, completion: nil)
-                }
-                return
-            }
-            DispatchQueue.main.async {
-                self.view?.dismiss(animated: true, completion: nil)
-            }
-            if isRegistered {
-                DispatchQueue.main.async {
-                    let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
-                    window?.rootViewController = MainTabBarViewController()
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Usuário não cadastrado")
-                }
-            }
-            
-        }
     }
     
     func signUp(email: String?, cpf: String?, password: String?, confirmPassword: String?, birthday: String?) {
@@ -119,7 +119,7 @@ class UserPresenter {
             }
             return
         }
-        if !ValidatorService.validate(value: password, type: .CNPJ) {
+        if !ValidatorService.validate(value: password, type: .password) {
             DispatchQueue.main.async {
                 self.view?.presentAlert(message: "Senha inválida.")
             }
@@ -133,33 +133,40 @@ class UserPresenter {
         }
         
         DispatchQueue.main.async {
-            self.view?.presentLoadingScreen()
-        }
-        
-        let cpfNormalized = cpf.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: "-", with: "")
-        
-        let body = ["email":email, "password":password, "birthday":birthday, "cpf":cpfNormalized]
-        
-        WebService.post(path: "/users", body: body, type: CreateUserResponse.self) {[weak self] result in
-            guard let self = self else {
-                DispatchQueue.main.async {
-                    self?.view?.dismiss(animated: true, completion: nil)
+            self.view?.presentLoadingScreen(completion: {
+                let cpfNormalized = cpf.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: "-", with: "")
+                
+                let body = ["email":email, "password":password, "birthday":birthday, "cpf":cpfNormalized]
+                
+                WebService.post(path: "/users", body: body, type: CreateUserResponse.self) {[weak self] result in
+                    guard let self = self else {
+                        DispatchQueue.main.async {
+                            self?.view?.dismiss(animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.view?.dismiss(animated: true, completion: nil)
+                    }
+                    switch result {
+                    case .success(_):
+                        DispatchQueue.main.async {
+                            self.view?.presentAlertWithDismissAction(title: "Parabéns!", message: "Conta criada com sucesso.")
+                        }
+                    case .failure(let error):
+                        switch error {
+                        case .badUrlError, .parsingJsonError, .noDataError:
+                            DispatchQueue.main.async {
+                                self.view?.presentAlert(message: "Erro ao criar conta.")
+                            }
+                        case .APIError(message: let message):
+                            DispatchQueue.main.async {
+                                self.view?.presentAlert(message: message)
+                            }
+                        }
+                    }
                 }
-                return
-            }
-            switch result {
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.view?.dismiss(animated: true, completion: nil)
-                    self.view?.presentAlert(message: "Conta criada com sucesso.", title: "Parabéns!")
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.view?.dismiss(animated: true, completion: nil)
-                    self.view?.presentAlert(message: "Erro ao criar conta.")
-                }
-                print(error)
-            }
+            })
         }
     }
     
@@ -177,11 +184,31 @@ class UserPresenter {
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-            case .failure(let error):
+            case .failure:
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-                print(error)
+            }
+        }
+    }
+    
+    func resetPassword(email: String) {
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen()
+        }
+        WebService.post(path: "/user_password/forgot", body: ["email": email]) { result in
+            DispatchQueue.main.async {
+                self.view?.dismiss(animated: true, completion: nil)
+            }
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "O email com sua nova senha foi enviado com sucesso", title: "Parabéns")
+                }
+            case .failure(_):
+                DispatchQueue.main.async {
+                    self.view?.presentAlert(message: "Email não encontrado")
+                }
             }
         }
     }

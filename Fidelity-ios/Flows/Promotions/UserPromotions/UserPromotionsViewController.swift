@@ -116,7 +116,7 @@ class UserPromotionsViewController: UIViewController {
         let emptyStateConstraints = [
             emptyState.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emptyState.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            emptyState.heightAnchor.constraint(equalToConstant: 300),
+            emptyState.heightAnchor.constraint(equalToConstant: 250),
             emptyState.widthAnchor.constraint(equalToConstant: 250)
         ]
         

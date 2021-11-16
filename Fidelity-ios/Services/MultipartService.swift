@@ -8,7 +8,7 @@
 import Foundation
 
 struct MultipartService {
-    static private let ABSOLUTE_PATH = "http://ec2-52-41-99-1.us-west-2.compute.amazonaws.com:3000"
+    static private let ABSOLUTE_PATH = Constants.API_PATH
     
     static public func post<T:Codable>(path: String, image: Data, data: [String: AnyHashable], type: T.Type, handler: @escaping (Result<T, WebServiceError>) -> Void) {
         guard let url = URL(string: "\(ABSOLUTE_PATH)\(path)") else { handler(.failure(.badUrlError)); return }
@@ -31,8 +31,11 @@ struct MultipartService {
             do {
                 let data = try JSONDecoder().decode(T.self, from: data)
                 handler(.success(data))
+            } catch {}
+            do {
+                let data = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                handler(.failure(.APIError(message: data.message)))
             } catch {
-                print(error)
                 handler(.failure(.parsingJsonError))
             }
         }
@@ -56,7 +59,6 @@ struct MultipartService {
         
         //close
         body.appendString("--" + boundary + "--\r\n")
-        print("body:", body)
         return body as Data
     }
 }
