@@ -151,7 +151,7 @@ class PromotionPresenter {
                             DispatchQueue.main.async {
                                 self.view?.dismiss(animated: true, completion: nil)
                             }
-                        case .failure(let error):
+                        case .failure:
                             DispatchQueue.main.async {
                                 self.view?.dismiss(animated: true, completion: nil)
                             }
@@ -172,7 +172,7 @@ class PromotionPresenter {
                     DispatchQueue.main.async {
                         self.view?.dismiss(animated: true, completion: nil)
                     }
-                case .failure(let error):
+                case .failure:
                     DispatchQueue.main.async {
                         self.view?.dismiss(animated: true, completion: nil)
                     }
@@ -198,7 +198,7 @@ class PromotionPresenter {
                     self.view?.fetchedOne(promotion: PromotionViewModel(with: promotion))
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-            case .failure(let error):
+            case .failure:
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                 }

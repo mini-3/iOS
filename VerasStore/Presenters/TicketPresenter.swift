@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TicketPreseterDelegate: AnyObject {
-    func created() 
+    func created()
     func batched()
 }
 
@@ -36,7 +36,7 @@ class TicketPresenter {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
-                    self.view?.presentAlert(message: "Ticket processado com sucesso", title: "Parabéns!")
+                    self.view?.presentAlertWithDismissAction(title: "Parabéns!", message: "Ticket processado com sucesso")
                 }
             case .failure(_):
                 DispatchQueue.main.async {
@@ -60,7 +60,6 @@ class TicketPresenter {
                 if wasCompleted.wasUsed {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.view?.presentAlert(message: "O cliente completou a promoção. Permita ele resgatar a recompensa!", title: "Parabéns!")
-                        self.view?.viewDidLoad()
                     }
                     self.view?.batched()
                 } else {

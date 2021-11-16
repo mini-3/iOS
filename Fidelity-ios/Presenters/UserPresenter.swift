@@ -84,7 +84,7 @@ class UserPresenter {
                 }
             })
         }
-
+        
     }
     
     func signUp(email: String?, cpf: String?, password: String?, confirmPassword: String?, birthday: String?) {
@@ -151,7 +151,7 @@ class UserPresenter {
                     switch result {
                     case .success(_):
                         DispatchQueue.main.async {
-                            self.view?.presentAlertCreateAccount()
+                            self.view?.presentAlertWithDismissAction(title: "Parabéns!", message: "Conta criada com sucesso.")
                         }
                     case .failure(let error):
                         switch error {
