@@ -39,7 +39,7 @@ class UserPresenter {
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                 }
-            case .failure(let error):
+            case .failure:
                 DispatchQueue.main.async {
                     self.view?.dismiss(animated: true, completion: nil)
                 }

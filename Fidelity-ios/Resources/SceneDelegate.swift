@@ -46,7 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
               let cpf = KeyChainService.shared.retrieveToken(key: "cpf"),
               let password = KeyChainService.shared.retrieveToken(key: "password")
         else {
-            window.rootViewController = LoginViewController()
+            window.rootViewController = UINavigationController(rootViewController: LoginViewController())
             window.makeKeyAndVisible()
             self.window = window
             return
@@ -55,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             SessionService.shared.logIn(cpf: cpf, password: password) { isRegistered in
                 if !isRegistered {
                     DispatchQueue.main.async {
-                        window.rootViewController = LoginViewController()
+                        window.rootViewController = UINavigationController(rootViewController: LoginViewController())
                     }
                     
                 }
@@ -102,7 +102,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             SessionService.shared.logIn(cpf: cpf, password: password) { isRegistered in
                 if !isRegistered {
                     DispatchQueue.main.async {
-                        window?.rootViewController = LoginViewController()
+                        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
                     }
                 }
             }
