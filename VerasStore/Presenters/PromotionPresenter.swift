@@ -206,4 +206,28 @@ class PromotionPresenter {
         }
     }
     
+    func delete(promotionId: Int) {
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen {
+                WebService.delete(path: "/promotions/\(promotionId)", type: Promotion.self) {[weak self] result in
+                    guard let self = self else {
+                        self?.view?.dismiss(animated: true, completion: nil)
+                        return
+                    }
+                    switch result {
+                    case .success:
+                        DispatchQueue.main.async {
+                            self.view?.navigationController?.popToRootViewController(animated: true)
+                        }
+                    case .failure:
+                        DispatchQueue.main.async {
+                            self.view?.presentAlert(message: "Ocorreu algum erro")
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
 }

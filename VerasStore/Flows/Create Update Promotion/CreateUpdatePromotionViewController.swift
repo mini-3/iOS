@@ -42,6 +42,8 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .white
         imageView.image = UIImage(named: "photo.circle")
+        imageView.clipsToBounds = true
+        imageView.circleImage()
         return imageView
     }()
     
@@ -213,6 +215,9 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         self.storeImageView.layer.cornerRadius = self.storeImageView.frame.height/2
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapExecute))
         executeButton.addGestureRecognizer(gesture)
+        
+        let deleteGesture = UITapGestureRecognizer(target: self, action: #selector(didTapDelete))
+        finishButton.addGestureRecognizer(deleteGesture)
         presenter.view = self
         awardTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
@@ -263,6 +268,13 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
     @objc func textFieldDidChange(_ sender: UITextField) {
         guard let text = sender.text else { return }
         awardNameLabel.text = "Recompensa: \(text)"
+    }
+    
+    @objc func didTapDelete() {
+        guard let promotion = promotion else {
+            return
+        }
+        self.presenter.delete(promotionId: promotion.id)
     }
     
     @objc func didTapExecute() {
