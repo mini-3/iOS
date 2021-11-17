@@ -146,9 +146,12 @@ class UserPromotionsTableViewCell: UITableViewCell {
     
     //MARK: - Lifecycle
     override func prepareForReuse() {
+        super.prepareForReuse()
         awardAmount = 0
         currentAmount = 0
         collectionView.reloadData()
+        self.contentView.subviews.forEach { $0.removeFromSuperview() }
+        self.contentView.constraints.forEach { self.contentView.removeConstraint($0) }
     }
     
     //MARK: - Functionalities

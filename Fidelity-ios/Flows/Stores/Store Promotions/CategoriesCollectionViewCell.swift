@@ -24,8 +24,6 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     private lazy var categoryImageView: UIImageView = {
         let categoryImageView = UIImageView()
         categoryImageView.translatesAutoresizingMaskIntoConstraints = false
-        categoryImageView.circleImage()
-        
         return categoryImageView
     }()
     
@@ -36,10 +34,14 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         return categoryName
     }()
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        categoryImageView.circleImage()
+    }
+    
     func configure() {
         configureSubviews()
         configureConstraints()
-        
     }
     
     func configureSubviews() {

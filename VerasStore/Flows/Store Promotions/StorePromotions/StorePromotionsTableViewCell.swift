@@ -131,6 +131,12 @@ class StorePromotionsTableViewCell: UITableViewCell {
     
     private let presenter = PromotionUsersPresenter()
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.contentView.subviews.forEach { $0.removeFromSuperview() }
+        self.contentView.constraints.forEach { self.contentView.removeConstraint($0) }
+    }
+    
     //MARK: - Funcionalities
     
     func configure(promotionName: String, avatar: String, promotionAward: String, amount: Int, promotionId: Int, dateEnd: String) {
