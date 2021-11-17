@@ -181,6 +181,7 @@ class LoginViewController: UIViewController, UserPresenterDelegate {
     
     @objc private func didTapRegister() {
         let registerViewController = RegisterViewController()
+        
         navigationController?.pushViewController(registerViewController, animated: true)
     }
 }
