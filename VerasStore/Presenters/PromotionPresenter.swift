@@ -211,8 +211,13 @@ class PromotionPresenter {
             self.view?.presentLoadingScreen {
                 WebService.delete(path: "/promotions/\(promotionId)", type: Promotion.self) {[weak self] result in
                     guard let self = self else {
-                        self?.view?.dismiss(animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            self?.view?.dismiss(animated: true, completion: nil)
+                        }
                         return
+                    }
+                    DispatchQueue.main.async {
+                        self.view?.dismiss(animated: true, completion: nil)
                     }
                     switch result {
                     case .success:
