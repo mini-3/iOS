@@ -274,7 +274,12 @@ class CreateUpdatePromotionViewController: UIViewController, PromotionPresenterD
         guard let promotion = promotion else {
             return
         }
-        self.presenter.delete(promotionId: promotion.id)
+        let alert = UIAlertController(title: "Deletar promoção?", message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Sim", style: UIAlertAction.Style.destructive, handler: {_ in
+            self.presenter.delete(promotionId: promotion.id)
+        }))
+        alert.addAction(UIAlertAction(title: "Não", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func didTapExecute() {
