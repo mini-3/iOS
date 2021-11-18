@@ -145,12 +145,9 @@ class StoreConfigurationViewController: UIViewController {
     }
     
     @objc func deleteAccount() {
-        let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
-        
         let alert = UIAlertController(title: "Alerta", message: "Você tem certeza que quer deletar sua conta?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Sim", style: UIAlertAction.Style.default, handler: {_ in
             self.storePresenter.deleteAccount()
-            window?.rootViewController = UINavigationController(rootViewController: StoreLoginViewController())
         }))
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

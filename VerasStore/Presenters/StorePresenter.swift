@@ -72,35 +72,33 @@ class StorePresenter {
         
         let id = SessionService.shared.storeId
         
-        DispatchQueue.main.async {
-            self.view?.presentLoadingScreen(completion: {
-                WebService.delete(path: "/stores/\(id)", type: [Store].self) {[weak self] result in
-                    guard let self = self else {
-                        self?.view?.dismiss(animated: true, completion: nil)
-                        return
+        WebService.delete(path: "/stores/\(id)", type: [Store].self) {[weak self] result in
+            guard let self = self else {
+                self?.view?.dismiss(animated: true, completion: nil)
+                return
+            }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                    let window = UIApplication.shared.windows.first(where: \.isKeyWindow)
+                    window?.rootViewController = UINavigationController(rootViewController: StoreLoginViewController())
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.view?.dismiss(animated: true, completion: nil)
+                }
+                switch error {
+                case .APIError(let message):
+                    DispatchQueue.main.async {
+                        self.view?.presentAlert(message: message)
                     }
-                    switch result {
-                    case .success:
-                        DispatchQueue.main.async {
-                            self.view?.dismiss(animated: true, completion: nil)
-                        }
-                    case .failure(let error):
-                        DispatchQueue.main.async {
-                            self.view?.dismiss(animated: true, completion: nil)
-                        }
-                        switch error {
-                        case .APIError(let message):
-                            DispatchQueue.main.async {
-                                self.view?.presentAlert(message: message)
-                            }
-                        default:
-                            DispatchQueue.main.async {
-                                self.view?.presentAlert(message: "Ocorreu algum erro")
-                            }
-                        }
+                default:
+                    DispatchQueue.main.async {
+                        self.view?.presentAlert(message: "Ocorreu algum erro")
                     }
                 }
-            })
+            }
         }
        
     }
