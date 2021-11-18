@@ -102,7 +102,7 @@ class StoresPromotionsViewController: UIViewController {
     }
     
     @objc func handleRefresh() {
-        promotionPresenter.fetchPromotions()
+        promotionPresenter.fetchPromotions(withLoadingScreen: false)
     }
     
 }
@@ -150,21 +150,15 @@ extension StoresPromotionsViewController: UITableViewDelegate, UITableViewDataSo
 
 extension StoresPromotionsViewController: UISearchBarDelegate {
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        promotionPresenter.fetchPromotions()
-        self.storesTableView.reloadData()
-        self.emptyStateControl()
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         filteredData = promotions
         
         if !searchText.isEmpty {
             filteredData = promotions.filter{ $0.storeName.lowercased().contains(searchText.lowercased()) || $0.award.lowercased().contains(searchText.lowercased())}
-            self.storesTableView.reloadData()
-            self.emptyStateControl()
         }
+        self.emptyStateControl()
+        self.storesTableView.reloadData()
         
     }
 }
