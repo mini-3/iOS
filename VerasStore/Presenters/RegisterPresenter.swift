@@ -118,7 +118,7 @@ class RegisterPresenter {
                         switch result {
                         case .success(_):
                             DispatchQueue.main.async {
-                                handler()
+                                self.view?.navigationController?.popToRootViewController(animated: true)
                                 self.view?.presentAlert(message: "Conta criada com sucesso", title: "Parabéns")
                             }
                         case .failure(let error):
