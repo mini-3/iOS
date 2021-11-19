@@ -105,6 +105,12 @@ class StoresPromotionsTableViewCell: UITableViewCell {
 //
 //    }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.contentView.subviews.forEach { $0.removeFromSuperview() }
+        self.contentView.constraints.forEach { self.contentView.removeConstraint($0) }
+    }
+    
     func configure(storeImage: String, storeName: String, storePromotionDescription: String) {
         configureSubviews()
         configureConstraints()
@@ -115,6 +121,7 @@ class StoresPromotionsTableViewCell: UITableViewCell {
             let url = URL(string: storeImage)
             self.storeImageView.kf.setImage(with: url)
         }
+        storeImageView.layoutIfNeeded()
         storeImageView.circleImage()
         self.storeName.text = storeName
         self.storePromotionDescription.text = storePromotionDescription

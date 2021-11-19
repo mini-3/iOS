@@ -90,6 +90,7 @@ class StorePromotionsViewController: UIViewController {
     
     var promotions: [PromotionViewModel] = []
     var filteredPromotions: [PromotionViewModel] = []
+    var withLoadingScreen = true
     private let promotionPresenter = PromotionPresenter()
     
     //MARK: - Lifecycle
@@ -111,7 +112,7 @@ class StorePromotionsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.promotionPresenter.fetch(withLoadingScreen: true)
+        self.promotionPresenter.fetch(withLoadingScreen: withLoadingScreen)
         self.tabBarController?.tabBar.isHidden = false
     }
     

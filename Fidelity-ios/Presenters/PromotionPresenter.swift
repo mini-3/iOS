@@ -74,43 +74,76 @@ class PromotionPresenter {
         }
     }
     
-    func fetchPromotions() {
-        view?.presentLoadingScreen()
-        WebService.get(path: "/promotions", type: [Promotion].self) {[weak self] result in
-            guard let self = self else {
-                self?.view?.dismiss(animated: true, completion: nil)
-                return
-            }
-            switch result {
-            case .success(let promotions):
-                let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
-                self.view?.fetched(promotions: viewModels)
-                DispatchQueue.main.async {
-                    self.view?.dismiss(animated: true, completion: nil)
+    func fetchPromotions(withLoadingScreen: Bool = true) {
+        if withLoadingScreen {
+            DispatchQueue.main.async {
+                self.view?.presentLoadingScreen {
+                    WebService.get(path: "/promotions", type: [Promotion].self) {[weak self] result in
+                        guard let self = self else {
+                            self?.view?.dismiss(animated: true, completion: nil)
+                            return
+                        }
+                        switch result {
+                        case .success(let promotions):
+                            let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
+                            self.view?.fetched(promotions: viewModels)
+                            DispatchQueue.main.async {
+                                self.view?.dismiss(animated: true, completion: nil)
+                            }
+                        case .failure:
+                            DispatchQueue.main.async {
+                                self.view?.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    }
                 }
-            case .failure:
-                DispatchQueue.main.async {
-                    self.view?.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            WebService.get(path: "/promotions", type: [Promotion].self) {[weak self] result in
+                guard let self = self else {
+                    self?.view?.dismiss(animated: true, completion: nil)
+                    return
+                }
+                switch result {
+                case .success(let promotions):
+                    let viewModels = promotions.sorted { $0.id < $1.id } .map { PromotionViewModel(with: $0) }
+                    self.view?.fetched(promotions: viewModels)
+                    DispatchQueue.main.async {
+                        self.view?.dismiss(animated: true, completion: nil)
+                    }
+                case .failure:
+                    DispatchQueue.main.async {
+                        self.view?.dismiss(animated: true, completion: nil)
+                    }
                 }
             }
         }
+        
     }
     
     func fetchPromotion(id: Int) {
-        view?.presentLoadingScreen()
-        WebService.get(path: "", type: Promotion.self) {[weak self] result in
-            guard let self = self else {
-                self?.view?.dismiss(animated: true, completion: nil)
-                return
-            }
-            switch result {
-            case .success(let promotion):
-                let viewModel = PromotionViewModel(with: promotion)
-                self.view?.fetchedOne(promotion: viewModel)
-                self.view?.dismiss(animated: true, completion: nil)
-            case .failure:
-                self.view?.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.view?.presentLoadingScreen {
+                WebService.get(path: "", type: Promotion.self) {[weak self] result in
+                    guard let self = self else {
+                        DispatchQueue.main.async {
+                            self?.view?.dismiss(animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let promotion):
+                            let viewModel = PromotionViewModel(with: promotion)
+                            self.view?.fetchedOne(promotion: viewModel)
+                            self.view?.dismiss(animated: true, completion: nil)
+                        case .failure:
+                            self.view?.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                }
             }
         }
+        
     }
 }

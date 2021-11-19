@@ -118,7 +118,6 @@ public struct WebService {
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil, let response = response, let httpResponse = response as? HTTPURLResponse else { handler(.failure(.noDataError)); return }
-
             handler(.success(httpResponse.statusCode))
         }
         .resume()
