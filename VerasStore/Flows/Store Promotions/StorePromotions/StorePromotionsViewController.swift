@@ -32,36 +32,36 @@ class StorePromotionsViewController: UIViewController {
         return label
     }()
     
-    private var verticalStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 4
-        
-        return stackView
-    }()
-    
-    private var customersLabel1: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        label.textColor = .label
-        label.numberOfLines = 1
-        label.text = "0 clientes"
-        
-        return label
-    }()
-    
-    private var customersLabel2: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .label
-        label.numberOfLines = 1
-        label.text = "em fidelidade"
-        
-        return label
-    }()
+//    private var verticalStackView: UIStackView = {
+//        let stackView = UIStackView()
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        stackView.axis = .vertical
+//        stackView.spacing = 4
+//
+//        return stackView
+//    }()
+//
+//    private var customersLabel1: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+//        label.textColor = .label
+//        label.numberOfLines = 1
+//        label.text = "0 clientes"
+//
+//        return label
+//    }()
+//
+//    private var customersLabel2: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+//        label.textColor = .label
+//        label.numberOfLines = 1
+//        label.text = "em fidelidade"
+//
+//        return label
+//    }()
     
     private var segmentedControl: UISegmentedControl = {
         let segmented = UISegmentedControl(items: ["Ativas", "Desativadas"])
@@ -114,6 +114,7 @@ class StorePromotionsViewController: UIViewController {
         super.viewDidAppear(animated)
         self.promotionPresenter.fetch(withLoadingScreen: withLoadingScreen)
         self.tabBarController?.tabBar.isHidden = false
+        self.configureUI()
     }
     
     //MARK: - Functionalities
@@ -122,8 +123,9 @@ class StorePromotionsViewController: UIViewController {
         view.backgroundColor = UIColor(named: "Background")
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        verticalStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        //verticalStackView.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
         storeLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        //storeLabel.text = SessionService.shared.storeId.
         
         segmentedControl.addTarget(self, action: #selector(didChangedSegmented(_:)), for: .valueChanged)
         
@@ -175,9 +177,9 @@ class StorePromotionsViewController: UIViewController {
     
     private func configureStacks() {
         horizontalStackView.addArrangedSubview(storeLabel)
-        horizontalStackView.addArrangedSubview(verticalStackView)
-        verticalStackView.addArrangedSubview(customersLabel1)
-        verticalStackView.addArrangedSubview(customersLabel2)
+//        horizontalStackView.addArrangedSubview(verticalStackView)
+//        verticalStackView.addArrangedSubview(customersLabel1)
+//        verticalStackView.addArrangedSubview(customersLabel2)
     }
     
     private func emptyStateControl() {
